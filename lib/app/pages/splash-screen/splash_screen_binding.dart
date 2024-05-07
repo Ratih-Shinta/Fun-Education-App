@@ -4,6 +4,6 @@ import 'package:fun_education_app/app/pages/splash-screen/splash_screen_controll
 class SplashScreenBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SplashScreenController>(() => SplashScreenController());
+    Get.put(SplashScreenController());
   }
 }
