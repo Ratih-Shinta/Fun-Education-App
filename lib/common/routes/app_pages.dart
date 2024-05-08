@@ -1,3 +1,5 @@
+import 'package:fun_education_app/app/pages/add-photo-page/add_photo_binding.dart';
+import 'package:fun_education_app/app/pages/add-photo-page/add_photo_view.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
@@ -10,7 +12,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.ADD_PHOTO_PAGE;
 
   static final routes = [
     GetPage(
@@ -27,6 +29,11 @@ class AppPages {
       name: _Paths.HOME_PAGE,
       page: () => HomePageView(),
       binding: HomePageBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PHOTO_PAGE,
+      page: () => AddPhotoView(),
+      binding: AddPhotoBinding(),
     ),
   ];
 }
