@@ -39,10 +39,11 @@ class LoginPageView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       AutoSizeText.rich(
+                        textAlign: TextAlign.center,
                         TextSpan(
                           text: 'Selamat datang di\n',
                           style: tsTitleMediumRegular(blackColor).copyWith(
@@ -56,7 +57,6 @@ class LoginPageView extends StatelessWidget {
                           ],
                         ),
                         maxLines: 2,
-                        group: AutoSizeGroup(),
                       ),
                       SizedBox(height: 30),
                       Container(
@@ -64,20 +64,20 @@ class LoginPageView extends StatelessWidget {
                             vertical: 11.5, horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: opacityWarningColor,
+                          color: warningColor,
                         ),
                         child: Row(
                           children: [
                             Icon(
                               Icons.info_outline,
-                              color: warningColor,
+                              color: whiteColor,
                             ),
                             SizedBox(width: 10),
                             Flexible(
                               child: AutoSizeText(
                                 "Isi dengan username dan password yang telah diberikan oleh guru",
                                 maxLines: 2,
-                                style: tsLabelLargeMedium(warningColor),
+                                style: tsLabelLargeMedium(whiteColor),
                               ),
                             ),
                           ],
