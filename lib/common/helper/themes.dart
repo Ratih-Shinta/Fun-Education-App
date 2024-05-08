@@ -10,7 +10,6 @@ const Color secondaryColor = Color(0xFF0C276A);
 const Color greyColor = Color(0xFF7B7B7B);
 const Color warningColor = Color(0xFFFFBE30);
 const Color opacityPrimaryColor = Color(0x20EF564B);
-const Color opacityWarningColor = Color(0x10FFBE30);
 const Color opacityGreyColor = Color(0x107B7B7B);
 
 //BOX SHADOW
