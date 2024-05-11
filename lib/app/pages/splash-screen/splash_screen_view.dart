@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_controller.dart';
-import 'package:fun_education_app/common/helper/assets_themes.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 

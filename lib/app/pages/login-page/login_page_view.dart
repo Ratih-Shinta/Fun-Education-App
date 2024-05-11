@@ -4,21 +4,28 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/login-page/widgets/login_form_widget.dart';
-import 'package:fun_education_app/common/helper/assets_themes.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class LoginPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.only(
+            left: width * 0.05,
+            right: width * 0.05,
+            top: height * 0.03,
+          ),
           child: Stack(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 48),
+                margin: EdgeInsets.only(top: width * 0.048),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -35,7 +42,8 @@ class LoginPageView extends StatelessWidget {
               ),
               Center(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.05, vertical: height * 0.03),
                   decoration: BoxDecoration(
                     color: whiteColor,
                     borderRadius: BorderRadius.circular(20),
@@ -60,21 +68,25 @@ class LoginPageView extends StatelessWidget {
                         ),
                         maxLines: 2,
                       ),
-                      SizedBox(height: 30),
-                      CommonWarning(backColor: warningColor, icon: Icons.info_outline, text: 'Isi dengan username dan password yang telah diberikan oleh guru'),
-                      SizedBox(height: 15),
+                      SizedBox(height: height * 0.03),
+                      CommonWarning(
+                          backColor: warningColor,
+                          icon: Icons.info_outline,
+                          text:
+                              'Isi dengan username dan password yang telah diberikan oleh guru'),
+                      SizedBox(height: height * 0.025),
                       LoginFormWidget(
                         hintText: 'Username',
                         iconPrefix: Icon(Icons.person, color: greyColor),
                         isObsecure: false,
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: height * 0.015),
                       LoginFormWidget(
                         iconPrefix: Icon(Icons.lock, color: greyColor),
                         hintText: 'Password',
                         isObsecure: false,
                       ),
-                      SizedBox(height: 75),
+                      SizedBox(height: height * 0.075),
                       CommonButton(text: 'Lanjut')
                     ],
                   ),
