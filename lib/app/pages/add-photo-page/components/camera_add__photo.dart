@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class CameraAddPhoto extends StatelessWidget {

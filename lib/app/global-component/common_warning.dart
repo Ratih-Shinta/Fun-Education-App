@@ -4,7 +4,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonWarning extends StatelessWidget {
   final Color backColor;
-  final IconData? icon; // Changed from Icons? to IconData?
+  final IconData? icon;
   final String text;
 
   CommonWarning({
