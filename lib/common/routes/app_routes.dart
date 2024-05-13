@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const LOGIN_PAGE  = _Paths.LOGIN_PAGE;
   static const ADD_PHOTO_PAGE  = _Paths.ADD_PHOTO_PAGE;
+  static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE  = _Paths.HAL_YANG_PERLU_DIPERHATIKAN_PAGE;
 }
 
 abstract class _Paths {
@@ -14,4 +15,5 @@ abstract class _Paths {
   static const HOME_PAGE = '/home-page';
   static const LOGIN_PAGE = '/login';
   static const ADD_PHOTO_PAGE = '/add-photo-page';
+  static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE = '/hal-yang-perlu-diperhatikan-page';
 }

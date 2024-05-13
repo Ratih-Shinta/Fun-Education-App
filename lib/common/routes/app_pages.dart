@@ -6,6 +6,8 @@ import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
+import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
+import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_view.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -34,6 +36,11 @@ class AppPages {
       name: _Paths.ADD_PHOTO_PAGE,
       page: () => AddPhotoView(),
       binding: AddPhotoBinding(),
+    ),
+    GetPage(
+      name: _Paths.HAL_YANG_PERLU_DIPERHATIKAN_PAGE,
+      page: () => HalYangPerluDiperhatikanView(),
+      binding: HalYangPerluDiperhatikanBinding(),
     ),
   ];
 }

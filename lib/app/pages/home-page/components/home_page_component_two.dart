@@ -53,7 +53,7 @@ class HomePageComponentTwo extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: height * 0.075),
                 padding: EdgeInsets.symmetric(
-                    vertical: height * 0.014, horizontal: width * 0.06),
+                    vertical: height * 0.014, horizontal: width * 0.05),
                 decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(30)),
@@ -127,7 +127,7 @@ class HomePageComponentTwo extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: height * 0.075),
                 padding: EdgeInsets.symmetric(
-                    vertical: height * 0.014, horizontal: width * 0.06),
+                    vertical: height * 0.014, horizontal: width * 0.05),
                 decoration: BoxDecoration(
                     color: whiteColor, borderRadius: BorderRadius.circular(30)),
                 child: Row(
