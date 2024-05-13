@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
+import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/components/camera_add__photo.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
@@ -25,21 +26,8 @@ class AddPhotoView extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                margin: EdgeInsets.only(top: width * 0.048),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      logo,
-                      width: 25,
-                    ),
-                    Text(
-                      'FunEducation',
-                      style: tsTitleMediumSemibold(primaryColor),
-                    )
-                  ],
-                ),
-              ),
+                  margin: EdgeInsets.only(top: width * 0.048),
+                  child: FunEducation()),
               Center(
                 child: Container(
                   padding: EdgeInsets.symmetric(

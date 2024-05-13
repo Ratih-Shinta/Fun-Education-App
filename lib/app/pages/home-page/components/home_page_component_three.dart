@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
+import 'package:get/get.dart';
 
 class HomePageComponentThree extends StatelessWidget {
   const HomePageComponentThree({super.key});
@@ -38,35 +40,43 @@ class HomePageComponentThree extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          Text(
-            'Hal - hal yang perlu diperhatikan orangtua',
-            style: tsBodyMediumSemibold(blackColor),
+          AutoSizeText.rich(
+            textAlign: TextAlign.start,
+            TextSpan(
+                text: 'Hal - hal yang perlu diperhatikan orangtua',
+                style: tsBodyMediumSemibold(blackColor)),
+            maxLines: 2,
           ),
-          Container(
-            margin: EdgeInsets.only(top: height * 0.02),
-            padding: EdgeInsets.symmetric(
-                vertical: height * 0.015, horizontal: width * 0.06),
-            decoration: BoxDecoration(
-                color: warningColor, borderRadius: BorderRadius.circular(30)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AutoSizeText.rich(
-                  textAlign: TextAlign.center,
-                  TextSpan(
-                      text: 'Lihat Selengkapnya',
-                      style: tsLabelLargeRegular(whiteColor)),
-                  maxLines: 2,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: whiteColor,
-                  size: 12,
-                )
-              ],
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.HAL_YANG_PERLU_DIPERHATIKAN_PAGE);
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: height * 0.02),
+              padding: EdgeInsets.symmetric(
+                  vertical: height * 0.015, horizontal: width * 0.06),
+              decoration: BoxDecoration(
+                  color: warningColor, borderRadius: BorderRadius.circular(30)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AutoSizeText.rich(
+                    textAlign: TextAlign.center,
+                    TextSpan(
+                        text: 'Lihat Selengkapnya',
+                        style: tsLabelLargeRegular(whiteColor)),
+                    maxLines: 2,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: whiteColor,
+                    size: 12,
+                  )
+                ],
+              ),
             ),
           )
         ],

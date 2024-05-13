@@ -65,42 +65,40 @@ class HomePageView extends StatelessWidget {
             ),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.only(
+        body: SingleChildScrollView(
+          child: Padding(padding: EdgeInsets.only(
             left: width * 0.05,
             right: width * 0.05,
             top: height * 0.015,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                HomePageComponentOne(),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                HomePageComponentTwo(),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                HomePageComponentThree(),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                HomePageComponentFour(),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                HomePageComponentFive(),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                HomePageCompnentSix(),
-                SizedBox(
-                  height: height * 0.05,
-                ),
-              ],
-            ),
-          ),
+          child: Column(
+            children: [
+              HomePageComponentOne(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              HomePageComponentTwo(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              HomePageComponentThree(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              HomePageComponentFour(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              HomePageComponentFive(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              HomePageCompnentSix(),
+              SizedBox(
+                height: height * 0.05,
+              ),
+            ],
+          ),)
         ));
   }
 }
