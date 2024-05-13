@@ -34,15 +34,16 @@ class HomePageComponentFour extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(right: 4.5, bottom: 8),
-          padding: EdgeInsets.symmetric(vertical: 7, horizontal: width * 0.03),
-          decoration: BoxDecoration(
-              color: whiteColor, borderRadius: BorderRadius.circular(10)),
-          child: Text(
-            'Senin, 25 Maret 2024',
-            style: tsBodySmallMedium(blackColor),
-          ),
-        ),
+            margin: EdgeInsets.only(right: 4.5, bottom: 8),
+            padding:
+                EdgeInsets.symmetric(vertical: 7, horizontal: width * 0.03),
+            decoration: BoxDecoration(
+                color: whiteColor, borderRadius: BorderRadius.circular(10)),
+            child: AutoSizeText.rich(
+              TextSpan(
+                  text: 'Senin, 25 Maret 2024',
+                  style: tsBodySmallMedium(blackColor)),
+            )),
       ],
     );
   }

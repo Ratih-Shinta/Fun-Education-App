@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
+import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_penjelasan_shift_masuk.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class HomePageComponentOne extends StatelessWidget {
@@ -74,25 +75,35 @@ class HomePageComponentOne extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AutoSizeText.rich(
-                      textAlign: TextAlign.center,
-                      TextSpan(
-                          text: 'Lihat Penjelasan',
-                          style: tsLabelLargeRegular(whiteColor)),
-                      maxLines: 2,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: whiteColor,
-                      size: 12,
-                    )
-                  ],
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomsheetPenjelasanShiftMasuk();
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      AutoSizeText.rich(
+                        textAlign: TextAlign.center,
+                        TextSpan(
+                            text: 'Lihat Penjelasan',
+                            style: tsLabelLargeRegular(whiteColor)),
+                        maxLines: 2,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: whiteColor,
+                        size: 12,
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
