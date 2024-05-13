@@ -16,6 +16,8 @@ const Color opacityWhiteColor = Color(0x20FFFFFF);
 const Color opacity5SecondaryColor = Color(0x0D0C276A);
 const Color greenColor = Color(0xFF0CD644);
 const Color blueColor = Color(0xFF00B5C0);
+const Color opacity20GreyColor = Color(0x207B7B7B);
+const Color opacity5PrimaryColor = Color(0x0DEF564B);
 
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(

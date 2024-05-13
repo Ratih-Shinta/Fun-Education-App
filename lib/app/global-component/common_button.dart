@@ -3,15 +3,18 @@ import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
+  final VoidCallback onPressed;
 
   CommonButton(
       {Key? key,
-      required this.text})
+      required this.text, required this.onPressed})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
       padding: EdgeInsets.symmetric(vertical: 15),
       width: double.infinity,
       decoration: BoxDecoration(
@@ -23,6 +26,7 @@ class CommonButton extends StatelessWidget {
         text,
         style: tsBodyMediumSemibold(whiteColor),
       ),
+    ),
     );
   }
 }

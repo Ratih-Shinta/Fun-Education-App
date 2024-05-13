@@ -15,7 +15,6 @@ class BulletText extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 5),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText.rich(
             TextSpan(
