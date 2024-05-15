@@ -75,7 +75,11 @@ class LoginPageView extends StatelessWidget {
                         isObsecure: false,
                       ),
                       SizedBox(height: height * 0.075),
-                      CommonButton(text: 'Lanjut', onPressed: () {  },)
+                      CommonButton(
+                        text: 'Lanjut',
+                        onPressed: () {},
+                        color: secondaryColor,
+                      )
                     ],
                   ),
                 ),

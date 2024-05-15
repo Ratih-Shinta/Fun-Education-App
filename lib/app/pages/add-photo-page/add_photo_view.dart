@@ -57,7 +57,11 @@ class AddPhotoView extends StatelessWidget {
                           text:
                               'Usahakan menggunakan foto ananda setengah badan memakai seragam'),
                       SizedBox(height: height * 0.017),
-                      CommonButton(text: 'Masuk', onPressed: () {  },)
+                      CommonButton(
+                        text: 'Masuk',
+                        onPressed: () {},
+                        color: secondaryColor,
+                      )
                     ],
                   ),
                 ),
