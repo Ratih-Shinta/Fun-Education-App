@@ -16,6 +16,8 @@ dependencies:
   google_fonts: 
   pinput: 
   image_picker:
+  dio:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
