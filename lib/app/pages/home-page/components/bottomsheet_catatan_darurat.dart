@@ -74,7 +74,7 @@ class BottomsheetCatatanDarurat extends StatelessWidget {
                   ),
                 )),
           ),
-          CommonButton(text: 'Tutup', onPressed: () => Navigator.pop(context))
+          CommonButton(text: 'Tutup', onPressed: () => Navigator.pop(context), color: secondaryColor,)
         ],
       ),
     ));
