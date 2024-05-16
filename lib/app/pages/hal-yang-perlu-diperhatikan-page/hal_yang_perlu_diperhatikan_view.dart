@@ -98,7 +98,7 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     boldText: 'TIDAK WAJIB',
                     text: ' / bagi yang mau saja'),
                 BulletText(
-                    text: 'Kegiatan menabung setiap hari Selasa\ndan Kamis'),
+                    text: 'Kegiatan menabung setiap hari Selasa dan Kamis'),
                 BulletText(text: 'Diluar dari jadwal itu tidak kami terima.'),
                 SizedBox(height: height * 0.035),
                 Container(
@@ -108,12 +108,12 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Flexible(
-                      child: AutoSizeText(
-                        'Setiap hari Kamis, membawa buku gambar dan pewarna. untuk  melatih motorik halus,motorik kasar, konsentrasi, dan kognitif  anak.',
-                        maxLines: 5,
-                        style: tsBodySmallSemibold(whiteColor),
-                      ),
+                    child: AutoSizeText(
+                      'Setiap hari Kamis, membawa buku gambar dan pewarna. untuk  melatih motorik halus,motorik kasar, konsentrasi, dan kognitif  anak.',
+                      maxLines: 5,
+                      style: tsBodySmallSemibold(whiteColor),
                     ),
+                  ),
                 ),
                 SizedBox(height: height * 0.05),
                 AutoSizeText.rich(

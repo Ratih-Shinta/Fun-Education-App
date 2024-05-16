@@ -14,6 +14,7 @@ class CommonButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
+
         padding: EdgeInsets.symmetric(vertical: 15),
         width: double.infinity,
         decoration: BoxDecoration(

@@ -8,13 +8,15 @@ import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_view.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_binding.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_view.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.SAVING_PAGE;
 
   static final routes = [
     GetPage(
@@ -41,6 +43,11 @@ class AppPages {
       name: _Paths.HAL_YANG_PERLU_DIPERHATIKAN_PAGE,
       page: () => HalYangPerluDiperhatikanView(),
       binding: HalYangPerluDiperhatikanBinding(),
+    ),
+    GetPage(
+      name: _Paths.SAVING_PAGE,
+      page: () => SavingView(),
+      binding: SavingBinding(),
     ),
   ];
 }

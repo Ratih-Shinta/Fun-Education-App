@@ -72,7 +72,6 @@ class HomePageComponentTwo extends StatelessWidget {
                         TextSpan(
                             text: 'Lihat Detail',
                             style: tsLabelLargeRegular(whiteColor)),
-                        maxLines: 2,
                       ),
                       SizedBox(
                         width: 10,
@@ -120,9 +119,8 @@ class HomePageComponentTwo extends StatelessWidget {
               AutoSizeText.rich(
                 textAlign: TextAlign.center,
                 TextSpan(
-                    text: 'Catatan Harian',
+                    text: 'Catatan Bulanan',
                     style: tsBodySmallRegular(whiteColor)),
-                maxLines: 2,
               ),
               SizedBox(height: 15),
               AutoSizeText.rich(
@@ -130,7 +128,6 @@ class HomePageComponentTwo extends StatelessWidget {
                 TextSpan(
                     text: 'Tidak Ada\nCatatan',
                     style: tsBodyMediumSemibold(whiteColor)),
-                maxLines: 2,
               ),
               Container(
                 margin: EdgeInsets.only(top: height * 0.075),

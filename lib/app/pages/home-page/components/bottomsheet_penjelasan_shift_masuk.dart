@@ -63,6 +63,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
             SizedBox(height: height * 0.02),
             Container(
               margin: EdgeInsets.symmetric(horizontal: width * 0.06),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
