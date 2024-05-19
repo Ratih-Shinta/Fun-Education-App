@@ -22,16 +22,18 @@ const Color opacityBlackColor = Color(0x0D313131);
 
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(
-    color: blackColor.withOpacity(0.5),
-    spreadRadius: 0,
-    blurRadius: 15,
-    offset: Offset(0, 0));
+  color: greyColor.withOpacity(0.5),
+  spreadRadius: 0,
+  blurRadius: 15,
+  offset: Offset(0, 0),
+);
 
 BoxShadow shadowBlackBlur10Color5 = BoxShadow(
-    color: blackColor.withOpacity(0.5),
-    spreadRadius: 0,
-    blurRadius: 10,
-    offset: Offset(0, 0));
+  color: greyColor.withOpacity(0.5),
+  spreadRadius: 0,
+  blurRadius: 10,
+  offset: Offset(0, 0),
+);
 
 //LOGO
 const String logo = 'assets/logo.svg';
