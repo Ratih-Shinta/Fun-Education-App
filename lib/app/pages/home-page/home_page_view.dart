@@ -30,8 +30,9 @@ class HomePageView extends StatelessWidget {
                   width: 43,
                   height: 43,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: greyColor),
+                    borderRadius: BorderRadius.circular(10),
+                    color: greyColor,
+                  ),
                 ),
                 AutoSizeText.rich(
                   group: AutoSizeGroup(),
@@ -66,7 +67,8 @@ class HomePageView extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Padding(padding: EdgeInsets.only(
+            child: Padding(
+          padding: EdgeInsets.only(
             left: width * 0.05,
             right: width * 0.05,
             top: height * 0.015,
@@ -98,7 +100,7 @@ class HomePageView extends StatelessWidget {
                 height: height * 0.05,
               ),
             ],
-          ),)
-        ));
+          ),
+        )));
   }
 }
