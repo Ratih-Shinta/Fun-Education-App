@@ -33,8 +33,12 @@ class LoginPageView extends GetView<LoginPageController> {
                   children: [
                     Center(
                       child: Container(
-                          margin: EdgeInsets.only(top: width * 0.068),
-                          child: FunEducation()),
+                        margin: EdgeInsets.only(top: width * 0.068),
+                        child: FunEducation(
+                          width: 25,
+                          textStyle: tsBodyLargeSemibold(primaryColor),
+                        ),
+                      ),
                     ),
                     Center(
                       child: Container(
