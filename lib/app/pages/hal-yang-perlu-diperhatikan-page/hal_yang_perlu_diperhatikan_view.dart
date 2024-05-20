@@ -1,13 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/button_chip.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
-import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HalYangPerluDiperhatikanView extends StatelessWidget {
@@ -38,7 +34,10 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: FunEducation(),
+                child: FunEducation(
+                  width: 25,
+                  textStyle: tsBodyLargeSemibold(primaryColor),
+                ),
               ),
               SizedBox(width: width * 0.09),
             ],

@@ -3,25 +3,29 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class FunEducation extends StatelessWidget {
-  const FunEducation({super.key});
+  final double width;
+  final TextStyle textStyle;
+
+  const FunEducation({
+    super.key,
+    required this.width,
+    required this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
-    final double height = mediaQuery.height;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
           logo,
-          width: 25,
+          width: width,
         ),
+        SizedBox(width: width * 0.2),
         Text(
           textAlign: TextAlign.center,
           'FunEducation',
-          style: tsTitleMediumSemibold(primaryColor),
+          style: textStyle,
         )
       ],
     );
