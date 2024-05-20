@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
@@ -26,8 +25,12 @@ class AddPhotoView extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                  margin: EdgeInsets.only(top: width * 0.048),
-                  child: FunEducation()),
+                margin: EdgeInsets.only(top: width * 0.048),
+                child: FunEducation(
+                  width: 25,
+                  textStyle: tsBodyLargeSemibold(primaryColor),
+                ),
+              ),
               Center(
                 child: Container(
                   padding: EdgeInsets.symmetric(

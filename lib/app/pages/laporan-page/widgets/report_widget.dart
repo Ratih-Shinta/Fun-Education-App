@@ -35,25 +35,19 @@ class ReportWidget extends StatelessWidget {
                 height: height * 0.044,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: whiteColor,
-                ),
-                child: Text(
-                  no != '' ? no.toString() : 'No number provided',
-                  style: tsBodySmallSemibold(blackColor),
-                ),
+                    borderRadius: BorderRadius.circular(5), color: whiteColor),
+                child: Text(no != '' ? no.toString() : 'No number provided',
+                    style: tsBodySmallSemibold(blackColor)),
               ),
               Container(
                 width: width * 0.5,
-                child: Flexible(
-                  child: AutoSizeText.rich(
-                    textAlign: TextAlign.start,
-                    TextSpan(
-                      text: text,
-                      style: tsBodySmallMedium(blackColor),
-                    ),
-                    maxLines: 2,
+                child: AutoSizeText.rich(
+                  textAlign: TextAlign.start,
+                  TextSpan(
+                    text: text,
+                    style: tsBodySmallMedium(blackColor),
                   ),
+                  maxLines: 2,
                 ),
               ),
             ],
@@ -63,9 +57,7 @@ class ReportWidget extends StatelessWidget {
             height: height * 0.044,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: pointColor,
-            ),
+                borderRadius: BorderRadius.circular(5), color: pointColor),
             child: Text(
               point,
               style: tsBodySmallSemibold(whiteColor),

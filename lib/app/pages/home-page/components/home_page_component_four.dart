@@ -9,7 +9,7 @@ class HomePageComponentFour extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
-    final double height = mediaQuery.height;
+
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

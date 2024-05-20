@@ -1,7 +1,13 @@
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_binding.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_view.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_binding.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_view.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_binding.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_view.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.dart';
@@ -48,6 +54,21 @@ class AppPages {
       name: _Paths.SAVING_PAGE,
       page: () => SavingView(),
       binding: SavingBinding(),
+    ),
+    GetPage(
+      name: _Paths.LAPORAN_PAGE,
+      page: () => LaporanPageView(),
+      binding: LaporanPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_LAPORAN_HARIAN_PAGE,
+      page: () => DetailLaporanHarianView(),
+      binding: DetailLaporanHarianBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_LAPORAN_BULANAN_PAGE,
+      page: () => DetailLaporanBulananView(),
+      binding: DetailLaporanBulananBinding(),
     ),
   ];
 }

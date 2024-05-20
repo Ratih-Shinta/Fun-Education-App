@@ -20,89 +20,94 @@ class LoginPageView extends GetView<LoginPageController> {
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: SafeArea(
-            child: Obx(() => LoadingOverlay(
-                  isLoading: controller.isLoading.value,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                      top: height * 0.03,
-                    ),
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: Container(
-                              margin: EdgeInsets.only(top: width * 0.068),
-                              child: FunEducation()),
+          child: Obx(
+            () => LoadingOverlay(
+              isLoading: controller.isLoading.value,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: width * 0.05,
+                  right: width * 0.05,
+                  top: height * 0.03,
+                ),
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Container(
+                        margin: EdgeInsets.only(top: width * 0.068),
+                        child: FunEducation(
+                          width: 25,
+                          textStyle: tsBodyLargeSemibold(primaryColor),
                         ),
-                        Center(
-                          child: Container(
-                            margin: EdgeInsets.only(top: height * 0.18),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.05,
-                                vertical: height * 0.03),
-                            decoration: BoxDecoration(
-                              color: whiteColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                AutoSizeText.rich(
-                                  textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        margin: EdgeInsets.only(top: height * 0.18),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.05, vertical: height * 0.03),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AutoSizeText.rich(
+                              textAlign: TextAlign.center,
+                              TextSpan(
+                                text: 'Selamat datang di\n',
+                                style:
+                                    tsTitleMediumRegular(blackColor).copyWith(
+                                  height: 1.3,
+                                ),
+                                children: [
                                   TextSpan(
-                                    text: 'Selamat datang di\n',
-                                    style: tsTitleMediumRegular(blackColor)
-                                        .copyWith(
-                                      height: 1.3,
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text: 'FunEduation',
-                                        style: tsTitleMediumSemibold(
-                                            secondaryColor),
-                                      ),
-                                    ],
+                                    text: 'FunEduation',
+                                    style:
+                                        tsTitleMediumSemibold(secondaryColor),
                                   ),
-                                  maxLines: 2,
-                                ),
-                                SizedBox(height: height * 0.03),
-                                CommonWarning(
-                                    backColor: warningColor,
-                                    icon: Icons.info_outline,
-                                    text:
-                                        'Isi dengan username dan password yang telah diberikan oleh guru'),
-                                SizedBox(height: height * 0.025),
-                                LoginFormWidget(
-                                  hintText: 'Username',
-                                  iconPrefix:
-                                      Icon(Icons.person, color: greyColor),
-                                  controller: controller.namaLengkapController,
-                                ),
-                                SizedBox(height: height * 0.015),
-                                LoginFormWidget(
-                                  controller: controller.passwordController,
-                                  iconPrefix:
-                                      Icon(Icons.lock, color: greyColor),
-                                  hintText: 'Password',
-                                  isObsecure: false,
-                                ),
-                                SizedBox(height: height * 0.075),
-                                CommonButton(
-                                  text: 'Lanjut',
-                                  onPressed: () {
-                                    controller.login();
-                                  },
-                                  color: secondaryColor,
-                                )
-                              ],
+                                ],
+                              ),
+                              maxLines: 2,
                             ),
-                          ),
-                        ),]
-                  ),
-                ))),
-      ),)
+                            SizedBox(height: height * 0.03),
+                            CommonWarning(
+                                backColor: warningColor,
+                                icon: Icons.info_outline,
+                                text:
+                                    'Isi dengan username dan password yang telah diberikan oleh guru'),
+                            SizedBox(height: height * 0.025),
+                            LoginFormWidget(
+                              hintText: 'Username',
+                              iconPrefix: Icon(Icons.person, color: greyColor),
+                              controller: controller.namaLengkapController,
+                            SizedBox(height: height * 0.015),
+                            LoginFormWidget(
+                              controller: controller.passwordController,
+                              iconPrefix: Icon(Icons.lock, color: greyColor),
+                              hintText: 'Password',
+                              isObsecure: false,
+                            ),
+                            SizedBox(height: height * 0.075),
+                            CommonButton(
+                              text: 'Lanjut',
+                              onPressed: () {
+                                controller.login();
+                              },
+                              color: secondaryColor,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
