@@ -2,9 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_penjelasan_shift_masuk.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class HomePageComponentOne extends StatelessWidget {
+class HomePageComponentOne extends GetView<HomePageController> {
   const HomePageComponentOne({super.key});
 
   @override
@@ -57,22 +59,25 @@ class HomePageComponentOne extends StatelessWidget {
                         color: primaryColor,
                       ),
                     ),
-                    AutoSizeText.rich(
-                      textAlign: TextAlign.start,
-                      TextSpan(
-                        text: 'Shift Masuk\n',
-                        style: tsBodySmallRegular(whiteColor).copyWith(
-                          height: 1.3,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '08.00 - 10.00',
-                            style: tsBodyMediumSemibold(whiteColor),
+                    Obx(
+                      () => AutoSizeText.rich(
+                        TextSpan(
+                          text: 'Shift Masuk\n',
+                          style: tsBodySmallRegular(whiteColor).copyWith(
+                            height: 1.3,
                           ),
-                        ],
+                          children: [
+                            TextSpan(
+                              text:
+                                  '${controller.shiftMasukModel.value.shiftMasuk}',
+                              style: tsBodyMediumSemibold(whiteColor),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.start,
+                        maxLines: 2,
                       ),
-                      maxLines: 2,
-                    ),
+                    )
                   ],
                 ),
                 InkWell(

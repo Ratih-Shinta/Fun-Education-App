@@ -99,10 +99,10 @@ class LoginPageView extends GetView<LoginPageController> {
                               ],
                             ),
                           ),
-                        ),
+                        ),]
                   ),
                 ))),
-      ),
+      ),)
     );
   }
 }

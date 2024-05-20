@@ -7,9 +7,11 @@ import 'package:fun_education_app/app/pages/home-page/components/home_page_compo
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_six.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_three.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_two.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class HomePageView extends StatelessWidget {
+class HomePageView extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
