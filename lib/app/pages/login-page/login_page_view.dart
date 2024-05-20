@@ -82,7 +82,6 @@ class LoginPageView extends GetView<LoginPageController> {
                               hintText: 'Username',
                               iconPrefix: Icon(Icons.person, color: greyColor),
                               controller: controller.namaLengkapController,
-                            ),
                             SizedBox(height: height * 0.015),
                             LoginFormWidget(
                               controller: controller.passwordController,

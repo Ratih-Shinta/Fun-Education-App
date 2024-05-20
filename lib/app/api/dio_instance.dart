@@ -55,6 +55,7 @@ class DioInstance {
           endpoint,
           data: data,
           options: Options(
+            
               headers: {
                 "Accept": "application/json",
                 if(isAuthorize ?? false) "Authorization": "Bearer $token"
@@ -134,6 +135,7 @@ class DioInstance {
 
           onResponse: (response, handler) {
             print(response.data);
+            // print(response.statusCode);
             return handler.next(response);
           }
         )
