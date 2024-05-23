@@ -37,58 +37,59 @@ class HomePageComponentOne extends GetView<HomePageController> {
             ),
             maxLines: 2,
           ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: height * 0.01),
-            padding: EdgeInsets.symmetric(
-                vertical: height * 0.02, horizontal: height * 0.015),
-            decoration: BoxDecoration(
-                color: secondaryColor, borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 8.5),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: whiteColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Icon(
-                        Icons.access_time_filled,
-                        color: primaryColor,
-                      ),
-                    ),
-                    Obx(
-                      () => AutoSizeText.rich(
-                        TextSpan(
-                          text: 'Shift Masuk\n',
-                          style: tsBodySmallRegular(whiteColor).copyWith(
-                            height: 1.3,
-                          ),
-                          children: [
-                            TextSpan(
-                              text:
-                                  '${controller.shiftMasukModel.value.shiftMasuk}',
-                              style: tsBodyMediumSemibold(whiteColor),
-                            ),
-                          ],
+          InkWell(
+            onTap: () {
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return BottomsheetPenjelasanShiftMasuk();
+                },
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: height * 0.01),
+              padding: EdgeInsets.symmetric(
+                  vertical: height * 0.02, horizontal: height * 0.015),
+              decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 8.5),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Icon(
+                          Icons.access_time_filled,
+                          color: primaryColor,
                         ),
-                        textAlign: TextAlign.start,
-                        maxLines: 2,
                       ),
-                    )
-                  ],
-                ),
-                InkWell(
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BottomsheetPenjelasanShiftMasuk();
-                      },
-                    );
-                  },
-                  child: Row(
+                      Obx(
+                        () => AutoSizeText.rich(
+                          TextSpan(
+                            text: 'Shift Masuk\n',
+                            style: tsBodySmallRegular(whiteColor).copyWith(
+                              height: 1.3,
+                            ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    '${controller.shiftMasukModel.value.shiftMasuk}',
+                                style: tsBodyMediumSemibold(whiteColor),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       AutoSizeText.rich(
@@ -108,8 +109,8 @@ class HomePageComponentOne extends GetView<HomePageController> {
                       )
                     ],
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
           CommonWarning(

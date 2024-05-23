@@ -28,14 +28,30 @@ class HomePageView extends GetView<HomePageController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 43,
-                  height: 43,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: greyColor,
-                  ),
-                ),
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return Container(
+                      width: 43,
+                      height: 43,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: greyColor,
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      width: 43,
+                      height: 43,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: greyColor,
+                      ),
+                      child: Image.network(
+                        controller.showCurrentUserModel.value.profilePicture!,
+                      ),
+                    );
+                  }
+                }),
                 AutoSizeText.rich(
                   group: AutoSizeGroup(),
                   maxLines: 1,

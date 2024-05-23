@@ -10,7 +10,6 @@ class HomePageComponentFour extends StatelessWidget {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
 
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -41,8 +40,7 @@ class HomePageComponentFour extends StatelessWidget {
                 color: whiteColor, borderRadius: BorderRadius.circular(10)),
             child: AutoSizeText.rich(
               TextSpan(
-                  text: 'Senin, 25 Maret 2024',
-                  style: tsBodySmallMedium(blackColor)),
+                  text: '25 Maret 2024', style: tsBodySmallMedium(blackColor)),
             )),
       ],
     );

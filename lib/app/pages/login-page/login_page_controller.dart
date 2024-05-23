@@ -9,6 +9,8 @@ class LoginPageController extends GetxController {
   late TextEditingController passwordController;
 
   RxBool isLoading = false.obs;
+  RxBool isVisibleSignIn = true.obs;
+
   late AuthenticationService authenticationService;
 
   @override
@@ -24,26 +26,19 @@ class LoginPageController extends GetxController {
     try {
       isLoading(true);
       final response = await authenticationService.login(
-          namaLengkapController.text,
-          passwordController.text
-      );
+          namaLengkapController.text, passwordController.text);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       prefs.setString('token', response.data['token']);
       Get.snackbar("Login Success", "Welcome Back!");
       Get.offAllNamed(Routes.HOME_PAGE);
-
-
-
     } catch (e) {
       isLoading(true);
       Get.snackbar("Login Error", "Invalid Username or Password");
       print(e);
-
     } finally {
       isLoading(false);
     }
   }
-
 }
