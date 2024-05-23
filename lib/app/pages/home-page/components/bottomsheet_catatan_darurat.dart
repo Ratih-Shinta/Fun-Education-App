@@ -2,10 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class BottomsheetCatatanDarurat extends StatelessWidget {
+class BottomsheetCatatanDarurat extends GetView<HomePageController> {
   const BottomsheetCatatanDarurat({super.key});
 
   @override
@@ -59,20 +60,22 @@ class BottomsheetCatatanDarurat extends StatelessWidget {
               ),
             ],
           ),
-          Expanded(
-            child: Container(
-                margin: EdgeInsets.symmetric(vertical: height * 0.03),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: opacity5PrimaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Flexible(
-                  child: AutoSizeText(
-                    'Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak.',
-                    maxLines: 10,
-                    style: tsBodySmallMedium(blackColor),
-                  ),
-                )),
+          Obx(
+            () => Expanded(
+              child: Container(
+                  margin: EdgeInsets.symmetric(vertical: height * 0.03),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: opacity5PrimaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Flexible(
+                    child: AutoSizeText(
+                      '${controller.showLatestCatatanDaruratModel.value.catatan}',
+                      maxLines: 10,
+                      style: tsBodySmallMedium(blackColor),
+                    ),
+                  )),
+            ),
           ),
           CommonButton(
             text: 'Tutup',
