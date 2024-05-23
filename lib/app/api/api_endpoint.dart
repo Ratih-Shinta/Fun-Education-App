@@ -10,4 +10,7 @@ class ApiEndPoint {
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';
+
+  //User
+  static String showCurrentUser = '$baseUrlAuth/show-current';
 }

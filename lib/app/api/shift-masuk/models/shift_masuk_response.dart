@@ -4,46 +4,28 @@
 
 import 'dart:convert';
 
-ShiftMasukResponse shiftMasukResponseFromJson(String str) => ShiftMasukResponse.fromJson(json.decode(str));
+import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
 
-String shiftMasukResponseToJson(ShiftMasukResponse data) => json.encode(data.toJson());
+ShiftMasukResponse shiftMasukResponseFromJson(String str) =>
+    ShiftMasukResponse.fromJson(json.decode(str));
+
+String shiftMasukResponseToJson(ShiftMasukResponse data) =>
+    json.encode(data.toJson());
 
 class ShiftMasukResponse {
-    Data data;
+  ShiftMasukModel data;
 
-    ShiftMasukResponse({
-        required this.data,
-    });
+  ShiftMasukResponse({
+    required this.data,
+  });
 
-    factory ShiftMasukResponse.fromJson(Map<String, dynamic> json) => ShiftMasukResponse(
-        data: Data.fromJson(json["data"]),
-    );
+  factory ShiftMasukResponse.fromJson(Map<String, dynamic> json) =>
+      ShiftMasukResponse(
+        data: ShiftMasukModel.fromJson(json["data"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "data": data.toJson(),
-    };
+      };
 }
 
-class Data {
-    String? id;
-    String? userId;
-    String? shiftMasuk;
-
-    Data({
-         this.id,
-         this.userId,
-         this.shiftMasuk,
-    });
-
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        userId: json["user_id"],
-        shiftMasuk: json["shift_masuk"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "user_id": userId,
-        "shift_masuk": shiftMasuk,
-    };
-}

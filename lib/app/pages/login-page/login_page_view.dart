@@ -29,76 +29,96 @@ class LoginPageView extends GetView<LoginPageController> {
                   right: width * 0.05,
                   top: height * 0.03,
                 ),
-                child: Stack(
+                child: Column(
                   children: [
-                    Center(
-                      child: Container(
-                        margin: EdgeInsets.only(top: width * 0.068),
-                        child: FunEducation(
-                          width: 25,
-                          textStyle: tsBodyLargeSemibold(primaryColor),
-                        ),
+                    Container(
+                      margin: EdgeInsets.only(top: width * 0.075),
+                      child: FunEducation(
+                        width: 25,
+                        textStyle: tsBodyLargeSemibold(primaryColor),
                       ),
                     ),
-                    Center(
-                      child: Container(
-                        margin: EdgeInsets.only(top: height * 0.18),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05, vertical: height * 0.03),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AutoSizeText.rich(
-                              textAlign: TextAlign.center,
-                              TextSpan(
-                                text: 'Selamat datang di\n',
-                                style:
-                                    tsTitleMediumRegular(blackColor).copyWith(
-                                  height: 1.3,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'FunEduation',
-                                    style:
-                                        tsTitleMediumSemibold(secondaryColor),
-                                  ),
-                                ],
+                    Container(
+                      margin: EdgeInsets.only(top: height * 0.12),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05, vertical: height * 0.03),
+                      decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AutoSizeText.rich(
+                            textAlign: TextAlign.center,
+                            TextSpan(
+                              text: 'Selamat datang di\n',
+                              style: tsTitleMediumRegular(blackColor).copyWith(
+                                height: 1.3,
                               ),
-                              maxLines: 2,
+                              children: [
+                                TextSpan(
+                                  text: 'FunEduation',
+                                  style: tsTitleMediumSemibold(secondaryColor),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: height * 0.03),
-                            CommonWarning(
-                                backColor: warningColor,
-                                icon: Icons.info_outline,
-                                text:
-                                    'Isi dengan username dan password yang telah diberikan oleh guru'),
-                            SizedBox(height: height * 0.025),
-                            LoginFormWidget(
-                              hintText: 'Username',
-                              iconPrefix: Icon(Icons.person, color: greyColor),
-                              controller: controller.namaLengkapController,
-                            SizedBox(height: height * 0.015),
-                            LoginFormWidget(
-                              controller: controller.passwordController,
-                              iconPrefix: Icon(Icons.lock, color: greyColor),
-                              hintText: 'Password',
-                              isObsecure: false,
+                            maxLines: 2,
+                          ),
+                          SizedBox(height: height * 0.03),
+                          CommonWarning(
+                              backColor: warningColor,
+                              icon: Icons.info_outline,
+                              text:
+                                  'Isi dengan username dan password yang telah diberikan oleh guru'),
+                          SizedBox(height: height * 0.025),
+                          LoginFormWidget(
+                            obscureText: false,
+                            hintText: "Nama Lengkap",
+                            prefixIcon: Icon(
+                              Icons.person,
+                              size: 20,
+                              color: greyColor,
                             ),
-                            SizedBox(height: height * 0.075),
-                            CommonButton(
-                              text: 'Lanjut',
-                              onPressed: () {
-                                controller.login();
-                              },
-                              color: secondaryColor,
-                            )
-                          ],
-                        ),
+                            fieldController: controller.namaLengkapController,
+                          ),
+                          SizedBox(height: height * 0.015),
+                          Obx(
+                            () => LoginFormWidget(
+                              fieldController: controller.passwordController,
+                              obscureText: controller.isVisibleSignIn.value,
+                              keyboardType: TextInputType.visiblePassword,
+                              hintText: "Password",
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                size: 20,
+                                color: greyColor,
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.isVisibleSignIn.value =
+                                      !controller.isVisibleSignIn.value;
+                                },
+                                icon: Icon(
+                                  controller.isVisibleSignIn.value
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  size: 20,
+                                  color: greyColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.075),
+                          CommonButton(
+                            text: 'Lanjut',
+                            onPressed: () {
+                              controller.login();
+                            },
+                            color: secondaryColor,
+                          )
+                        ],
                       ),
                     ),
                   ],
