@@ -2,6 +2,7 @@ class ApiEndPoint {
   static String baseUrl = 'https://fun-education-api.rplrus.com/api';
   static String baseUrlAuth = '$baseUrl/users';
   static String baseUrlShiftMasuk = '$baseUrl/shift-masuk';
+  static String baseUrlCatatanDarurat = '$baseUrl/catatan-darurat';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -13,4 +14,7 @@ class ApiEndPoint {
 
   //User
   static String showCurrentUser = '$baseUrlAuth/show-current';
+
+  //Catatan Darurat
+  static String showLatestCatatanDarurat = '$baseUrlCatatanDarurat/show';
 }
