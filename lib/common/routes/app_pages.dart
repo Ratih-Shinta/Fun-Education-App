@@ -10,6 +10,8 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.da
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
+import 'package:fun_education_app/app/pages/profile-page/profile_page_binding.dart';
+import 'package:fun_education_app/app/pages/profile-page/profile_page_view.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
@@ -22,7 +24,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.PROFILE_PAGE;
 
   static final routes = [
     GetPage(
@@ -69,6 +71,10 @@ class AppPages {
       name: _Paths.DETAIL_LAPORAN_BULANAN_PAGE,
       page: () => DetailLaporanBulananView(),
       binding: DetailLaporanBulananBinding(),
+    ),GetPage(
+      name: _Paths.PROFILE_PAGE,
+      page: () => ProfilePageView(),
+      binding: ProfilePageBinding(),
     ),
   ];
 }
