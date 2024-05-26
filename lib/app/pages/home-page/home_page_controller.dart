@@ -1,6 +1,9 @@
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_model.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_response.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/service/show_latest_catatan_darurat_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show_current_laporan_harian_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show_current_laporan_harian_response.dart';
+import 'package:fun_education_app/app/api/laporan-harian/service/show_current_laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_response.dart';
 import 'package:fun_education_app/app/api/shift-masuk/service/shift_masuk_sevice.dart';
@@ -23,13 +26,20 @@ class HomePageController extends GetxController {
   Rx<ShowLatestCatatanDaruratModel> showLatestCatatanDaruratModel =
       ShowLatestCatatanDaruratModel().obs;
 
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
+  Rx<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      ShowCurrentLaporanHarianModel().obs;
+
   RxBool isLoading = true.obs;
 
   @override
   void onInit() {
     showCurrentShiftMasuk();
     showCurrentUser();
-    ShowLatestCatatanDarurat();
+    showLatestCatatanDarurat();
+    showCurrentLaporanHarian();
+
     update();
     super.onInit();
   }
@@ -57,14 +67,48 @@ class HomePageController extends GetxController {
     }
   }
 
-  Future ShowLatestCatatanDarurat() async {
+  Future showLatestCatatanDarurat() async {
     try {
-      final response = await catatanDaruratService.getShowLatestCatatanDarurat();
-      showLatestCatatanDaruratResponse = ShowLatestCatatanDaruratResponse.fromJson(response.data);
-      showLatestCatatanDaruratModel.value = showLatestCatatanDaruratResponse!.data;
+      final response =
+          await catatanDaruratService.getShowLatestCatatanDarurat();
+      showLatestCatatanDaruratResponse =
+          ShowLatestCatatanDaruratResponse.fromJson(response.data);
+      showLatestCatatanDaruratModel.value =
+          showLatestCatatanDaruratResponse!.data;
+      print('tre');
       update();
     } catch (e) {
       print(e);
     }
   }
+
+  showCurrentLaporanHarian() async {
+    try {
+      await Future.delayed(Duration.zero);
+      final response = await laporanHarianService.getShowCurrentLaporanHarian();
+      showCurrentLaporanHarianResponse =
+          ShowCurrentLaporanHarianResponse.fromJson(response.data);
+      showCurrentLaporanHarianModel.value =
+          showCurrentLaporanHarianResponse!.data;
+      print('asd');
+      update();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Future showCurrentLaporanHarian() async {
+  //   try {
+  //     // final response =
+  //     //     await laporanHarianService.getShowCurrentLaporanHarian();
+  //     // showCurrentLaporanHarianResponse =
+  //     //     ShowCurrentLaporanHarianResponse.fromJson(response.data);
+  //     // showCurrentLaporanHarianModel.value =
+  //     //     showCurrentLaporanHarianResponse!.data;
+  //     print('object');
+  //     update();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }

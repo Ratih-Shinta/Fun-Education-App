@@ -18,6 +18,7 @@ dependencies:
   image_picker: null
   pinput: null
   shared_preferences: null
+  intl: null
 
 dev_dependencies:
   flutter_test:
