@@ -4,6 +4,8 @@ import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
+import 'package:fun_education_app/app/pages/saving-information-page/saving_information_binding.dart';
+import 'package:fun_education_app/app/pages/saving-information-page/saving_information_view.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
@@ -16,7 +18,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SAVING_PAGE;
+  static const INITIAL = Routes.SAVING_INFORMATION_PAGE;
 
   static final routes = [
     GetPage(
@@ -48,6 +50,11 @@ class AppPages {
       name: _Paths.SAVING_PAGE,
       page: () => SavingView(),
       binding: SavingBinding(),
+    ),
+    GetPage(
+      name: _Paths.SAVING_INFORMATION_PAGE,
+      page: () => SavingInformationView(),
+      binding: SavingInformationBinding(),
     ),
   ];
 }
