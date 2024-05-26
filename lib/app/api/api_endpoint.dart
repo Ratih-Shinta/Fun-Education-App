@@ -3,6 +3,7 @@ class ApiEndPoint {
   static String baseUrlAuth = '$baseUrl/users';
   static String baseUrlShiftMasuk = '$baseUrl/shift-masuk';
   static String baseUrlCatatanDarurat = '$baseUrl/catatan-darurat';
+  static String baseUrlLaporanHarian = '$baseUrl/laporan-harian';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -17,4 +18,7 @@ class ApiEndPoint {
 
   //Catatan Darurat
   static String showLatestCatatanDarurat = '$baseUrlCatatanDarurat/show';
+
+  //Laporan Harian
+  static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
 }
