@@ -22,11 +22,9 @@ class LaporanPageView extends GetView<LaporanPageController> {
         physics: BouncingScrollPhysics(),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(
-              left: width * 0.05,
-              right: width * 0.05,
-              top: height * 0.04,
-              bottom: height * 0.04,
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.05,
+              vertical: height * 0.04,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
