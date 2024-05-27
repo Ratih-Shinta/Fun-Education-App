@@ -1,19 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/point_report.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class ReportWidget extends StatelessWidget {
   final int no;
   final String text;
-  final String point;
-  final Color pointColor;
+    final String point;
+
 
   const ReportWidget({
     super.key,
     required this.no,
-    required this.text,
-    required this.point,
-    required this.pointColor,
+    required this.text, required this.point, 
   });
 
   @override
@@ -58,19 +57,7 @@ class ReportWidget extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            width: width * 0.16,
-            height: height * 0.044,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: pointColor,
-            ),
-            child: Text(
-              point,
-              style: tsBodySmallSemibold(whiteColor),
-            ),
-          )
+          PointReport(point: point)
         ],
       ),
     );
