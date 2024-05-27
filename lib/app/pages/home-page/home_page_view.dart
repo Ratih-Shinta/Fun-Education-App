@@ -7,9 +7,11 @@ import 'package:fun_education_app/app/pages/home-page/components/home_page_compo
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_six.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_three.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_two.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class HomePageView extends StatelessWidget {
+class HomePageView extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -26,13 +28,30 @@ class HomePageView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 43,
-                  height: 43,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: greyColor),
-                ),
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return Container(
+                      width: 43,
+                      height: 43,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: greyColor,
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      width: 43,
+                      height: 43,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: greyColor,
+                      ),
+                      child: Image.network(
+                        controller.showCurrentUserModel.value.profilePicture!,
+                      ),
+                    );
+                  }
+                }),
                 AutoSizeText.rich(
                   group: AutoSizeGroup(),
                   maxLines: 1,
@@ -66,7 +85,8 @@ class HomePageView extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Padding(padding: EdgeInsets.only(
+            child: Padding(
+          padding: EdgeInsets.only(
             left: width * 0.05,
             right: width * 0.05,
             top: height * 0.015,
@@ -98,7 +118,7 @@ class HomePageView extends StatelessWidget {
                 height: height * 0.05,
               ),
             ],
-          ),)
-        ));
+          ),
+        )));
   }
 }

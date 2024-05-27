@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
@@ -21,7 +21,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: height * 0.03, horizontal: width * 0.05),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               margin: EdgeInsets.only(bottom: height * 0.01),
@@ -35,7 +35,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 8),
+                  margin: EdgeInsets.only(right: width * 0.02),
                   width: width * 0.016,
                   height: height * 0.05,
                   decoration: BoxDecoration(
@@ -61,7 +61,8 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
               ],
             ),
             SizedBox(height: height * 0.02),
-            Center(
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: width * 0.06),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

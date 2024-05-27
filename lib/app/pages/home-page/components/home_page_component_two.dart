@@ -38,6 +38,7 @@ class HomePageComponentTwo extends StatelessWidget {
               ),
               AutoSizeText.rich(
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 TextSpan(
                     text: 'Catatan Darurat',
                     style: tsBodySmallRegular(blackColor)),
@@ -74,7 +75,7 @@ class HomePageComponentTwo extends StatelessWidget {
                             style: tsLabelLargeRegular(whiteColor)),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: width * 0.02,
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -116,11 +117,14 @@ class HomePageComponentTwo extends StatelessWidget {
                   ],
                 ),
               ),
-              AutoSizeText.rich(
-                textAlign: TextAlign.center,
-                TextSpan(
-                    text: 'Catatan Bulanan',
-                    style: tsBodySmallRegular(whiteColor)),
+              Container(
+                child: AutoSizeText.rich(
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.ellipsis,
+                  TextSpan(
+                      text: 'Catatan Bulanan',
+                      style: tsBodySmallRegular(whiteColor)),
+                ),
               ),
               SizedBox(height: 15),
               AutoSizeText.rich(
@@ -146,7 +150,7 @@ class HomePageComponentTwo extends StatelessWidget {
                       maxLines: 2,
                     ),
                     SizedBox(
-                      width: 10,
+                      width: width * 0.02,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
