@@ -27,62 +27,62 @@ class HomePageComponentFive extends GetView<HomePageController> {
                 text: 'Datang tepat pada waktunya',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.datangTepatPadaWaktunya}',
-                pointColor: greenColor),
+                ),
             ReportWidget(
                 no: 2,
                 text: 'Berpakaian rapi',
                 // point: 'B',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.berpakaianRapi}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 3,
                 text: 'Berbuat baik dengan teman',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.berbuatBaikDenganTeman}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 4,
                 text: 'Mau menolong dan berbagi dengan teman',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.mauMenolongDanBerbagiDenganTeman}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 5,
                 text: 'Merapikan alat belajar dan mainan sendiri',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.merapikanAlatBelajarDanMainanSendiri}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 6,
                 text: 'Menyelesaikan tugas',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.menyelesaikanTugas}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 7,
                 text: 'Membaca',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.membaca}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 8,
                 text: 'Menulis',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.menulis}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 9,
                 text: 'Dikte',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.dikte}',
-                pointColor: blueColor),
+                ),
             ReportWidget(
                 no: 10,
                 text: 'Keterampilan',
                 point:
                     '${controller.showCurrentLaporanHarianModel.value.keterampilan}',
-                pointColor: warningColor),
+                ),
           ],
         ),
       ),

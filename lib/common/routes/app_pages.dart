@@ -10,13 +10,10 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.da
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
-<<<<<<< HEAD
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_binding.dart';
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_view.dart';
-=======
 import 'package:fun_education_app/app/pages/profile-page/profile_page_binding.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_view.dart';
->>>>>>> 18f1a5988593ea892639df6f76b9fb7382fda687
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.dart';
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
@@ -29,11 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-<<<<<<< HEAD
-  static const INITIAL = Routes.SAVING_INFORMATION_PAGE;
-=======
-  static const INITIAL = Routes.PROFILE_PAGE;
->>>>>>> 18f1a5988593ea892639df6f76b9fb7382fda687
+  static const INITIAL = Routes.LOGIN_PAGE;
 
   static final routes = [
     GetPage(
@@ -67,11 +60,11 @@ class AppPages {
       binding: SavingBinding(),
     ),
     GetPage(
-<<<<<<< HEAD
       name: _Paths.SAVING_INFORMATION_PAGE,
       page: () => SavingInformationView(),
       binding: SavingInformationBinding(),
-=======
+    ),
+    GetPage(
       name: _Paths.LAPORAN_PAGE,
       page: () => LaporanPageView(),
       binding: LaporanPageBinding(),
@@ -89,7 +82,6 @@ class AppPages {
       name: _Paths.PROFILE_PAGE,
       page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
->>>>>>> 18f1a5988593ea892639df6f76b9fb7382fda687
     ),
   ];
 }

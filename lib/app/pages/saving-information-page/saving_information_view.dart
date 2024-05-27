@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
@@ -34,7 +33,10 @@ class SavingInformationView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: FunEducation(),
+                child: FunEducation(
+                  width: width * 0.08,
+                  textStyle: tsBodyLargeSemibold(primaryColor),
+                ),
               ),
               SizedBox(width: width * 0.09),
             ],
