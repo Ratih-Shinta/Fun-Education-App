@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_alur_belajar_ananda.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
@@ -68,7 +69,13 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
             ),
             SizedBox(height: height * 0.025),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.bottomSheet(
+                  BottomsheetAlurBelajarAnanda(),
+                  isScrollControlled: true,
+                  backgroundColor: whiteColor,
+                );
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: width * 0.03,

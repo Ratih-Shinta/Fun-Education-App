@@ -6,17 +6,24 @@ class CommonButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
 
-  CommonButton({Key? key, required this.text, required this.onPressed, required this.color})
+  CommonButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      required this.color})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
     return InkWell(
       onTap: onPressed,
       child: Container(
-
         padding: EdgeInsets.symmetric(vertical: 15),
-        width: double.infinity,
+        width: width,
+        height: height * 0.07,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: color,
