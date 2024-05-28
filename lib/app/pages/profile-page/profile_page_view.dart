@@ -1,16 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_penjelasan_shift_masuk.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/user_data_container.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  HomePageController homePageController = Get.put(HomePageController());
+  final HomePageController homePageController = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {

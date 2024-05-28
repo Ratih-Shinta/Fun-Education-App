@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
@@ -16,7 +17,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return SizedBox(
-      height: height * 0.6,
+      height: height * 0.63,
       child: Padding(
         padding: EdgeInsets.symmetric(
             vertical: height * 0.03, horizontal: width * 0.05),
@@ -32,6 +33,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
+            SizedBox(height: height * 0.02),
             Row(
               children: [
                 Container(
@@ -61,20 +63,114 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                 ),
               ],
             ),
-            SizedBox(height: height * 0.02),
-            Column(
-              children: [
-                TimelineTileAlurBelajarAnanda(
-                  isFirst: true,
-                  isLast: false,
-                  isDone: true,
-                ),
-                TimelineTileAlurBelajarAnanda(
-                  isFirst: false,
-                  isLast: true,
-                  isDone: false,
-                ),
-              ],
+            SizedBox(height: height * 0.03),
+            Expanded(
+              child: Column(
+                children: [
+                  TimelineTileAlurBelajarAnanda(
+                    isFirst: true,
+                    isLast: false,
+                    isDone: true,
+                    endChild: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText(
+                          maxLines: 1,
+                          group: AutoSizeGroup(),
+                          'Mengenalkan Buku A',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
+                        SizedBox(height: height * 0.008),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Menebalkan Huruf',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Membaca Kartu Baju Sampai Cabe',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  TimelineTileAlurBelajarAnanda(
+                    isFirst: false,
+                    isLast: false,
+                    isDone: false,
+                    endChild: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText(
+                          maxLines: 1,
+                          group: AutoSizeGroup(),
+                          'Mengenalkan Buku B',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
+                        SizedBox(height: height * 0.008),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Mencontoh Suku Kata',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Membaca Kartu Baju Sampai Cabe',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  TimelineTileAlurBelajarAnanda(
+                    isFirst: false,
+                    isLast: true,
+                    isDone: false,
+                    endChild: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText(
+                          maxLines: 1,
+                          group: AutoSizeGroup(),
+                          'Mengenalkan Buku C',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
+                        SizedBox(height: height * 0.008),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Menyalin Kalimat',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                            AutoSizeText(
+                              maxLines: 1,
+                              group: AutoSizeGroup(),
+                              '• Membaca Kartu Baju Sampai Cabe',
+                              style: tsBodySmallRegular(blackColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             CommonButton(
               text: 'Tutup',
