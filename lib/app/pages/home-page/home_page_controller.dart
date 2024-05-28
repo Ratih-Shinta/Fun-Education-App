@@ -96,19 +96,4 @@ class HomePageController extends GetxController {
       print(e);
     }
   }
-
-  // Future showCurrentLaporanHarian() async {
-  //   try {
-  //     // final response =
-  //     //     await laporanHarianService.getShowCurrentLaporanHarian();
-  //     // showCurrentLaporanHarianResponse =
-  //     //     ShowCurrentLaporanHarianResponse.fromJson(response.data);
-  //     // showCurrentLaporanHarianModel.value =
-  //     //     showCurrentLaporanHarianResponse!.data;
-  //     print('object');
-  //     update();
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 }
