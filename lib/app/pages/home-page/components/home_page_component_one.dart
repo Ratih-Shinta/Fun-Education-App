@@ -18,7 +18,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
           color: primaryColor, borderRadius: BorderRadius.circular(15)),
-      child: Column(
+      child: Obx(() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText.rich(
@@ -30,12 +30,13 @@ class HomePageComponentOne extends GetView<HomePageController> {
               ),
               children: [
                 TextSpan(
-                  text: 'Radya Hukma S.H',
+                  text: '${controller.showCurrentUserModel.value.namaLengkap}',
                   style: tsBodyMediumSemibold(whiteColor),
                 ),
               ],
             ),
             maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           InkWell(
             onTap: () {
@@ -68,8 +69,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
                           color: primaryColor,
                         ),
                       ),
-                      Obx(
-                        () => AutoSizeText.rich(
+                      AutoSizeText.rich(
                           TextSpan(
                             text: 'Shift Masuk\n',
                             style: tsBodySmallRegular(whiteColor).copyWith(
@@ -86,7 +86,6 @@ class HomePageComponentOne extends GetView<HomePageController> {
                           textAlign: TextAlign.start,
                           maxLines: 2,
                         ),
-                      )
                     ],
                   ),
                   Row(
@@ -119,7 +118,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
               text:
                   'Shift masuk akan berganti seiring perkembangan belajar anak')
         ],
-      ),
+      ),)
     );
   }
 }
