@@ -6,14 +6,14 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
   final bool isFirst;
   final bool isLast;
   final bool isDone;
-  // final Widget endChild;
+  final Widget endChild;
 
   const TimelineTileAlurBelajarAnanda({
     super.key,
     required this.isFirst,
     required this.isLast,
-    // required this.endChild,
     required this.isDone,
+    required this.endChild,
   });
 
   @override
@@ -22,39 +22,32 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return Container(
-      height: height * 0.1,
+      height: height * 0.11,
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
         beforeLineStyle: LineStyle(
-          color: isDone ? primaryColor : opacity20GreyColor,
+          color: isDone ? primaryColor : greyColor.withOpacity(0.5),
           thickness: 6,
         ),
         indicatorStyle: IndicatorStyle(
-          indicator: Container(
-            height: height * 0.4,
-            width: width * 0.4,
-            decoration: BoxDecoration(
-              color: isDone ? primaryColor : opacity20GreyColor,
-              shape: BoxShape.circle,
-            ),
-            child: Text(
-              '1',
-              style: tsBodyMediumSemibold(isDone ? whiteColor : blackColor),
-            ),
+          iconStyle: IconStyle(
+            iconData: Icons.check_rounded,
+            color: isDone ? whiteColor : whiteColor,
+            fontSize: 16,
           ),
-          width: width * 0.1,
-          color: isDone ? primaryColor : opacity20GreyColor,
+          width: width * 0.08,
+          color: isDone ? primaryColor : greyColor,
         ),
-        endChild: Container(
-          constraints: const BoxConstraints(minWidth: 200),
-          color: const Color(0xFFE8EAF6),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text('Alur Belajar Ananda'),
+        endChild: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.04,
+            vertical: height * 0.015,
           ),
+          child: endChild,
         ),
       ),
     );
   }
 }
+

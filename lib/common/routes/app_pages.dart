@@ -83,7 +83,8 @@ class AppPages {
       name: _Paths.DETAIL_LAPORAN_BULANAN_PAGE,
       page: () => DetailLaporanBulananView(),
       binding: DetailLaporanBulananBinding(),
-    ),GetPage(
+    ),
+    GetPage(
       name: _Paths.PROFILE_PAGE,
       page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
