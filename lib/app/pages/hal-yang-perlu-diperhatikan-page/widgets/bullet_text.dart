@@ -4,12 +4,17 @@ import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class BulletText extends StatelessWidget {
-  final Color? boldTextColor;
+  final String? nextText;
   final String? boldText;
+  final TextStyle? boldTextStyle;
   final String text;
 
   const BulletText(
-      {super.key, required this.text, this.boldTextColor, this.boldText});
+      {super.key,
+      required this.text,
+      this.boldText,
+      this.boldTextStyle,
+      this.nextText});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +28,16 @@ class BulletText extends StatelessWidget {
             ),
             Flexible(
               child: AutoSizeText.rich(
-                TextSpan(
-                    text: boldText,
-                    style: tsBodySmallSemibold(boldTextColor ?? blackColor),
-                    children: [
-                      TextSpan(
-                        text: text,
-                        style: tsBodySmallRegular(blackColor),
-                      ),
-                    ]),
+                TextSpan(text: boldText, style: boldTextStyle, children: [
+                  TextSpan(
+                    text: text,
+                    style: tsBodySmallRegular(blackColor),
+                  ),
+                  TextSpan(
+                    text: nextText,
+                    style: tsBodySmallRegular(primaryColor),
+                  )
+                ]),
               ),
             )
           ],

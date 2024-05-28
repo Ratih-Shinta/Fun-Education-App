@@ -26,7 +26,7 @@ class HomePageCompnentSix extends StatelessWidget {
           ),
           SizedBox(height: height * 0.01),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
@@ -49,7 +49,7 @@ class HomePageCompnentSix extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(width: width * 0.15),
+              SizedBox(width: width * 0.14),
               Row(
                 children: [
                   Container(

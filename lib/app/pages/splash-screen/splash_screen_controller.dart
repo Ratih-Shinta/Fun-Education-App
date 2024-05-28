@@ -1,21 +1,19 @@
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreenController extends GetxController {
-  Future splashScreen() async {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        Get.offAndToNamed(
-          Routes.HOME_PAGE,
-        );
-      },
-    );
-  }
 
   @override
   void onInit() {
     super.onInit();
-    splashScreen();
+    SharedPreferences.getInstance().then((prefs) {
+      final token = prefs.getString('token');
+      if (token != null) {
+        Get.offAllNamed(Routes.HOME_PAGE);
+      } else {
+        Get.offAllNamed(Routes.LOGIN_PAGE);
+      }
+    });
   }
 }

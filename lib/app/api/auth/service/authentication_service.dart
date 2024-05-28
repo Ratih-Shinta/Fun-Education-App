@@ -16,4 +16,17 @@ class AuthenticationService {
       throw Exception(e);
     }
   }
+
+   Future<Response> logout() async {
+    try {
+      final response =  await _dioInstance.deleteRequest(
+          endpoint: ApiEndPoint.logout,
+          isAuthorize: true
+      );
+
+       return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

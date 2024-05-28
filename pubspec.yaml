@@ -20,6 +20,7 @@ dependencies:
   pinput: null
   shared_preferences: null
   timeline_tile:
+  intl: null
 
 dev_dependencies:
   flutter_test:

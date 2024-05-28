@@ -2,11 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
-import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/button_chip.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class HalYangPerluDiperhatikanView extends StatelessWidget {
+class SavingInformationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -35,7 +34,7 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
               ),
               Expanded(
                 child: FunEducation(
-                  width: 25,
+                  width: width * 0.08,
                   textStyle: tsBodyLargeSemibold(primaryColor),
                 ),
               ),
@@ -79,29 +78,28 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                       child: AutoSizeText.rich(
                         textAlign: TextAlign.start,
                         TextSpan(
-                            text: 'Hal - hal yang perlu diperhatikan orangtua',
-                            style: tsBodyMediumSemibold(blackColor)),
+                          text: 'Informasi Seputar Tabungan Anak',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
                         maxLines: 2,
                       ),
                     ),
                   ],
                 ),
-                ButtonChip(text: 'Libur Siswa'),
-                BulletText(text: 'Hari Minggu/Ahad'),
-                BulletText(text: 'Tanggal merah /Libur Nasional'),
-                ButtonChip(text: 'Seragam'),
                 BulletText(
-                    boldTextStyle: tsBodySmallSemibold(blackColor),
-                    boldText: 'WAJIB PAKAI ',
-                    text: 'setiap pertemuan'),
-                ButtonChip(text: 'Menabung'),
+                  boldTextStyle: tsBodySmallRegular(primaryColor),
+                  boldText: 'TIDAK WAJIB',
+                  text: ' / bagi yang mau saja',
+                ),
                 BulletText(
-                    boldTextStyle: tsBodySmallSemibold(primaryColor),
-                    boldText: 'TIDAK WAJIB',
-                    text: ' / bagi yang mau saja'),
-                BulletText(
-                    text: 'Kegiatan menabung setiap hari Selasa dan Kamis'),
+                  text: 'Jadwal menabung setiap hari ',
+                  nextText: 'Selasa dan Kamis',
+                ),
                 BulletText(text: 'Diluar dari jadwal itu tidak kami terima.'),
+                BulletText(
+                  text:
+                      'Besar setoran minimal Rp. 10.000, dan menyertakan kartu tabungan',
+                ),
                 SizedBox(height: height * 0.035),
                 Container(
                   padding: EdgeInsets.all(20),
@@ -109,12 +107,35 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     color: warningColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Flexible(
-                    child: AutoSizeText(
-                      'Setiap hari Kamis, membawa buku gambar dan pewarna. untuk  melatih motorik halus,motorik kasar, konsentrasi, dan kognitif  anak.',
-                      maxLines: 5,
-                      style: tsBodySmallSemibold(whiteColor),
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: AutoSizeText(
+                          'Penarikan tabungan hanya dapat dilakukan oleh orang tua.',
+                          style: tsBodySmallSemibold(whiteColor),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: AutoSizeText(
+                          'Penarikan tabungan hanya dapat dilakukan setelah 6 bulan atau 1 tahun belajar.',
+                          style: tsBodySmallSemibold(whiteColor),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: AutoSizeText(
+                          'Penarikan tabungan dilakukan secara langsung ke sekolah (Saldo akan terpotong secara otomatis).',
+                          style: tsBodySmallSemibold(whiteColor),
+                        ),
+                      ),
+                      AutoSizeText(
+                        'Saldo tabungan bisa dipotong atas ajuan dari orang tua.',
+                        style: tsBodySmallSemibold(whiteColor),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: height * 0.05),
@@ -124,8 +145,9 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                 SizedBox(height: height * 0.035),
                 AutoSizeText.rich(
                   TextSpan(
-                      text: 'Fun Education',
-                      style: tsBodySmallSemibold(blackColor)),
+                    text: 'Fun Education',
+                    style: tsBodySmallSemibold(blackColor),
+                  ),
                 ),
               ],
             ),
