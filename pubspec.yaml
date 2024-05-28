@@ -16,8 +16,10 @@ dependencies:
   get: null
   google_fonts: null
   image_picker: null
+  persistent_bottom_nav_bar: null
   pinput: null
   shared_preferences: null
+  timeline_tile:
   intl: null
 
 dev_dependencies:
