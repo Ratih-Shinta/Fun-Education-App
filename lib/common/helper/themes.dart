@@ -44,6 +44,8 @@ final BorderRadius defaulBorderRadius = BorderRadius.circular(15);
 const String logo = 'assets/logo.svg';
 const String iconChat = 'assets/icons/chat.svg';
 const String iconDocument = 'assets/icons/document.svg';
+const String iconTravelCase = 'assets/icons/icTravelCase.svg';
+const String iconSPP = 'assets/icons/icSPP.svg';
 
 // FONT SIZES
 figmaFontsize(int fontSize) {
