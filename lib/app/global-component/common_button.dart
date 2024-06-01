@@ -3,13 +3,13 @@ import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color color;
 
   CommonButton(
       {Key? key,
       required this.text,
-      required this.onPressed,
+       this.onPressed,
       required this.color})
       : super(key: key);
 

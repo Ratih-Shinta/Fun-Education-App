@@ -3,12 +3,15 @@ import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_
 import 'package:fun_education_app/app/api/tabungan/service/tabungan_service.dart';
 import 'package:get/get.dart';
 
+enum SingingCharacter { lafayette, jefferson }
+
 class SavingController extends GetxController {
   TabunganService tabunganService = TabunganService();
   ShowCurrentTabunganResponse? showCurrentTabunganResponse;
   Rx<ShowCurrentTabunganModel> showCurrentTabunganModel =
       ShowCurrentTabunganModel().obs;
 
+  var selectedOption = ''.obs;
 
   @override
   void onInit() {
@@ -27,5 +30,9 @@ class SavingController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  void selectOption(String option) {
+    selectedOption.value = option;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_catatan_darurat.dart';
+import 'package:fun_education_app/app/pages/saving-page/components/bottomsheet_ajukan_pengeluaran.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
 import 'package:fun_education_app/app/pages/saving-page/widgets/transaction_history.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -16,7 +18,7 @@ class SavingView extends GetView<SavingController> {
     return Scaffold(
         backgroundColor: backgroundColor,
         body: SingleChildScrollView(
-          child: Obx(() => Column(
+          child: Column(
             children: [
               Stack(
                 children: [
@@ -63,7 +65,8 @@ class SavingView extends GetView<SavingController> {
                         AutoSizeText.rich(
                           textAlign: TextAlign.center,
                           TextSpan(
-                            text: 'Rp. ${controller.showCurrentTabunganModel.value.saving}\n',
+                            text:
+                                'Rp. ${controller.showCurrentTabunganModel.value.saving}\n',
                             style: tsHeadingLargeSemibold(whiteColor).copyWith(
                               height: 1.3,
                             ),
@@ -111,7 +114,8 @@ class SavingView extends GetView<SavingController> {
                                   SizedBox(height: 10),
                                   AutoSizeText.rich(
                                     TextSpan(
-                                        text: 'Rp. ${controller.showCurrentTabunganModel.value.pemasukanTerakhir }',
+                                        text:
+                                            'Rp. ${controller.showCurrentTabunganModel.value.pemasukanTerakhir}',
                                         style: tsBodyLargeSemibold(blackColor)),
                                   ),
                                 ],
@@ -149,7 +153,8 @@ class SavingView extends GetView<SavingController> {
                                   SizedBox(height: 10),
                                   AutoSizeText.rich(
                                     TextSpan(
-                                        text: 'Rp. ${controller.showCurrentTabunganModel.value.pengeluaranTerakhir}',
+                                        text:
+                                            'Rp. ${controller.showCurrentTabunganModel.value.pengeluaranTerakhir}',
                                         style: tsBodyLargeSemibold(whiteColor)),
                                     maxLines: 2,
                                   ),
@@ -181,10 +186,20 @@ class SavingView extends GetView<SavingController> {
                                     style: tsBodySmallRegular(blackColor)),
                               ),
                               SizedBox(height: 20),
-                              CommonButton(
+                              InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    // isScrollControlled: true,
+                                    builder: (context) =>
+                                        BottomsheetAjukanPengeluaran(),
+                                  );
+                                },
+                                child: CommonButton(
                                   text: 'Lihat Pengeluaran',
-                                  onPressed: () {},
-                                  color: primaryColor)
+                                  color: primaryColor,
+                                ),
+                              ),
                             ],
                           ),
                         )
@@ -239,7 +254,7 @@ class SavingView extends GetView<SavingController> {
                 ),
               ),
             ],
-          ),)
+          ),
         ));
   }
 }
