@@ -9,12 +9,13 @@ class LaporanHarianService {
   Future<Response> getShowCurrentLaporanHarian() async {
     DateTime today = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(today);
-
+    DateTime parsedDate = DateTime.parse(formattedDate);
     try {
       final response = await _dioInstance.getRequest(
           endpoint: ApiEndPoint.showCurrentLaporanHarian,
           isAuthorize: true,
-          queryParameters: {'date': '$formattedDate'});
+          queryParameters: {'date': parsedDate});
+
       return response;
     } catch (e) {
       throw Exception(e);
