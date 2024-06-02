@@ -72,7 +72,8 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                   TimelineTileAlurBelajarAnanda(
                     isFirst: true,
                     isLast: false,
-                    isDone: true,
+                    isDone:
+                        controller.showCurrentAlurBelajarModel.value.tahapA!,
                     endChild: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -106,7 +107,8 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                   TimelineTileAlurBelajarAnanda(
                     isFirst: false,
                     isLast: false,
-                    isDone: false,
+                    isDone:
+                        controller.showCurrentAlurBelajarModel.value.tahapB!,
                     endChild: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -140,7 +142,8 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                   TimelineTileAlurBelajarAnanda(
                     isFirst: false,
                     isLast: true,
-                    isDone: false,
+                    isDone:
+                        controller.showCurrentAlurBelajarModel.value.tahapC!,
                     endChild: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
