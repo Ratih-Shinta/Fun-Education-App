@@ -75,7 +75,6 @@ class HomePageController extends GetxController {
           ShowLatestCatatanDaruratResponse.fromJson(response.data);
       showLatestCatatanDaruratModel.value =
           showLatestCatatanDaruratResponse!.data;
-      print('tre');
       update();
     } catch (e) {
       print(e);
@@ -90,7 +89,6 @@ class HomePageController extends GetxController {
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
-      print('asd');
       update();
     } catch (e) {
       print(e);

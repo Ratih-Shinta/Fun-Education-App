@@ -21,6 +21,7 @@ const Color opacity5PrimaryColor = Color(0x0DEF564B);
 const Color opacityBlackColor = Color(0x0D313131);
 const Color opacity50GreyColor = Color(0x507B7B7B);
 const Color redColor = Color(0xFFE13F3F);
+const Color transparentColor = Colors.transparent;
 
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(
