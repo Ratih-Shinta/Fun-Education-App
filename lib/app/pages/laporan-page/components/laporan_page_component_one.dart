@@ -70,10 +70,15 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
             SizedBox(height: height * 0.025),
             InkWell(
               onTap: () {
-                Get.bottomSheet(
-                  BottomsheetAlurBelajarAnanda(),
+                // Get.bottomSheet(
+                //   BottomsheetAlurBelajarAnanda(),
+                //   isScrollControlled: true,
+                //   backgroundColor: whiteColor,
+                // );
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => BottomsheetAlurBelajarAnanda(),
                   isScrollControlled: true,
-                  backgroundColor: whiteColor,
                 );
               },
               child: Container(

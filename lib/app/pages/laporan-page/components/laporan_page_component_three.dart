@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_pilih_tanggal.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/report_widget.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
@@ -247,7 +248,14 @@ class LaporanPageComponentThree extends StatelessWidget {
         ),
         SizedBox(height: height * 0.02),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => BottomSheetPilihTanggal(),
+              isScrollControlled: true,
+              backgroundColor: whiteColor,
+            );
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

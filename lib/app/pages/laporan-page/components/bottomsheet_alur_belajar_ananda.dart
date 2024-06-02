@@ -20,7 +20,9 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
       height: height * 0.63,
       child: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: height * 0.03, horizontal: width * 0.05),
+          vertical: height * 0.03,
+          horizontal: width * 0.05,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

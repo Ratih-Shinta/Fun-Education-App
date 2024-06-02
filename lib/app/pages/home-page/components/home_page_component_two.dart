@@ -1,11 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_catatan_darurat.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HomePageComponentTwo extends StatelessWidget {
-  const HomePageComponentTwo({super.key});
+  final LaporanPageController laporanPageController =
+      Get.put(LaporanPageController());
+  final DetailLaporanBulananController detailLaporanBulananController =
+      Get.put(DetailLaporanBulananController());
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +118,7 @@ class HomePageComponentTwo extends StatelessWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      'Maret 2024',
+                      DateFormat("MMMM yyyy").format(DateTime.now()).toString(),
                       style: tsBodySmallRegular(blackColor),
                     )
                   ],
@@ -129,35 +136,52 @@ class HomePageComponentTwo extends StatelessWidget {
               SizedBox(height: 15),
               AutoSizeText.rich(
                 textAlign: TextAlign.start,
+                group: AutoSizeGroup(),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 TextSpan(
-                    text: 'Tidak Ada\nCatatan',
+                    text: laporanPageController
+                                .showCurrentLaporanBulananModel.value.catatan ==
+                            null
+                        ? 'Tidak Ada\nCatatan'
+                        : laporanPageController
+                            .showCurrentLaporanBulananModel.value.catatan,
                     style: tsBodyMediumSemibold(whiteColor)),
               ),
-              Container(
-                margin: EdgeInsets.only(top: height * 0.075),
-                padding: EdgeInsets.symmetric(
-                    vertical: height * 0.014, horizontal: width * 0.05),
-                decoration: BoxDecoration(
-                    color: whiteColor, borderRadius: BorderRadius.circular(30)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AutoSizeText.rich(
-                      textAlign: TextAlign.center,
-                      TextSpan(
-                          text: 'Lihat Detail',
-                          style: tsLabelLargeRegular(blackColor)),
-                      maxLines: 2,
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: blackColor,
-                      size: 12,
-                    )
-                  ],
+              InkWell(
+                onTap: () {
+                  detailLaporanBulananController.selectedMonth.value =
+                      DateTime.now().month;
+                  detailLaporanBulananController
+                      .showCurrentDetailLaporanBulanan();
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: height * 0.075),
+                  padding: EdgeInsets.symmetric(
+                      vertical: height * 0.014, horizontal: width * 0.05),
+                  decoration: BoxDecoration(
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      AutoSizeText.rich(
+                        textAlign: TextAlign.center,
+                        TextSpan(
+                            text: 'Lihat Detail',
+                            style: tsLabelLargeRegular(blackColor)),
+                        maxLines: 2,
+                      ),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: blackColor,
+                        size: 12,
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
