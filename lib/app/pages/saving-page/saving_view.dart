@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_catatan_darurat.dart';
 import 'package:fun_education_app/app/pages/saving-page/components/bottomsheet_ajukan_pengeluaran.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
 import 'package:fun_education_app/app/pages/saving-page/widgets/transaction_history.dart';
@@ -243,9 +242,11 @@ class SavingView extends GetView<SavingController> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10),
                     ListView.builder(
                       shrinkWrap: true,
-                      itemCount: 2,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
                         return TransactionHistory();
                       },
