@@ -15,6 +15,7 @@ abstract class Routes {
   static const  DETAIL_LAPORAN_HARIAN_PAGE = _Paths.DETAIL_LAPORAN_HARIAN_PAGE;
   static const  DETAIL_LAPORAN_BULANAN_PAGE = _Paths.DETAIL_LAPORAN_BULANAN_PAGE;
   static const  PROFILE_PAGE = _Paths.PROFILE_PAGE;
+  static const  TRANSAKSI_PAGE = _Paths.TRANSAKSI_PAGE;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const DETAIL_LAPORAN_HARIAN_PAGE = '/detail-laporan-harian-page';
   static const DETAIL_LAPORAN_BULANAN_PAGE = '/detail-laporan-bulanan-page';
   static const PROFILE_PAGE = '/profile-page';
+  static const TRANSAKSI_PAGE = '/transaksi-page';
 }

@@ -21,13 +21,15 @@ import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_view.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_binding.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_view.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_binding.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_view.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LAPORAN_PAGE;
+  static const INITIAL = Routes.TRANSAKSI_PAGE;
 
   static final routes = [
     GetPage(
@@ -88,6 +90,11 @@ class AppPages {
       name: _Paths.PROFILE_PAGE,
       page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSAKSI_PAGE,
+      page: () => TransaksiPageView(),
+      binding: TransaksiPageBinding(),
     ),
   ];
 }

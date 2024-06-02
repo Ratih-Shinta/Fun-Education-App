@@ -21,6 +21,7 @@ const Color opacity5PrimaryColor = Color(0x0DEF564B);
 const Color opacityBlackColor = Color(0x0D313131);
 const Color opacity50GreyColor = Color(0x507B7B7B);
 const Color redColor = Color(0xFFE13F3F);
+const Color transparentColor = Colors.transparent;
 
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(
@@ -44,6 +45,8 @@ final BorderRadius defaulBorderRadius = BorderRadius.circular(15);
 const String logo = 'assets/logo.svg';
 const String iconChat = 'assets/icons/chat.svg';
 const String iconDocument = 'assets/icons/document.svg';
+const String iconTravelCase = 'assets/icons/icTravelCase.svg';
+const String iconSPP = 'assets/icons/icSPP.svg';
 
 // FONT SIZES
 figmaFontsize(int fontSize) {
