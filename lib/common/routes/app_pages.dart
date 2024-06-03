@@ -5,6 +5,8 @@ import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_l
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_view.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_binding.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_view.dart';
+import 'package:fun_education_app/app/pages/gallery-page/gallery_page_binding.dart';
+import 'package:fun_education_app/app/pages/gallery-page/gallery_page_view.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.dart';
@@ -29,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LAPORAN_PAGE;
+  static const INITIAL = Routes.GALLERY_PAGE;
 
   static final routes = [
     GetPage(
@@ -95,6 +97,11 @@ class AppPages {
       name: _Paths.TRANSAKSI_PAGE,
       page: () => TransaksiPageView(),
       binding: TransaksiPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.GALLERY_PAGE,
+      page: () => GalleryPageView(),
+      binding: GalleryPageBinding(),
     ),
   ];
 }
