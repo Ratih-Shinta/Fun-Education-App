@@ -188,12 +188,6 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                         onTap: () {
                           bottomSheetDetailGallery(
                             context,
-                            // galleryPageController
-                            //     .showAllPhotosModel[index].title!,
-                            // galleryPageController
-                            //     .showAllPhotosModel[index].description!,
-                            // galleryPageController
-                            //     .showAllPhotosModel[index].image!,
                             argument.gallery![index].title!,
                             argument.gallery![index].description!,
                             argument.gallery![index].image!,

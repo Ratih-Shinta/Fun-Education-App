@@ -10,6 +10,7 @@ import 'package:fun_education_app/app/pages/home-page/components/home_page_compo
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HomePageView extends GetView<HomePageController> {
   @override
@@ -31,8 +32,8 @@ class HomePageView extends GetView<HomePageController> {
                 Obx(() {
                   if (controller.isLoading.value) {
                     return Container(
-                      width: 43,
-                      height: 43,
+                      width: 45,
+                      height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: greyColor,
@@ -40,8 +41,8 @@ class HomePageView extends GetView<HomePageController> {
                     );
                   } else {
                     return Container(
-                      width: 43,
-                      height: 43,
+                      width: 45,
+                      height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: greyColor,
@@ -56,11 +57,12 @@ class HomePageView extends GetView<HomePageController> {
                   group: AutoSizeGroup(),
                   maxLines: 1,
                   TextSpan(
-                    text: 'Senin, ',
+                    text: '${DateFormat('EEEE').format(DateTime.now())}, ',
                     style: tsBodyMediumSemibold(blackColor),
                     children: [
                       TextSpan(
-                        text: '26 Maret 2024',
+                        text:
+                            '${DateFormat('dd MMMM yyyy').format(DateTime.now())}',
                         style: tsBodyMediumRegular(blackColor),
                       ),
                     ],
@@ -68,10 +70,10 @@ class HomePageView extends GetView<HomePageController> {
                 ),
                 Container(
                   margin: EdgeInsets.all(7),
-                  padding: EdgeInsets.all(9),
+                  padding: EdgeInsets.all(11),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: opacitySecondaryColor,
+                    color: opacitySecondaryColor.withOpacity(0.1),
                   ),
                   child: InkWell(
                     onTap: () {},
@@ -103,7 +105,7 @@ class HomePageView extends GetView<HomePageController> {
               ),
               HomePageComponentThree(),
               SizedBox(
-                height: height * 0.02,
+                height: height * 0.03,
               ),
               HomePageComponentFour(),
               SizedBox(
