@@ -21,7 +21,6 @@ dependencies:
   shared_preferences: null
   timeline_tile:
   intl: null
-  accordion: 
 
 dev_dependencies:
   flutter_test:

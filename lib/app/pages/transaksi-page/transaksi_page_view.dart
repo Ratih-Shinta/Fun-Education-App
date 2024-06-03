@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
-import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -37,45 +36,40 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                 vertical: height * 0.01,
               ),
               child: Obx(
-                () => Column(
-                  children: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: controller.showCurrentTransaksiModel.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 2.0),
-                          child: Column(
-                            children: [
-                              ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                title: AutoSizeText.rich(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: controller.showCurrentTransaksiModel.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 2.0),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              controller.toggleExpansion(index);
+                            },
+                            child: Row(
+                              children: [
+                                AutoSizeText.rich(
                                   TextSpan(
                                     text: controller.formatDate(controller
                                         .showCurrentTransaksiModel[index].date),
                                     style: tsBodyMediumRegular(blackColor),
                                   ),
                                 ),
-                                trailing: Icon(
-                                  controller.expandedIndex.value == index
-                                      ? Icons.keyboard_arrow_up_rounded
-                                      : Icons.keyboard_arrow_down_rounded,
-                                ),
-                                onTap: () {
-                                  controller.toggleExpansion(index);
-                                },
-                              ),
-                              if (controller.expandedIndex.value == index)
-                                Container(
-                                  child: MonthlyTransactions(),
-                                ),
-                            ],
+                                Icon(
+                                      controller.isOpen.value
+                                          ? Icons.keyboard_arrow_up_rounded
+                                          : Icons.keyboard_arrow_down_rounded,
+                                    )
+                              ],
+                            ),
                           ),
-                        );
-                      },
-                    ),
-                  ],
+                        ],
+                      ),
+                    );
+                  },
                 ),
               )),
         ),
