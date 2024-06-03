@@ -88,6 +88,7 @@ class MonthlyTransactions extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 5),
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),

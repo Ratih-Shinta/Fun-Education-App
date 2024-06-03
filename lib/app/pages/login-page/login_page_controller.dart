@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  late TextEditingController namaLengkapController;
+  late TextEditingController usernameController;
   late TextEditingController passwordController;
 
   RxBool isLoading = false.obs;
@@ -15,7 +15,7 @@ class LoginPageController extends GetxController {
 
   @override
   void onInit() {
-    namaLengkapController = TextEditingController();
+    usernameController = TextEditingController();
     passwordController = TextEditingController();
 
     authenticationService = AuthenticationService();
@@ -26,13 +26,13 @@ class LoginPageController extends GetxController {
     try {
       isLoading(true);
       final response = await authenticationService.login(
-          namaLengkapController.text, passwordController.text);
+          usernameController.text, passwordController.text);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       prefs.setString('token', response.data['token']);
       Get.snackbar("Login Success", "Welcome Back!");
-      Get.offAllNamed(Routes.HOME_PAGE);
+      Get.offAllNamed(Routes.TRANSAKSI_PAGE);
     } catch (e) {
       isLoading(true);
       Get.snackbar("Login Error", "Invalid Username or Password");

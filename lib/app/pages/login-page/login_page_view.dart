@@ -75,13 +75,13 @@ class LoginPageView extends GetView<LoginPageController> {
                           SizedBox(height: height * 0.025),
                           LoginFormWidget(
                             obscureText: false,
-                            hintText: "Nama Lengkap",
+                            hintText: "Username",
                             prefixIcon: Icon(
                               Icons.person,
                               size: 20,
                               color: greyColor,
                             ),
-                            fieldController: controller.namaLengkapController,
+                            fieldController: controller.usernameController,
                           ),
                           SizedBox(height: height * 0.015),
                           Obx(
