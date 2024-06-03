@@ -2,17 +2,22 @@ import 'package:fun_education_app/app/api/transaksi/models/item_transaction_mode
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_response.dart';
 import 'package:fun_education_app/app/api/transaksi/service/show_current_transaksi_service.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class TransaksiPageController extends GetxController {
   TransaksiService transaksiService = TransaksiService();
   ShowCurrentTransaksiResponse? showCurrentTransaksiResponse;
-  RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModel = RxList<ShowCurrentTransaksiModel>();
-  RxList<ItemTransactionModel> itemTransactionModel = RxList<ItemTransactionModel>();
+  RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModel =
+      RxList<ShowCurrentTransaksiModel>();
+  RxList<ItemTransactionModel> itemTransactionModel =
+      RxList<ItemTransactionModel>();
 
-  var expandedIndex = (-1).obs;
-  final RxList<RxBool> isVisibleList = RxList.filled(0, false.obs);
+  RxBool isOpen = false.obs;
+
+  // var expandedIndex = (-1).obs;
+  // final RxList<RxBool> isVisibleList = RxList.filled(0, false.obs);
 
   @override
   void onInit() {
@@ -21,9 +26,9 @@ class TransaksiPageController extends GetxController {
     super.onInit();
   }
 
-void toggleExpansion(int index) {
-    if (expandedIndex.value == index) {
-      expandedIndex.value = -1;
+  void toggleExpansion(int index) {
+    if (isOpen.value == true) {
+      MonthlyTransactions();
     }
   }
 
@@ -39,17 +44,19 @@ void toggleExpansion(int index) {
 
   Future<void> showCurrentTransaksi() async {
     try {
+      isOpen(true);
       final response = await transaksiService.getShowCurrentTransaksi();
-      showCurrentTransaksiResponse = ShowCurrentTransaksiResponse.fromJson(response.data);
+      showCurrentTransaksiResponse =
+          ShowCurrentTransaksiResponse.fromJson(response.data);
       if (showCurrentTransaksiResponse != null) {
-      showCurrentTransaksiModel.assignAll(showCurrentTransaksiResponse!.data);
+        showCurrentTransaksiModel.assignAll(showCurrentTransaksiResponse!.data);
 
-      List<ItemTransactionModel> transactions = [];
-      for (var model in showCurrentTransaksiModel) {
-        transactions.addAll(model.transaction);
+        List<ItemTransactionModel> transactions = [];
+        for (var model in showCurrentTransaksiModel) {
+          transactions.addAll(model.transaction);
+        }
+        itemTransactionModel.assignAll(transactions);
       }
-      itemTransactionModel.assignAll(transactions);
-    }
       update();
     } catch (e) {
       print(e);
