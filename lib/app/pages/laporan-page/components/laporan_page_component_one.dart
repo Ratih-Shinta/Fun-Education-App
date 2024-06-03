@@ -70,10 +70,15 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
             SizedBox(height: height * 0.025),
             InkWell(
               onTap: () {
-                Get.bottomSheet(
-                  BottomsheetAlurBelajarAnanda(),
+                // Get.bottomSheet(
+                //   BottomsheetAlurBelajarAnanda(),
+                //   isScrollControlled: true,
+                //   backgroundColor: whiteColor,
+                // );
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => BottomsheetAlurBelajarAnanda(),
                   isScrollControlled: true,
-                  backgroundColor: whiteColor,
                 );
               },
               child: Container(
@@ -103,7 +108,15 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              'Mengenalkan Buku A',
+                              controller.showCurrentAlurBelajarModel.value
+                                          .tahap ==
+                                      'A'
+                                  ? 'Mengenalkan Buku A'
+                                  : controller.showCurrentAlurBelajarModel.value
+                                              .tahap ==
+                                          'B'
+                                      ? 'Mengenalkan Buku B'
+                                      : 'Mengenalkan Buku C',
                               group: AutoSizeGroup(),
                               maxLines: 1,
                               style: tsBodyMediumSemibold(whiteColor),
@@ -117,7 +130,16 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
                                 style: tsBodySmallRegular(whiteColor),
                                 children: [
                                   TextSpan(
-                                    text: 'Menebalkan Huruf',
+                                    // text: 'Menebalkan Huruf',
+                                    text: controller.showCurrentAlurBelajarModel
+                                                .value.tahap ==
+                                            'A'
+                                        ? 'Menebalkan Huruf'
+                                        : controller.showCurrentAlurBelajarModel
+                                                    .value.tahap ==
+                                                'B'
+                                            ? 'Mencontoh Suku Kata'
+                                            : 'Menyalin Kalimat',
                                     style: tsBodySmallRegular(whiteColor),
                                   ),
                                 ],
@@ -131,7 +153,16 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
                                 style: tsBodySmallRegular(whiteColor),
                                 children: [
                                   TextSpan(
-                                    text: 'Membaca Kartu Baju Sampai\n  Cabe',
+                                    // text: 'Membaca Kartu Baju Sampai\n  Cabe',
+                                    text: controller.showCurrentAlurBelajarModel
+                                                .value.tahap ==
+                                            'A'
+                                        ? 'Membaca Kartu Baju Sampai\n  Cabe'
+                                        : controller.showCurrentAlurBelajarModel
+                                                    .value.tahap ==
+                                                'B'
+                                            ? 'Membaca Kartu Baju Sampai\n  Cabe'
+                                            : 'Membaca Kartu Baju Sampai\n  Cabe',
                                     style: tsBodySmallRegular(whiteColor),
                                   ),
                                 ],
