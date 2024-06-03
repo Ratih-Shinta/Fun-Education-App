@@ -141,7 +141,7 @@ class HomePageComponentTwo extends GetView<HomePageController> {
         Container(
           width: width * 0.44,
           padding: EdgeInsets.symmetric(
-            vertical: height * 0.02,
+            vertical: height * 0.018,
             horizontal: height * 0.02,
           ),
           decoration: BoxDecoration(
