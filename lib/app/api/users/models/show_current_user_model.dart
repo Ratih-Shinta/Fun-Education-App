@@ -1,6 +1,6 @@
 class ShowCurrentUserModel {
     String? id;
-    String? namaLengkap;
+    String? username;
     String? tempatTanggalLahir;
     String? alamat;
     String? profilePicture;
@@ -8,7 +8,7 @@ class ShowCurrentUserModel {
 
     ShowCurrentUserModel({
         this.id,
-        this.namaLengkap,
+        this.username,
         this.tempatTanggalLahir,
         this.alamat,
         this.profilePicture,
@@ -17,7 +17,7 @@ class ShowCurrentUserModel {
 
     factory ShowCurrentUserModel.fromJson(Map<String, dynamic> json) => ShowCurrentUserModel(
         id: json["id"],
-        namaLengkap: json["nama_lengkap"],
+        username: json["username"],
         tempatTanggalLahir: json["tempat_tanggal_lahir"],
         alamat: json["alamat"],
         profilePicture: json["profile_picture"],
@@ -26,7 +26,7 @@ class ShowCurrentUserModel {
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "nama_lengkap": namaLengkap,
+        "username": username,
         "tempat_tanggal_lahir": tempatTanggalLahir,
         "alamat": alamat,
         "profile_picture": profilePicture,
