@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
+import 'package:get/get.dart';
 
-class GalleryPageComponentOne extends StatelessWidget {
+class GalleryPageComponentOne extends GetView<GalleryPageController> {
   const GalleryPageComponentOne({super.key});
 
   @override
@@ -20,58 +23,80 @@ class GalleryPageComponentOne extends StatelessWidget {
           style: tsBodyMediumSemibold(blackColor),
         ),
         SizedBox(height: height * 0.02),
-        GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: width * 0.02,
-            mainAxisSpacing: height * 0.01,
-            childAspectRatio: 1.3,
-          ),
-          itemCount: 4,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2015/10/04/06/52/mountain-970704_640.jpg'),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.2),
-                    BlendMode.darken,
-                  ),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.03,
-                  vertical: height * 0.02,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AutoSizeText(
-                      group: AutoSizeGroup(),
-                      maxLines: 2,
-                      'Album 1',
-                      style: tsBodyMediumSemibold(whiteColor),
-                    ),
-                    AutoSizeText(
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      '10 Foto',
-                      style: tsBodySmallRegular(whiteColor),
-                    ),
-                  ],
-                ),
-              ),
+        Obx(() {
+          if (controller.isLoadingAllAlbumPhoto.value == true) {
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        ),
+          } else {
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: width * 0.02,
+                mainAxisSpacing: height * 0.01,
+                childAspectRatio: 1.2,
+              ),
+              itemCount: controller.showAllAlbumPhotoModel.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed(
+                      Routes.DETAIL_ALBUM_PHOTO,
+                      arguments: 
+                        controller.showAllAlbumPhotoModel[index],
+                        
+                      
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            '${controller.showAllAlbumPhotoModel[index].gallery![0].image}'),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.3),
+                          BlendMode.darken,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.03,
+                        vertical: height * 0.02,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          AutoSizeText(
+                            group: AutoSizeGroup(),
+                            maxLines: 2,
+                            '${controller.showAllAlbumPhotoModel[index].name}',
+                            style: tsBodyMediumSemibold(whiteColor).copyWith(
+                              height: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: height * 0.005),
+                          AutoSizeText(
+                            group: AutoSizeGroup(),
+                            maxLines: 1,
+                            '${controller.showAllAlbumPhotoModel[index].gallery!.length} Foto',
+                            style: tsBodySmallRegular(whiteColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        }),
       ],
     );
   }

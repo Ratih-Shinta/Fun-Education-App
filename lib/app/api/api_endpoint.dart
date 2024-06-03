@@ -9,6 +9,7 @@ class ApiEndPoint {
   static String baseUrlTransaksi = '$baseUrl/transaksi';
   static String baseUrlAlurBelajar = '$baseUrl/alur-belajar';
   static String baseUrlAllPhotos = '$baseUrl/gallery';
+  static String baseUrlAllAlbumPhotos = '$baseUrl/album';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -35,9 +36,13 @@ class ApiEndPoint {
 
   //Transaksi
   static String showCurrentTransaksi = '$baseUrlTransaksi/show-current';
+
   //Alur Belajar
   static String showCurrentAlurBelajar = '$baseUrlAlurBelajar/show-current';
 
   //Show All Photos
   static String showAllPhotos = '$baseUrlAllPhotos/index';
+
+  //Show All Photos
+  static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
 }

@@ -1,6 +1,8 @@
 import 'package:fun_education_app/app/global-component/navbar.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_binding.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_view.dart';
+import 'package:fun_education_app/app/pages/detail-album-photo/detail_album_photo_binding.dart';
+import 'package:fun_education_app/app/pages/detail-album-photo/detail_album_photo_view.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_binding.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_view.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_binding.dart';
@@ -102,6 +104,11 @@ class AppPages {
       name: _Paths.GALLERY_PAGE,
       page: () => GalleryPageView(),
       binding: GalleryPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_ALBUM_PHOTO,
+      page: () => DetailAlbumPhotoView(),
+      binding: DetailAlbumPhotoBinding(),
     ),
   ];
 }

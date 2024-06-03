@@ -17,6 +17,7 @@ abstract class Routes {
   static const PROFILE_PAGE = _Paths.PROFILE_PAGE;
   static const TRANSAKSI_PAGE = _Paths.TRANSAKSI_PAGE;
   static const GALLERY_PAGE = _Paths.GALLERY_PAGE;
+  static const DETAIL_ALBUM_PHOTO = _Paths.DETAIL_ALBUM_PHOTO;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const PROFILE_PAGE = '/profile-page';
   static const TRANSAKSI_PAGE = '/transaksi-page';
   static const GALLERY_PAGE = '/gallery-page';
+  static const DETAIL_ALBUM_PHOTO = '/detail-album-photo';
 }
