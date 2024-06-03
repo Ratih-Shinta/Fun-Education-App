@@ -30,6 +30,8 @@ class HomePageComponentOne extends GetView<HomePageController> {
               AutoSizeText.rich(
                 textAlign: TextAlign.start,
                 TextSpan(
+                  text: '${controller.showCurrentUserModel.value.username}',
+                  style: tsBodyMediumSemibold(whiteColor),
                   text: 'Halo Ananda,\n',
                   style: tsBodySmallRegular(whiteColor).copyWith(
                     height: 1.3,

@@ -17,7 +17,8 @@ class SavingView extends GetView<SavingController> {
     return Scaffold(
         backgroundColor: backgroundColor,
         body: SingleChildScrollView(
-          child: Column(
+            child: Obx(
+          () => Column(
             children: [
               Stack(
                 children: [
@@ -256,6 +257,6 @@ class SavingView extends GetView<SavingController> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }

@@ -9,6 +9,8 @@ class ApiEndPoint {
   static String baseUrlTransaksi = '$baseUrl/transaksi';
   static String baseUrlAlurBelajar = '$baseUrl/alur-belajar';
   static String baseUrlAllPhotos = '$baseUrl/gallery';
+  static String baseUrlMinimumPengajuan = '$baseUrl/minimum-pengajuan';
+  static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
 
   //Auth
@@ -43,6 +45,11 @@ class ApiEndPoint {
   //Show All Photos
   static String showAllPhotos = '$baseUrlAllPhotos/index';
 
+  //Minimum Pengajuan
+  static String showCurrentMinimumPengajuan = '$baseUrlMinimumPengajuan/show-current';
+
+  //Pengajuan Tabungan
+  static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
 }
