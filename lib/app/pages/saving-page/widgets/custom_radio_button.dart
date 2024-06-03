@@ -1,15 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class CustomRadioButton extends StatelessWidget {
+class CustomRadioButton extends GetView<SavingController> {
   final String title;
   final String subtitle;
   final String icon;
   final String value;
   final String groupValue;
   final Function(String) onChanged;
+  final TextStyle? style;
 
   CustomRadioButton({
     required this.title,
@@ -18,6 +21,7 @@ class CustomRadioButton extends StatelessWidget {
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    this.style
   });
 
   @override
@@ -52,7 +56,8 @@ class CustomRadioButton extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: subtitle,
-                        style: tsBodySmallRegular(greenColor),
+                        // style: tsBodySmallRegular(greenColor)
+                        style: style ?? tsBodySmallRegular(greenColor),
                       ),
                     ],
                   ),

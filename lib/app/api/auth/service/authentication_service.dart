@@ -20,7 +20,7 @@ class AuthenticationService {
    Future<Response> logout() async {
     try {
       final response =  await _dioInstance.deleteRequest(
-          endpoint: ApiEndPoint.logout,
+          endpoint: ApiEndPoint.storePengajuanTabungan,
           isAuthorize: true
       );
 
