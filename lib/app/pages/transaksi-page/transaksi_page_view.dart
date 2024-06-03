@@ -32,52 +32,52 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: width * 0.05,
-              vertical: height * 0.01,
-            ),
-            child: Column(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 14,
-                  itemBuilder: (context, index) {
-                    return Obx(
-                      () => Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.0),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: AutoSizeText.rich(
-                                TextSpan(
-                                  text: 'Month $index',
-                                  style: tsBodyMediumRegular(blackColor),
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.05,
+                vertical: height * 0.01,
+              ),
+              child: Obx(
+                () => Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.showCurrentTransaksiModel.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: 2.0),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: AutoSizeText.rich(
+                                  TextSpan(
+                                    text: controller.formatDate(controller
+                                        .showCurrentTransaksiModel[index].date),
+                                    style: tsBodyMediumRegular(blackColor),
+                                  ),
                                 ),
+                                trailing: Icon(
+                                  controller.expandedIndex.value == index
+                                      ? Icons.keyboard_arrow_up_rounded
+                                      : Icons.keyboard_arrow_down_rounded,
+                                ),
+                                onTap: () {
+                                  controller.toggleExpansion(index);
+                                },
                               ),
-                              trailing: Icon(
-                                controller.expandedIndex.value == index
-                                    ? Icons.keyboard_arrow_up_rounded
-                                    : Icons.keyboard_arrow_down_rounded,
-                              ),
-                              onTap: () {
-                                controller.toggleExpansion(index);
-                              },
-                            ),
-                            if (controller.expandedIndex.value == index)
-                              Container(
-                                child: MonthlyTransactions(),
-                              ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                              if (controller.expandedIndex.value == index)
+                                Container(
+                                  child: MonthlyTransactions(),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              )),
         ),
       ),
     );
