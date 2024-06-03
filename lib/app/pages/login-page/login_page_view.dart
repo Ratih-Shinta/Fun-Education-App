@@ -84,8 +84,7 @@ class LoginPageView extends GetView<LoginPageController> {
                             fieldController: controller.usernameController,
                           ),
                           SizedBox(height: height * 0.015),
-                          Obx(
-                            () => LoginFormWidget(
+                          LoginFormWidget(
                               fieldController: controller.passwordController,
                               obscureText: controller.isVisibleSignIn.value,
                               keyboardType: TextInputType.visiblePassword,
@@ -109,7 +108,6 @@ class LoginPageView extends GetView<LoginPageController> {
                                 ),
                               ),
                             ),
-                          ),
                           SizedBox(height: height * 0.075),
                           CommonButton(
                             text: 'Lanjut',

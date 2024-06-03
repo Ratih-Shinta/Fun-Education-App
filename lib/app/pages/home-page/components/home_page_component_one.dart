@@ -30,7 +30,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
               ),
               children: [
                 TextSpan(
-                  text: '${controller.showCurrentUserModel.value.namaLengkap}',
+                  text: '${controller.showCurrentUserModel.value.username}',
                   style: tsBodyMediumSemibold(whiteColor),
                 ),
               ],

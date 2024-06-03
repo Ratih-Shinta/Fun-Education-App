@@ -31,13 +31,14 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.GALLERY_PAGE;
+  static const INITIAL = Routes.LOGIN_PAGE;
 
   static final routes = [
-    GetPage(
-      name: _Paths.NAVBAR,
-      page: () => NavbarMain(),
-    ),
+    GetPage(name: _Paths.NAVBAR, page: () => NavbarMain(), bindings: [
+      HomePageBinding(),
+      LaporanPageBinding(),
+      SavingBinding(),
+    ]),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
       page: () => SplashScreenView(),

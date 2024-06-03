@@ -145,7 +145,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         SizedBox(height: height * 0.02),
                         UserDataContainer(
                             title: 'Nama Lengkap',
-                            content: '${homePageController.showCurrentUserModel.value.namaLengkap}'),
+                            content: '${homePageController.showCurrentUserModel.value.username}'),
                         SizedBox(height: height * 0.01),
                         UserDataContainer(
                             title: 'Tempat, Tanggal Lahir',
