@@ -5,6 +5,7 @@ class ApiEndPoint {
   static String baseUrlCatatanDarurat = '$baseUrl/catatan-darurat';
   static String baseUrlLaporanHarian = '$baseUrl/laporan-harian';
   static String baseUrlTabungan = '$baseUrl/tabungan';
+  static String baseUrlTransaksi = '$baseUrl/transaksi';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -25,4 +26,7 @@ class ApiEndPoint {
 
   //Tabungan
   static String showCurrentTabungan = '$baseUrlTabungan/show-current';
+
+  //Transaksi
+  static String showCurrentTransaksi = '$baseUrlTransaksi/show-current';
 }
