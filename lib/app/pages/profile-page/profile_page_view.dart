@@ -21,8 +21,8 @@ class ProfilePageView extends GetView<ProfilePageController> {
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: height * 0.04,
+              padding: EdgeInsets.only(
+                top: height * 0.04,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,22 +170,24 @@ class ProfilePageView extends GetView<ProfilePageController> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   fixedSize: Size(
-                                      MediaQuery.of(context).size.width, 50)),
+                                      MediaQuery.of(context).size.width,
+                                      height * 0.07)),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text("Logout",
-                                      style: tsBodyMediumMedium(whiteColor)),
+                                      style: tsBodyMediumSemibold(whiteColor)),
                                   const SizedBox(
                                     width: 10,
                                   ),
                                   const Icon(
-                                    Icons.logout,
+                                    Icons.logout_rounded,
                                     color: Colors.white,
                                   )
                                 ],
                               )),
+                          SizedBox(height: height * 0.02),
                         ],
                       ),
                     ),
