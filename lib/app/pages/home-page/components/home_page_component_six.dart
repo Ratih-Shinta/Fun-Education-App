@@ -13,7 +13,7 @@ class HomePageCompnentSix extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.035, vertical: height * 0.01),
+          horizontal: width * 0.05, vertical: height * 0.02),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: opacity5SecondaryColor),

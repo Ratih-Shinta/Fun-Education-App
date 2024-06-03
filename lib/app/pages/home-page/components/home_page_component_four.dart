@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:intl/intl.dart';
 
 class HomePageComponentFour extends StatelessWidget {
   const HomePageComponentFour({super.key});
@@ -9,6 +10,7 @@ class HomePageComponentFour extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,15 +35,29 @@ class HomePageComponentFour extends StatelessWidget {
           ),
         ),
         Container(
-            margin: EdgeInsets.only(right: 4.5, bottom: 8),
-            padding:
-                EdgeInsets.symmetric(vertical: 7, horizontal: width * 0.03),
-            decoration: BoxDecoration(
-                color: whiteColor, borderRadius: BorderRadius.circular(10)),
-            child: AutoSizeText.rich(
-              TextSpan(
-                  text: '25 Maret 2024', style: tsBodySmallMedium(blackColor)),
-            )),
+          padding: EdgeInsets.symmetric(
+            vertical: height * 0.01,
+            horizontal: width * 0.05,
+          ),
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: greyColor.withOpacity(0.1),
+                spreadRadius: 0,
+                blurRadius: 10,
+                offset: Offset(0, 0),
+              ),
+            ],
+          ),
+          child: AutoSizeText(
+            '${DateFormat('dd MMMM yyyy').format(DateTime.now())}',
+            group: AutoSizeGroup(),
+            maxLines: 1,
+            style: tsBodySmallMedium(blackColor),
+          ),
+        ),
       ],
     );
   }

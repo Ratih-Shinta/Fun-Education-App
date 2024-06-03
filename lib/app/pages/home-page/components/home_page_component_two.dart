@@ -1,14 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_catatan_darurat.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class HomePageComponentTwo extends StatelessWidget {
+class HomePageComponentTwo extends GetView<HomePageController> {
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
   final DetailLaporanBulananController detailLaporanBulananController =
@@ -24,62 +24,104 @@ class HomePageComponentTwo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: width * 0.43,
-          padding: EdgeInsets.all(15),
+          width: width * 0.44,
+          padding: EdgeInsets.symmetric(
+            vertical: height * 0.02,
+            horizontal: height * 0.02,
+          ),
           decoration: BoxDecoration(
-              color: whiteColor, borderRadius: BorderRadius.circular(10)),
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(right: 4.5, bottom: 8),
-                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.only(
+                  right: width * 0.02,
+                  bottom: height * 0.01,
+                ),
+                padding: EdgeInsets.symmetric(
+                  vertical: height * 0.01,
+                  horizontal: width * 0.025,
+                ),
                 decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.circular(5)),
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Icon(
                   Icons.access_time_filled,
                   color: whiteColor,
-                  size: 18,
+                  size: 25,
                 ),
               ),
               AutoSizeText.rich(
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 TextSpan(
-                    text: 'Catatan Darurat',
-                    style: tsBodySmallRegular(blackColor)),
+                  text: 'Catatan Darurat',
+                  style: tsBodySmallRegular(blackColor),
+                ),
                 maxLines: 2,
               ),
               SizedBox(height: 15),
-              AutoSizeText.rich(
-                textAlign: TextAlign.start,
-                TextSpan(
-                    text: 'Tidak Ada\nCatatan',
-                    style: tsBodyMediumSemibold(blackColor)),
-                maxLines: 2,
-              ),
+              Obx(() {
+                if (controller.isLoadingLatestCatatan.value == true) {
+                  return Container(
+                    height: height * 0.1,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else if (controller.showLatestCatatanDaruratModel.value ==
+                    '') {
+                  return Container(
+                    height: height * 0.1,
+                    child: Center(
+                      child: Text('Data tidak ditemukan'),
+                    ),
+                  );
+                } else {
+                  return AutoSizeText.rich(
+                    textAlign: TextAlign.start,
+                    TextSpan(
+                      text: controller
+                          .showLatestCatatanDaruratModel.value.catatan,
+                      style: tsBodyMediumSemibold(blackColor),
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  );
+                }
+              }),
               InkWell(
                 onTap: () {
                   showModalBottomSheet(
-                      context: context,
-                      builder: (context) => BottomsheetCatatanDarurat());
+                    context: context,
+                    builder: (context) => BottomsheetCatatanDarurat(),
+                    isScrollControlled: true,
+                    backgroundColor: whiteColor,
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: height * 0.075),
                   padding: EdgeInsets.symmetric(
-                      vertical: height * 0.014, horizontal: width * 0.05),
+                    vertical: height * 0.014,
+                    horizontal: width * 0.05,
+                  ),
                   decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(30)),
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AutoSizeText.rich(
                         textAlign: TextAlign.center,
                         TextSpan(
-                            text: 'Lihat Detail',
-                            style: tsLabelLargeRegular(whiteColor)),
+                          text: 'Lihat Detail',
+                          style: tsLabelLargeRegular(whiteColor),
+                        ),
                       ),
                       SizedBox(
                         width: width * 0.02,
@@ -97,8 +139,11 @@ class HomePageComponentTwo extends StatelessWidget {
           ),
         ),
         Container(
-          width: width * 0.43,
-          padding: EdgeInsets.all(15),
+          width: width * 0.44,
+          padding: EdgeInsets.symmetric(
+            vertical: height * 0.02,
+            horizontal: height * 0.02,
+          ),
           decoration: BoxDecoration(
               color: secondaryColor, borderRadius: BorderRadius.circular(10)),
           child: Column(
@@ -106,17 +151,25 @@ class HomePageComponentTwo extends StatelessWidget {
             children: [
               Container(
                 width: width,
-                margin: EdgeInsets.only(right: 4.5, bottom: 8),
-                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.only(bottom: height * 0.01),
+                padding: EdgeInsets.symmetric(
+                  vertical: height * 0.015,
+                  horizontal: width * 0.025,
+                ),
                 decoration: BoxDecoration(
-                    color: whiteColor, borderRadius: BorderRadius.circular(5)),
+                  color: whiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(
-                      iconDocument,
+                    Icon(
+                      Icons.calendar_month_rounded,
                       color: blackColor,
+                      size: 18,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: width * 0.01),
                     Text(
                       DateFormat("MMMM yyyy").format(DateTime.now()).toString(),
                       style: tsBodySmallRegular(blackColor),
@@ -134,20 +187,37 @@ class HomePageComponentTwo extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 15),
-              AutoSizeText.rich(
-                textAlign: TextAlign.start,
-                group: AutoSizeGroup(),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                TextSpan(
-                    text: laporanPageController
-                                .showCurrentLaporanBulananModel.value.catatan ==
-                            null
-                        ? 'Tidak Ada\nCatatan'
-                        : laporanPageController
-                            .showCurrentLaporanBulananModel.value.catatan,
-                    style: tsBodyMediumSemibold(whiteColor)),
-              ),
+              Obx(() {
+                if (laporanPageController.isLoading.value == true) {
+                  return Container(
+                    height: height * 0.1,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else if (laporanPageController
+                        .showCurrentLaporanBulananModel.value.catatan ==
+                    '') {
+                  return Container(
+                    height: height * 0.1,
+                    child: Center(
+                      child: Text('Data tidak ditemukan'),
+                    ),
+                  );
+                } else {
+                  return AutoSizeText.rich(
+                    textAlign: TextAlign.start,
+                    group: AutoSizeGroup(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    TextSpan(
+                      text: laporanPageController
+                          .showCurrentLaporanBulananModel.value.catatan,
+                      style: tsBodyMediumSemibold(whiteColor),
+                    ),
+                  );
+                }
+              }),
               InkWell(
                 onTap: () {
                   detailLaporanBulananController.selectedMonth.value =
@@ -160,16 +230,18 @@ class HomePageComponentTwo extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       vertical: height * 0.014, horizontal: width * 0.05),
                   decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(30)),
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AutoSizeText.rich(
                         textAlign: TextAlign.center,
                         TextSpan(
-                            text: 'Lihat Detail',
-                            style: tsLabelLargeRegular(blackColor)),
+                          text: 'Lihat Detail',
+                          style: tsLabelLargeRegular(blackColor),
+                        ),
                         maxLines: 2,
                       ),
                       SizedBox(

@@ -13,6 +13,8 @@ import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
+  RxBool isLoadingLatestCatatan = false.obs;
+
   ShiftMasukService shiftMasukService = ShiftMasukService();
   ShiftMasukResponse? shiftMasukResponse;
   Rx<ShiftMasukModel> shiftMasukModel = ShiftMasukModel().obs;
@@ -69,6 +71,7 @@ class HomePageController extends GetxController {
 
   Future showLatestCatatanDarurat() async {
     try {
+      isLoadingLatestCatatan(true);
       final response =
           await catatanDaruratService.getShowLatestCatatanDarurat();
       showLatestCatatanDaruratResponse =
@@ -77,7 +80,10 @@ class HomePageController extends GetxController {
           showLatestCatatanDaruratResponse!.data;
       update();
     } catch (e) {
+      isLoadingLatestCatatan(true);
       print(e);
+    } finally {
+      isLoadingLatestCatatan(false);
     }
   }
 
