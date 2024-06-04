@@ -12,8 +12,11 @@ class TransactionHistory extends StatelessWidget {
     final double height = mediaQuery.height;
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.only(bottom: height * 0.01),
+      padding: EdgeInsets.symmetric(
+        vertical: height * 0.02,
+        horizontal: width * 0.04,
+      ),
       decoration: BoxDecoration(
           color: whiteColor, borderRadius: BorderRadius.circular(10)),
       child: Column(
@@ -25,12 +28,15 @@ class TransactionHistory extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(right: width * 0.03),
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.symmetric(
+                      vertical: height * 0.01,
+                      horizontal: width * 0.023,
+                    ),
                     decoration: BoxDecoration(
                         color: warningColor,
-                        borderRadius: BorderRadius.circular(5)),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Icon(
-                      Icons.arrow_downward,
+                      Icons.arrow_downward_rounded,
                       color: whiteColor,
                       size: 27,
                     ),

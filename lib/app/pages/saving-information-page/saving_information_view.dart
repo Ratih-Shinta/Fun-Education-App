@@ -68,7 +68,7 @@ class SavingInformationView extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(right: width * 0.03),
                       width: width * 0.016,
-                      height: height * 0.05,
+                      height: height * 0.04,
                       decoration: BoxDecoration(
                         color: warningColor,
                         borderRadius: BorderRadius.circular(4),
@@ -86,16 +86,20 @@ class SavingInformationView extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: height * 0.03),
                 BulletText(
                   boldTextStyle: tsBodySmallRegular(primaryColor),
                   boldText: 'TIDAK WAJIB',
                   text: ' / bagi yang mau saja',
                 ),
+                SizedBox(height: height * 0.005),
                 BulletText(
                   text: 'Jadwal menabung setiap hari ',
                   nextText: 'Selasa dan Kamis',
                 ),
+                SizedBox(height: height * 0.005),
                 BulletText(text: 'Diluar dari jadwal itu tidak kami terima.'),
+                SizedBox(height: height * 0.005),
                 BulletText(
                   text:
                       'Besar setoran minimal Rp. 10.000, dan menyertakan kartu tabungan',
