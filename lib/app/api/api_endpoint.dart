@@ -12,8 +12,6 @@ class ApiEndPoint {
   static String baseUrlMinimumPengajuan = '$baseUrl/minimum-pengajuan';
   static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
-  static String baseUrlMinimumPengajuan = '$baseUrl/minimum-pengajuan';
-  static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -33,8 +31,9 @@ class ApiEndPoint {
   static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
 
   //Laporan Bulanan
-  static String showCurrentLaporanBulanan = '$baseUrlLaporanBulanan/show-current';
-  
+  static String showCurrentLaporanBulanan =
+      '$baseUrlLaporanBulanan/show-current';
+
   //Tabungan
   static String showCurrentTabungan = '$baseUrlTabungan/show-current';
 
@@ -48,16 +47,11 @@ class ApiEndPoint {
   static String showAllPhotos = '$baseUrlAllPhotos/index';
 
   //Minimum Pengajuan
-  static String showCurrentMinimumPengajuan = '$baseUrlMinimumPengajuan/show-current';
+  static String showCurrentMinimumPengajuan =
+      '$baseUrlMinimumPengajuan/show-current';
 
   //Pengajuan Tabungan
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
-
-  //Minimum Pengajuan
-  static String showCurrentMinimumPengajuan = '$baseUrlMinimumPengajuan/show-current';
-
-  //Pengajuan Tabungan
-  static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
 }
