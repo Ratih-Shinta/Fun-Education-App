@@ -93,11 +93,4 @@ class SavingController extends GetxController {
     return showCurrentMinimumPengajuanModel[selectedIndex].isEnough!;
   }
 
-  // void setUserId(String userId) {
-  //   '${showCurrentMinimumPengajuanModel[0].userId}';
-  // }
-
-  // void setSelectedCategory(String category) {
-  //   selectedOption.value = selectedOption.value;
-  // }
 }

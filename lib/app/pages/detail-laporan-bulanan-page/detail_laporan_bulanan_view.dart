@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -44,12 +45,30 @@ class DetailLaporanBulananView extends GetView<DetailLaporanBulananController> {
           );
         } else if (controller.showCurrentLaporanBulananModel.value.catatan ==
             null) {
-          return Center(
-            child: AutoSizeText(
-              'Data tidak ditemukan',
-              group: AutoSizeGroup(),
-              maxLines: 1,
-              style: tsBodyMediumSemibold(blackColor),
+          return Padding(
+            padding: EdgeInsets.only(bottom: height * 0.1),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/notFoundImage.svg',
+                  ),
+                  SizedBox(height: height * 0.01),
+                  AutoSizeText(
+                    'Laporan tidak ditemukan',
+                    group: AutoSizeGroup(),
+                    maxLines: 1,
+                    style: tsBodyMediumSemibold(blackColor),
+                  ),
+                  AutoSizeText(
+                    'Dibulan ini sepertinya belum ada laporan',
+                    group: AutoSizeGroup(),
+                    maxLines: 1,
+                    style: tsLabelLargeRegular(blackColor),
+                  ),
+                ],
+              ),
             ),
           );
         } else {

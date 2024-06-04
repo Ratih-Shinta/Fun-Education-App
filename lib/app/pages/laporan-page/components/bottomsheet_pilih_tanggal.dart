@@ -1,14 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_controller.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class BottomSheetPilihTanggal extends GetView<LaporanPageController> {
-  final DetailLaporanBulananController detailLaporanBulananController =
-      Get.put(DetailLaporanBulananController());
+  final DetailLaporanHarianController detailLaporanHarianController =
+      Get.put(DetailLaporanHarianController());
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +69,8 @@ class BottomSheetPilihTanggal extends GetView<LaporanPageController> {
                 initialDateTime: DateTime.now(),
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (DateTime value) {
-                  detailLaporanBulananController.selectedMonth.value =
-                      value.month;
+                  detailLaporanHarianController.selectedDate.value =
+                      value;
                 },
               ),
             ),
@@ -79,12 +79,12 @@ class BottomSheetPilihTanggal extends GetView<LaporanPageController> {
               text: 'Lihat Laporan',
               onPressed: () {
                 print(
-                    'selected month: ${detailLaporanBulananController.selectedMonth.value}');
-                print(detailLaporanBulananController
-                    .showCurrentLaporanBulananModel.value
+                    'selected month: ${detailLaporanHarianController.selectedDate.value}');
+                print(detailLaporanHarianController
+                    .showCurrentLaporanHarianModel.value
                     .toJson());
-                detailLaporanBulananController
-                    .showCurrentDetailLaporanBulanan();
+                detailLaporanHarianController
+                    .showCurrentLaporanHarian();
               },
               color: secondaryColor,
             )
