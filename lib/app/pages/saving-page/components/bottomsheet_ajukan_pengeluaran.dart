@@ -17,65 +17,65 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingController> {
     return SizedBox(
       height: height * 0.5,
       child: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            ),
-          ),
-          padding: EdgeInsets.symmetric(
-            vertical: height * 0.03,
-            horizontal: width * 0.06,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+        child: Obx(() => Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: height * 0.03,
+                horizontal: width * 0.06,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(bottom: height * 0.01),
-                    width: width * 0.15,
-                    height: height * 0.008,
-                    decoration: BoxDecoration(
-                      color: opacity20GreyColor,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: width * 0.02),
-                        width: width * 0.016,
-                        height: height * 0.05,
+                        margin: EdgeInsets.only(bottom: height * 0.01),
+                        width: width * 0.15,
+                        height: height * 0.008,
                         decoration: BoxDecoration(
-                          color: primaryColor,
+                          color: opacity20GreyColor,
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
-                      AutoSizeText.rich(
-                        TextSpan(
-                          text: 'Ajukan Pengeluaran Tabungan\n',
-                          style: tsBodyMediumSemibold(blackColor).copyWith(
-                            height: 1.3,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'Pilih Pengeluaran Tabungan',
-                              style: tsBodySmallRegular(blackColor),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: width * 0.02),
+                            width: width * 0.016,
+                            height: height * 0.05,
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                          ],
-                        ),
-                        maxLines: 2,
+                          ),
+                          AutoSizeText.rich(
+                            TextSpan(
+                              text: 'Ajukan Pengeluaran Tabungan\n',
+                              style: tsBodyMediumSemibold(blackColor).copyWith(
+                                height: 1.3,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'Pilih Pengeluaran Tabungan',
+                                  style: tsBodySmallRegular(blackColor),
+                                ),
+                              ],
+                            ),
+                            maxLines: 2,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-              Obx(() => Column(
+                  Column(
                     children: [
                       CustomRadioButton(
                         title: 'SPP Bulanan',
@@ -84,7 +84,8 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingController> {
                         icon: iconSPP,
                         value: 'SPP Bulanan',
                         groupValue: controller.selectedOption.value,
-                        onChanged: (value) => controller.selectedCategory(value),
+                        onChanged: (value) =>
+                            controller.selectedCategory(value),
                         style: tsBodySmallRegular(controller
                                     .showCurrentMinimumPengajuanModel[0]
                                     .isEnough ==
@@ -99,7 +100,8 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingController> {
                         icon: iconTravelCase,
                         value: 'Kegiatan Belajar Diluar',
                         groupValue: controller.selectedOption.value,
-                        onChanged: (value) => controller.selectedCategory(value),
+                        onChanged: (value) =>
+                            controller.selectedCategory(value),
                         style: tsBodySmallRegular(controller
                                     .showCurrentMinimumPengajuanModel[1]
                                     .isEnough ==
@@ -108,47 +110,28 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingController> {
                             : primaryColor),
                       )
                     ],
-                  )),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 1,
-                // controller.showCurrentMinimumPengajuanModel.length,
-                itemBuilder: (context, index) {
-                  return Obx(() => GestureDetector(
-                        onTap: () async {
-                          if (controller.showCurrentMinimumPengajuanModel[index]
-                                  .isEnough ==
-                              true) {
-                            controller.pengajuanTabungan();
-                          } else {
-                            Get.snackbar(
-                              'Error',
-                              'Saldo anda tidak cukup.',
-                              backgroundColor: Colors.red,
-                              colorText: Colors.white,
-                            );
-                          }
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: (controller
-                                          .showCurrentMinimumPengajuanModel[
-                                              index]
-                                          .isEnough ==
-                                      true
-                                  ? primaryColor
-                                  : opacity50GreyColor)),
-                          child: Center(
-                              child: Text("Ajukan",
-                                  style: tsBodyMediumSemibold(whiteColor))),
-                        ),
-                      ));
-                },
-              )
-            ],
-          ),
-        ),
+                  ),
+                  Obx(
+                    () => controller.selectedCategoryIsEnough() == true
+                        ? ElevatedButton(
+                            onPressed: () => controller.pengajuanTabungan(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                            ),
+                            child: Text('Ajukan'),
+                          )
+                        : ElevatedButton(
+                            onPressed: () => Get.snackbar('Pengajuan Gagal',
+                                'Saldo Tabungan Anda Tidak Mencukupi'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: opacity50GreyColor,
+                            ),
+                            child: Text('Ajukan'),
+                          ),
+                  )
+                ],
+              ),
+            )),
       ),
     );
   }

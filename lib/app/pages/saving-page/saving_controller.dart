@@ -58,33 +58,39 @@ class SavingController extends GetxController {
 
   void selectedCategory(String option) {
     selectedOption.value = option;
+
+    print("Sek=lected Option: $option");
   }
 
   Future<void> pengajuanTabungan() async {
-  try {
-    isLoading(true);
-    final userId = showCurrentMinimumPengajuanModel[0].userId;
-    final selectedCategory = selectedOption.value;
+    try {
+      isLoading(true);
+      final userId = showCurrentMinimumPengajuanModel[0].userId;
+      final selectedCategory = selectedOption.value;
 
-    if (userId != null) {
-      final response = await tabunganService.pengajuanTabungan(userId, selectedCategory);
-      Get.snackbar('Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
-    } else {
-      print('userId is null');
+      if (userId != null) {
+        final response =
+            await tabunganService.pengajuanTabungan(userId, selectedCategory);
+        Get.snackbar(
+            'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
+      } else {
+        print('userId is null');
+      }
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
     }
-  } catch (e) {
-    isLoading(true);
-    print(e);
-  } finally {
-    isLoading(false);
   }
-}
 
-  // void setUserId(String userId) {
-  //   '${showCurrentMinimumPengajuanModel[0].userId}';
-  // }
+  bool selectedCategoryIsEnough() {
+    int selectedIndex = selectedOption.value == "SPP Bulanan" ? 0 : 1;
 
-  // void setSelectedCategory(String category) {
-  //   selectedOption.value = selectedOption.value;
-  // }
+    print("Selected Index: $selectedIndex");
+    print(showCurrentMinimumPengajuanModel[selectedIndex].isEnough!);
+
+    return showCurrentMinimumPengajuanModel[selectedIndex].isEnough!;
+  }
+
 }

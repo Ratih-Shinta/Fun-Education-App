@@ -31,8 +31,9 @@ class ApiEndPoint {
   static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
 
   //Laporan Bulanan
-  static String showCurrentLaporanBulanan = '$baseUrlLaporanBulanan/show-current';
-  
+  static String showCurrentLaporanBulanan =
+      '$baseUrlLaporanBulanan/show-current';
+
   //Tabungan
   static String showCurrentTabungan = '$baseUrlTabungan/show-current';
 
@@ -46,7 +47,8 @@ class ApiEndPoint {
   static String showAllPhotos = '$baseUrlAllPhotos/index';
 
   //Minimum Pengajuan
-  static String showCurrentMinimumPengajuan = '$baseUrlMinimumPengajuan/show-current';
+  static String showCurrentMinimumPengajuan =
+      '$baseUrlMinimumPengajuan/show-current';
 
   //Pengajuan Tabungan
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
