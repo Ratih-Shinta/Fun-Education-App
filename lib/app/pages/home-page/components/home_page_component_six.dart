@@ -26,7 +26,6 @@ class HomePageCompnentSix extends StatelessWidget {
           ),
           SizedBox(height: height * 0.01),
           Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [

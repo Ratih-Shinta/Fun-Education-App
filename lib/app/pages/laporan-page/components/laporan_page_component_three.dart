@@ -1,11 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
+import 'package:fun_education_app/app/pages/home-page/components/home_page_component_six.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_pilih_tanggal.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/report_widget.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class LaporanPageComponentThree extends StatelessWidget {
-  const LaporanPageComponentThree({super.key});
+class LaporanPageComponentThree extends GetView<LaporanPageController> {
+  final DetailLaporanHarianController detailLaporanHarianController =
+      Get.put(DetailLaporanHarianController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +58,7 @@ class LaporanPageComponentThree extends StatelessWidget {
                 ],
               ),
               child: AutoSizeText(
-                '25 November 2021',
+                '${DateFormat('dd MMMM yyyy').format(detailLaporanHarianController.selectedDate.value)}',
                 group: AutoSizeGroup(),
                 maxLines: 1,
                 style: tsBodySmallMedium(blackColor),
@@ -63,189 +69,86 @@ class LaporanPageComponentThree extends StatelessWidget {
         SizedBox(height: height * 0.03),
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: width * 0.035,
-            vertical: height * 0.01,
-          ),
+              horizontal: width * 0.035, vertical: height * 0.01),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: opacity5SecondaryColor,
-          ),
-          child: Column(
-            children: [
-              ReportWidget(
-                no: 1,
-                text: 'Datang tepat pada waktunya',
-                point: 'A',
-                pointColor: greenColor,
-              ),
-              ReportWidget(
-                no: 2,
-                text: 'Berpakaian rapi',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 3,
-                text: 'Berbuat baik dengan teman',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 4,
-                text: 'Mau menolong dan berbagi dengan teman',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 5,
-                text: 'Merapikan alat belajar dan mainan sendiri',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 6,
-                text: 'Menyelesaikan tugas',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 7,
-                text: 'Membaca',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 8,
-                text: 'Menulis',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 9,
-                text: 'Dikte',
-                point: 'B',
-                pointColor: blueColor,
-              ),
-              ReportWidget(
-                no: 10,
-                text: 'Keterampilan',
-                point: 'C',
-                pointColor: warningColor,
-              ),
-            ],
-          ),
+              borderRadius: BorderRadius.circular(10),
+              color: opacity5SecondaryColor),
+          child: Obx(() {
+            if (controller.isLoadingLaporanHarian.value == true) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Column(
+                children: [
+                  ReportWidget(
+                    no: 1,
+                    text: 'Datang tepat pada waktunya',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.datangTepatPadaWaktunya}',
+                  ),
+                  ReportWidget(
+                    no: 2,
+                    text: 'Berpakaian rapi',
+                    // point: 'B',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.berpakaianRapi}',
+                  ),
+                  ReportWidget(
+                    no: 3,
+                    text: 'Berbuat baik dengan teman',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.berbuatBaikDenganTeman}',
+                  ),
+                  ReportWidget(
+                    no: 4,
+                    text: 'Mau menolong dan berbagi dengan teman',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.mauMenolongDanBerbagiDenganTeman}',
+                  ),
+                  ReportWidget(
+                    no: 5,
+                    text: 'Merapikan alat belajar dan mainan sendiri',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.merapikanAlatBelajarDanMainanSendiri}',
+                  ),
+                  ReportWidget(
+                    no: 6,
+                    text: 'Menyelesaikan tugas',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.menyelesaikanTugas}',
+                  ),
+                  ReportWidget(
+                    no: 7,
+                    text: 'Membaca',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.membaca}',
+                  ),
+                  ReportWidget(
+                    no: 8,
+                    text: 'Menulis',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.menulis}',
+                  ),
+                  ReportWidget(
+                    no: 9,
+                    text: 'Dikte',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.dikte}',
+                  ),
+                  ReportWidget(
+                    no: 10,
+                    text: 'Keterampilan',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel.value.keterampilan}',
+                  ),
+                ],
+              );
+            }
+          }),
         ),
         SizedBox(height: height * 0.02),
-        Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: width * 0.035,
-            vertical: height * 0.02,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: opacity5SecondaryColor,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText(
-                'Keterangan:',
-                group: AutoSizeGroup(),
-                maxLines: 1,
-                style: tsBodyMediumSemibold(blackColor),
-              ),
-              SizedBox(height: height * 0.01),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: width * 0.02),
-                        padding: EdgeInsets.symmetric(
-                          vertical: height * 0.007,
-                          horizontal: width * 0.047,
-                        ),
-                        decoration: BoxDecoration(
-                          color: greenColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: AutoSizeText(
-                          'A',
-                          group: AutoSizeGroup(),
-                          maxLines: 1,
-                          style: tsBodySmallSemibold(whiteColor),
-                        ),
-                      ),
-                      AutoSizeText(
-                        ':  Sangat Baik',
-                        group: AutoSizeGroup(),
-                        maxLines: 1,
-                        style: tsBodySmallMedium(blackColor),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: width * 0.15),
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: width * 0.02),
-                        padding: EdgeInsets.symmetric(
-                          vertical: height * 0.007,
-                          horizontal: width * 0.047,
-                        ),
-                        decoration: BoxDecoration(
-                          color: blueColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: AutoSizeText(
-                          'B',
-                          group: AutoSizeGroup(),
-                          maxLines: 1,
-                          style: tsBodySmallSemibold(whiteColor),
-                        ),
-                      ),
-                      AutoSizeText(
-                        ':  Baik',
-                        group: AutoSizeGroup(),
-                        maxLines: 1,
-                        style: tsBodySmallMedium(blackColor),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: height * 0.01),
-              Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: width * 0.02),
-                    padding: EdgeInsets.symmetric(
-                      vertical: height * 0.007,
-                      horizontal: width * 0.047,
-                    ),
-                    decoration: BoxDecoration(
-                      color: warningColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: AutoSizeText(
-                      'C',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsBodySmallSemibold(whiteColor),
-                    ),
-                  ),
-                  AutoSizeText(
-                    ':  Kurang',
-                    group: AutoSizeGroup(),
-                    maxLines: 1,
-                    style: tsBodySmallMedium(blackColor),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+        HomePageCompnentSix(),
         SizedBox(height: height * 0.02),
         ElevatedButton(
           onPressed: () {

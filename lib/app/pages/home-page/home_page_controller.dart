@@ -11,6 +11,7 @@ import 'package:fun_education_app/app/api/users/models/show_current_user_model.d
 import 'package:fun_education_app/app/api/users/models/show_current_user_response.dart';
 import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HomePageController extends GetxController {
   RxBool isLoadingLatestCatatan = false.obs;
@@ -88,9 +89,13 @@ class HomePageController extends GetxController {
   }
 
   showCurrentLaporanHarian() async {
+    DateTime today = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd').format(today);
+    DateTime parsedDate = DateTime.parse(formattedDate);
     try {
       await Future.delayed(Duration.zero);
-      final response = await laporanHarianService.getShowCurrentLaporanHarian();
+      final response =
+          await laporanHarianService.getShowCurrentLaporanHarian(parsedDate);
       showCurrentLaporanHarianResponse =
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
