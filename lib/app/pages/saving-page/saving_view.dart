@@ -5,6 +5,7 @@ import 'package:fun_education_app/app/pages/saving-page/components/bottomsheet_a
 import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
 import 'package:fun_education_app/app/pages/saving-page/widgets/transaction_history.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class SavingView extends GetView<SavingController> {
@@ -24,7 +25,7 @@ class SavingView extends GetView<SavingController> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(
-                        top: height * 0.06,
+                        top: height * 0.08,
                         left: width * 0.05,
                         right: width * 0.05,
                         bottom: height * 0.03),
@@ -42,23 +43,35 @@ class SavingView extends GetView<SavingController> {
                               group: AutoSizeGroup(),
                               maxLines: 1,
                               TextSpan(
-                                text: 'Tabungan, ',
-                                style: tsBodyMediumSemibold(whiteColor),
+                                text: 'Tabungan ',
+                                style: tsTitleSmallRegular(whiteColor),
                                 children: [
                                   TextSpan(
                                     text: 'Ananda',
-                                    style: tsBodyMediumRegular(primaryColor),
+                                    style: tsTitleSmallSemibold(primaryColor),
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
-                                padding: EdgeInsets.all(10),
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed(Routes.SAVING_INFORMATION_PAGE);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: height * 0.015,
+                                  horizontal: width * 0.03,
+                                ),
                                 decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Icon(Icons.info_outline))
+                                child: Icon(
+                                  Icons.info_outline,
+                                  size: 24,
+                                ),
+                              ),
+                            )
                           ],
                         ),
                         SizedBox(height: height * 0.03),
@@ -84,7 +97,7 @@ class SavingView extends GetView<SavingController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: width * 0.43,
+                              width: width * 0.44,
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                   color: whiteColor,
@@ -98,9 +111,10 @@ class SavingView extends GetView<SavingController> {
                                     padding: EdgeInsets.all(5),
                                     decoration: BoxDecoration(
                                         color: warningColor,
-                                        borderRadius: BorderRadius.circular(5)),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Icon(
-                                      Icons.arrow_downward,
+                                      Icons.arrow_downward_rounded,
                                       color: whiteColor,
                                       size: 27,
                                     ),
@@ -108,8 +122,12 @@ class SavingView extends GetView<SavingController> {
                                   AutoSizeText.rich(
                                     textAlign: TextAlign.start,
                                     TextSpan(
-                                        text: 'Pemasukan\nTerakhir',
-                                        style: tsBodySmallRegular(blackColor)),
+                                      text: 'Pemasukan\nTerakhir',
+                                      style: tsBodySmallRegular(blackColor)
+                                          .copyWith(
+                                        height: 1.3,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(height: 10),
                                   AutoSizeText.rich(
@@ -122,7 +140,7 @@ class SavingView extends GetView<SavingController> {
                               ),
                             ),
                             Container(
-                              width: width * 0.43,
+                              width: width * 0.44,
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                   color: primaryColor,
@@ -136,9 +154,10 @@ class SavingView extends GetView<SavingController> {
                                     padding: EdgeInsets.all(5),
                                     decoration: BoxDecoration(
                                         color: whiteColor,
-                                        borderRadius: BorderRadius.circular(5)),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Icon(
-                                      Icons.arrow_upward,
+                                      Icons.arrow_upward_rounded,
                                       color: primaryColor,
                                       size: 27,
                                     ),
@@ -146,8 +165,12 @@ class SavingView extends GetView<SavingController> {
                                   AutoSizeText.rich(
                                     textAlign: TextAlign.start,
                                     TextSpan(
-                                        text: 'Pengeluaran\nTerakhir',
-                                        style: tsBodySmallRegular(whiteColor)),
+                                      text: 'Pengeluaran\nTerakhir',
+                                      style: tsBodySmallRegular(whiteColor)
+                                          .copyWith(
+                                        height: 1.3,
+                                      ),
+                                    ),
                                     maxLines: 2,
                                   ),
                                   SizedBox(height: 10),
@@ -163,9 +186,12 @@ class SavingView extends GetView<SavingController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: height * 0.02),
+                        SizedBox(height: height * 0.01),
                         Container(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.symmetric(
+                            vertical: height * 0.025,
+                            horizontal: width * 0.05,
+                          ),
                           decoration: BoxDecoration(
                               color: whiteColor,
                               borderRadius: BorderRadius.circular(15)),
@@ -175,17 +201,25 @@ class SavingView extends GetView<SavingController> {
                               AutoSizeText.rich(
                                 textAlign: TextAlign.start,
                                 TextSpan(
-                                    text: 'Ajukan Pengeluaran\nTebungan?',
-                                    style: tsBodyLargeBold(blackColor)),
+                                  text: 'Ajukan Pengeluaran\nTabungan?',
+                                  style: tsBodyLargeBold(blackColor).copyWith(
+                                    height: 1.3,
+                                  ),
+                                ),
                                 maxLines: 2,
                               ),
-                              SizedBox(height: 5),
+                              SizedBox(height: height * 0.01),
                               AutoSizeText.rich(
                                 TextSpan(
-                                    text: 'Pastikan Saldo Tabungan Mencukupi?',
-                                    style: tsBodySmallRegular(blackColor)),
+                                  text:
+                                      'Pastikan Saldo Tabungan Anda Mencukupi',
+                                  style:
+                                      tsBodySmallRegular(blackColor).copyWith(
+                                    height: 1.3,
+                                  ),
+                                ),
                               ),
-                              SizedBox(height: 20),
+                              SizedBox(height: height * 0.03),
                               InkWell(
                                 onTap: () {
                                   showModalBottomSheet(
@@ -196,7 +230,7 @@ class SavingView extends GetView<SavingController> {
                                   );
                                 },
                                 child: CommonButton(
-                                  text: 'Lihat Pengeluaran',
+                                  text: 'Ajukan Pengeluaran',
                                   color: primaryColor,
                                 ),
                               ),
@@ -210,7 +244,9 @@ class SavingView extends GetView<SavingController> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    vertical: height * 0.02, horizontal: width * 0.05),
+                  vertical: height * 0.03,
+                  horizontal: width * 0.05,
+                ),
                 child: Column(
                   children: [
                     Row(
@@ -218,7 +254,7 @@ class SavingView extends GetView<SavingController> {
                       children: [
                         AutoSizeText.rich(
                           TextSpan(
-                              text: 'Riwayat Trasnaksi',
+                              text: 'Riwayat Transaksi',
                               style: tsBodyLargeSemibold(blackColor)),
                         ),
                         Row(
@@ -232,7 +268,7 @@ class SavingView extends GetView<SavingController> {
                               maxLines: 2,
                             ),
                             SizedBox(
-                              width: 10,
+                              width: width * 0.01,
                             ),
                             Icon(
                               Icons.arrow_forward_ios,
@@ -243,7 +279,6 @@ class SavingView extends GetView<SavingController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
