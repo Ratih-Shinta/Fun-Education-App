@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
 import 'package:fun_education_app/app/pages/saving-page/widgets/custom_radio_button.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -113,20 +114,39 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingController> {
                   ),
                   Obx(
                     () => controller.selectedCategoryIsEnough() == true
-                        ? ElevatedButton(
-                            onPressed: () => controller.pengajuanTabungan(),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                            ),
-                            child: Text('Ajukan'),
-                          )
-                        : ElevatedButton(
-                            onPressed: () => Get.snackbar('Pengajuan Gagal',
+                        ? GestureDetector(
+                            onTap: () => controller.pengajuanTabungan(),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              width: width,
+                              height: height * 0.07,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: primaryColor,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Ajukan',
+                                style: tsBodyMediumSemibold(whiteColor),
+                              ),
+                            ))
+                        : GestureDetector(
+                            onTap: () => Get.snackbar('Pengajuan Gagal',
                                 'Saldo Tabungan Anda Tidak Mencukupi'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: opacity50GreyColor,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              width: width,
+                              height: height * 0.07,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: opacity50GreyColor,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Ajukan',
+                                style: tsBodyMediumSemibold(whiteColor),
+                              ),
                             ),
-                            child: Text('Ajukan'),
                           ),
                   )
                 ],
