@@ -2,13 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/saving-page/components/bottomsheet_ajukan_pengeluaran.dart';
-import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
-import 'package:fun_education_app/app/pages/saving-page/widgets/transaction_history.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-class SavingView extends GetView<SavingController> {
+class SavingPageView extends GetView<SavingPageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -279,14 +278,14 @@ class SavingView extends GetView<SavingController> {
                         ),
                       ],
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) {
-                        return TransactionHistory();
-                      },
-                    ),
+                    // ListView.builder(
+                    //   shrinkWrap: true,
+                    //   physics: NeverScrollableScrollPhysics(),
+                    //   itemCount: 10,
+                    //   itemBuilder: (BuildContext context, int index) {
+                    //     return TransactionHistory(index: index);
+                    //   },
+                    // ),
                   ],
                 ),
               ),

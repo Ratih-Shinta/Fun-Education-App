@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/pages/saving-page/saving_controller.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class CustomRadioButton extends GetView<SavingController> {
+class CustomRadioButton extends GetView<SavingPageController> {
   final String title;
   final String subtitle;
   final String icon;

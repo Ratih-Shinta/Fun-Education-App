@@ -52,6 +52,7 @@ class ApiEndPoint {
 
   //Pengajuan Tabungan
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
+  
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
 }

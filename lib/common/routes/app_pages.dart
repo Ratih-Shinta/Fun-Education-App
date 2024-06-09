@@ -23,8 +23,8 @@ import 'package:fun_education_app/app/pages/splash-screen/splash_screen_binding.
 import 'package:fun_education_app/app/pages/splash-screen/splash_screen_view.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_binding.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_view.dart';
-import 'package:fun_education_app/app/pages/saving-page/saving_binding.dart';
-import 'package:fun_education_app/app/pages/saving-page/saving_view.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_page_binding.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_page_view.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_binding.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_view.dart';
 import 'package:get/get.dart';
@@ -42,7 +42,7 @@ class AppPages {
       bindings: [
         HomePageBinding(),
         LaporanPageBinding(),
-        SavingBinding(),
+        SavingPageBinding(),
         GalleryPageBinding(),
         ProfilePageBinding(),
       ],
@@ -74,8 +74,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SAVING_PAGE,
-      page: () => SavingView(),
-      binding: SavingBinding(),
+      page: () => SavingPageView(),
+      binding: SavingPageBinding(),
     ),
     GetPage(
       name: _Paths.SAVING_INFORMATION_PAGE,

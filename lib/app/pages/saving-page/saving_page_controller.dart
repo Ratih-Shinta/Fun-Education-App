@@ -5,7 +5,7 @@ import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_
 import 'package:fun_education_app/app/api/tabungan/service/tabungan_service.dart';
 import 'package:get/get.dart';
 
-class SavingController extends GetxController {
+class SavingPageController extends GetxController {
   TabunganService tabunganService = TabunganService();
   ShowCurrentTabunganResponse? showCurrentTabunganResponse;
   Rx<ShowCurrentTabunganModel> showCurrentTabunganModel =
@@ -59,7 +59,7 @@ class SavingController extends GetxController {
   void selectedCategory(String option) {
     selectedOption.value = option;
 
-    print("Sek=lected Option: $option");
+    print("Selected Option: $option");
   }
 
   Future<void> pengajuanTabungan() async {
@@ -69,8 +69,7 @@ class SavingController extends GetxController {
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response =
-            await tabunganService.pengajuanTabungan(userId, selectedCategory);
+        final response = await tabunganService.pengajuanTabungan(userId, selectedCategory);
         Get.snackbar(
             'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
       } else {
@@ -92,5 +91,4 @@ class SavingController extends GetxController {
 
     return showCurrentMinimumPengajuanModel[selectedIndex].isEnough!;
   }
-
 }

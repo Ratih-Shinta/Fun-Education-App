@@ -4,7 +4,7 @@ import 'package:fun_education_app/app/pages/gallery-page/gallery_page_view.dart'
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_view.dart';
-import 'package:fun_education_app/app/pages/saving-page/saving_view.dart';
+import 'package:fun_education_app/app/pages/saving-page/saving_page_view.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -19,7 +19,7 @@ class NavbarMain extends StatelessWidget {
       return [
         HomePageView(),
         LaporanPageView(),
-        SavingView(),
+        SavingPageView(),
         GalleryPageView(),
         ProfilePageView(),
       ];
