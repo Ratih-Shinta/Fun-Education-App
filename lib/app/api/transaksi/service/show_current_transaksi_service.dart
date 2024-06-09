@@ -8,7 +8,8 @@ class TransaksiService {
   Future<Response> getShowCurrentTransaksi() async {
     try {
       final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.showAllAlbumPhotos,
+        endpoint: ApiEndPoint.showCurrentTransaksi,
+        isAuthorize: true,
       );
       return response;
     } catch (e) {

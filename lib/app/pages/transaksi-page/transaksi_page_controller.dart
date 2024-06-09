@@ -10,17 +10,15 @@ class TransaksiPageController extends GetxController {
   TransaksiService transaksiService = TransaksiService();
   ShowCurrentTransaksiResponse? showCurrentTransaksiResponse;
   RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModel =
-      RxList<ShowCurrentTransaksiModel>();
+      <ShowCurrentTransaksiModel>[].obs;
   RxList<ItemTransactionModel> itemTransactionModel =
-      RxList<ItemTransactionModel>();
+      <ItemTransactionModel>[].obs;
 
   RxBool isOpen = false.obs;
 
-  // var expandedIndex = (-1).obs;
-  // final RxList<RxBool> isVisibleList = RxList.filled(0, false.obs);
-
   @override
   void onInit() {
+    showCurrentTransaksi();
     showCurrentTransaksi();
     update();
     super.onInit();
@@ -34,11 +32,17 @@ class TransaksiPageController extends GetxController {
 
   String formatDate(String dateString) {
     try {
-      DateTime dateTime = DateFormat('MM-yyyy').parse('$dateString');
-      return DateFormat('MMMM yyyy').format(dateTime);
-    } catch (e) {
-      print('Error parsing date: $e');
-      return dateString;
+      DateTime dateTime = DateFormat('dd-MM-yyyy').parse(dateString);
+      return DateFormat('dd MMMM yyyy').format(dateTime);
+    } on Exception catch (e) {
+      // Coba dengan format tanggal yang hanya memiliki bulan dan tahun
+      try {
+        DateTime dateTime = DateFormat('MM-yyyy').parse(dateString);
+        return DateFormat('MMMM yyyy').format(dateTime);
+      } catch (e) {
+        print('Error parsing date: $e');
+        return dateString;
+      }
     }
   }
 
@@ -48,18 +52,27 @@ class TransaksiPageController extends GetxController {
       final response = await transaksiService.getShowCurrentTransaksi();
       showCurrentTransaksiResponse =
           ShowCurrentTransaksiResponse.fromJson(response.data);
-      if (showCurrentTransaksiResponse != null) {
-        showCurrentTransaksiModel.assignAll(showCurrentTransaksiResponse!.data);
-
-        List<ItemTransactionModel> transactions = [];
-        for (var model in showCurrentTransaksiModel) {
-          transactions.addAll(model.transaction);
-        }
-        itemTransactionModel.assignAll(transactions);
-      }
+      showCurrentTransaksiModel.value = showCurrentTransaksiResponse!.data;
+      itemTransactionModel.assignAll(
+          showCurrentTransaksiModel.expand((model) => model.transaction));
       update();
     } catch (e) {
       print(e);
     }
+  }
+
+    ShowCurrentTransaksiModel? getTransactionModel(int index) {
+    if (index < showCurrentTransaksiModel.length) {
+      return showCurrentTransaksiModel[index];
+    }
+    return null;
+  }
+
+  ItemTransactionModel? getTransaction(int transactionModelIndex, int transactionIndex) {
+    final transactionModel = getTransactionModel(transactionModelIndex);
+    if (transactionModel != null && transactionIndex < transactionModel.transaction.length) {
+      return transactionModel.transaction[transactionIndex];
+    }
+    return null;
   }
 }

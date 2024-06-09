@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/transaction_history.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -31,47 +32,60 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width * 0.05,
-                vertical: height * 0.01,
-              ),
-              child: Obx(
-                () => ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: controller.showCurrentTransaksiModel.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(vertical: 2.0),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              controller.toggleExpansion(index);
-                            },
-                            child: Row(
-                              children: [
-                                AutoSizeText.rich(
-                                  TextSpan(
-                                    text: controller.formatDate(controller
-                                        .showCurrentTransaksiModel[index].date),
-                                    style: tsBodyMediumRegular(blackColor),
-                                  ),
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.05,
+              vertical: height * 0.01,
+            ),
+            child: Obx(
+              () => ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: controller.showCurrentTransaksiModel.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 2.0),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            controller.toggleExpansion(index);
+                          },
+                          child: Row(
+                            children: [
+                              AutoSizeText.rich(
+                                TextSpan(
+                                  text: controller.formatDate(controller
+                                      .showCurrentTransaksiModel[index].date),
+                                  style: tsBodyMediumRegular(blackColor),
                                 ),
-                                Icon(
-                                      controller.isOpen.value
-                                          ? Icons.keyboard_arrow_up_rounded
-                                          : Icons.keyboard_arrow_down_rounded,
-                                    )
-                              ],
-                            ),
+                              ),
+                              Icon(
+                                controller.isOpen.value
+                                    ? Icons.keyboard_arrow_up_rounded
+                                    : Icons.keyboard_arrow_down_rounded,
+                              )
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              )),
+                        ),
+                        ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.showCurrentTransaksiModel[index]
+                              .transaction.length,
+                          itemBuilder: (context, transactionIndex) {
+                            return TransactionHistory(
+                              transactionModelIndex: index,
+                              transactionIndex: transactionIndex,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ),
       ),
     );

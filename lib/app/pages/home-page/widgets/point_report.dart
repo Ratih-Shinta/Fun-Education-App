@@ -3,7 +3,6 @@ import 'package:fun_education_app/common/helper/themes.dart';
 
 class PointReport extends StatelessWidget {
   final String point;
-  // final Color pointColor;
 
   const PointReport({super.key, required this.point});
 

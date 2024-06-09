@@ -1,15 +1,35 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class TransactionHistory extends StatelessWidget {
-  const TransactionHistory({super.key});
+class TransactionHistory extends GetView<TransaksiPageController> {
+  final int transactionModelIndex;
+  final int transactionIndex;
+
+  const TransactionHistory({
+    Key? key,
+    required this.transactionModelIndex,
+    required this.transactionIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
+
+    final transaction =
+        controller.getTransaction(transactionModelIndex, transactionIndex);
+    if (transaction == null) {
+      return Container(
+        child: const Text("Transaction not found"),
+      );
+    }
+
+    bool isIncome = transaction.category == 'income';
+    bool desc = transaction.desc == '';
 
     return Container(
       margin: EdgeInsets.only(bottom: height * 0.01),
@@ -18,7 +38,9 @@ class TransactionHistory extends StatelessWidget {
         horizontal: width * 0.04,
       ),
       decoration: BoxDecoration(
-          color: whiteColor, borderRadius: BorderRadius.circular(10)),
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           Row(
@@ -33,24 +55,27 @@ class TransactionHistory extends StatelessWidget {
                       horizontal: width * 0.023,
                     ),
                     decoration: BoxDecoration(
-                        color: warningColor,
-                        borderRadius: BorderRadius.circular(10)),
+                      color: isIncome ? warningColor : primaryColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Icon(
-                      Icons.arrow_downward_rounded,
+                      isIncome
+                          ? Icons.arrow_upward_rounded
+                          : Icons.arrow_downward_rounded,
                       color: whiteColor,
-                      size: 27,
+                      size: 20,
                     ),
                   ),
                   AutoSizeText.rich(
                     textAlign: TextAlign.start,
                     TextSpan(
-                      text: 'Pemasukan\n',
+                      text: isIncome ? 'Pemasukan\n' : 'Pengeluaran\n',
                       style: tsBodyMediumSemibold(blackColor).copyWith(
                         height: 1.3,
                       ),
                       children: [
                         TextSpan(
-                          text: '27 Februari 2024',
+                          text: controller.formatDate(controller.formatDate(transaction.date ?? "Unknown date")),
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -61,8 +86,11 @@ class TransactionHistory extends StatelessWidget {
               ),
               AutoSizeText.rich(
                 TextSpan(
-                    text: '+Rp.100.000',
-                    style: tsBodySmallSemibold(greenColor)),
+                  text: isIncome
+                      ? '+Rp. ${transaction.amount}'
+                      : '-Rp. ${transaction.amount}',
+                  style: tsBodySmallSemibold(isIncome ? greenColor : redColor),
+                ),
               ),
             ],
           ),
@@ -70,10 +98,13 @@ class TransactionHistory extends StatelessWidget {
             margin: EdgeInsets.only(top: height * 0.02),
             width: double.infinity,
             padding: EdgeInsets.symmetric(
-                vertical: height * 0.01, horizontal: width * 0.05),
+              vertical: height * 0.01,
+              horizontal: width * 0.05,
+            ),
             decoration: BoxDecoration(
-                color: opacityBlackColor,
-                borderRadius: BorderRadius.circular(10)),
+              color: opacityBlackColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: AutoSizeText.rich(
               textAlign: TextAlign.start,
               TextSpan(
@@ -83,14 +114,14 @@ class TransactionHistory extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: 'Tidak Ada',
+                    text: desc ? 'Tidak Ada' : transaction.desc!,
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],
               ),
               maxLines: 2,
             ),
-          )
+          ),
         ],
       ),
     );

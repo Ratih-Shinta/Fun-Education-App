@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/saving-page/widgets/transaction_history.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/transaction_history.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class MonthlyTransactions extends StatelessWidget {
@@ -94,7 +94,11 @@ class MonthlyTransactions extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return TransactionHistory();
+            return TransactionHistory(
+                            transactionModelIndex: index,
+                            transactionIndex: index,
+                          );
+
           },
         ),
       ],
