@@ -34,7 +34,7 @@ class LoginFormWidget extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16),
         filled: true,
-        fillColor: opacityGreyColor,
+        fillColor: whiteColor,
         prefixIcon: prefixIcon,
         border: OutlineInputBorder(borderRadius: defaulBorderRadius),
         enabledBorder: OutlineInputBorder(

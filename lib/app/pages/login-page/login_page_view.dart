@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
@@ -18,6 +19,16 @@ class LoginPageView extends GetView<LoginPageController> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: width * 0.5,
+        leading: Padding(
+          padding: EdgeInsets.only(left: width * 0.06),
+          child: FunEducation(
+              width: 26, textStyle: tsBodyLargeSemibold(primaryColor)),
+        ),
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Obx(
@@ -31,93 +42,77 @@ class LoginPageView extends GetView<LoginPageController> {
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(top: width * 0.075),
-                      child: FunEducation(
-                        width: 25,
-                        textStyle: tsBodyLargeSemibold(primaryColor),
-                      ),
+                    SizedBox(height: height * 0.05),
+                    SvgPicture.asset(
+                      'assets/images/login.svg',
+                      width: width * 0.65,
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: height * 0.12),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.05, vertical: height * 0.03),
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
+                    SizedBox(height: height * 0.03),
+                    AutoSizeText.rich(
+                      textAlign: TextAlign.center,
+                      TextSpan(
+                        text: 'Selamat datang di\n',
+                        style: tsTitleMediumRegular(blackColor).copyWith(
+                          height: 1.3,
+                        ),
                         children: [
-                          AutoSizeText.rich(
-                            textAlign: TextAlign.center,
-                            TextSpan(
-                              text: 'Selamat datang di\n',
-                              style: tsTitleMediumRegular(blackColor).copyWith(
-                                height: 1.3,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'FunEduation',
-                                  style: tsTitleMediumSemibold(secondaryColor),
-                                ),
-                              ],
-                            ),
-                            maxLines: 2,
+                          TextSpan(
+                            text: 'FunEduation',
+                            style: tsTitleMediumSemibold(secondaryColor),
                           ),
-                          SizedBox(height: height * 0.03),
-                          CommonWarning(
-                              backColor: warningColor,
-                              icon: Icons.info_outline,
-                              text:
-                                  'Isi dengan username dan password yang telah diberikan oleh guru'),
-                          SizedBox(height: height * 0.025),
-                          LoginFormWidget(
-                            obscureText: false,
-                            hintText: "Username",
-                            prefixIcon: Icon(
-                              Icons.person,
-                              size: 20,
-                              color: greyColor,
-                            ),
-                            fieldController: controller.usernameController,
-                          ),
-                          SizedBox(height: height * 0.015),
-                          LoginFormWidget(
-                              fieldController: controller.passwordController,
-                              obscureText: controller.isVisibleSignIn.value,
-                              keyboardType: TextInputType.visiblePassword,
-                              hintText: "Password",
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                size: 20,
-                                color: greyColor,
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  controller.isVisibleSignIn.value =
-                                      !controller.isVisibleSignIn.value;
-                                },
-                                icon: Icon(
-                                  controller.isVisibleSignIn.value
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  size: 20,
-                                  color: greyColor,
-                                ),
-                              ),
-                            ),
-                          SizedBox(height: height * 0.075),
-                          CommonButton(
-                            text: 'Lanjut',
-                            onPressed: () {
-                              controller.login();
-                            },
-                            color: secondaryColor,
-                          )
                         ],
                       ),
+                      maxLines: 2,
+                    ),
+                    SizedBox(height: height * 0.05),
+                    CommonWarning(
+                        backColor: warningColor,
+                        icon: Icons.info_outline,
+                        text:
+                            'Isi dengan kata sandi yang telah diberikan oleh guru'),
+                    SizedBox(height: height * 0.03),
+                    LoginFormWidget(
+                      obscureText: false,
+                      hintText: "Nama Lengkap",
+                      prefixIcon: Icon(
+                        Icons.person,
+                        size: 20,
+                        color: greyColor,
+                      ),
+                      fieldController: controller.usernameController,
+                    ),
+                    SizedBox(height: height * 0.015),
+                    LoginFormWidget(
+                      fieldController: controller.passwordController,
+                      obscureText: controller.isVisibleSignIn.value,
+                      keyboardType: TextInputType.visiblePassword,
+                      hintText: "Password",
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        size: 20,
+                        color: greyColor,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.isVisibleSignIn.value =
+                              !controller.isVisibleSignIn.value;
+                        },
+                        icon: Icon(
+                          controller.isVisibleSignIn.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          size: 20,
+                          color: greyColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.03),
+                    CommonButton(
+                      text: 'Masuk',
+                      onPressed: () {
+                        controller.login();
+                      },
+                      color: blackColor,
                     ),
                   ],
                 ),
