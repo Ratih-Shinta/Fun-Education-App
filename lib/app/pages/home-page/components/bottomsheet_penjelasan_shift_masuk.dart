@@ -16,7 +16,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
     final double height = mediaQuery.height;
 
     return SizedBox(
-        height: height * 0.6,
+        height: height * 0.62,
         child: Center(
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -77,6 +77,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
                                 style: tsBodySmallSemibold(blackColor),
                               ),
                             ),
+                            SizedBox(height: 10),
                             BulletText(text: 'Jam 08.00 – 10.00'),
                             BulletText(text: 'Jam 10.00 – 11.30'),
                             BulletText(text: 'Jam 11.30 – 13.00'),
@@ -112,7 +113,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
                   child: CommonButton(
                     text: 'Tutup',
                     onPressed: () => Navigator.pop(context),
-                    color: secondaryColor,
+                    color: blackColor,
                   ),
                 ),
               ],
