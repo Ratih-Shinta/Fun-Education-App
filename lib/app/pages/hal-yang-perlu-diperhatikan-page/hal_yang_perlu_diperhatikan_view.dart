@@ -96,7 +96,7 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     text: 'setiap pertemuan'),
                 ButtonChip(text: 'Menabung'),
                 BulletText(
-                    boldTextStyle: tsBodySmallSemibold(primaryColor),
+                    boldTextStyle: tsBodySmallSemibold(dangerColor),
                     boldText: 'TIDAK WAJIB',
                     text: ' / bagi yang mau saja'),
                 BulletText(
