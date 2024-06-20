@@ -19,7 +19,7 @@ class BulletText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 5),
+        margin: EdgeInsets.only(bottom: 10),
         child: Row(
           children: [
             Text("•"),
