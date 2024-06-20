@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_five.dart';
@@ -21,104 +22,54 @@ class HomePageView extends GetView<HomePageController> {
 
     return Scaffold(
         backgroundColor: backgroundColor,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(65),
-          child: Container(
-            alignment: Alignment.bottomCenter,
-            margin: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Obx(() {
-                  if (controller.isLoading.value) {
-                    return Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: greyColor,
-                      ),
-                    );
-                  } else {
-                    return Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: greyColor,
-                      ),
-                      child: Image.network(
-                        controller.showCurrentUserModel.value.profilePicture!,
-                      ),
-                    );
-                  }
-                }),
-                AutoSizeText.rich(
-                  group: AutoSizeGroup(),
-                  maxLines: 1,
-                  TextSpan(
-                    text: '${DateFormat('EEEE').format(DateTime.now())}, ',
-                    style: tsBodyMediumSemibold(blackColor),
-                    children: [
-                      TextSpan(
-                        text:
-                            '${DateFormat('dd MMMM yyyy').format(DateTime.now())}',
-                        style: tsBodyMediumRegular(blackColor),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(7),
-                  padding: EdgeInsets.all(11),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: opacitySecondaryColor.withOpacity(0.1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: SvgPicture.asset(
-                      iconChat,
-                    ),
-                  ),
-                ),
-              ],
+        appBar: AppBar(
+          backgroundColor: transparentColor,
+          leading: IconButton(
+            icon: SvgPicture.asset(
+              'assets/icons/icPerson.svg',
+              width: 24,
+              height: 24,
+              color: blackColor,
             ),
+            onPressed: () {
+              // Handle user profile icon tap
+            },
           ),
+          actions: [
+            IconButton(
+              icon: SvgPicture.asset(
+                'assets/icons/chat.svg',
+                width: 24,
+                height: 24,
+                color: blackColor,
+              ),
+              onPressed: () {
+                // Handle message icon tap
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
             child: Padding(
-          padding: EdgeInsets.only(
-            left: width * 0.05,
-            right: width * 0.05,
-            top: height * 0.015,
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.05,
+            vertical: height * 0.015,
           ),
           child: Column(
             children: [
               HomePageComponentOne(),
               SizedBox(
-                height: height * 0.02,
+                height: height * 0.025,
               ),
               HomePageComponentTwo(),
               SizedBox(
-                height: height * 0.02,
+                height: height * 0.025,
               ),
               HomePageComponentThree(),
               SizedBox(
                 height: height * 0.03,
               ),
               HomePageComponentFour(),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              HomePageComponentFive(),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              HomePageCompnentSix(),
-              SizedBox(
-                height: height * 0.05,
-              ),
             ],
           ),
         )));

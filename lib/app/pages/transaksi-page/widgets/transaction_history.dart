@@ -89,7 +89,7 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                   text: isIncome
                       ? '+Rp. ${transaction.amount}'
                       : '-Rp. ${transaction.amount}',
-                  style: tsBodySmallSemibold(isIncome ? greenColor : redColor),
+                  style: tsBodySmallSemibold(isIncome ? greenColor : dangerColor),
                 ),
               ),
             ],
