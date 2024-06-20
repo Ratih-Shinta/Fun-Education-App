@@ -40,7 +40,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                     width: width * 0.016,
                     height: height * 0.05,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: dangerColor,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -68,21 +68,19 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                       margin: EdgeInsets.symmetric(vertical: height * 0.03),
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          color: opacity5PrimaryColor,
+                          color: opacity5GreyColor,
                           borderRadius: BorderRadius.circular(10)),
-                      child: Flexible(
-                        child: AutoSizeText(
-                          '${controller.showLatestCatatanDaruratModel.value.catatan}',
-                          maxLines: 10,
-                          style: tsBodySmallMedium(blackColor),
-                        ),
+                      child: AutoSizeText(
+                        '${controller.showLatestCatatanDaruratModel.value.catatan}',
+                        maxLines: 10,
+                        style: tsBodySmallMedium(blackColor),
                       )),
                 ),
               ),
               CommonButton(
                 text: 'Tutup',
                 onPressed: () => Navigator.pop(context),
-                color: secondaryColor,
+                color: blackColor,
               )
             ],
           ),

@@ -75,7 +75,18 @@ class HomePageComponentThree extends GetView<HomePageController> {
           ),
           Column(
             children: [
-              Container(
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return BottomsheetCatatanDarurat();
+                    },
+                    isScrollControlled: true,
+                    backgroundColor: whiteColor,
+                  );
+                },
+                child: Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   color: opacity5GreyColor,
@@ -112,6 +123,7 @@ class HomePageComponentThree extends GetView<HomePageController> {
                         ))
                   ],
                 ),
+              ),
               ),
               SizedBox(height: 10),
               Container(
@@ -185,7 +197,5 @@ class HomePageComponentThree extends GetView<HomePageController> {
         ],
       ),
     ]);
-
-    
   }
 }
