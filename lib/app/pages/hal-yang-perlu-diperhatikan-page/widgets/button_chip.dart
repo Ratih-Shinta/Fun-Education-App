@@ -20,7 +20,7 @@ class ButtonChip extends StatelessWidget {
         horizontal: width * 0.065,
       ),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: primaryColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: AutoSizeText.rich(
