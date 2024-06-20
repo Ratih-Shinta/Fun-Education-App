@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/tugas_widget.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
-import 'package:intl/intl.dart';
 
 class HomePageComponentFour extends StatelessWidget {
   const HomePageComponentFour({super.key});
@@ -12,53 +13,42 @@ class HomePageComponentFour extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Container(
-          width: width * 0.42,
-          child: AutoSizeText.rich(
-            textAlign: TextAlign.start,
-            TextSpan(
-              text: 'Laporan Harian\n',
-              style: tsTitleSmallRegular(blackColor).copyWith(
-                height: 1.3,
-              ),
-              children: [
-                TextSpan(
-                  text: 'Ananada',
-                  style: tsTitleSmallSemibold(secondaryColor),
-                ),
-              ],
+        Row(
+          children: [
+            SvgPicture.asset('assets/icons/icTaskList.svg'),
+            SizedBox(width: width * 0.02),
+            AutoSizeText.rich(
+              textAlign: TextAlign.start,
+              TextSpan(text: 'Tugas', style: tsBodyMediumSemibold(blackColor)),
             ),
-            maxLines: 2,
-          ),
+          ],
         ),
-        Container(
-          padding: EdgeInsets.symmetric(
-            vertical: height * 0.01,
-            horizontal: width * 0.05,
-          ),
-          decoration: BoxDecoration(
-            color: whiteColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: greyColor.withOpacity(0.1),
-                spreadRadius: 0,
-                blurRadius: 10,
-                offset: Offset(0, 0),
-              ),
-            ],
-          ),
-          child: AutoSizeText(
-            '${DateFormat('dd MMMM yyyy').format(DateTime.now())}',
-            group: AutoSizeGroup(),
-            maxLines: 1,
-            style: tsBodySmallMedium(blackColor),
-          ),
+        SizedBox(height: height * 0.02),
+        TugasWidget(
+          color: blueColor,
+          type: 'Dikte & Menulis',
+          title: 'Menulis 5 benda yang sering dilihat oleh ananda',
+        ),
+        TugasWidget(
+          color: primaryColor,
+          type: 'Kreasi',
+          title: 'Mewarnai gambar dengan menggunakan origami',
+        ),
+        TugasWidget(
+          color: greenColor,
+          type: 'Membaca',
+          title: 'Membaca kartu baju sampai cabe',
+        ),
+        TugasWidget(
+          color: warningColor,
+          type: 'Berhitung',
+          title: 'Perhatikan soal berikut',
         ),
       ],
     );
+
+    
   }
 }

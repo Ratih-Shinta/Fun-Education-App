@@ -109,12 +109,10 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     color: warningColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Flexible(
-                    child: AutoSizeText(
-                      'Setiap hari Kamis, membawa buku gambar dan pewarna. untuk  melatih motorik halus,motorik kasar, konsentrasi, dan kognitif  anak.',
-                      maxLines: 5,
-                      style: tsBodySmallSemibold(whiteColor),
-                    ),
+                  child: AutoSizeText(
+                    'Setiap hari Kamis, membawa buku gambar dan pewarna. untuk  melatih motorik halus,motorik kasar, konsentrasi, dan kognitif  anak.',
+                    maxLines: 5,
+                    style: tsBodySmallSemibold(whiteColor),
                   ),
                 ),
                 SizedBox(height: height * 0.05),
