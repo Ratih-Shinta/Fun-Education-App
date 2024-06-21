@@ -10,6 +10,7 @@ import 'package:fun_education_app/app/pages/home-page/components/home_page_compo
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_two.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -32,7 +33,7 @@ class HomePageView extends GetView<HomePageController> {
               color: blackColor,
             ),
             onPressed: () {
-              // Handle user profile icon tap
+              Get.toNamed(Routes.PROFILE_PAGE);
             },
           ),
           actions: [
@@ -43,9 +44,7 @@ class HomePageView extends GetView<HomePageController> {
                 height: 24,
                 color: blackColor,
               ),
-              onPressed: () {
-                // Handle message icon tap
-              },
+              onPressed: () {},
             ),
           ],
         ),

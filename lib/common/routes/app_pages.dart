@@ -7,6 +7,8 @@ import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_l
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_view.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_binding.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_view.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_binding.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_view.dart';
 import 'package:fun_education_app/app/pages/gallery-page/gallery_page_binding.dart';
 import 'package:fun_education_app/app/pages/gallery-page/gallery_page_view.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
@@ -33,7 +35,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME_PAGE;
+  static const INITIAL = Routes.DETAIL_TUGAS_PAGE;
 
   static final routes = [
     GetPage(
@@ -116,6 +118,11 @@ class AppPages {
       name: _Paths.DETAIL_ALBUM_PHOTO,
       page: () => DetailAlbumPhotoView(),
       binding: DetailAlbumPhotoBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_TUGAS_PAGE,
+      page: () => DetailTugasPageView(),
+      binding: DetailTugasPageBinding(),
     ),
   ];
 }

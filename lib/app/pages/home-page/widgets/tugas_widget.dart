@@ -7,16 +7,24 @@ class TugasWidget extends StatelessWidget {
   final Color color;
   final String type;
   final String title;
-  const TugasWidget({super.key, required this.color, required this.type, required this.title});
+  const TugasWidget(
+      {super.key,
+      required this.color,
+      required this.type,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
+
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-           borderRadius: BorderRadius.circular(15)),
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(15)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,9 +39,7 @@ class TugasWidget extends StatelessWidget {
                 ),
                 child: AutoSizeText.rich(
                   textAlign: TextAlign.start,
-                  TextSpan(
-                      text: type,
-                      style: tsBodySmallSemibold(whiteColor)),
+                  TextSpan(text: type, style: tsBodySmallSemibold(whiteColor)),
                 ),
               ),
               Icon(Icons.arrow_forward_ios, size: 12),
@@ -42,9 +48,7 @@ class TugasWidget extends StatelessWidget {
           SizedBox(height: 20),
           AutoSizeText.rich(
             textAlign: TextAlign.start,
-            TextSpan(
-                text: title,
-                style: tsBodyMediumSemibold(blackColor)),
+            TextSpan(text: title, style: tsBodyMediumSemibold(blackColor)),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 15),
@@ -65,7 +69,10 @@ class TugasWidget extends StatelessWidget {
                   SizedBox(height: 7),
                   Row(
                     children: [
-                      SvgPicture.asset(iconCalender, color: color,),
+                      SvgPicture.asset(
+                        iconCalender,
+                        color: color,
+                      ),
                       SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
@@ -76,28 +83,35 @@ class TugasWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
+              Row(
                 children: [
-                  AutoSizeText.rich(
-                    TextSpan(
-                        text: 'Tenggat Waktu :',
-                        style: tsBodySmallRegular(greyColor)),
-                  ),
-                  SizedBox(height: 7),
-                  Row(
+                  Column(
                     children: [
-                      SvgPicture.asset(
-                        iconCalender,
-                        color: dangerColor,
-                      ),
-                      SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
-                            text: 'Rabu, 23\nDecember',
-                            style: tsBodySmallSemibold(blackColor)),
+                            text: 'Tenggat Waktu :',
+                            style: tsBodySmallRegular(greyColor)),
+                      ),
+                      SizedBox(height: 7),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            iconCalender,
+                            color: dangerColor,
+                          ),
+                          SizedBox(width: 5),
+                          AutoSizeText.rich(
+                            TextSpan(
+                                text: 'Rabu, 23\nDecember',
+                                style: tsBodySmallSemibold(blackColor)),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  SizedBox(
+                    width: width * 0.06,
+                  )
                 ],
               ),
             ],
