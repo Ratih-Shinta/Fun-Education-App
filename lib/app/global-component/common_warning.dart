@@ -31,13 +31,13 @@ class CommonWarning extends StatelessWidget {
       ),
       child: Row(
         children: [
-          if (icon != null) // Check if icon is provided
+          if (icon != null)
             Icon(
               icon,
               color: whiteColor,
               size: 25,
             ),
-          if (icon != null) // Check if icon is provided
+          if (icon != null)
             SizedBox(width: width * 0.025),
           Flexible(
             child: AutoSizeText(
