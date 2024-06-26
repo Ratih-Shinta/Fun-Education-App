@@ -48,24 +48,25 @@ class TugasContainer extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 10),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                decoration: BoxDecoration(
-                  color: status == 'Diperiksa'
-                      ? warningColor
-                      : status == 'Selesai'
-                          ? successColor
-                          : dangerColor,
-                  borderRadius: BorderRadius.circular(29),
-                ),
-                child: AutoSizeText.rich(
-                  textAlign: TextAlign.start,
-                  TextSpan(
-                    text: status,
-                    style: tsBodySmallSemibold(whiteColor),
+              if (pointContainer)
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: status == 'Diperiksa'
+                        ? warningColor
+                        : status == 'Selesai'
+                            ? successColor
+                            : dangerColor,
+                    borderRadius: BorderRadius.circular(29),
+                  ),
+                  child: AutoSizeText.rich(
+                    textAlign: TextAlign.start,
+                    TextSpan(
+                      text: status,
+                      style: tsBodySmallSemibold(whiteColor),
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
           SizedBox(height: 20),

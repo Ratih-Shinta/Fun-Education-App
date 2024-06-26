@@ -38,17 +38,17 @@ class AppPages {
   static const INITIAL = Routes.DETAIL_TUGAS_PAGE;
 
   static final routes = [
-    GetPage(
-      name: _Paths.NAVBAR,
-      page: () => NavbarMain(),
-      bindings: [
-        HomePageBinding(),
-        LaporanPageBinding(),
-        SavingPageBinding(),
-        GalleryPageBinding(),
-        ProfilePageBinding(),
-      ],
-    ),
+    // GetPage(
+    //   name: _Paths.NAVBAR,
+    //   page: () => NavbarMain(),
+    //   bindings: [
+    //     HomePageBinding(),
+    //     LaporanPageBinding(),
+    //     SavingPageBinding(),
+    //     GalleryPageBinding(),
+    //     ProfilePageBinding(),
+    //   ],
+    // ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
       page: () => SplashScreenView(),

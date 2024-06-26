@@ -10,7 +10,7 @@ class CameraAddPhoto extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 95,
-          backgroundColor: opacityGreyColor,
+          backgroundColor: opacity10GreyColor,
         ),
         Positioned(
           bottom: 0,

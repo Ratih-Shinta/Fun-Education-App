@@ -1,17 +1,21 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
-  final VoidCallback? onPressed;
   final Color color;
+  final VoidCallback? onPressed;
+  final IconData? icon;
+  final Color? textColor;
 
-  CommonButton(
-      {Key? key,
-      required this.text,
-       this.onPressed,
-      required this.color})
-      : super(key: key);
+  CommonButton({
+    Key? key,
+    required this.text,
+    required this.color,
+    this.onPressed,
+    this.icon, this.textColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +29,28 @@ class CommonButton extends StatelessWidget {
         width: width,
         height: height * 0.07,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           color: color,
         ),
         alignment: Alignment.center,
-        child: Text(
-          text,
-          style: tsBodyMediumSemibold(whiteColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AutoSizeText.rich(
+              TextSpan(
+                text: text,
+                style: tsBodySmallSemibold(textColor ?? whiteColor),
+              ),
+            ),
+            if (icon != null) ...[
+              SizedBox(width: 10),
+              Icon(
+                icon,
+                color: textColor ?? whiteColor,
+                size: 18,
+              ),
+            ],
+          ],
         ),
       ),
     );
