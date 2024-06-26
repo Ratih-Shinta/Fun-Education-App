@@ -68,7 +68,7 @@ class CustomRadioButton extends GetView<SavingPageController> {
             Container(
               padding: EdgeInsets.all(5.0),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: opacityGreyColor),
+                  shape: BoxShape.circle, color: opacity10GreyColor),
               child: Container(
                 width: 21.0,
                 height: 21.0,

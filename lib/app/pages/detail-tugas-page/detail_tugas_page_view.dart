@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_diperiksa.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_gagal.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_kirim.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_selesai.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,7 @@ class DetailTugasPageView extends StatelessWidget {
           child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.05, vertical: height * 0.02),
-              child: DetailTugasDiperiksa()),
+              child: DetailTugasKirim()),
         ));
   }
 }
