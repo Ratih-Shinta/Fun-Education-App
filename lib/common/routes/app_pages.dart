@@ -17,6 +17,7 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.da
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
+import 'package:fun_education_app/app/pages/navbar/navbar_main_view.dart';
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_binding.dart';
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_view.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_binding.dart';
@@ -35,20 +36,19 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DETAIL_TUGAS_PAGE;
+  static const INITIAL = Routes.DETAIL_LAPORAN_HARIAN_PAGE;
 
   static final routes = [
-    // GetPage(
-    //   name: _Paths.NAVBAR,
-    //   page: () => NavbarMain(),
-    //   bindings: [
-    //     HomePageBinding(),
-    //     LaporanPageBinding(),
-    //     SavingPageBinding(),
-    //     GalleryPageBinding(),
-    //     ProfilePageBinding(),
-    //   ],
-    // ),
+    GetPage(
+      name: _Paths.NAVBAR,
+      page: () => NavbarMainView(),
+      bindings: [
+        HomePageBinding(),
+        LaporanPageBinding(),
+        SavingPageBinding(),
+        GalleryPageBinding(),
+      ],
+    ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
       page: () => SplashScreenView(),
