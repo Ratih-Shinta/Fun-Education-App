@@ -17,6 +17,7 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: PreferredSize(
@@ -37,7 +38,7 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           title: AutoSizeText(
             group: AutoSizeGroup(),
             maxLines: 1,
-            'Detail Laporan Harian',
+            'Detail Laporan',
             style: tsBodyLargeSemibold(blackColor),
           ),
         ),
@@ -54,40 +55,71 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  FunEducation(
-                    width: width * 0.08,
-                    textStyle: tsBodyLargeSemibold(primaryColor),
+              AutoSizeText.rich(
+                group: AutoSizeGroup(),
+                TextSpan(
+                  text:
+                      '${DateFormat('EEEE').format(controller.selectedDate.value)}, ',
+                  style: tsBodyLargeSemibold(blackColor).copyWith(
+                    height: 1.3,
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: height * 0.01,
-                      horizontal: width * 0.04,
+                  children: [
+                    TextSpan(
+                      text:
+                          '${DateFormat('dd MMMM yyyy').format(controller.selectedDate.value)}',
+                      style: tsBodySmallRegular(blackColor),
                     ),
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: greyColor.withOpacity(0.1),
-                          spreadRadius: 0,
-                          blurRadius: 10,
-                          offset: Offset(0, 0),
+                  ],
+                ),
+                maxLines: 1,
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10, bottom: 20),
+                padding: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: successColor,
+                    borderRadius: BorderRadius.circular(30)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 5),
+                          width: 16,
+                          height: 16,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: whiteColor,
+                          ),
+                          child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Icon(
+                                Icons.arrow_drop_down,
+                                size: 20,
+                                color: greenColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text: '`100 Poin',
+                            style: tsBodyMediumSemibold(whiteColor),
+                          ),
                         ),
                       ],
                     ),
-                    child: AutoSizeText(
-                      '${DateFormat('dd MMMM yyyy').format(controller.selectedDate.value)}',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsBodySmallMedium(blackColor),
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Sangat Baik',
+                        style: tsBodySmallRegular(whiteColor),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              SizedBox(height: height * 0.03),
               Obx(() {
                 if (controller.isLoading.value == true) {
                   return Center(
@@ -202,6 +234,102 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
               }),
               SizedBox(height: height * 0.02),
               HomePageCompnentSix(),
+              SizedBox(height: height * 0.02),
+              AutoSizeText.rich(
+                TextSpan(
+                  text: 'Catatan Guru :',
+                  style: tsBodyMediumSemibold(blackColor),
+                ),
+              ),
+              Container(
+                  width: width,
+                  margin: EdgeInsets.only(top: 10, bottom: 20),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: opacity5GreyColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Obx(() {
+                    if (controller.showCurrentLaporanHarianModel.value
+                            .berbuatBaikDenganTeman ==
+                        null) {
+                      return AutoSizeText.rich(
+                        TextSpan(
+                          text: 'Tidak ada catatan',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
+                      );
+                    } else {
+                      return AutoSizeText.rich(
+                        TextSpan(
+                          text:
+                              'Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak. Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak.',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
+                      );
+                    }
+                  })),
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1C1C1E),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Merasa Kurang Paham?',
+                        style: tsBodyMediumBold(whiteColor),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Konsultasikan dengan guru',
+                        style: tsBodySmallRegular(whiteColor),
+                      ),
+                    ),
+                    SizedBox(height: 24),
+                    InkWell(
+                      onTap: () {
+                        // Button action
+                      },
+                      child: Container(
+                        width: width,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: whiteColor),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              iconChat,
+                              color: blackColor,
+                            ),
+                            SizedBox(width: 5),
+                            AutoSizeText.rich(
+                              TextSpan(
+                                text: 'Konsultasi',
+                                style: tsBodySmallSemibold(blackColor),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.black,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

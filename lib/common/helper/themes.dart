@@ -48,7 +48,7 @@ final BorderRadius defaulBorderRadius = BorderRadius.circular(15);
 
 //LOGO
 const String logo = 'assets/logo.svg';
-const String iconChat = 'assets/icons/chat.svg';
+const String iconChat = 'assets/icons/icChat.svg';
 const String iconDocument = 'assets/icons/document.svg';
 const String iconTravelCase = 'assets/icons/icTravelCase.svg';
 const String iconSPP = 'assets/icons/icSPP.svg';
