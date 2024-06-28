@@ -1,13 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_controller.dart';
-import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_catatan_darurat.dart';
 import 'package:fun_education_app/app/pages/home-page/components/bottomsheet_penjelasan_shift_masuk.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class HomePageComponentTwo extends GetView<HomePageController> {
   final LaporanPageController laporanPageController =
@@ -18,7 +16,6 @@ class HomePageComponentTwo extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
     return InkWell(
@@ -41,50 +38,46 @@ class HomePageComponentTwo extends GetView<HomePageController> {
           color: whiteColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 9),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Icon(
-                        Icons.access_time_filled,
-                        color: whiteColor,
-                      ),
-                    ),
-                    AutoSizeText.rich(
-                      TextSpan(
-                        text: 'Shift Masuk\n',
-                        style: tsBodySmallRegular(blackColor).copyWith(
-                          height: 1.3,
-                        ),
-                        children: [
-                          TextSpan(
-                            text:
-                                '${controller.shiftMasukModel.value.shiftMasuk}',
-                            style: tsBodyMediumSemibold(blackColor),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.start,
-                      maxLines: 2,
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.only(right: 9),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Icon(
+                    Icons.access_time_filled,
+                    color: whiteColor,
+                  ),
                 ),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  color: blackColor,
-                  size: 20,
-                )
+                AutoSizeText.rich(
+                  TextSpan(
+                    text: 'Shift Masuk\n',
+                    style: tsBodySmallRegular(blackColor).copyWith(
+                      height: 1.3,
+                    ),
+                    children: [
+                      TextSpan(
+                        text:
+                            '${controller.shiftMasukModel.value.shiftMasuk}',
+                        style: tsBodyMediumSemibold(blackColor),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.start,
+                  maxLines: 2,
+                ),
               ],
             ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: blackColor,
+              size: 20,
+            )
           ],
         ),
       ),

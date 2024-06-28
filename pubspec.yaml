@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: null
   timeline_tile:
   intl: null
+  # toogle_switch:
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_model.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_response.dart';
 import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur_belajar_service.dart';
@@ -13,6 +14,22 @@ import 'package:intl/intl.dart';
 class LaporanPageController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingLaporanHarian = false.obs;
+
+  var selectedDate = DateTime.now().obs;
+  void changeDate(DateTime date) {
+    selectedDate.value = date;
+  }
+
+  var currentIndex = 0.obs;
+  void changeTab(int index) {
+    currentIndex.value = index;
+  }
+
+  var selectedStatus = 0.obs;
+  final List<int> counts = [12, 3, 10];
+  void changeStatus(int index) {
+    selectedStatus.value = index;
+  }
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -90,5 +107,30 @@ class LaporanPageController extends GetxController {
     } finally {
       isLoadingLaporanHarian(false);
     }
+  }
+
+  void onHorizontalDrag(DragEndDetails details) {
+    if (details.primaryVelocity != null) {
+      if (details.primaryVelocity! < 0) {
+        // swiped left
+        if (currentIndex.value < 1) {
+          changeTab(currentIndex.value + 1);
+        }
+      } else if (details.primaryVelocity! > 0) {
+        // swiped right
+        if (currentIndex.value > 0) {
+          changeTab(currentIndex.value - 1);
+        }
+      }
+    }
+  }
+
+  List<DateTime> generateDates() {
+    List<DateTime> dates = [];
+    DateTime currentDate = DateTime.now();
+    for (int i = 0; i < 10; i++) {
+      dates.add(currentDate.add(Duration(days: i)));
+    }
+    return dates;
   }
 }

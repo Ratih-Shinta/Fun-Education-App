@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,6 @@ class HomePageComponentOne extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
-    final double height = mediaQuery.height;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,29 +44,14 @@ class HomePageComponentOne extends GetView<HomePageController> {
                 TextSpan(
                     text: 'Total Point', style: tsBodySmallRegular(whiteColor)),
               ),
-              Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 5),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: whiteColor,
-                    ),
-                    child: Icon(Icons.arrow_drop_down_outlined,
-                        size: 25, color: successColor),
-                  ),
-                  AutoSizeText.rich(
-                    TextSpan(
-                        text: '275 Poin',
-                        style: tsBodyMediumSemibold(whiteColor)),
-                  ),
-                ],
+              IconPoint(
+                point: '100',
+                color: successColor,
               )
             ],
           ),
         )
       ],
     );
-
   }
 }

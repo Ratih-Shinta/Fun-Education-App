@@ -7,22 +7,22 @@ class BulletText extends StatelessWidget {
   final String? nextText;
   final String? boldText;
   final TextStyle? boldTextStyle;
-  final String text;
+  final String? text;
 
   const BulletText(
-      {super.key,
-      required this.text,
-      this.boldText,
-      this.boldTextStyle,
-      this.nextText});
+      {super.key, this.text, this.boldText, this.boldTextStyle, this.nextText});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(bottom: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("•"),
+            AutoSizeText.rich(TextSpan(
+              text: "•",
+              style: boldTextStyle ?? tsBodySmallRegular(blackColor),
+            )),
             SizedBox(
               width: 5,
             ),

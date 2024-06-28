@@ -3,7 +3,6 @@ import 'package:fun_education_app/app/api/laporan-harian/models/show_current_lap
 import 'package:fun_education_app/app/api/laporan-harian/service/show_current_laporan_harian_service.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
 class DetailLaporanHarianController extends GetxController {
@@ -18,7 +17,6 @@ class DetailLaporanHarianController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initializeDateFormatting('id_ID', '');
   }
 
   Future showCurrentLaporanHarian() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 
 class LoadingOverlay extends StatelessWidget {
   const LoadingOverlay({
@@ -17,7 +18,7 @@ class LoadingOverlay extends StatelessWidget {
         children: [
           child,
           Container(
-            color: Colors.black.withOpacity(0.1),
+            color: blackColor.withOpacity(0.1),
             child: const Center(
               child: CircularProgressIndicator(),
             ),

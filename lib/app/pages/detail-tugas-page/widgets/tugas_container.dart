@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class TugasContainer extends StatelessWidget {
@@ -19,7 +20,6 @@ class TugasContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
-    final double height = mediaQuery.height;
 
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -179,39 +179,13 @@ class TugasContainer extends StatelessWidget {
                 children: [
                   AutoSizeText.rich(
                     TextSpan(
-                      text: 'Total status',
+                      text: 'Ananda Mendapatkan Poin',
                       style: tsBodySmallRegular(whiteColor),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 5),
-                        width: 16,
-                        height: 16,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: whiteColor,
-                        ),
-                        child: Center(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Icon(
-                              Icons.arrow_drop_down,
-                              size: 20,
-                              color: greenColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                      AutoSizeText.rich(
-                        TextSpan(
-                          text: '${point} Poin',
-                          style: tsBodyMediumSemibold(whiteColor),
-                        ),
-                      ),
-                    ],
-                  ),
+                  IconPoint(
+                      point: point!,
+                      color: status == 'Selesai' ? successColor : dangerColor),
                 ],
               ),
             ),

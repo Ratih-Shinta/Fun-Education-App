@@ -27,6 +27,7 @@ const Color opacity10GreenColor = Color(0x1067BB42);
 const Color opacity10BlueColor = Color(0x102BC7FA);
 const Color opacity60BlueColor = Color(0x602BC7FA);
 const Color dangerColor = Color(0xFFE13F3F);
+const Color opacity50WhiteColor = Color(0x50FFFFFF);
 
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(
