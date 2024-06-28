@@ -34,7 +34,47 @@ class LaporanComponent extends GetView<LaporanPageController> {
             },
           ),
         ),
-        LaporanContainer('25', '1'),
+        Obx(() {
+          if (controller.isLoading.value == true) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller
+                  .showCurrentLaporanHarianModel.value.berbuatBaikDenganTeman ==
+              null) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: height * 0.15,
+                top: height * 0.15,
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/imgTidakAdaLaporan.svg',
+                    ),
+                    SizedBox(height: height * 0.01),
+                    AutoSizeText(
+                      'Belum Ada Laporan',
+                      group: AutoSizeGroup(),
+                      maxLines: 1,
+                      style: tsBodyMediumSemibold(blackColor),
+                    ),
+                    AutoSizeText(
+                      'Untuk Tanggal Tersebut Belum Ada Laporan',
+                      group: AutoSizeGroup(),
+                      maxLines: 1,
+                      style: tsLabelLargeRegular(blackColor),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return LaporanContainer('25', '1');
+          }
+        }),
         Row(
           children: [
             SvgPicture.asset('assets/icons/icTaskList.svg'),
