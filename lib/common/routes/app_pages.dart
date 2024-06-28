@@ -1,4 +1,3 @@
-import 'package:fun_education_app/app/global-component/navbar.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_binding.dart';
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_view.dart';
 import 'package:fun_education_app/app/pages/detail-album-photo/detail_album_photo_binding.dart';
@@ -36,7 +35,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DETAIL_LAPORAN_HARIAN_PAGE;
+  static const INITIAL = Routes.LAPORAN_PAGE;
 
   static final routes = [
     GetPage(

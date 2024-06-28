@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
+import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class DetailTugasKirim extends StatelessWidget {
@@ -128,36 +129,12 @@ class DetailTugasKirim extends StatelessWidget {
                 color: successColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 5),
-                    width: 16,
-                    height: 16,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: whiteColor,
-                    ),
-                    child: Center(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Icon(
-                          Icons.arrow_drop_down,
-                          size: 20,
-                          color: greenColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  AutoSizeText.rich(
-                    TextSpan(
-                      text: '`100 Poin',
-                      style: tsBodyMediumSemibold(whiteColor),
-                    ),
-                  ),
-                ],
+              child: IconPoint(
+                point: '100',
+                color: successColor,
+                textStyle: tsBodySmallSemibold(whiteColor),
               ),
-            ),
+            )
           ],
         ),
         SizedBox(height: 15),

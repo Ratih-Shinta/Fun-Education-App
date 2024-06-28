@@ -35,7 +35,6 @@ class TransaksiPageController extends GetxController {
       DateTime dateTime = DateFormat('dd-MM-yyyy').parse(dateString);
       return DateFormat('dd MMMM yyyy').format(dateTime);
     } on Exception catch (e) {
-      // Coba dengan format tanggal yang hanya memiliki bulan dan tahun
       try {
         DateTime dateTime = DateFormat('MM-yyyy').parse(dateString);
         return DateFormat('MMMM yyyy').format(dateTime);
