@@ -39,7 +39,7 @@ class HomePageView extends GetView<HomePageController> {
           actions: [
             IconButton(
               icon: SvgPicture.asset(
-                'assets/icons/chat.svg',
+                iconChat,
                 width: 24,
                 height: 24,
                 color: blackColor,
