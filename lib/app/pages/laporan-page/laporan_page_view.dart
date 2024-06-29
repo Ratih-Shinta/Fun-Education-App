@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan_component.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/peringkat_component.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tab_button.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -64,7 +65,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
                             index: controller.currentIndex.value,
                             children: [
                               LaporanComponent(),
-                              Center(child: Text('Peringkat Content')),
+                              PeringkatComponent(),
                             ],
                           );
                         }),

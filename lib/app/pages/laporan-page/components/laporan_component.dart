@@ -97,7 +97,7 @@ class LaporanComponent extends GetView<LaporanPageController> {
             children: [
               Container(
                 width: 5,
-                height: height * 0.05,
+                height: height * 0.08,
                 decoration: BoxDecoration(
                   color: successColor,
                   borderRadius: BorderRadius.circular(4),
