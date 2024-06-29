@@ -14,22 +14,9 @@ import 'package:intl/intl.dart';
 class LaporanPageController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingLaporanHarian = false.obs;
-
-  var selectedDate = DateTime.now().obs;
-  void changeDate(DateTime date) {
-    selectedDate.value = date;
-  }
-
-  var currentIndex = 0.obs;
-  void changeTab(int index) {
-    currentIndex.value = index;
-  }
-
-  var selectedStatus = 0.obs;
-  final List<int> counts = [12, 3, 10];
-  void changeStatus(int index) {
-    selectedStatus.value = index;
-  }
+  final Duration animDuration = const Duration(milliseconds: 250);
+  RxInt touchedIndex = (-1).obs;
+  RxBool isPlaying = false.obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -132,5 +119,28 @@ class LaporanPageController extends GetxController {
       dates.add(currentDate.add(Duration(days: i)));
     }
     return dates;
+  }
+
+  var selectedDate = DateTime.now().obs;
+  void changeDate(DateTime date) {
+    selectedDate.value = date;
+  }
+
+  var currentIndex = 0.obs;
+  void changeTab(int index) {
+    currentIndex.value = index;
+  }
+
+  var selectedStatus = 0.obs;
+  final List<int> counts = [12, 3, 10];
+  void changeStatus(int index) {
+    selectedStatus.value = index;
+  }
+
+  Future<void> refreshState() async {
+    if (isPlaying.value) {
+      await Future.delayed(animDuration + const Duration(milliseconds: 50));
+      refreshState();
+    }
   }
 }

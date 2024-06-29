@@ -21,7 +21,7 @@ class TabButton extends GetView<LaporanPageController> {
       child: Obx(() {
         return Container(
           width: width * 0.435,
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(10.5),
           decoration: BoxDecoration(
             color: controller.currentIndex.value == index
                 ? whiteColor
