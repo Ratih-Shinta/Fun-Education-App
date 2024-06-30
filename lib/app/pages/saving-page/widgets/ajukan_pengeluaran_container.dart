@@ -44,7 +44,51 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
           SizedBox(height: height * 0.03),
           Obx(() {
             if (controller.status.value == 'Gagal') {
-              return Text('gagal');
+              return Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: height * 0.02),
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: opacity5GreyColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText.rich(TextSpan(
+                            text: 'Tabungan sedang diajukan untuk :',
+                            style: tsBodySmallRegular(blackColor))),
+                        SizedBox(height: height * 0.013),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: AutoSizeText.rich(
+                                TextSpan(
+                                    text: 'Kegiatan Belajar Diluar',
+                                    style: tsBodyMediumSemibold(blackColor)),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 5),
+                              decoration: BoxDecoration(
+                                color: dangerColor,
+                                borderRadius: BorderRadius.circular(29),
+                              ),
+                              child: AutoSizeText.rich(TextSpan(
+                                  text: 'Gagal',
+                                  style: tsBodySmallSemibold(whiteColor))),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  CommonButton(text: 'Selesai', color: dangerColor)
+                ],
+              );
             } else if (controller.status.value == 'Diterima') {
               return Column(
                 children: [
@@ -91,7 +135,6 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   CommonButton(text: 'Selesai', color: successColor)
                 ],
               );
-              ;
             } else if (controller.status.value == 'Diajukan') {
               return Container(
                 padding: EdgeInsets.all(15),
