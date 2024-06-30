@@ -46,7 +46,52 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
             if (controller.status.value == 'Gagal') {
               return Text('gagal');
             } else if (controller.status.value == 'Diterima') {
-              return Text('diterima');
+              return Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: height * 0.02),
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: opacity5GreyColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AutoSizeText.rich(TextSpan(
+                            text: 'Tabungan sedang diajukan untuk :',
+                            style: tsBodySmallRegular(blackColor))),
+                        SizedBox(height: height * 0.013),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: AutoSizeText.rich(
+                                TextSpan(
+                                    text: 'Kegiatan Belajar Diluar',
+                                    style: tsBodyMediumSemibold(blackColor)),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 5),
+                              decoration: BoxDecoration(
+                                color: successColor,
+                                borderRadius: BorderRadius.circular(29),
+                              ),
+                              child: AutoSizeText.rich(TextSpan(
+                                  text: 'Diterima',
+                                  style: tsBodySmallSemibold(whiteColor))),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  CommonButton(text: 'Selesai', color: successColor)
+                ],
+              );
+              ;
             } else if (controller.status.value == 'Diajukan') {
               return Container(
                 padding: EdgeInsets.all(15),
@@ -91,13 +136,13 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
               return InkWell(
                   onTap: () {
                     showModalBottomSheet<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return BottomsheetAjukanPengeluaran();
-                    },
-                    isScrollControlled: true,
-                    backgroundColor: whiteColor,
-                  );
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomsheetAjukanPengeluaran();
+                      },
+                      isScrollControlled: true,
+                      backgroundColor: whiteColor,
+                    );
                   },
                   child: Row(
                     children: [
