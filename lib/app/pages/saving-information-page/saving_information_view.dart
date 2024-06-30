@@ -68,7 +68,7 @@ class SavingInformationView extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(right: width * 0.03),
                       width: width * 0.016,
-                      height: height * 0.04,
+                      height: height * 0.05,
                       decoration: BoxDecoration(
                         color: warningColor,
                         borderRadius: BorderRadius.circular(4),
@@ -135,8 +135,15 @@ class SavingInformationView extends StatelessWidget {
                           style: tsBodySmallSemibold(whiteColor),
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: AutoSizeText(
+                          'Saldo tabungan bisa dipotong atas ajuan dari orang tua.',
+                          style: tsBodySmallSemibold(whiteColor),
+                        ),
+                      ),
                       AutoSizeText(
-                        'Saldo tabungan bisa dipotong atas ajuan dari orang tua.',
+                        'Jika ajuan disetujui, maka saldo akan terpotong secara otomatis.',
                         style: tsBodySmallSemibold(whiteColor),
                       ),
                     ],
