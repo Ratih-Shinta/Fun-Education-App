@@ -16,7 +16,7 @@ class LaporanPageController extends GetxController {
   RxBool isLoadingLaporanHarian = false.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
-  RxBool isPlaying = false.obs;
+  // RxBool isPlaying = false.obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -137,10 +137,13 @@ class LaporanPageController extends GetxController {
     selectedStatus.value = index;
   }
 
-  Future<void> refreshState() async {
-    if (isPlaying.value) {
-      await Future.delayed(animDuration + const Duration(milliseconds: 50));
-      refreshState();
-    }
+  var selectedTime = 'Mingguan'.obs;
+  void setSelectedTime(String period) {
+    selectedTime.value = period;
+  }
+
+  var selectedPeriod = 'Mingguan'.obs;
+  void setSelectedPeriod(String period) {
+    selectedPeriod.value = period;
   }
 }

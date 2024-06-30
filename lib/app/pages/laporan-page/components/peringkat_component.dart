@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_pilih_periode.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
@@ -41,10 +42,14 @@ class PeringkatComponent extends GetView<LaporanPageController> {
             Obx(() {
               return InkWell(
                 onTap: () {
-                  controller.isPlaying.value = !controller.isPlaying.value;
-                  if (controller.isPlaying.value) {
-                    controller.refreshState();
-                  }
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return BottomsheetPilihPediodePoint();
+                    },
+                    isScrollControlled: true,
+                    backgroundColor: whiteColor,
+                  );
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -55,10 +60,8 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                   child: Row(
                     children: [
                       AutoSizeText.rich(TextSpan(
-                        text:
-                            controller.isPlaying.value ? 'Bulanan' : 'Mingguan',
-                        style: tsBodySmallSemibold(blackColor),
-                      )),
+                          text: controller.selectedTime.value,
+                          style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
                         Icons.keyboard_arrow_down_rounded,
@@ -86,35 +89,33 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      text:
-                          '${controller.isPlaying.value ? 'Bulanan' : 'Mingguan'}\n',
+                      text: '${controller.selectedTime.value}\n',
                       style: tsBodyMediumSemibold(blackColor)
                           .copyWith(height: 1.3),
                       children: [
                         TextSpan(
-                          text: 'Perkembangan point ananda',
-                          style: tsBodySmallRegular(blackColor),
-                        ),
+                            text: 'Perkembangan point ananda',
+                            style: tsBodySmallRegular(blackColor)),
                       ],
                     ),
                     maxLines: 2,
                     group: AutoSizeGroup(),
                   );
                 }),
-                SizedBox(height: height * 0.023),
+                SizedBox(height: 20),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Obx(
                       () => BarChart(
-                        controller.isPlaying.value
-                            ? barChartData.bulananBar()
-                            : barChartData.mingguanBar(),
+                        controller.selectedTime.value == 'Mingguan'
+                            ? barChartData.mingguanBar()
+                            : barChartData.bulananBar(),
                         swapAnimationDuration: controller.animDuration,
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -135,24 +136,39 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                 ),
               ],
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  AutoSizeText.rich(TextSpan(
-                    text: 'Mingguan',
-                    style: tsBodySmallSemibold(blackColor),
-                  )),
-                  SizedBox(width: 5),
-                  Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: blackColor,
-                  ),
-                ],
+            InkWell(
+              onTap: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return BottomsheetPilihPediodePeringkat();
+                  },
+                  isScrollControlled: true,
+                  backgroundColor: Colors.white,
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                decoration: BoxDecoration(
+                  color: whiteColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    Obx(() {
+                      return AutoSizeText.rich(
+                        TextSpan(
+                            text: controller.selectedPeriod.value,
+                            style: tsBodySmallSemibold(blackColor)),
+                      );
+                    }),
+                    SizedBox(width: 5),
+                    Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
