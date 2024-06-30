@@ -20,6 +20,9 @@ class SavingPageController extends GetxController {
 
   var selectedOption = ''.obs;
 
+  var status = 'Diajukan'.obs;
+
+
   @override
   void onInit() {
     showCurrentTabungan();
