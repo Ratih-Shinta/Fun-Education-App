@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/saving-page/components/bottomsheet_ajukan_pengeluaran.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_page_controller.dart';
+import 'package:fun_education_app/app/pages/saving-page/widgets/ajukan_pengeluaran_container.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/transaction_history.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class SavingPageView extends GetView<SavingPageController> {
+  final TransaksiPageController transaksiPageController =
+      Get.put(TransaksiPageController());
+
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -39,18 +45,9 @@ class SavingPageView extends GetView<SavingPageController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             AutoSizeText.rich(
-                              group: AutoSizeGroup(),
-                              maxLines: 1,
                               TextSpan(
-                                text: 'Tabungan ',
-                                style: tsTitleSmallRegular(whiteColor),
-                                children: [
-                                  TextSpan(
-                                    text: 'Ananda',
-                                    style: tsTitleSmallSemibold(primaryColor),
-                                  ),
-                                ],
-                              ),
+                                  text: 'Tabungan Ananda',
+                                  style: tsTitleSmallSemibold(whiteColor)),
                             ),
                             InkWell(
                               onTap: () {
@@ -186,56 +183,7 @@ class SavingPageView extends GetView<SavingPageController> {
                           ],
                         ),
                         SizedBox(height: height * 0.01),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.025,
-                            horizontal: width * 0.05,
-                          ),
-                          decoration: BoxDecoration(
-                              color: whiteColor,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText.rich(
-                                textAlign: TextAlign.start,
-                                TextSpan(
-                                  text: 'Ajukan Pengeluaran\nTabungan?',
-                                  style: tsBodyLargeBold(blackColor).copyWith(
-                                    height: 1.3,
-                                  ),
-                                ),
-                                maxLines: 2,
-                              ),
-                              SizedBox(height: height * 0.01),
-                              AutoSizeText.rich(
-                                TextSpan(
-                                  text:
-                                      'Pastikan Saldo Tabungan Anda Mencukupi',
-                                  style:
-                                      tsBodySmallRegular(blackColor).copyWith(
-                                    height: 1.3,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: height * 0.03),
-                              InkWell(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    // isScrollControlled: true,
-                                    builder: (context) =>
-                                        BottomsheetAjukanPengeluaran(),
-                                  );
-                                },
-                                child: CommonButton(
-                                  text: 'Ajukan Pengeluaran',
-                                  color: primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        AjukanPengeluaranContainer()
                       ],
                     ),
                   ),
@@ -263,7 +211,7 @@ class SavingPageView extends GetView<SavingPageController> {
                               textAlign: TextAlign.center,
                               TextSpan(
                                   text: 'Lihat Semua',
-                                  style: tsBodySmallSemibold(blackColor)),
+                                  style: tsBodySmallRegular(blackColor)),
                               maxLines: 2,
                             ),
                             SizedBox(
@@ -278,14 +226,17 @@ class SavingPageView extends GetView<SavingPageController> {
                         ),
                       ],
                     ),
-                    // ListView.builder(
-                    //   shrinkWrap: true,
-                    //   physics: NeverScrollableScrollPhysics(),
-                    //   itemCount: 10,
-                    //   itemBuilder: (BuildContext context, int index) {
-                    //     return TransactionHistory(index: index);
-                    //   },
-                    // ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TransactionHistory(
+                          transactionModelIndex: index,
+                          transactionIndex: index,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
