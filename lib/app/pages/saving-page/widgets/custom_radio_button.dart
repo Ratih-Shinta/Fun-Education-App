@@ -56,7 +56,6 @@ class CustomRadioButton extends GetView<SavingPageController> {
                     children: [
                       TextSpan(
                         text: subtitle,
-                        // style: tsBodySmallRegular(greenColor)
                         style: style ?? tsBodySmallRegular(greenColor),
                       ),
                     ],
