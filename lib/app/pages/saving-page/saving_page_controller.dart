@@ -20,7 +20,7 @@ class SavingPageController extends GetxController {
 
   var selectedOption = ''.obs;
 
-  var status = 'Gagal'.obs;
+  var status = 'Ajukan'.obs;
 
 
   @override

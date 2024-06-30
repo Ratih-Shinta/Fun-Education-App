@@ -15,7 +15,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
     final double height = mediaQuery.height;
 
     return SizedBox(
-      height: height * 0.5,
+      height: height * 0.41,
       child: Center(
         child: Obx(() {
           if (controller.showCurrentMinimumPengajuanModel.isEmpty) {
@@ -24,7 +24,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
 
           return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: whiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
@@ -80,29 +80,50 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                     ),
                   ],
                 ),
-                Column(
-                  children: [
-                    if (controller.showCurrentMinimumPengajuanModel.length > 0)
-                      CustomRadioButton(
-                        title: 'SPP Bulanan',
-                        subtitle: 'Saldo Minimal Rp. ${controller.showCurrentMinimumPengajuanModel[0].minimum}',
-                        icon: iconSPP,
-                        value: 'SPP Bulanan',
-                        groupValue: controller.selectedOption.value,
-                        onChanged: (value) => controller.selectedCategory(value),
-                        style: tsBodySmallRegular(controller.showCurrentMinimumPengajuanModel[0].isEnough == true ? greenColor : primaryColor),
-                      ),
-                    if (controller.showCurrentMinimumPengajuanModel.length > 1)
-                      CustomRadioButton(
-                        title: 'Kegiatan Belajar Diluar',
-                        subtitle: 'Saldo Minimal Rp. ${controller.showCurrentMinimumPengajuanModel[1].minimum}',
-                        icon: iconTravelCase,
-                        value: 'Kegiatan Belajar Diluar',
-                        groupValue: controller.selectedOption.value,
-                        onChanged: (value) => controller.selectedCategory(value),
-                        style: tsBodySmallRegular(controller.showCurrentMinimumPengajuanModel[1].isEnough == true ? greenColor : primaryColor),
-                      ),
-                  ],
+                Obx(
+                  () {
+                    return Column(
+                      children: [
+                        if (controller.showCurrentMinimumPengajuanModel.length >
+                            0)
+                          CustomRadioButton(
+                            title: 'SPP Bulanan',
+                            subtitle:
+                                'Saldo Minimal Rp.  ${controller.showCurrentMinimumPengajuanModel[0].minimum}',
+                            icon: iconSPP,
+                            value: 'SPP Bulanan',
+                            groupValue: controller.selectedOption.value,
+                            onChanged: (value) =>
+                                controller.selectedCategory(value),
+                            style: tsBodySmallRegular(controller
+                                        .showCurrentMinimumPengajuanModel[0]
+                                        .isEnough ==
+                                    true
+                                ? greenColor
+                                : dangerColor),
+                          ),
+                        SizedBox(height: height * 0.02),
+                        if (controller.showCurrentMinimumPengajuanModel.length >
+                            1)
+                          CustomRadioButton(
+                            title: 'Kegiatan Belajar Diluar',
+                            subtitle:
+                                'Saldo Minimal Rp. ${controller.showCurrentMinimumPengajuanModel[1].minimum}',
+                            icon: iconTravelCase,
+                            value: 'Kegiatan Belajar Diluar',
+                            groupValue: controller.selectedOption.value,
+                            onChanged: (value) =>
+                                controller.selectedCategory(value),
+                            style: tsBodySmallRegular(controller
+                                        .showCurrentMinimumPengajuanModel[1]
+                                        .isEnough ==
+                                    true
+                                ? greenColor
+                                : dangerColor),
+                          ),
+                      ],
+                    );
+                  },
                 ),
                 Obx(
                   () => controller.selectedCategoryIsEnough() == true
@@ -114,7 +135,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                             height: height * 0.07,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: primaryColor,
+                              color: blackColor,
                             ),
                             alignment: Alignment.center,
                             child: Text(
@@ -124,7 +145,8 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                           ),
                         )
                       : GestureDetector(
-                          onTap: () => Get.snackbar('Pengajuan Gagal', 'Saldo Tabungan Anda Tidak Mencukupi'),
+                          onTap: () => Get.snackbar('Pengajuan Gagal',
+                              'Saldo Tabungan Anda Tidak Mencukupi'),
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 15),
                             width: width,
