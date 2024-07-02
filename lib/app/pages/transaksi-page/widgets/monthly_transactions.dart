@@ -8,9 +8,13 @@ class MonthlyTransactions extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        AutoSizeText('Februari 2024', style: tsBodyMediumRegular(blackColor)),
+        SizedBox(height: height * 0.017),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -88,17 +92,16 @@ class MonthlyTransactions extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 5),
+        SizedBox(height: height * 0.022),
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return TransactionHistory(
-                            transactionModelIndex: index,
-                            transactionIndex: index,
-                          );
-
+                // transactionModelIndex: index,
+                // transactionIndex: index,
+                );
           },
         ),
       ],
