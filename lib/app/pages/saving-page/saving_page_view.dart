@@ -232,8 +232,8 @@ class SavingPageView extends GetView<SavingPageController> {
                       itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
                         return TransactionHistory(
-                          transactionModelIndex: index,
-                          transactionIndex: index,
+                          // transactionModelIndex: index,
+                          // transactionIndex: index,
                         );
                       },
                     ),

@@ -1,8 +1,10 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:fun_education_app/app/api/transaksi/models/item_transaction_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_response.dart';
 import 'package:fun_education_app/app/api/transaksi/service/show_current_transaksi_service.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -60,18 +62,40 @@ class TransaksiPageController extends GetxController {
     }
   }
 
-    ShowCurrentTransaksiModel? getTransactionModel(int index) {
+  ShowCurrentTransaksiModel? getTransactionModel(int index) {
     if (index < showCurrentTransaksiModel.length) {
       return showCurrentTransaksiModel[index];
     }
     return null;
   }
 
-  ItemTransactionModel? getTransaction(int transactionModelIndex, int transactionIndex) {
+  ItemTransactionModel? getTransaction(
+      int transactionModelIndex, int transactionIndex) {
     final transactionModel = getTransactionModel(transactionModelIndex);
-    if (transactionModel != null && transactionIndex < transactionModel.transaction.length) {
+    if (transactionModel != null &&
+        transactionIndex < transactionModel.transaction.length) {
       return transactionModel.transaction[transactionIndex];
     }
     return null;
+  }
+
+  final List<BarChartGroupData> barGroups = [
+    makeGroupData(0, 200, 500),
+    makeGroupData(1, 100, 1000),
+    makeGroupData(2, 150, 500),
+    makeGroupData(3, 30, 1000),
+    makeGroupData(4, 230, 500),
+    makeGroupData(5, 1000, 500),
+    makeGroupData(6, 310, 500),
+  ];
+
+  static BarChartGroupData makeGroupData(int x, double y1, double y2) {
+    return BarChartGroupData(
+      x: x,
+      barRods: [
+        BarChartRodData(toY: y1, color: dangerColor),
+        BarChartRodData(toY: y2, color: successColor),
+      ],
+    );
   }
 }

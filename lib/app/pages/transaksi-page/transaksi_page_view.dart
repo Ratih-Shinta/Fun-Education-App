@@ -1,11 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
-import 'package:fun_education_app/app/pages/transaksi-page/widgets/transaction_history.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/components/mingguan_bar_chart.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class TransaksiPageView extends GetView<TransaksiPageController> {
+class TransaksiPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -15,20 +16,21 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () {
-              Get.back();
-            },
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: AutoSizeText.rich(
+          TextSpan(
+            text: 'Riwayat Transaksi',
+            style: tsBodyLargeSemibold(blackColor),
           ),
-          title: AutoSizeText.rich(
-            TextSpan(
-              text: 'Riwayat Transaksi',
-              style: tsBodyLargeSemibold(blackColor),
-            ),
-          ),
-          backgroundColor: backgroundColor,
-          centerTitle: true),
+        ),
+        backgroundColor: backgroundColor,
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -36,54 +38,124 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
               horizontal: width * 0.05,
               vertical: height * 0.01,
             ),
-            child: Obx(
-              () => ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: controller.showCurrentTransaksiModel.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 2.0),
-                    child: Column(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            controller.toggleExpansion(index);
-                          },
-                          child: Row(
-                            children: [
-                              AutoSizeText.rich(
-                                TextSpan(
-                                  text: controller.formatDate(controller
-                                      .showCurrentTransaksiModel[index].date),
-                                  style: tsBodyMediumRegular(blackColor),
-                                ),
-                              ),
-                              Icon(
-                                controller.isOpen.value
-                                    ? Icons.keyboard_arrow_up_rounded
-                                    : Icons.keyboard_arrow_down_rounded,
-                              )
-                            ],
+                        SvgPicture.asset('assets/icons/icChart.svg'),
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text: 'Statistic',
+                            style: tsBodyMediumSemibold(blackColor),
                           ),
-                        ),
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: controller.showCurrentTransaksiModel[index]
-                              .transaction.length,
-                          itemBuilder: (context, transactionIndex) {
-                            return TransactionHistory(
-                              transactionModelIndex: index,
-                              transactionIndex: transactionIndex,
-                            );
-                          },
+                          textAlign: TextAlign.start,
                         ),
                       ],
                     ),
-                  );
-                },
-              ),
+                    InkWell(
+                      onTap: () {
+                        // showModalBottomSheet<void>(
+                        //   context: context,
+                        //   builder: (BuildContext context) {
+                        //     return BottomsheetPilihPediodePoint();
+                        //   },
+                        //   isScrollControlled: true,
+                        //   backgroundColor: whiteColor,
+                        // );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            AutoSizeText.rich(
+                              TextSpan(
+                                text: 'Mingguan',
+                                // text: controller.selectedTime.value,
+                                style: tsBodySmallSemibold(blackColor),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: blackColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                MingguanBarChart(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.format_list_bulleted),
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text: 'List Riwayat',
+                            style: tsBodyMediumSemibold(blackColor),
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ],
+                    ),
+                    InkWell(
+                      onTap: () {
+                        // showModalBottomSheet<void>(
+                        //   context: context,
+                        //   builder: (BuildContext context) {
+                        //     return BottomsheetPilihPediodePoint();
+                        //   },
+                        //   isScrollControlled: true,
+                        //   backgroundColor: whiteColor,
+                        // );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            AutoSizeText.rich(
+                              TextSpan(
+                                text: 'Februari',
+                                // text: controller.selectedTime.value,
+                                style: tsBodySmallSemibold(blackColor),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: blackColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: height * 0.012),
+                MonthlyTransactions()
+              ],
             ),
           ),
         ),

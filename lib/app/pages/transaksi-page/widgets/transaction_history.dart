@@ -5,13 +5,13 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class TransactionHistory extends GetView<TransaksiPageController> {
-  final int transactionModelIndex;
-  final int transactionIndex;
+  // final int transactionModelIndex;
+  // final int transactionIndex;
 
   const TransactionHistory({
     Key? key,
-    required this.transactionModelIndex,
-    required this.transactionIndex,
+    // required this.transactionModelIndex,
+    // required this.transactionIndex,
   }) : super(key: key);
 
   @override
@@ -20,16 +20,16 @@ class TransactionHistory extends GetView<TransaksiPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    final transaction =
-        controller.getTransaction(transactionModelIndex, transactionIndex);
-    if (transaction == null) {
-      return Container(
-        child: const Text("Transaction not found"),
-      );
-    }
+    // final transaction =
+    //     controller.getTransaction(transactionModelIndex, transactionIndex);
+    // if (transaction == null) {
+    //   return Container(
+    //     child: const Text("Transaction not found"),
+    //   );
+    // }
 
-    bool isIncome = transaction.category == 'income';
-    bool desc = transaction.desc == '';
+    // bool isIncome = transaction.category == 'income';
+    // bool desc = transaction.desc == '';
 
     return Container(
       margin: EdgeInsets.only(bottom: height * 0.01),
@@ -55,13 +55,16 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                       horizontal: width * 0.023,
                     ),
                     decoration: BoxDecoration(
-                      color: isIncome ? warningColor : primaryColor,
+                      color: 
+                      // isIncome ? warningColor : 
+                      primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(
-                      isIncome
-                          ? Icons.arrow_upward_rounded
-                          : Icons.arrow_downward_rounded,
+                      // isIncome
+                      //     ? Icons.arrow_upward_rounded
+                      //     : 
+                          Icons.arrow_downward_rounded,
                       color: whiteColor,
                       size: 20,
                     ),
@@ -69,13 +72,16 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                   AutoSizeText.rich(
                     textAlign: TextAlign.start,
                     TextSpan(
-                      text: isIncome ? 'Pemasukan\n' : 'Pengeluaran\n',
+                      text:
+                      //  isIncome ? 'Pemasukan\n' : 
+                       'Pengeluaran\n',
                       style: tsBodyMediumSemibold(blackColor).copyWith(
                         height: 1.3,
                       ),
                       children: [
                         TextSpan(
-                          text: controller.formatDate(controller.formatDate(transaction.date ?? "Unknown date")),
+                          text: 'Tanggal : ',
+                          // text: controller.formatDate(controller.formatDate(transaction.date ?? "Unknown date")),
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -86,10 +92,13 @@ class TransactionHistory extends GetView<TransaksiPageController> {
               ),
               AutoSizeText.rich(
                 TextSpan(
-                  text: isIncome
-                      ? '+Rp. ${transaction.amount}'
-                      : '-Rp. ${transaction.amount}',
-                  style: tsBodySmallSemibold(isIncome ? greenColor : dangerColor),
+                  text: 'Rp. 100.000\n',
+                  // isIncome
+                  //     ? '+Rp. ${transaction.amount}'
+                  //     : '-Rp. ${transaction.amount}',
+                  style: tsBodySmallSemibold(
+                    // isIncome ? greenColor :
+                     dangerColor),
                 ),
               ),
             ],
@@ -114,7 +123,8 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                 ),
                 children: [
                   TextSpan(
-                    text: desc ? 'Tidak Ada' : transaction.desc!,
+                    text: 'Tidak Ada\n',
+                    // desc ? 'Tidak Ada' : transaction.desc!,
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],
