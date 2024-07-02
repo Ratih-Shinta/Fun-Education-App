@@ -18,6 +18,8 @@ class TransaksiPageController extends GetxController {
 
   RxBool isOpen = false.obs;
 
+    RxBool isLoading = false.obs;
+
   @override
   void onInit() {
     showCurrentTransaksi();

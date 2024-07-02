@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_pilih_periode.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/components/mingguan_bar_chart.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class TransaksiPageView extends StatelessWidget {
+class TransaksiPageView extends GetView<TransaksiPageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -58,14 +60,14 @@ class TransaksiPageView extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        // showModalBottomSheet<void>(
-                        //   context: context,
-                        //   builder: (BuildContext context) {
-                        //     return BottomsheetPilihPediodePoint();
-                        //   },
-                        //   isScrollControlled: true,
-                        //   backgroundColor: whiteColor,
-                        // );
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return BottomsheetPilihPediodePoint();
+                          },
+                          isScrollControlled: true,
+                          backgroundColor: whiteColor,
+                        );
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -115,14 +117,14 @@ class TransaksiPageView extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        // showModalBottomSheet<void>(
-                        //   context: context,
-                        //   builder: (BuildContext context) {
-                        //     return BottomsheetPilihPediodePoint();
-                        //   },
-                        //   isScrollControlled: true,
-                        //   backgroundColor: whiteColor,
-                        // );
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return BottomsheetPilihPediodePoint();
+                          },
+                          isScrollControlled: true,
+                          backgroundColor: whiteColor,
+                        );
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -154,7 +156,46 @@ class TransaksiPageView extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: height * 0.012),
-                MonthlyTransactions()
+                Obx(() {
+                  if (controller.isLoading.value == true) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (controller.itemTransactionModel.value
+                      .every((item) => item.amount == null)) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        bottom: height * 0.15,
+                        top: height * 0.15,
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/imgGagal.svg',
+                            ),
+                            SizedBox(height: height * 0.01),
+                            AutoSizeText(
+                              'Belum Ada Riwayat',
+                              group: AutoSizeGroup(),
+                              maxLines: 1,
+                              style: tsBodyMediumSemibold(blackColor),
+                            ),
+                            AutoSizeText(
+                              'Untuk Bulan Tersebut Belum Ada Riwayat',
+                              group: AutoSizeGroup(),
+                              maxLines: 1,
+                              style: tsLabelLargeRegular(blackColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  } else {
+                    return MonthlyTransactions();
+                  }
+                }),
               ],
             ),
           ),
