@@ -7,16 +7,15 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  auto_size_text: ^3.0.0
+  auto_size_text: 
   cupertino_icons: null
   dio: null
   flutter:
     sdk: flutter
-  flutter_svg: null
+  flutter_svg: 
   get: null
   google_fonts: null
   image_picker: null
-  # persistent_bottom_nav_bar: null
   pinput: null
   shared_preferences: null
   timeline_tile:

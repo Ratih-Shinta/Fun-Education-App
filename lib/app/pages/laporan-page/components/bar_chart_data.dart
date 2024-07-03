@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'bar_chart_widgets.dart';
+import '../widgets/bar_chart_widgets.dart';
 
 class CustomBarChartData {
   final BarChartWidgets widgets = BarChartWidgets();
@@ -75,7 +75,7 @@ class CustomBarChartData {
 
   BarChartData mingguanBar() {
     return BarChartData(
-      barTouchData: widgets.getBarTouchData(true),
+      barTouchData: widgets.getBarTouchData(true, controller.touchedIndex),
       titlesData: FlTitlesData(
         show: true,
         rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -97,7 +97,7 @@ class CustomBarChartData {
 
   BarChartData bulananBar() {
     return BarChartData(
-      barTouchData: widgets.getBarTouchData(false),
+      barTouchData: widgets.getBarTouchData(false, controller.touchedIndex),
       titlesData: FlTitlesData(
         show: true,
         rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),

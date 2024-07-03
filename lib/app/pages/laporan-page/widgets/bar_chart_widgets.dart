@@ -6,9 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class BarChartWidgets {
-  final LaporanPageController controller = Get.find();
-
-  BarTouchData getBarTouchData(bool isWeekly) {
+  BarTouchData getBarTouchData(bool isWeekly, RxInt touchedIndex) {
     return BarTouchData(
       touchTooltipData: BarTouchTooltipData(
         getTooltipColor: (_) => opacity50GreyColor,
@@ -33,11 +31,10 @@ class BarChartWidgets {
         if (!event.isInterestedForInteractions ||
             barTouchResponse == null ||
             barTouchResponse.spot == null) {
-          controller.touchedIndex.value = -1;
+          touchedIndex.value = -1;
           return;
         }
-        controller.touchedIndex.value =
-            barTouchResponse.spot!.touchedBarGroupIndex;
+        touchedIndex.value = barTouchResponse.spot!.touchedBarGroupIndex;
       },
     );
   }
@@ -68,20 +65,23 @@ class BarChartWidgets {
   }
 
   Widget mingguanTitles(double value, TitleMeta meta) {
-    final style = tsBodyMediumSemibold(blackColor);
-    final text = ['S', 'S', 'R', 'K', 'J', 'S', 'M'][value.toInt()];
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: Text(text, style: style),
-    );
+    final List<String> weekdays = ['S', 'S', 'R', 'K', 'J', 'S', 'M'];
+
+    if (value >= 0 && value < weekdays.length) {
+      return AutoSizeText(
+        weekdays[value.toInt()],
+        style: tsBodyMediumSemibold(blackColor),
+      );
+    } else {
+      return SizedBox.shrink(); // Returns an empty widget for invalid values
+    }
   }
 
   Widget bulananTitles(double value, TitleMeta meta) {
     final style = tsBodyMediumSemibold(blackColor);
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 16,
+      // space: 16,
       child: AutoSizeText.rich(
         TextSpan(
           text: 'Minggu\n',
@@ -99,4 +99,28 @@ class BarChartWidgets {
       ),
     );
   }
+
+  // Widget bulananTitles(double value, TitleMeta meta) {
+  //   final style = tsBodyMediumSemibold(blackColor);
+  //   return SideTitleWidget(
+  //     axisSide: meta.axisSide,
+  //     child: FittedBox(
+  //       child: AutoSizeText.rich(
+  //         TextSpan(
+  //           text: 'Minggu\n',
+  //           style: style.copyWith(height: 1.3),
+  //           children: [
+  //             TextSpan(
+  //               text: '${value.toInt() + 1}',
+  //               style: style,
+  //             ),
+  //           ],
+  //         ),
+  //         textAlign: TextAlign.center,
+  //         maxLines: 2,
+  //         overflow: TextOverflow.ellipsis,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
