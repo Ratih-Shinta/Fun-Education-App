@@ -16,7 +16,6 @@ class LaporanPageController extends GetxController {
   RxBool isLoadingLaporanHarian = false.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
-  // RxBool isPlaying = false.obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;

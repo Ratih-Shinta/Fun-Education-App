@@ -18,7 +18,7 @@ class TransaksiPageController extends GetxController {
 
   RxBool isOpen = false.obs;
 
-    RxBool isLoading = false.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -81,7 +81,7 @@ class TransaksiPageController extends GetxController {
     return null;
   }
 
-  final List<BarChartGroupData> barGroups = [
+  final List<BarChartGroupData> mingguanData = [
     makeGroupData(0, 200, 500),
     makeGroupData(1, 100, 1000),
     makeGroupData(2, 150, 500),
@@ -89,6 +89,13 @@ class TransaksiPageController extends GetxController {
     makeGroupData(4, 230, 500),
     makeGroupData(5, 1000, 500),
     makeGroupData(6, 310, 500),
+  ];
+
+  final List<BarChartGroupData> bulananData = [
+    makeGroupData(0, 200, 500),
+    makeGroupData(1, 100, 1000),
+    makeGroupData(2, 150, 500),
+    makeGroupData(3, 30, 1000),
   ];
 
   static BarChartGroupData makeGroupData(int x, double y1, double y2) {
@@ -99,5 +106,11 @@ class TransaksiPageController extends GetxController {
         BarChartRodData(toY: y2, color: successColor),
       ],
     );
+  }
+
+  var selectedTime = 'Mingguan'.obs;
+  void setSelectedTime(String period) {
+    selectedTime.value = period;
+    print(selectedTime.value);
   }
 }

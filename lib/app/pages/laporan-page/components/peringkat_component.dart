@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/bottomsheet_pilih_periode.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
+import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pilih_periode.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'bar_chart_data.dart';
-import 'bar_chart_widgets.dart';
+import '../widgets/bar_chart_widgets.dart';
 
 class PeringkatComponent extends GetView<LaporanPageController> {
   PeringkatComponent({Key? key}) : super(key: key);
@@ -45,7 +45,14 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                   showModalBottomSheet<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return BottomsheetPilihPediodePoint();
+                      return BottomsheetPilihPeriode(
+                        subtitle: 'Point',
+                        options: ['Bulanan', 'Mingguan'],
+                        onOptionSelected: (option) {
+                          controller.setSelectedTime(option);
+                        },
+                        selectedOption: controller.selectedTime,
+                      );
                     },
                     isScrollControlled: true,
                     backgroundColor: whiteColor,
@@ -71,7 +78,7 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                   ),
                 ),
               );
-            }),
+            })
           ],
         ),
         Container(
@@ -136,41 +143,46 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                 ),
               ],
             ),
-            InkWell(
-              onTap: () {
-                showModalBottomSheet<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return BottomsheetPilihPediodePeringkat();
+            Obx(() => InkWell(
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomsheetPilihPeriode(
+                          subtitle: 'Peringkat',
+                          options: ['Bulanan', 'Mingguan'],
+                          onOptionSelected: (option) {
+                            controller.setSelectedPeriod(option);
+                          },
+                          selectedOption: controller.selectedPeriod,
+                        );
+                      },
+                      isScrollControlled: true,
+                      backgroundColor: Colors.white,
+                    );
                   },
-                  isScrollControlled: true,
-                  backgroundColor: Colors.white,
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    Obx(() {
-                      return AutoSizeText.rich(
-                        TextSpan(
-                            text: controller.selectedPeriod.value,
-                            style: tsBodySmallSemibold(blackColor)),
-                      );
-                    }),
-                    SizedBox(width: 5),
-                    Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Colors.black,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ],
-                ),
-              ),
-            ),
+                    child: Row(
+                      children: [
+                        AutoSizeText.rich(
+                          TextSpan(
+                              text: controller.selectedPeriod.value,
+                              style: tsBodySmallSemibold(blackColor)),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                ))
           ],
         ),
         SizedBox(height: height * 0.023),
