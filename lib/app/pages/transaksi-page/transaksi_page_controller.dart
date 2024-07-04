@@ -113,4 +113,10 @@ class TransaksiPageController extends GetxController {
     selectedTime.value = period;
     print(selectedTime.value);
   }
+
+  var selectedMonth = 'Januari'.obs;
+  void setSelectedMonth(String month) {
+    selectedMonth.value = month;
+    print(selectedMonth.value);
+  }
 }

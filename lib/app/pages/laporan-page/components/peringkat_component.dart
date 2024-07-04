@@ -46,7 +46,8 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                     context: context,
                     builder: (BuildContext context) {
                       return BottomsheetPilihPeriode(
-                        subtitle: 'Point',
+                        title: 'Pilih Periode',
+                        subtitle: 'Pilih Untuk Melihat Perkembangan Point',
                         options: ['Bulanan', 'Mingguan'],
                         onOptionSelected: (option) {
                           controller.setSelectedTime(option);
@@ -149,7 +150,8 @@ class PeringkatComponent extends GetView<LaporanPageController> {
                       context: context,
                       builder: (BuildContext context) {
                         return BottomsheetPilihPeriode(
-                          subtitle: 'Peringkat',
+                          title: 'Pilih Periode',
+                          subtitle: 'Pilih Untuk Melihat Perkembangan Peringkat',
                           options: ['Bulanan', 'Mingguan'],
                           onOptionSelected: (option) {
                             controller.setSelectedPeriod(option);
