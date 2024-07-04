@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/components/bottomsheet_pilih_bulan.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pilih_periode.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/components/bar_chart_container.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
@@ -65,7 +66,9 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                             context: context,
                             builder: (BuildContext context) {
                               return BottomsheetPilihPeriode(
-                                subtitle: 'Point',
+                                title: 'Pilih Periode',
+                                subtitle:
+                                    'Pilih Untuk Melihat Riwayat Transaksi',
                                 options: ['Bulanan', 'Mingguan'],
                                 onOptionSelected: (option) {
                                   controller.setSelectedTime(option);
@@ -118,85 +121,47 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                         ),
                       ],
                     ),
-                    InkWell(
-                      onTap: () {
-                        showModalBottomSheet<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Obx(() {
-                              return InkWell(
-                                onTap: () {
-                                  showModalBottomSheet<void>(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return BottomsheetPilihPeriode(
-                                        subtitle: 'Point',
-                                        options: ['Bulanan', 'Mingguan'],
-                                        onOptionSelected: (option) {
-                                          controller.setSelectedTime(option);
-                                        },
-                                        selectedOption: controller.selectedTime,
-                                      );
-                                    },
-                                    isScrollControlled: true,
-                                    backgroundColor: whiteColor,
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    color: whiteColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      AutoSizeText.rich(TextSpan(
-                                          text: controller.selectedTime.value,
-                                          style:
-                                              tsBodySmallSemibold(blackColor))),
-                                      SizedBox(width: 5),
-                                      Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: blackColor,
-                                      ),
-                                    ],
+                    Obx(
+                      () {
+                        return InkWell(
+                          onTap: () {
+                            showModalBottomSheet<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return BottomSheetPilihBulan();
+                              },
+                              isScrollControlled: true,
+                              backgroundColor: whiteColor,
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              children: [
+                                AutoSizeText.rich(
+                                  TextSpan(
+                                    text: controller.selectedMonth.value,
+                                    style: tsBodySmallSemibold(blackColor),
                                   ),
                                 ),
-                              );
-                            });
-                          },
-                          isScrollControlled: true,
-                          backgroundColor: whiteColor,
+                                SizedBox(width: 5),
+                                Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: blackColor,
+                                ),
+                              ],
+                            ),
+                          ),
                         );
                       },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            AutoSizeText.rich(
-                              TextSpan(
-                                text: 'Februari',
-                                // text: controller.selectedTime.value,
-                                style: tsBodySmallSemibold(blackColor),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: blackColor,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(height: height * 0.012),

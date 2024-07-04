@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:fl_chart/fl_chart.dart';

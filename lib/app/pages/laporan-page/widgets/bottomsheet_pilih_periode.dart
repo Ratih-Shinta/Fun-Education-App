@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class BottomsheetPilihPeriode extends StatelessWidget {
+  final String title;
   final String subtitle;
   final List<String> options;
   final Function(String) onOptionSelected;
@@ -12,6 +14,7 @@ class BottomsheetPilihPeriode extends StatelessWidget {
 
   BottomsheetPilihPeriode({
     Key? key,
+    required this.title,
     required this.subtitle,
     required this.options,
     required this.onOptionSelected,
@@ -42,64 +45,20 @@ class BottomsheetPilihPeriode extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildHeader(width, height),
+              HeaderBottomsheet(
+                  title: title, subtitle: subtitle, color: primaryColor),
               _buildOptions(width, height),
               CommonButton(
                 text: 'Tutup',
                 color: blackColor,
                 onPressed: () {
-                            Get.back();
-                          },
+                  Get.back();
+                },
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader(double width, double height) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: height * 0.01),
-          width: width * 0.15,
-          height: height * 0.008,
-          decoration: BoxDecoration(
-            color: opacity20GreyColor,
-            borderRadius: BorderRadius.circular(4),
-          ),
-        ),
-        Row(
-          children: [
-            Container(
-              margin: EdgeInsets.only(right: width * 0.02),
-              width: width * 0.016,
-              height: height * 0.05,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            AutoSizeText.rich(
-              TextSpan(
-                text: 'Pilih Periode\n',
-                style: tsBodyMediumSemibold(blackColor).copyWith(
-                  height: 1.3,
-                ),
-                children: [
-                  TextSpan(
-                    text: 'Pilih Untuk Melihat Perkembangan $subtitle',
-                    style: tsBodySmallRegular(blackColor),
-                  ),
-                ],
-              ),
-              maxLines: 2,
-            ),
-          ],
-        ),
-      ],
     );
   }
 

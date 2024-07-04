@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
@@ -27,44 +28,10 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: height * 0.01),
-                        width: width * 0.15,
-                        height: height * 0.008,
-                        decoration: BoxDecoration(
-                          color: opacity20GreyColor,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      SizedBox(height: height * 0.02),
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(right: width * 0.02),
-                            width: width * 0.016,
-                            height: height * 0.05,
-                            decoration: BoxDecoration(
-                              color: warningColor,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          AutoSizeText.rich(
-                            TextSpan(
-                              text: 'Jam Belajar Siswa\n',
-                              style: tsBodyMediumSemibold(blackColor).copyWith(
-                                height: 1.3,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'Shift Masuk',
-                                  style: tsBodySmallRegular(blackColor),
-                                ),
-                              ],
-                            ),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
+                      HeaderBottomsheet(
+                          title: 'Jam Belajar Siswa',
+                          subtitle: 'Shift Masuk',
+                          color: warningColor),
                       SizedBox(height: height * 0.02),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: width * 0.06),
