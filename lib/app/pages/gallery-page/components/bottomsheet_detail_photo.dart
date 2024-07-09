@@ -68,9 +68,10 @@ void bottomSheetDetailGallery(
                 ),
               ),
               CommonButton(
-                text: 'Download Foto',
+                text: 'Download Gambar',
                 onPressed: () => Navigator.pop(context),
-                color: primaryColor,
+                color: blackColor,
+                icon: Icons.download,
               )
             ],
           ),
