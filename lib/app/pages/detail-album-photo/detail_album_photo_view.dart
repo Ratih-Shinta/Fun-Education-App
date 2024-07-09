@@ -60,7 +60,7 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                   vertical: height * 0.02,
                 ),
                 decoration: BoxDecoration(
-                  color: primaryColor,
+                  color: opacity5GreyColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -90,13 +90,13 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                               'Album',
                               group: AutoSizeGroup(),
                               maxLines: 1,
-                              style: tsBodySmallRegular(whiteColor),
+                              style: tsBodySmallRegular(blackColor),
                             ),
                             AutoSizeText(
                               '${argument.name}',
                               group: AutoSizeGroup(),
                               maxLines: 2,
-                              style: tsBodyMediumSemibold(whiteColor),
+                              style: tsBodyMediumSemibold(blackColor),
                             ),
                           ],
                         ),
@@ -104,32 +104,20 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                     ),
                     SizedBox(height: height * 0.02),
                     Container(
+                      width: width,
                       padding: EdgeInsets.symmetric(
                         horizontal: width * 0.03,
                         vertical: height * 0.015,
                       ),
                       decoration: BoxDecoration(
-                        color: blackColor,
+                        color: whiteColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: width * 0.016,
-                            height: height * 0.04,
-                            decoration: BoxDecoration(
-                              color: greenColor,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          SizedBox(width: width * 0.03),
-                          AutoSizeText(
-                            '${argument.desc}',
-                            group: AutoSizeGroup(),
-                            maxLines: 3,
-                            style: tsBodySmallRegular(whiteColor),
-                          ),
-                        ],
+                      child: AutoSizeText(
+                        '${argument.desc}',
+                        group: AutoSizeGroup(),
+                        maxLines: 3,
+                        style: tsBodySmallRegular(blackColor),
                       ),
                     ),
                   ],
