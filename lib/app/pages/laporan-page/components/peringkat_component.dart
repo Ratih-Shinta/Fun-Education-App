@@ -21,7 +21,8 @@ class PeringkatComponent extends GetView<LaporanPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    return Column(
+    return SingleChildScrollView(
+      child: Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -245,6 +246,7 @@ class PeringkatComponent extends GetView<LaporanPageController> {
           },
         ),
       ],
+    ),
     );
   }
 }
