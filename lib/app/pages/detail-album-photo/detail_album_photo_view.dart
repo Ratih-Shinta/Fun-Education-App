@@ -128,7 +128,7 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AutoSizeText(
-                    '${argument.gallery!.length} Foto',
+                    '${argument.gallery!.length} Photos',
                     group: AutoSizeGroup(),
                     maxLines: 1,
                     style: tsBodyMediumSemibold(blackColor),

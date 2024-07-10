@@ -98,28 +98,4 @@ class BarChartWidgets {
       ),
     );
   }
-
-  // Widget bulananTitles(double value, TitleMeta meta) {
-  //   final style = tsBodyMediumSemibold(blackColor);
-  //   return SideTitleWidget(
-  //     axisSide: meta.axisSide,
-  //     child: FittedBox(
-  //       child: AutoSizeText.rich(
-  //         TextSpan(
-  //           text: 'Minggu\n',
-  //           style: style.copyWith(height: 1.3),
-  //           children: [
-  //             TextSpan(
-  //               text: '${value.toInt() + 1}',
-  //               style: style,
-  //             ),
-  //           ],
-  //         ),
-  //         textAlign: TextAlign.center,
-  //         maxLines: 2,
-  //         overflow: TextOverflow.ellipsis,
-  //       ),
-  //     ),
-  //   );
-  // }
 }

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonButton extends StatelessWidget {
@@ -8,13 +9,15 @@ class CommonButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? icon;
   final Color? textColor;
+  final String? svgIcon;
 
   CommonButton({
     Key? key,
     required this.text,
     required this.color,
     this.onPressed,
-    this.icon, this.textColor,
+    this.icon,
+    this.textColor, this.svgIcon, 
   }) : super(key: key);
 
   @override
@@ -49,6 +52,14 @@ class CommonButton extends StatelessWidget {
                 color: textColor ?? whiteColor,
                 size: 18,
               ),
+            ],
+            if (svgIcon != null) ...[
+              SizedBox(width: 10),
+              SvgPicture.asset( svgIcon!,
+                // '${svgIcon}',
+                color: textColor ?? whiteColor,
+                width: 18,
+              )
             ],
           ],
         ),
