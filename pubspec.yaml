@@ -21,7 +21,6 @@ dependencies:
   timeline_tile:
   intl: null
   fl_chart: 
-  date_picker_timeline: 
   easy_date_timeline: 
   
 dev_dependencies:
