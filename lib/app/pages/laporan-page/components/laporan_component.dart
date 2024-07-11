@@ -15,6 +15,7 @@ class LaporanComponent extends GetView<LaporanPageController> {
       length: 3,
       child: ListView(
         children: [
+          SizedBox(height: 20),
           LaporanPageComponentOne(),
           LaporanPageComponentTwo(),
           LaporanPageComponentThree(),

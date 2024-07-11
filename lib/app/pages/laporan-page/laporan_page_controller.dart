@@ -145,4 +145,8 @@ class LaporanPageController extends GetxController {
   void setSelectedPeriod(String period) {
     selectedPeriod.value = period;
   }
+
+  void updateSelectedDate(DateTime date) {
+    selectedDate.value = date;
+  }
 }
