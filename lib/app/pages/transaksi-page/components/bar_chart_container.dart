@@ -72,7 +72,7 @@ class BarChartContainer extends GetView<TransaksiPageController> {
                 () {
                   return BarChart(BarChartData(
                       alignment: BarChartAlignment.spaceAround,
-                      maxY: 1000,
+                      maxY: 1000000,
                       gridData: FlGridData(
                         show: false,
                       ),
@@ -87,27 +87,27 @@ class BarChartContainer extends GetView<TransaksiPageController> {
                                   '0 rb',
                                   style: tsBodySmallRegular(blackColor),
                                 );
-                              if (value == 200)
+                              if (value == 200000)
                                 return AutoSizeText(
                                   '200 rb',
                                   style: tsBodySmallRegular(blackColor),
                                 );
-                              if (value == 400)
+                              if (value == 400000)
                                 return AutoSizeText(
                                   '400 rb',
                                   style: tsBodySmallRegular(blackColor),
                                 );
-                              if (value == 600)
+                              if (value == 600000)
                                 return AutoSizeText(
                                   '600 rb',
                                   style: tsBodySmallRegular(blackColor),
                                 );
-                              if (value == 800)
+                              if (value == 800000)
                                 return AutoSizeText(
                                   '800 rb',
                                   style: tsBodySmallRegular(blackColor),
                                 );
-                              if (value == 1000)
+                              if (value == 1000000)
                                 return AutoSizeText(
                                   '1 jt',
                                   style: tsBodySmallRegular(blackColor),
@@ -119,7 +119,7 @@ class BarChartContainer extends GetView<TransaksiPageController> {
                         bottomTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
-                            reservedSize: 42, // Add margin to push the text up
+                            reservedSize: 42, // add margin to push the text up
 
                             getTitlesWidget:
                                 controller.selectedTime.value == 'Mingguan'

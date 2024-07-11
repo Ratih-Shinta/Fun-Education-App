@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 
 class ProfileComponentTwo extends GetView<ProfilePageController> {
   ProfileComponentTwo({super.key});
-  final BarChartWidgets barChartWidgets = BarChartWidgets();
 
   @override
   Widget build(BuildContext context) {
@@ -138,56 +137,69 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 ],
               ),
               SizedBox(height: 20),
-              AspectRatio(
-                  aspectRatio: 1.3,
-                  child: BarChart(BarChartData(
-                    barTouchData: BarTouchData(
-                        touchTooltipData: BarTouchTooltipData(
-                      getTooltipColor: (_) => blackColor.withOpacity(0.9),
-                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                        BarChartWidgets().getWeekDay(group.x.toInt());
+              Obx(
+                () {
+                  return AspectRatio(
+                      aspectRatio: 1.3,
+                      child: BarChart(BarChartData(
+                        barTouchData: BarTouchData(
+                            touchTooltipData: BarTouchTooltipData(
+                          getTooltipColor: (_) => blackColor.withOpacity(0.9),
+                          getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                            BarChartWidgets().getWeekDay(group.x.toInt());
 
-                        String laporanValue =
-                            // controller.mingguanData[2].barRods[0].toY.toInt().toString();
-                            group.barRods[0].toY.toInt().toString();
-                        String tugasValue =
-                            // controller.mingguanData[1].barRods[0].toY.toInt().toString();
-                            group.barRods[1].toY.toInt().toString();
+                            String laporanValue =
+                                group.barRods[0].toY.toInt().toString();
+                            String tugasValue = (group.barRods[1].toY -
+                                    0.2 -
+                                    group.barRods[0].toY)
+                                .toInt()
+                                .toString();
 
-                        return BarTooltipItem(
-                          '${controller.selectedTime.value == 'Mingguan' ? BarChartWidgets().getWeekDay(group.x.toInt()) : BarChartWidgets().getWeekNumber(group.x.toInt())}\n',
-                          tsBodySmallSemibold(whiteColor),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: 'ireng: $tugasValue\n',
-                                style: tsBodySmallSemibold(successColor)),
-                            TextSpan(
-                                text: 'Red: $laporanValue',
-                                style: tsBodySmallSemibold(dangerColor)),
-                          ],
-                        );
-                      },
-                    )),
-                    titlesData: FlTitlesData(
-                      show: true,
-                      rightTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false)),
-                      topTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false)),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: barChartWidgets.mingguanTitles,
-                          reservedSize: 38,
+                            return BarTooltipItem(
+                              '${controller.selectedTime.value == 'Mingguan' ? BarChartWidgets().getWeekDay(group.x.toInt()) : BarChartWidgets().getWeekNumber(group.x.toInt())}\n',
+                              tsBodySmallSemibold(whiteColor),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'ireng: $tugasValue\n',
+                                    style: tsBodySmallSemibold(successColor)),
+                                TextSpan(
+                                    text: 'Red: $laporanValue',
+                                    style: tsBodySmallSemibold(dangerColor)),
+                              ],
+                            );
+                          },
+                        )),
+                        titlesData: FlTitlesData(
+                          show: true,
+                          rightTitles: const AxisTitles(
+                              sideTitles: SideTitles(showTitles: false)),
+                          topTitles: const AxisTitles(
+                              sideTitles: SideTitles(showTitles: false)),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize:
+                                  controller.selectedTime.value == 'Mingguan'
+                                      ? 25
+                                      : 48,
+                              getTitlesWidget:
+                                  controller.selectedTime.value == 'Mingguan'
+                                      ? BarChartWidgets().mingguanTitles
+                                      : BarChartWidgets().bulananTitles,
+                            ),
+                          ),
+                          leftTitles: const AxisTitles(
+                              sideTitles: SideTitles(showTitles: false)),
                         ),
-                      ),
-                      leftTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false)),
-                    ),
-                    borderData: FlBorderData(show: false),
-                    barGroups: controller.mingguanData,
-                    gridData: const FlGridData(show: false),
-                  )))
+                        borderData: FlBorderData(show: false),
+                        barGroups: controller.selectedTime.value == 'Mingguan'
+                            ? controller.mingguanData
+                            : controller.bulananData,
+                        gridData: const FlGridData(show: false),
+                      )));
+                },
+              )
             ],
           ),
         ),

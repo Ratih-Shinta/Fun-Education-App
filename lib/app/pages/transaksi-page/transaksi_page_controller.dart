@@ -82,20 +82,20 @@ class TransaksiPageController extends GetxController {
   }
 
   final List<BarChartGroupData> mingguanData = [
-    makeGroupData(0, 200, 500),
-    makeGroupData(1, 100, 1000),
-    makeGroupData(2, 150, 500),
-    makeGroupData(3, 30, 1000),
-    makeGroupData(4, 230, 500),
-    makeGroupData(5, 1000, 500),
-    makeGroupData(6, 310, 500),
+    makeGroupData(0, 200000, 400000),
+    makeGroupData(1, 800000, 1000000),
+    makeGroupData(2, 600000, 100000),
+    makeGroupData(3, 100000, 800000),
+    makeGroupData(4, 200000, 400000),
+    makeGroupData(5, 900000, 600000),
+    makeGroupData(6, 800000, 400000),
   ];
 
   final List<BarChartGroupData> bulananData = [
-    makeGroupData(0, 200, 500),
-    makeGroupData(1, 100, 1000),
-    makeGroupData(2, 150, 500),
-    makeGroupData(3, 30, 1000),
+    makeGroupData(0, 200000, 400000),
+    makeGroupData(1, 800000, 100000),
+    makeGroupData(2, 400000, 1000000),
+    makeGroupData(3, 600000, 100000),
   ];
 
   static BarChartGroupData makeGroupData(int x, double y1, double y2) {

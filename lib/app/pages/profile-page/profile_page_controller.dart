@@ -83,7 +83,7 @@ class ProfilePageController extends GetxController {
 
   final List<BarChartGroupData> bulananData = [
     generateGroupData(0, 200, 500),
-    generateGroupData(1, 100, 1000),
+    generateGroupData(1, 400, 1000),
     generateGroupData(2, 750, 500),
     generateGroupData(3, 350, 1000),
   ];

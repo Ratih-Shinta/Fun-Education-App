@@ -13,6 +13,7 @@ class CustomBarChartData {
   final Color touchedBarColor = secondaryColor;
 
   BarChartGroupData makeGroupData(
+    bool mingguan,
     int x,
     double y, {
     bool isTouched = false,
@@ -28,7 +29,7 @@ class CustomBarChartData {
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 20,
+            toY: mingguan ? 200 : 2000,
             color: barBackgroundColor,
           ),
         ),
@@ -40,19 +41,26 @@ class CustomBarChartData {
   List<BarChartGroupData> mingguanData() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 0, 100,
+                isTouched: i == controller.touchedIndex.value);
           case 1:
-            return makeGroupData(1, 6.5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 1, 65,
+                isTouched: i == controller.touchedIndex.value);
           case 2:
-            return makeGroupData(2, 5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 2, 50,
+                isTouched: i == controller.touchedIndex.value);
           case 3:
-            return makeGroupData(3, 7.5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 3, 75,
+                isTouched: i == controller.touchedIndex.value);
           case 4:
-            return makeGroupData(4, 9, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 4, 90,
+                isTouched: i == controller.touchedIndex.value);
           case 5:
-            return makeGroupData(5, 11.5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 5, 115,
+                isTouched: i == controller.touchedIndex.value);
           case 6:
-            return makeGroupData(6, 6.5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(true, 6, 65,
+                isTouched: i == controller.touchedIndex.value);
           default:
             throw Error();
         }
@@ -61,13 +69,17 @@ class CustomBarChartData {
   List<BarChartGroupData> bulananData() => List.generate(4, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 4, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(false, 0, 400,
+                isTouched: i == controller.touchedIndex.value);
           case 1:
-            return makeGroupData(1, 7, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(false, 1, 700,
+                isTouched: i == controller.touchedIndex.value);
           case 2:
-            return makeGroupData(2, 4.5, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(false, 2, 405,
+                isTouched: i == controller.touchedIndex.value);
           case 3:
-            return makeGroupData(3, 12, isTouched: i == controller.touchedIndex.value);
+            return makeGroupData(false, 3, 120,
+                isTouched: i == controller.touchedIndex.value);
           default:
             throw Error();
         }
@@ -78,7 +90,8 @@ class CustomBarChartData {
       barTouchData: widgets.getBarTouchData(true, controller.touchedIndex),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -100,7 +113,8 @@ class CustomBarChartData {
       barTouchData: widgets.getBarTouchData(false, controller.touchedIndex),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
