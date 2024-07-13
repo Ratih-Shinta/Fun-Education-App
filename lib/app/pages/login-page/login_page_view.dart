@@ -76,9 +76,9 @@ class LoginPageView extends GetView<LoginPageController> {
                 Column(
                   children: [
                     CommonTextField(
-                      fieldController: controller.usernameController,
+                      fieldController: controller.nicknameController,
                       obscureText: false,
-                      hintText: 'Nama Panggilan',
+                      hintText: 'Nama Lengkap',
                       keyboardType: TextInputType.name,
                     ),
                     SizedBox(height: height * 0.01),
