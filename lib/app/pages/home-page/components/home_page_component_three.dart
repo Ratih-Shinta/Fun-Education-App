@@ -87,43 +87,43 @@ class HomePageComponentThree extends GetView<HomePageController> {
                   );
                 },
                 child: Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: opacity5GreyColor,
-                  borderRadius: BorderRadius.circular(10),
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: opacity5GreyColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      AutoSizeText.rich(
+                        TextSpan(
+                            text: 'Catatan Darurat',
+                            style: tsBodySmallRegular(greyColor)),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 7, horizontal: width * 0.06),
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 6,
+                                backgroundColor: successColor,
+                              ),
+                              SizedBox(width: 5),
+                              AutoSizeText.rich(
+                                TextSpan(
+                                    text: '1 Catatan',
+                                    style: tsBodySmallSemibold(blackColor)),
+                              ),
+                            ],
+                          ))
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    AutoSizeText.rich(
-                      TextSpan(
-                          text: 'Catatan Darurat',
-                          style: tsBodySmallRegular(greyColor)),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 7, horizontal: width * 0.06),
-                        decoration: BoxDecoration(
-                          color: whiteColor,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 8,
-                              backgroundColor: successColor,
-                            ),
-                            SizedBox(width: 5),
-                            AutoSizeText.rich(
-                              TextSpan(
-                                  text: '1 Catatan',
-                                  style: tsBodySmallSemibold(blackColor)),
-                            ),
-                          ],
-                        ))
-                  ],
-                ),
-              ),
               ),
               SizedBox(height: 10),
               Container(

@@ -92,11 +92,14 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                               maxLines: 1,
                               style: tsBodySmallRegular(blackColor),
                             ),
-                            AutoSizeText(
-                              '${argument.name}',
-                              group: AutoSizeGroup(),
-                              maxLines: 2,
-                              style: tsBodyMediumSemibold(blackColor),
+                            Container(
+                              width: width * 0.6,
+                              child: AutoSizeText(
+                                '${argument.name}',
+                                group: AutoSizeGroup(),
+                                maxLines: 5,
+                                style: tsBodyMediumSemibold(blackColor),
+                              ),
                             ),
                           ],
                         ),

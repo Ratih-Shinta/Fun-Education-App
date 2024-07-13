@@ -29,12 +29,20 @@ class ProfileComponentOne extends StatelessWidget {
                   maxLines: 1,
                   style: tsBodyLargeSemibold(blackColor),
                 ),
-                AutoSizeText(
-                  'Radya Hukma Shabiyya Harbani',
-                  group: AutoSizeGroup(),
-                  maxLines: 2,
-                  style: tsBodySmallRegular(blackColor),
-                ),
+                Container(
+                  width: width * 0.6, // Use available width
+                  child: AutoSizeText(
+                    'Radya Hukma Shabiyya Harbani',
+                    // overflow: TextOverflow.ellipsis,
+                    style: tsBodySmallRegular(blackColor),
+                    maxLines: 5,
+                  ),
+                )
+                // AutoSizeText(
+                //   'Radya Hukma Shabiyya Harbani',
+                //   overflow: TextOverflow.ellipsis,
+                //   style: tsBodySmallRegular(blackColor),
+                // ),
               ],
             ),
           ],

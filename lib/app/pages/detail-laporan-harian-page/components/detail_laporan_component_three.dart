@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
-class HomePageCompnentSix extends StatelessWidget {
-  const HomePageCompnentSix({super.key});
+class DetailLaporanComponentThree extends StatelessWidget {
+  const DetailLaporanComponentThree({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,7 @@ class HomePageCompnentSix extends StatelessWidget {
           ),
           SizedBox(height: height * 0.01),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
@@ -34,7 +35,7 @@ class HomePageCompnentSix extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         vertical: height * 0.007, horizontal: width * 0.047),
                     decoration: BoxDecoration(
-                      color: greenColor,
+                      color: successColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
@@ -48,7 +49,25 @@ class HomePageCompnentSix extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(width: width * 0.14),
+              Container(
+                margin: EdgeInsets.only(right: width * 0.02),
+                padding: EdgeInsets.symmetric(
+                    vertical: height * 0.007, horizontal: width * 0.047),
+                decoration: BoxDecoration(
+                  color: successColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '10 Poin',
+                  style: tsBodySmallSemibold(whiteColor),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
               Row(
                 children: [
                   Container(
@@ -69,12 +88,47 @@ class HomePageCompnentSix extends StatelessWidget {
                     style: tsBodySmallMedium(blackColor),
                   )
                 ],
-              )
+              ),
+              Container(
+                margin: EdgeInsets.only(right: width * 0.02),
+                padding: EdgeInsets.symmetric(
+                    vertical: height * 0.007, horizontal: width * 0.047),
+                decoration: BoxDecoration(
+                  color: blueColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '4 Poin',
+                  style: tsBodySmallSemibold(whiteColor),
+                ),
+              ),
             ],
           ),
           SizedBox(height: height * 0.01),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: width * 0.02),
+                    padding: EdgeInsets.symmetric(
+                        vertical: height * 0.007, horizontal: width * 0.047),
+                    decoration: BoxDecoration(
+                      color: warningColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'C',
+                      style: tsBodySmallSemibold(whiteColor),
+                    ),
+                  ),
+                  Text(
+                    ':  Kurang',
+                    style: tsBodySmallMedium(blackColor),
+                  )
+                ],
+              ),
               Container(
                 margin: EdgeInsets.only(right: width * 0.02),
                 padding: EdgeInsets.symmetric(
@@ -84,16 +138,12 @@ class HomePageCompnentSix extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  'C',
+                  '3 Poin',
                   style: tsBodySmallSemibold(whiteColor),
                 ),
               ),
-              Text(
-                ':  Kurang',
-                style: tsBodySmallMedium(blackColor),
-              )
             ],
-          )
+          ),
         ],
       ),
     );
