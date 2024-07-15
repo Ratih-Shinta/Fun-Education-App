@@ -18,6 +18,7 @@ class LoadingOverlay extends StatelessWidget {
         children: [
           child,
           Container(
+            height: MediaQuery.of(context).size.height,
             color: blackColor.withOpacity(0.1),
             child: const Center(
               child: CircularProgressIndicator(),

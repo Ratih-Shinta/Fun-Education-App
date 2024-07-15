@@ -16,6 +16,12 @@ class HomePageComponentOne extends GetView<HomePageController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        // Text(
+        //   'Hello, ${controller.showCurrentUserModel.value.nickname}',
+        //   style: tsTitleMediumRegular(blackColor).copyWith(
+        //     height: 1.3,
+        //   ),
+        // ),
         AutoSizeText.rich(
           TextSpan(
             text: 'Hello,\n',
@@ -24,7 +30,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
             ),
             children: [
               TextSpan(
-                text: '${controller.showCurrentUserModel.value.username}',
+                text: '${controller.showCurrentUserModel.value.nickname}',
                 style: tsTitleMediumSemibold(blackColor),
               ),
             ],

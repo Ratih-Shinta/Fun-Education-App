@@ -1,34 +1,46 @@
 class ShowCurrentUserModel {
     String? id;
-    String? username;
-    String? tempatTanggalLahir;
-    String? alamat;
+    String? fullName;
+    String? nickname;
+    String? birth;
+    String? address;
+    String? shift;
+    String? gender;
     String? profilePicture;
     String? role;
 
     ShowCurrentUserModel({
         this.id,
-        this.username,
-        this.tempatTanggalLahir,
-        this.alamat,
+        this.fullName,
+        this.nickname,
+        this.birth,
+        this.address,
+        this.shift,
+        this.gender,
         this.profilePicture,
         this.role,
     });
 
     factory ShowCurrentUserModel.fromJson(Map<String, dynamic> json) => ShowCurrentUserModel(
         id: json["id"],
-        username: json["username"],
-        tempatTanggalLahir: json["tempat_tanggal_lahir"],
-        alamat: json["alamat"],
+        fullName: json["full_name"],
+        nickname: json["nickname"],
+        birth: json["birth"],
+        address: json["address"],
+        shift: json["shift"],
+        gender: json["gender"],
         profilePicture: json["profile_picture"],
         role: json["role"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "username": username,
-        "tempat_tanggal_lahir": tempatTanggalLahir,
-        "alamat": alamat,
+        "full_name": fullName,
+        "nickname": nickname,
+        "birth": birth,
+        "address": address,
+        "shift": shift,
+        "gender": gender,
         "profile_picture": profilePicture,
         "role": role,
     };
