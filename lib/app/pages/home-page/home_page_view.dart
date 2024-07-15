@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/loading_overlay.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_four.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_one.dart';
 import 'package:fun_education_app/app/pages/home-page/components/home_page_component_three.dart';
@@ -43,29 +44,33 @@ class HomePageView extends GetView<HomePageController> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-            child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: width * 0.05,
-            vertical: height * 0.015,
-          ),
-          child: Column(
-            children: [
-              HomePageComponentOne(),
-              SizedBox(
-                height: height * 0.025,
-              ),
-              HomePageComponentTwo(),
-              SizedBox(
-                height: height * 0.025,
-              ),
-              HomePageComponentThree(),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              HomePageComponentFour(),
-            ],
-          ),
-        )));
+        body: SingleChildScrollView(child: SafeArea(child: Obx(
+          () {
+            return LoadingOverlay(
+                isLoading: controller.isLoading.value,
+                child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.05,
+                      vertical: height * 0.015,
+                    ),
+                    child: Column(
+                      children: [
+                        HomePageComponentOne(),
+                        SizedBox(
+                          height: height * 0.025,
+                        ),
+                        HomePageComponentTwo(),
+                        SizedBox(
+                          height: height * 0.025,
+                        ),
+                        HomePageComponentThree(),
+                        SizedBox(
+                          height: height * 0.03,
+                        ),
+                        HomePageComponentFour(),
+                      ],
+                    )));
+          },
+        ))));
   }
 }

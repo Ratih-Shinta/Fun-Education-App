@@ -41,12 +41,12 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
               UserDataContainer(
                   title: 'Tempat, Tanggal Lahir',
                   content:
-                      '${homePageController.showCurrentUserModel.value.tempatTanggalLahir}'),
+                      '${homePageController.showCurrentUserModel.value.birth}'),
               SizedBox(height: height * 0.01),
               UserDataContainer(
                   title: 'Alamat',
                   content:
-                      '${homePageController.showCurrentUserModel.value.alamat}'),
+                      '${homePageController.showCurrentUserModel.value.address}'),
               SizedBox(height: height * 0.02),
               CommonButton(
                 text: 'Logout',
