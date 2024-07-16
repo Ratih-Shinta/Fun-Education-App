@@ -7,6 +7,7 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
   final bool isLast;
   final bool isDone;
   final Widget endChild;
+  final int number;
 
   const TimelineTileAlurBelajarAnanda({
     super.key,
@@ -14,6 +15,7 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
     required this.isLast,
     required this.isDone,
     required this.endChild,
+    required this.number,
   });
 
   @override
@@ -22,22 +24,27 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return Container(
-      height: height * 0.11,
+      
+      height: height * 0.12,
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
         beforeLineStyle: LineStyle(
-          color: isDone ? primaryColor : greyColor.withOpacity(0.5),
-          thickness: 6,
+          color: isDone ? primaryColor : greyColor.withOpacity(0.2),
+          thickness: 4.5,
         ),
         indicatorStyle: IndicatorStyle(
-          iconStyle: IconStyle(
-            iconData: Icons.check_rounded,
-            color: isDone ? whiteColor : whiteColor,
-            fontSize: 16,
+          width: width * 0.115,
+          height: height * 0.06,
+          indicator: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isDone ? primaryColor : greyColor,
+            ),
+            child: Center(
+              child: Text('${number}', style: tsBodyMediumSemibold(whiteColor)),
+            ),
           ),
-          width: width * 0.08,
-          color: isDone ? primaryColor : greyColor,
         ),
         endChild: Padding(
           padding: EdgeInsets.symmetric(
@@ -50,4 +57,3 @@ class TimelineTileAlurBelajarAnanda extends StatelessWidget {
     );
   }
 }
-
