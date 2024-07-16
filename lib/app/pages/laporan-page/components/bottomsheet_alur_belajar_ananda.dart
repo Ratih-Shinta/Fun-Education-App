@@ -18,7 +18,8 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return SizedBox(
-      height: height * 0.63,
+      
+      height: height * 0.6,
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: height * 0.03,
@@ -27,7 +28,10 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            HeaderBottomsheet(title: 'Alur Belajar Ananda', subtitle: 'Sekarang Ananda Berada Pada Tahap:', color: primaryColor),
+            HeaderBottomsheet(
+                title: 'Alur Belajar Ananda',
+                subtitle: 'Sekarang Ananda Berada Pada Tahap:',
+                color: primaryColor),
             SizedBox(height: height * 0.03),
             Expanded(
               child: Column(
@@ -66,6 +70,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                         ),
                       ],
                     ),
+                    number: 1,
                   ),
                   TimelineTileAlurBelajarAnanda(
                     isFirst: false,
@@ -101,6 +106,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                         ),
                       ],
                     ),
+                    number: 2,
                   ),
                   TimelineTileAlurBelajarAnanda(
                     isFirst: false,
@@ -136,6 +142,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
                         ),
                       ],
                     ),
+                    number: 3,
                   ),
                 ],
               ),
@@ -143,7 +150,7 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
             CommonButton(
               text: 'Tutup',
               onPressed: () => Navigator.pop(context),
-              color: secondaryColor,
+              color: blackColor,
             )
           ],
         ),

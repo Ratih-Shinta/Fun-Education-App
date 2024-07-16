@@ -21,10 +21,9 @@ class LoginPageView extends GetView<LoginPageController> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(
-              top: height * 0.03,
-              left: width * 0.05,
-              right: width * 0.05,
+            padding: EdgeInsets.symmetric(
+              vertical: height * 0.03,
+              horizontal: width * 0.05,
             ),
             child: Column(
               children: [
@@ -44,10 +43,11 @@ class LoginPageView extends GetView<LoginPageController> {
                     ),
                   ],
                 ),
-                SizedBox(height: height * 0.04),
+                SizedBox(height: height * 0.06),
                 Column(
                   children: [
                     SvgPicture.asset('assets/images/login.svg'),
+                    SizedBox(height: height * 0.03),
                     AutoSizeText.rich(
                       group: AutoSizeGroup(),
                       textAlign: TextAlign.center,
@@ -107,14 +107,14 @@ class LoginPageView extends GetView<LoginPageController> {
                 ),
                 SizedBox(height: height * 0.03),
                 CommonButton(
-                      // isLoading: controller.isLoading.value,
-                      text: 'Masuk',
-                      color: blackColor,
-                      textColor: whiteColor,
-                      onPressed: () {
-                        controller.login();
-                      },
-                    )
+                  // isLoading: controller.isLoading.value,
+                  text: 'Masuk',
+                  color: blackColor,
+                  textColor: whiteColor,
+                  onPressed: () {
+                    controller.login();
+                  },
+                )
               ],
             ),
           ),
