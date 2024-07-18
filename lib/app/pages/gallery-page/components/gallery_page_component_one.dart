@@ -53,7 +53,7 @@ class GalleryPageComponentOne extends GetView<GalleryPageController> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: NetworkImage(
-                            '${controller.showAllAlbumPhotoModel[index].gallery![0].image}'),
+                            '${controller.showAllAlbumPhotoModel[index].cover}'),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.3),
@@ -82,7 +82,7 @@ class GalleryPageComponentOne extends GetView<GalleryPageController> {
                           AutoSizeText(
                             group: AutoSizeGroup(),
                             maxLines: 1,
-                            '${controller.showAllAlbumPhotoModel[index].gallery!.length} Foto',
+                            '${controller.showAllAlbumPhotoModel[index].galleryCount} Foto',
                             style: tsBodySmallRegular(whiteColor),
                           ),
                         ],
