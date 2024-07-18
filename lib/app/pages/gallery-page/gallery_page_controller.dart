@@ -32,7 +32,7 @@ class GalleryPageController extends GetxController {
       final response = await allPhotosService.getShowAllPhotos();
       showAllPhotosResponse = ShowAllPhotosResponse.fromJson(response.data);
       showAllPhotosModel.value = showAllPhotosResponse!.data;
-      print(showAllPhotosModel);
+      // print(showAllPhotosModel);
       update();
     } catch (e) {
       isLoadingAllPhotos(true);
@@ -49,7 +49,8 @@ class GalleryPageController extends GetxController {
       showAllAlbumPhotoResponse =
           ShowAllAlbumPhotoResponse.fromJson(response.data);
       showAllAlbumPhotoModel.value = showAllAlbumPhotoResponse!.data;
-      print(showAllAlbumPhotoModel);
+      // print(showAllAlbumPhotoModel[1].gallery!.length);
+      print(showAllAlbumPhotoModel[0].desc);
       update();
     } catch (e) {
       isLoadingAllAlbumPhoto(true);
