@@ -32,7 +32,7 @@ class LoginPageController extends GetxController {
 
       prefs.setString('token', response.data['token']);
       Get.snackbar("Login Success", "Welcome Back!");
-      Get.offAllNamed(Routes.GALLERY_PAGE);
+      Get.offAllNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
     } catch (e) {
       isLoading(true);
       Get.snackbar("Login Error", "Invalid Username or Password");

@@ -23,33 +23,21 @@ class DetailLaporanComponentFour
           ),
         ),
         Container(
-            width: width,
-            margin: EdgeInsets.only(top: 10, bottom: 20),
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: opacity5GreyColor,
-              borderRadius: BorderRadius.circular(10),
+          width: width,
+          margin: const EdgeInsets.only(top: 10, bottom: 20),
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: opacity5GreyColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: AutoSizeText.rich(
+            TextSpan(
+              text: controller.showCurrentLaporanHarianResponse?.note ??
+                  'Tidak ada catatan',
+              style: tsBodySmallRegular(blackColor),
             ),
-            child: Obx(() {
-              if (controller.showCurrentLaporanHarianModel.value
-                      .berbuatBaikDenganTeman ==
-                  null) {
-                return AutoSizeText.rich(
-                  TextSpan(
-                    text: 'Tidak ada catatan',
-                    style: tsBodySmallRegular(blackColor),
-                  ),
-                );
-              } else {
-                return AutoSizeText.rich(
-                  TextSpan(
-                    text:
-                        'Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak. Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak.',
-                    style: tsBodySmallRegular(blackColor),
-                  ),
-                );
-              }
-            })),
+          ),
+        ),
       ],
     );
   }

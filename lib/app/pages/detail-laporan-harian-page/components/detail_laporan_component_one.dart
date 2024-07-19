@@ -41,7 +41,9 @@ class DetailLaporanComponentOne extends GetView<DetailLaporanHarianController> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconPoint(
-                point: '100',
+                point: controller.showCurrentLaporanHarianResponse?.totalPoint
+                        .toString() ??
+                    '0',
                 color: successColor,
                 textStyle: tsBodySmallSemibold(whiteColor),
               ),

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fun_education_app/app/pages/home-page/widgets/point_report.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/widgets/point_report.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class ReportWidget extends StatelessWidget {
