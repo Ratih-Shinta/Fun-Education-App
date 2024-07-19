@@ -11,12 +11,17 @@ class DetailLaporanHarianController extends GetxController {
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
-  Rx<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
-      ShowCurrentLaporanHarianModel().obs;
+  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      <ShowCurrentLaporanHarianModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
+    showCurrentLaporanHarian();
+  }
+
+  Future<void> refresh() async {
+    showCurrentLaporanHarian();
   }
 
   Future showCurrentLaporanHarian() async {
@@ -25,7 +30,6 @@ class DetailLaporanHarianController extends GetxController {
     Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
     try {
       isLoading(true);
-      showCurrentLaporanHarianModel.value = ShowCurrentLaporanHarianModel();
       final response =
           await laporanHarianService.getShowCurrentLaporanHarian(parsedDate);
       showCurrentLaporanHarianResponse =
@@ -33,6 +37,9 @@ class DetailLaporanHarianController extends GetxController {
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
       isLoading.value = false;
+
+      print(showCurrentLaporanHarianModel[2].grade);
+
       update();
     } catch (e) {
       isLoading(true);

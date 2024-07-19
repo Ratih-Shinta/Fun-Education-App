@@ -27,8 +27,8 @@ class ApiEndPoint {
   //Catatan Darurat
   static String showLatestCatatanDarurat = '$baseUrlCatatanDarurat/show';
 
-  //Laporan Harian
-  static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
+  //Laporan 
+  static String showCurrentLaporan = '$baseUrlLaporanHarian/show-current';
 
   //Laporan Bulanan
   static String showCurrentLaporanBulanan =
