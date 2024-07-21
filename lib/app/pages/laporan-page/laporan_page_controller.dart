@@ -5,6 +5,8 @@ import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur
 import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_model.dart';
 import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_response.dart';
 import 'package:fun_education_app/app/api/laporan-bulanan/service/show_current_laporan_bulanan_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
@@ -31,12 +33,17 @@ class LaporanPageController extends GetxController {
   Rx<ShowCurrentPointMingguanModel> showCurrentPointMingguanModel =
       ShowCurrentPointMingguanModel().obs;
 
+  ShowCurrentPointBulananResponse? showCurrentPointBulananResponse;
+  Rx<ShowCurrentPointBulananModel> showCurrentPointBulananModel =
+      ShowCurrentPointBulananModel().obs;
+
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showCurrentAlurBelajar();
       showCurrentLaporanBulanan();
-      showCurrentLaporanHarian();
+      showCurrentPointMingguan();
+      showCurrentPointBulanan();
     });
     super.onInit();
   }
@@ -74,7 +81,7 @@ class LaporanPageController extends GetxController {
     }
   }
 
-  Future showCurrentLaporanHarian() async {
+  Future showCurrentPointMingguan() async {
     try {
       isLoading(true);
       final response = await laporanHarianService.getShowCurrentPointMingguan();
@@ -84,7 +91,25 @@ class LaporanPageController extends GetxController {
           showCurrentPointMingguanResponse!.data;
       isLoading.value = false;
       update();
-      print(showCurrentPointMingguanModel.value.mondayPoint);
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showCurrentPointBulanan() async {
+    try {
+      isLoading(true);
+      final response = await laporanHarianService.getShowCurrentPointBulanan();
+      showCurrentPointBulananResponse =
+          ShowCurrentPointBulananResponse.fromJson(response.data);
+      showCurrentPointBulananModel.value =
+          showCurrentPointBulananResponse!.data;
+      isLoading.value = false;
+      update();
+      print(showCurrentPointBulananModel.value.week1Point);
     } catch (e) {
       isLoading(true);
       print(e);

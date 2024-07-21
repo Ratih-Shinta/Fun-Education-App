@@ -29,7 +29,7 @@ class ApiEndPoint {
 
   //Laporan Harian
   static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
-  static String showCurrentPointMingguan = '$baseUrlLaporanHarian/show-current-point';
+  static String showCurrentPoint = '$baseUrlLaporanHarian/show-current-point';
 
   //Laporan Bulanan
   static String showCurrentLaporanBulanan =
