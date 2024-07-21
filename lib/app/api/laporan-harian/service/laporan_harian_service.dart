@@ -23,9 +23,21 @@ class LaporanHarianService {
   Future<Response> getShowCurrentPointMingguan() async {
     try {
       final response = await _dioInstance.getRequest(
-          endpoint: ApiEndPoint.showCurrentPointMingguan,
+          endpoint: ApiEndPoint.showCurrentPoint,
           isAuthorize: true,
           queryParameters: {'type': 'weekly'});
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getShowCurrentPointBulanan() async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: ApiEndPoint.showCurrentPoint,
+          isAuthorize: true,
+          queryParameters: {'type': 'monthly'});
       return response;
     } catch (e) {
       throw Exception(e);

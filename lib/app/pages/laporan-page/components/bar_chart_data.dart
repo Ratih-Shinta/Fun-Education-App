@@ -69,16 +69,16 @@ class CustomBarChartData {
   List<BarChartGroupData> bulananData() => List.generate(4, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(false, 0, 400,
+            return makeGroupData(false, 0, controller.showCurrentPointBulananModel.value.week1Point!.toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 1:
-            return makeGroupData(false, 1, 700,
+            return makeGroupData(false, 1, controller.showCurrentPointBulananModel.value.week2Point!.toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 2:
-            return makeGroupData(false, 2, 405,
+            return makeGroupData(false, 2, controller.showCurrentPointBulananModel.value.week3Point!.toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 3:
-            return makeGroupData(false, 3, 120,
+            return makeGroupData(false, 3, controller.showCurrentPointBulananModel.value.week4Point!.toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           default:
             throw Error();
