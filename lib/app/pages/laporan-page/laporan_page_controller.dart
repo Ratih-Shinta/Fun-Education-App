@@ -5,6 +5,9 @@ import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur
 import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_model.dart';
 import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_response.dart';
 import 'package:fun_education_app/app/api/laporan-bulanan/service/show_current_laporan_bulanan_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
+import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:get/get.dart';
 
 class LaporanPageController extends GetxController {
@@ -23,16 +26,18 @@ class LaporanPageController extends GetxController {
   Rx<ShowCurrentLaporanBulananModel> showCurrentLaporanBulananModel =
       ShowCurrentLaporanBulananModel().obs;
 
-  // LaporanHarianService laporanHarianService = LaporanHarianService();
-  // ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
-  // Rx<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
-  //     ShowCurrentLaporanHarianModel().obs;
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentPointMingguanResponse? showCurrentPointMingguanResponse;
+  Rx<ShowCurrentPointMingguanModel> showCurrentPointMingguanModel =
+      ShowCurrentPointMingguanModel().obs;
 
   @override
   void onInit() {
-    showCurrentAlurBelajar();
-    showCurrentLaporanBulanan();
-    // showCurrentLaporanHarian();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showCurrentAlurBelajar();
+      showCurrentLaporanBulanan();
+      showCurrentLaporanHarian();
+    });
     super.onInit();
   }
 
@@ -69,27 +74,24 @@ class LaporanPageController extends GetxController {
     }
   }
 
-  // showCurrentLaporanHarian() async {
-  //   String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
-  //   DateTime parsedDate = DateTime.parse(formattedDate);
-  //   try {
-  //     isLoadingLaporanHarian(true);
-  //     showCurrentLaporanHarianModel.value = ShowCurrentLaporanHarianModel();
-  //     final response =
-  //         await laporanHarianService.getShowCurrentLaporanHarian(parsedDate);
-  //     showCurrentLaporanHarianResponse =
-  //         ShowCurrentLaporanHarianResponse.fromJson(response.data);
-  //     showCurrentLaporanHarianModel.value =
-  //         showCurrentLaporanHarianResponse!.data;
-
-  //     update();
-  //   } catch (e) {
-  //     isLoadingLaporanHarian(true);
-  //     print(e);
-  //   } finally {
-  //     isLoadingLaporanHarian(false);
-  //   }
-  // }
+  Future showCurrentLaporanHarian() async {
+    try {
+      isLoading(true);
+      final response = await laporanHarianService.getShowCurrentPointMingguan();
+      showCurrentPointMingguanResponse =
+          ShowCurrentPointMingguanResponse.fromJson(response.data);
+      showCurrentPointMingguanModel.value =
+          showCurrentPointMingguanResponse!.data;
+      isLoading.value = false;
+      update();
+      print(showCurrentPointMingguanModel.value.mondayPoint);
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
 
   void onHorizontalDrag(DragEndDetails details) {
     if (details.primaryVelocity != null) {
@@ -144,5 +146,10 @@ class LaporanPageController extends GetxController {
 
   void updateSelectedDate(DateTime date) {
     selectedDate.value = date;
+  }
+
+  Future<void> refresh() async {
+    showCurrentAlurBelajar();
+    showCurrentLaporanBulanan();
   }
 }

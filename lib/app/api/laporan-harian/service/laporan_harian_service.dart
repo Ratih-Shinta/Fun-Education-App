@@ -11,10 +11,21 @@ class LaporanHarianService {
     // DateTime parsedDate = DateTime.parse(formattedDate);
     try {
       final response = await _dioInstance.getRequest(
-          endpoint: ApiEndPoint.showCurrentLaporan,
+          endpoint: ApiEndPoint.showCurrentLaporanHarian,
           isAuthorize: true,
           queryParameters: {'date': parsedDate});
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 
+  Future<Response> getShowCurrentPointMingguan() async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: ApiEndPoint.showCurrentPointMingguan,
+          isAuthorize: true,
+          queryParameters: {'type': 'weekly'});
       return response;
     } catch (e) {
       throw Exception(e);

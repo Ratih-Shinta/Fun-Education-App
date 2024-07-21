@@ -1,6 +1,7 @@
-import 'package:fun_education_app/app/api/laporan-harian/models/show_current_laporan_harian_model.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show_current_laporan_harian_response.dart';
-import 'package:fun_education_app/app/api/laporan-harian/service/show_current_laporan_harian_service.dart';
+import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
+import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +18,9 @@ class DetailLaporanHarianController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    showCurrentLaporanHarian();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showCurrentLaporanHarian();
+    });
   }
 
   Future<void> refresh() async {
@@ -27,7 +30,6 @@ class DetailLaporanHarianController extends GetxController {
   Future showCurrentLaporanHarian() async {
     String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value);
     DateTime parsedDate = DateTime.parse(formattedDate);
-    Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
     try {
       isLoading(true);
       final response =
@@ -37,9 +39,6 @@ class DetailLaporanHarianController extends GetxController {
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
       isLoading.value = false;
-
-      print(showCurrentLaporanHarianModel[2].grade);
-
       update();
     } catch (e) {
       isLoading(true);

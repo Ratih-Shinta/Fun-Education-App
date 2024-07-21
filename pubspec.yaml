@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: 
-  get: null
+  get:
   google_fonts: null
   image_picker: null
   pinput: null
