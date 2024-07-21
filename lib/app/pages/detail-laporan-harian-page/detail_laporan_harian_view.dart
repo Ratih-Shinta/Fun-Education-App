@@ -41,31 +41,24 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           ),
         ),
       ),
-      body: RefreshIndicator(
-        color: secondaryColor,
-        backgroundColor: whiteColor,
-        onRefresh: () async {
-          controller.refresh();
-        },
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: height * 0.02,
-              horizontal: width * 0.05,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DetailLaporanComponentOne(),
-                DetailLaporanComponentTwo(),
-                SizedBox(height: height * 0.02),
-                DetailLaporanComponentThree(),
-                SizedBox(height: height * 0.02),
-                DetailLaporanComponentFour(),
-                DetailComponentFive(),
-              ],
-            ),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: height * 0.02,
+            horizontal: width * 0.05,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DetailLaporanComponentOne(),
+              DetailLaporanComponentTwo(),
+              SizedBox(height: height * 0.02),
+              DetailLaporanComponentThree(),
+              SizedBox(height: height * 0.02),
+              DetailLaporanComponentFour(),
+              DetailComponentFive(),
+            ],
           ),
         ),
       ),

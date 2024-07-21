@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:fun_education_app/app/api/laporan-harian/models/show_current_laporan_harian_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
 
 ShowCurrentLaporanHarianResponse showCurrentLaporanHarianResponseFromJson(String str) => ShowCurrentLaporanHarianResponse.fromJson(json.decode(str));
 

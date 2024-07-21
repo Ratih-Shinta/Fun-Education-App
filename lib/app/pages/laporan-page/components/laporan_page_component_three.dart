@@ -8,8 +8,8 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class LaporanPageComponentThree extends GetView<LaporanPageController> {
-  final DetailLaporanHarianController detailLaporanHarianController =
-      Get.put(DetailLaporanHarianController());
+  // final DetailLaporanHarianController detailLaporanHarianController =
+  //     Get.put(DetailLaporanHarianController());
 
   @override
   Widget build(BuildContext context) {
