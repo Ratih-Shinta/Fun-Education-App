@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
-import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/laporan_container.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';

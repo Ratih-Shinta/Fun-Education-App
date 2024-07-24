@@ -83,7 +83,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (controller.itemTransactionModel.value
+          } else if (controller.itemTransactionModel
               .every((item) => item.amount == null)) {
             return Padding(
               padding: EdgeInsets.only(

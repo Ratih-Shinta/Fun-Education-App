@@ -4,14 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class TugasWidget extends StatelessWidget {
-  final Color color;
-  final String type;
+  final String category;
   final String title;
+  final String status;
   const TugasWidget(
       {super.key,
-      required this.color,
-      required this.type,
-      required this.title});
+      required this.category,
+      required this.title,
+      required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,15 @@ class TugasWidget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: category == 'Dikte & Menulis'
+              ? blueColor.withOpacity(0.1)
+              : category == 'Kreasi'
+                  ? primaryColor.withOpacity(0.1)
+                  : category == 'Membaca'
+                      ? greenColor.withOpacity(0.1)
+                      : category == 'Berhitung'
+                          ? warningColor.withOpacity(0.1)
+                          : opacity20GreyColor,
           borderRadius: BorderRadius.circular(15)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,16 +38,54 @@ class TugasWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.6),
-                  borderRadius: BorderRadius.circular(29),
-                ),
-                child: AutoSizeText.rich(
-                  textAlign: TextAlign.start,
-                  TextSpan(text: type, style: tsBodySmallSemibold(whiteColor)),
-                ),
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: category == 'Dikte & Menulis'
+                          ? blueColor.withOpacity(0.6)
+                          : category == 'Kreasi'
+                              ? primaryColor.withOpacity(0.6)
+                              : category == 'Membaca'
+                                  ? greenColor.withOpacity(0.6)
+                                  : category == 'Berhitung'
+                                      ? warningColor.withOpacity(0.6)
+                                      : opacity20GreyColor,
+                      borderRadius: BorderRadius.circular(29),
+                    ),
+                    child: AutoSizeText.rich(
+                      textAlign: TextAlign.start,
+                      TextSpan(
+                        text: category,
+                        style: tsBodySmallSemibold(whiteColor),
+                      ),
+                    ),
+                  ),
+                  if (status == 'null')
+                    SizedBox(width: 1)
+                  else
+                    Container(
+                      margin: EdgeInsets.only(left: width * 0.015),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: status == 'Diperiksa'
+                            ? warningColor
+                            : status == 'Selesai'
+                                ? successColor
+                                : dangerColor,
+                        borderRadius: BorderRadius.circular(29),
+                      ),
+                      child: AutoSizeText.rich(
+                        textAlign: TextAlign.start,
+                        TextSpan(
+                          text: status,
+                          style: tsBodySmallSemibold(whiteColor),
+                        ),
+                      ),
+                    ),
+                ],
               ),
               Icon(Icons.arrow_forward_ios, size: 12),
             ],
@@ -52,7 +98,7 @@ class TugasWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 15),
             height: 1,
-            width: double.infinity,
+            width: width,
             color: opacity20GreyColor,
           ),
           Row(
@@ -70,7 +116,15 @@ class TugasWidget extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         iconCalender,
-                        color: color,
+                        color: category == 'Dikte & Menulis'
+                            ? blueColor
+                            : category == 'Kreasi'
+                                ? primaryColor
+                                : category == 'Membaca'
+                                    ? greenColor
+                                    : category == 'Berhitung'
+                                        ? warningColor
+                                        : opacity20GreyColor,
                       ),
                       SizedBox(width: 5),
                       AutoSizeText.rich(

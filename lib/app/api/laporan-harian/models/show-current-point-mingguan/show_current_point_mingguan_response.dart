@@ -24,6 +24,4 @@ class ShowCurrentPointMingguanResponse {
     Map<String, dynamic> toJson() => {
         "data": data.toJson(),
     };
-
-  ShowCurrentPointMingguanResponse? fromJson(data) {}
 }

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan_component.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/peringkat_component.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_component.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/peringkat-component/peringkat_component.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
@@ -40,7 +40,6 @@ class LaporanPageView extends GetView<LaporanPageController> {
                     color: opacity5GreyColor,
                   ),
                   child: TabBar(
-                    // controller: controller.tabControllerAll,
                     labelStyle: tsBodySmallSemibold(blackColor),
                     indicatorSize: TabBarIndicatorSize.tab,
                     dividerColor: Colors.transparent,

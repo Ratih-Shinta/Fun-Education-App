@@ -31,6 +31,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
               Obx(
                 () => Expanded(
                   child: Container(
+                    width: width,
                       margin: EdgeInsets.symmetric(vertical: height * 0.03),
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
