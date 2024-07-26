@@ -2,17 +2,22 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class TugasContainer extends StatelessWidget {
+  final LaporanPageController laporanPageController =
+      Get.put(LaporanPageController());
+  final argument = Get.arguments;
+
   final String? status;
-  final String? point;
   final bool pointContainer;
 
-  const TugasContainer({
+  TugasContainer({
     Key? key,
     this.status,
-    this.point,
     required this.pointContainer,
   }) : super(key: key);
 
@@ -42,38 +47,46 @@ class TugasContainer extends StatelessWidget {
                 child: AutoSizeText.rich(
                   textAlign: TextAlign.start,
                   TextSpan(
-                    text: 'Dikte & Menulis',
+                    text: '${argument.category}',
                     style: tsBodySmallSemibold(whiteColor),
                   ),
                 ),
               ),
               SizedBox(width: 10),
-              if (pointContainer)
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: status == 'Diperiksa'
-                        ? warningColor
-                        : status == 'Selesai'
-                            ? successColor
-                            : dangerColor,
-                    borderRadius: BorderRadius.circular(29),
-                  ),
-                  child: AutoSizeText.rich(
-                    textAlign: TextAlign.start,
-                    TextSpan(
-                      text: status,
-                      style: tsBodySmallSemibold(whiteColor),
+              // if (pointContainer)
+              Obx(() {
+                if (laporanPageController.isLoading.value) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (argument.statusTugasUser == null) {
+                  return SizedBox(width: 1);
+                } else {
+                  return Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: status == 'Diperiksa'
+                          ? warningColor
+                          : status == 'Selesai'
+                              ? successColor
+                              : dangerColor,
+                      borderRadius: BorderRadius.circular(29),
                     ),
-                  ),
-                ),
+                    child: AutoSizeText.rich(
+                      textAlign: TextAlign.start,
+                      TextSpan(
+                        text: status,
+                        style: tsBodySmallSemibold(whiteColor),
+                      ),
+                    ),
+                  );
+                }
+              })
             ],
           ),
           SizedBox(height: 20),
           AutoSizeText.rich(
             textAlign: TextAlign.start,
             TextSpan(
-              text: 'Menulis 5 benda yang sering dilihat oleh ananda',
+              text: '${argument.title}',
               style: tsBodyMediumSemibold(blackColor),
             ),
           ),
@@ -101,7 +114,8 @@ class TugasContainer extends StatelessWidget {
                       SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
-                          text: 'Senin, 20\nDecember',
+                          text:
+                              '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.createdAt)}',
                           style: tsBodySmallSemibold(blackColor),
                         ),
                       ),
@@ -131,7 +145,8 @@ class TugasContainer extends StatelessWidget {
                           SizedBox(width: 5),
                           AutoSizeText.rich(
                             TextSpan(
-                              text: 'Rabu, 23\nDecember',
+                              text:
+                                  '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.deadline)}',
                               style: tsBodySmallSemibold(blackColor),
                             ),
                           ),
@@ -160,8 +175,7 @@ class TugasContainer extends StatelessWidget {
           ),
           AutoSizeText.rich(
             TextSpan(
-              text:
-                  'Berdasarkan gambar tersebut ambil lima barang yang ingin didiktekan, setelah selesai foto hasil tugas anak lalu kumpulkan.',
+              text: '${argument.description}',
               style: tsBodySmallMedium(blackColor),
             ),
           ),
@@ -184,7 +198,7 @@ class TugasContainer extends StatelessWidget {
                     ),
                   ),
                   IconPoint(
-                      point: point!,
+                      point: '${argument.point.toString()}',
                       color: status == 'Selesai' ? successColor : dangerColor),
                 ],
               ),

@@ -8,7 +8,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class HomePageComponentFour extends GetView<HomePageController> {
-   HomePageComponentFour({super.key});
+  HomePageComponentFour({super.key});
   final LaporanPageController laporanController =
       Get.put<LaporanPageController>(LaporanPageController());
 
@@ -37,10 +37,12 @@ class HomePageComponentFour extends GetView<HomePageController> {
           itemCount: laporanController.showCurrentTugasModel.length,
           itemBuilder: (BuildContext context, int index) {
             return TugasWidget(
-              category: laporanController.showCurrentTugasModel[index].category!,
+              category:
+                  laporanController.showCurrentTugasModel[index].category!,
               title: laporanController.showCurrentTugasModel[index].title!,
-              status:
-                  laporanController.showCurrentTugasModel[index].statusTugasUser ?? 'null',
+              status: laporanController
+                      .showCurrentTugasModel[index].statusTugasUser ??
+                  'null',
             );
           },
         ),

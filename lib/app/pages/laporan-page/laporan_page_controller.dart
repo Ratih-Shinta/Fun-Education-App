@@ -69,7 +69,7 @@ class LaporanPageController extends GetxController {
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModel.value = showCurrentTugasResponse!.data;
       isLoading.value = false;
-      print('current tugas ${showCurrentTugasModel[2].description}');
+      print('current tugas ${showCurrentTugasModel.length}');
       update();
     } catch (e) {
       isLoading(true);

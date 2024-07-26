@@ -16,6 +16,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Column(
       children: [
@@ -45,56 +46,92 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
             ]),
         SizedBox(height: 20),
         SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Obx(() => TabBarView(
+          // Expanded(
+          height: height * 5,
+          child: TabBarView(
             children: [
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: controller.showCurrentTugasModel.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return TugasWidget(
-                    category: '${controller.showCurrentTugasModel[index].category}',
-                    title:
-                        '${controller.showCurrentTugasModel[index].title}',
-                    status: '${controller
-                            .showCurrentTugasModel[index].statusTugasUser}',
-                  );
+              Obx(
+                () {
+                  if (controller.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (controller.showCurrentTugasModel.isEmpty) {
+                    return Center(child: Text('Data Kosong'));
+                  } else {
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.showCurrentTugasModel.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TugasWidget(
+                          controllerArguments:
+                              controller.showCurrentTugasModel[index],
+                          category:
+                              '${controller.showCurrentTugasModel[index].category}',
+                          title:
+                              '${controller.showCurrentTugasModel[index].title}',
+                          status:
+                              '${controller.showCurrentTugasModel[index].statusTugasUser}',
+                        );
+                      },
+                    );
+                  }
                 },
               ),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount:
-                    controller.showCurrentTugasModelDiperiksa.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return TugasWidget(
-                    category: controller
-                        .showCurrentTugasModelDiperiksa[index].category!,
-                    title: controller
-                        .showCurrentTugasModelDiperiksa[index].title!,
-                    status: controller
-                            .showCurrentTugasModelDiperiksa[index].statusTugasUser ??
-                        'null',
-                  );
+              Obx(
+                () {
+                  if (controller.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (controller.showCurrentTugasModel.isEmpty) {
+                    return Center(child: Text('Data Kosong'));
+                  } else {
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount:
+                          controller.showCurrentTugasModelDiperiksa.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TugasWidget(
+                          controllerArguments:
+                              controller.showCurrentTugasModelDiperiksa[index],
+                          category: '${controller
+                              .showCurrentTugasModelDiperiksa[index].category}',
+                          title: '${controller
+                              .showCurrentTugasModelDiperiksa[index].title}',
+                          status: '${controller
+                                  .showCurrentTugasModelDiperiksa[index]
+                                  .statusTugasUser}',
+                        );
+                      },
+                    );
+                  }
                 },
               ),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount:
-                    controller.showCurrentTugasModelSelesai.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return TugasWidget(
-                    category: controller
-                        .showCurrentTugasModelSelesai[index].category!,
-                    title: controller
-                        .showCurrentTugasModelSelesai[index].title!,
-                    status: controller
-                            .showCurrentTugasModelSelesai[index].statusTugasUser ??
-                        'null',
-                  );
+              Obx(
+                () {
+                  if (controller.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (controller.showCurrentTugasModel.isEmpty) {
+                    return Center(child: Text('Tidak ada'));
+                  } else {
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.showCurrentTugasModelSelesai.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TugasWidget(
+                          controllerArguments:
+                              controller.showCurrentTugasModelSelesai[index],
+                          category: '${controller
+                              .showCurrentTugasModelSelesai[index].category}',
+                          title: '${controller
+                              .showCurrentTugasModelSelesai[index].title}',
+                          status: '${controller.showCurrentTugasModelSelesai[index]
+                                  .statusTugasUser}',
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ],
-          ),)
+          ),
         )
       ],
     );
