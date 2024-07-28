@@ -2,8 +2,6 @@ import 'package:fun_education_app/app/pages/add-photo-page/add_photo_binding.dar
 import 'package:fun_education_app/app/pages/add-photo-page/add_photo_view.dart';
 import 'package:fun_education_app/app/pages/detail-album-photo/detail_album_photo_binding.dart';
 import 'package:fun_education_app/app/pages/detail-album-photo/detail_album_photo_view.dart';
-import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_binding.dart';
-import 'package:fun_education_app/app/pages/detail-laporan-bulanan-page/detail_laporan_bulanan_view.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_binding.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_view.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_binding.dart';
@@ -92,11 +90,6 @@ class AppPages {
       name: _Paths.DETAIL_LAPORAN_HARIAN_PAGE,
       page: () => DetailLaporanHarianView(),
       binding: DetailLaporanHarianBinding(),
-    ),
-    GetPage(
-      name: _Paths.DETAIL_LAPORAN_BULANAN_PAGE,
-      page: () => DetailLaporanBulananView(),
-      binding: DetailLaporanBulananBinding(),
     ),
     GetPage(
       name: _Paths.PROFILE_PAGE,

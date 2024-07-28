@@ -4,7 +4,6 @@ class ApiEndPoint {
   static String baseUrlShiftMasuk = '$baseUrl/shift-masuk';
   static String baseUrlCatatanDarurat = '$baseUrl/catatan-darurat';
   static String baseUrlLaporanHarian = '$baseUrl/laporan-harian';
-  static String baseUrlLaporanBulanan = '$baseUrl/laporan-bulanan';
   static String baseUrlTabungan = '$baseUrl/tabungan';
   static String baseUrlTransaksi = '$baseUrl/transaksi';
   static String baseUrlAlurBelajar = '$baseUrl/alur-belajar';
@@ -12,11 +11,16 @@ class ApiEndPoint {
   static String baseUrlMinimumPengajuan = '$baseUrl/minimum-pengajuan';
   static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
+  static String baseUrlTugas = '$baseUrl/tugas';
+  static String baseUrlLeaderboard = '$baseUrl/leaderboard/index';
 
   //Auth
   static String login = '$baseUrlAuth/login';
   static String register = '$baseUrlAuth/register';
   static String logout = '$baseUrlAuth/logout';
+
+  //Tugas
+  static String showCurrentTugas = '$baseUrlTugas/show-current';
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';
@@ -30,10 +34,6 @@ class ApiEndPoint {
   //Laporan Harian
   static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
   static String showCurrentPoint = '$baseUrlLaporanHarian/show-current-point';
-
-  //Laporan Bulanan
-  static String showCurrentLaporanBulanan =
-      '$baseUrlLaporanBulanan/show-current';
 
   //Tabungan
   static String showCurrentTabungan = '$baseUrlTabungan/show-current';

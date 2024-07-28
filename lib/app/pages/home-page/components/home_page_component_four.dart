@@ -1,11 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/tugas_widget.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class HomePageComponentFour extends StatelessWidget {
-  const HomePageComponentFour({super.key});
+class HomePageComponentFour extends GetView<HomePageController> {
+  HomePageComponentFour({super.key});
+  final LaporanPageController laporanController =
+      Get.put<LaporanPageController>(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +31,22 @@ class HomePageComponentFour extends StatelessWidget {
           ],
         ),
         SizedBox(height: height * 0.02),
-        TugasWidget(
-          color: blueColor,
-          type: 'Dikte & Menulis',
-          title: 'Menulis 5 benda yang sering dilihat oleh ananda',
-        ),
-        TugasWidget(
-          color: primaryColor,
-          type: 'Kreasi',
-          title: 'Mewarnai gambar dengan menggunakan origami',
-        ),
-        TugasWidget(
-          color: greenColor,
-          type: 'Membaca',
-          title: 'Membaca kartu baju sampai cabe',
-        ),
-        TugasWidget(
-          color: warningColor,
-          type: 'Berhitung',
-          title: 'Perhatikan soal berikut',
+        ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: laporanController.showCurrentTugasModel.length,
+          itemBuilder: (BuildContext context, int index) {
+            return TugasWidget(
+              category:
+                  laporanController.showCurrentTugasModel[index].category!,
+              title: laporanController.showCurrentTugasModel[index].title!,
+              status: laporanController
+                      .showCurrentTugasModel[index].statusTugasUser ??
+                  'null',
+            );
+          },
         ),
       ],
     );
-
-    
   }
 }

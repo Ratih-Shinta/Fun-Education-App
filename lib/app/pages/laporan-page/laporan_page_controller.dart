@@ -2,31 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_model.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_response.dart';
 import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur_belajar_service.dart';
-import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_model.dart';
-import 'package:fun_education_app/app/api/laporan-bulanan/models/show_current_laporan_bulanan_response.dart';
-import 'package:fun_education_app/app/api/laporan-bulanan/service/show_current_laporan_bulanan_service.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_model.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_response.dart';
+import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_image_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_response.dart';
+import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 
 class LaporanPageController extends GetxController {
+  HomePageController homePageController = Get.put(HomePageController());
   RxBool isLoading = false.obs;
   RxBool isLoadingLaporanHarian = false.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
+  var currentStatus = 'Tersedia'.obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
   Rx<ShowCurrentAlurBelajarModel> showCurrentAlurBelajarModel =
       ShowCurrentAlurBelajarModel().obs;
-
-  LaporanBulananService laporanBulananService = LaporanBulananService();
-  ShowCurrentLaporanBulananResponse? showCurrentLaporanBulananResponse;
-  Rx<ShowCurrentLaporanBulananModel> showCurrentLaporanBulananModel =
-      ShowCurrentLaporanBulananModel().obs;
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentPointMingguanResponse? showCurrentPointMingguanResponse;
@@ -37,15 +40,91 @@ class LaporanPageController extends GetxController {
   Rx<ShowCurrentPointBulananModel> showCurrentPointBulananModel =
       ShowCurrentPointBulananModel().obs;
 
+  TugasService tugasService = TugasService();
+  ShowCurrentTugasResponse? showCurrentTugasResponse;
+  RxList<ShowCurrentTugasModel> showCurrentTugasModel =
+      <ShowCurrentTugasModel>[].obs;
+  RxList<ShowCurrentTugasModel> showCurrentTugasModelDiperiksa =
+      <ShowCurrentTugasModel>[].obs;
+  RxList<ShowCurrentTugasModel> showCurrentTugasModelSelesai =
+      <ShowCurrentTugasModel>[].obs;
+  RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
+      <ShowCurrentTugasImageModel>[].obs;
+
+  LeaderboardService leaderboardService = LeaderboardService();
+  LeaderboardResponse? leaderboardResponse;
+  RxList<LeaderboardModel> leaderboardModelWeekly = <LeaderboardModel>[].obs;
+  RxList<LeaderboardModel> leaderboardModelMonthly = <LeaderboardModel>[].obs;
+
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showCurrentAlurBelajar();
-      showCurrentLaporanBulanan();
       showCurrentPointMingguan();
       showCurrentPointBulanan();
+      showCurrentTugas();
+      showCurrentTugasDiperiksa();
+      showCurrentTugasSelesai();
+      showLeaderboardWeelky();
+      showLeaderboardMonthly();
     });
     super.onInit();
+  }
+
+  Future showCurrentTugas() async {
+    try {
+      isLoading(true);
+      final response = await tugasService.getCurrentTugas();
+      showCurrentTugasResponse =
+          ShowCurrentTugasResponse.fromJson(response.data);
+      showCurrentTugasModel.value = showCurrentTugasResponse!.data;
+      isLoading.value = false;
+      print('current tugas ${showCurrentTugasModel.length}');
+      update();
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showCurrentTugasDiperiksa() async {
+    try {
+      isLoading(true);
+      final response = await tugasService.getCurrentTugasDiperiksa();
+      showCurrentTugasResponse =
+          ShowCurrentTugasResponse.fromJson(response.data);
+      showCurrentTugasModelDiperiksa.value = showCurrentTugasResponse!.data;
+      isLoading.value = false;
+      print(
+          'current tugas diperiksa : ${showCurrentTugasModelDiperiksa.length}');
+      update();
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showCurrentTugasSelesai() async {
+    try {
+      isLoading(true);
+      final response = await tugasService.getCurrentTugasSelesai();
+      showCurrentTugasResponse =
+          ShowCurrentTugasResponse.fromJson(response.data);
+      showCurrentTugasModelSelesai.value = showCurrentTugasResponse!.data;
+      print(
+          'current tugas selesai : ${showCurrentTugasModelSelesai[1].description}');
+      isLoading.value = false;
+      update();
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
   }
 
   showCurrentAlurBelajar() async {
@@ -58,26 +137,6 @@ class LaporanPageController extends GetxController {
       update();
     } catch (e) {
       print(e);
-    }
-  }
-
-  showCurrentLaporanBulanan() async {
-    try {
-      isLoading(true);
-      showCurrentLaporanBulananModel.value = ShowCurrentLaporanBulananModel();
-      await Future.delayed(Duration.zero);
-      final response = await laporanBulananService
-          .getShowCurrentLaporanBulanan(DateTime.now().month);
-      showCurrentLaporanBulananResponse =
-          ShowCurrentLaporanBulananResponse.fromJson(response.data);
-      showCurrentLaporanBulananModel.value =
-          showCurrentLaporanBulananResponse!.data;
-      update();
-    } catch (e) {
-      isLoading(true);
-      print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
@@ -110,6 +169,40 @@ class LaporanPageController extends GetxController {
       isLoading.value = false;
       update();
       print(showCurrentPointBulananModel.value.week1Point);
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showLeaderboardWeelky() async {
+    try {
+      isLoading(true);
+      final response = await leaderboardService.getLeaderboardWeekly();
+      leaderboardResponse = LeaderboardResponse.fromJson(response.data);
+      leaderboardModelWeekly.value = leaderboardResponse!.data;
+      isLoading.value = false;
+      update();
+      print('leaderboard weelky: ${leaderboardModelWeekly[3].rank}');
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showLeaderboardMonthly() async {
+    try {
+      isLoading(true);
+      final response = await leaderboardService.getLeaderboardMonthly();
+      leaderboardResponse = LeaderboardResponse.fromJson(response.data);
+      leaderboardModelMonthly.value = leaderboardResponse!.data;
+      isLoading.value = false;
+      update();
+      print('leaderboard monthly: ${leaderboardModelMonthly[3].rank}');
     } catch (e) {
       isLoading(true);
       print(e);
@@ -160,8 +253,8 @@ class LaporanPageController extends GetxController {
   }
 
   var selectedTime = 'Mingguan'.obs;
-  void setSelectedTime(String period) {
-    selectedTime.value = period;
+  void setSelectedTime(String time) {
+    selectedTime.value = time;
   }
 
   var selectedPeriod = 'Mingguan'.obs;
@@ -175,6 +268,5 @@ class LaporanPageController extends GetxController {
 
   Future<void> refresh() async {
     showCurrentAlurBelajar();
-    showCurrentLaporanBulanan();
   }
 }

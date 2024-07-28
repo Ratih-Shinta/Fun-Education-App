@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan_component_four.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan_page_component_one.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan_page_component_three.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan_page_component_two.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_component_four.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_one.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_three.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_two.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:get/get.dart';
 

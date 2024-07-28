@@ -5,9 +5,11 @@ import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
 class DetailTugasKirim extends StatelessWidget {
-  const DetailTugasKirim({super.key});
+  DetailTugasKirim({super.key});
+  final argument = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +132,7 @@ class DetailTugasKirim extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: IconPoint(
-                point: '100',
+                point: '${argument.point.toString()}',
                 color: successColor,
                 textStyle: tsBodySmallSemibold(whiteColor),
               ),

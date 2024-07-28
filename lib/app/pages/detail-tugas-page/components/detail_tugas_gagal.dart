@@ -9,12 +9,11 @@ class DetailTugasGagal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         TugasContainer(
           status: 'Gagal',
-          point: '0', pointContainer: true,
+          pointContainer: true,
         ),
         SizedBox(height: 40),
         SvgPicture.asset('assets/images/imgGagal.svg'),

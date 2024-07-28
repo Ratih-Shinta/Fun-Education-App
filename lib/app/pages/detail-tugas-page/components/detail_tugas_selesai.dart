@@ -17,7 +17,8 @@ class DetailTugasSelesai extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TugasContainer(
-          status: 'Selesai', point: '987', pointContainer: true,
+          status: 'Selesai',
+          pointContainer: true,
         ),
         Row(
           children: [
