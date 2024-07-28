@@ -7,6 +7,9 @@ import 'package:fun_education_app/app/api/laporan-harian/models/show-current-poi
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_model.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_response.dart';
 import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_response.dart';
@@ -48,15 +51,22 @@ class LaporanPageController extends GetxController {
   RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
       <ShowCurrentTugasImageModel>[].obs;
 
+  LeaderboardService leaderboardService = LeaderboardService();
+  LeaderboardResponse? leaderboardResponse;
+  RxList<LeaderboardModel> leaderboardModelWeekly = <LeaderboardModel>[].obs;
+  RxList<LeaderboardModel> leaderboardModelMonthly = <LeaderboardModel>[].obs;
+
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showCurrentAlurBelajar();
       showCurrentPointMingguan();
       showCurrentPointBulanan();
-    showCurrentTugas();
-    showCurrentTugasDiperiksa();
-    showCurrentTugasSelesai();
+      showCurrentTugas();
+      showCurrentTugasDiperiksa();
+      showCurrentTugasSelesai();
+      showLeaderboardWeelky();
+      showLeaderboardMonthly();
     });
     super.onInit();
   }
@@ -87,7 +97,8 @@ class LaporanPageController extends GetxController {
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelDiperiksa.value = showCurrentTugasResponse!.data;
       isLoading.value = false;
-      print('current tugas diperiksa : ${showCurrentTugasModelDiperiksa.length}');
+      print(
+          'current tugas diperiksa : ${showCurrentTugasModelDiperiksa.length}');
       update();
     } catch (e) {
       isLoading(true);
@@ -104,7 +115,8 @@ class LaporanPageController extends GetxController {
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelSelesai.value = showCurrentTugasResponse!.data;
-      print('current tugas selesai : ${showCurrentTugasModelSelesai[1].description}');
+      print(
+          'current tugas selesai : ${showCurrentTugasModelSelesai[1].description}');
       isLoading.value = false;
       update();
     } catch (e) {
@@ -165,6 +177,40 @@ class LaporanPageController extends GetxController {
     }
   }
 
+  Future showLeaderboardWeelky() async {
+    try {
+      isLoading(true);
+      final response = await leaderboardService.getLeaderboardWeekly();
+      leaderboardResponse = LeaderboardResponse.fromJson(response.data);
+      leaderboardModelWeekly.value = leaderboardResponse!.data;
+      isLoading.value = false;
+      update();
+      print('leaderboard weelky: ${leaderboardModelWeekly[3].rank}');
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future showLeaderboardMonthly() async {
+    try {
+      isLoading(true);
+      final response = await leaderboardService.getLeaderboardMonthly();
+      leaderboardResponse = LeaderboardResponse.fromJson(response.data);
+      leaderboardModelMonthly.value = leaderboardResponse!.data;
+      isLoading.value = false;
+      update();
+      print('leaderboard monthly: ${leaderboardModelMonthly[3].rank}');
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    } finally {
+      isLoading(false);
+    }
+  }
+
   void onHorizontalDrag(DragEndDetails details) {
     if (details.primaryVelocity != null) {
       if (details.primaryVelocity! < 0) {
@@ -207,8 +253,8 @@ class LaporanPageController extends GetxController {
   }
 
   var selectedTime = 'Mingguan'.obs;
-  void setSelectedTime(String period) {
-    selectedTime.value = period;
+  void setSelectedTime(String time) {
+    selectedTime.value = time;
   }
 
   var selectedPeriod = 'Mingguan'.obs;

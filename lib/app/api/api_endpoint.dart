@@ -12,6 +12,7 @@ class ApiEndPoint {
   static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
   static String baseUrlTugas = '$baseUrl/tugas';
+  static String baseUrlLeaderboard = '$baseUrl/leaderboard/index';
 
   //Auth
   static String login = '$baseUrlAuth/login';
