@@ -12,7 +12,8 @@ class ApiEndPoint {
   static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
   static String baseUrlTugas = '$baseUrl/tugas';
-  static String baseUrlLeaderboard = '$baseUrl/leaderboard/index';
+    static String baseUrlLeaderboard = '$baseUrl/leaderboard/index';
+
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -21,6 +22,7 @@ class ApiEndPoint {
 
   //Tugas
   static String showCurrentTugas = '$baseUrlTugas/show-current';
+  static String showByIdTugas = '$baseUrlTugas/show/';
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';

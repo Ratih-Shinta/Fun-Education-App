@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 
 ShowCurrentTugasResponse showCurrentTugasResponseFromJson(String str) => ShowCurrentTugasResponse.fromJson(json.decode(str));
 

@@ -4,13 +4,12 @@ import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_gagal.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_kirim.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_selesai.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class DetailTugasPageView extends StatelessWidget {
-  final LaporanPageController laporanPageController =
-      Get.put(LaporanPageController());
+class DetailTugasPageView extends GetView<DetailTugasPageController> {
   final argument = Get.arguments;
 
   @override
@@ -48,16 +47,16 @@ class DetailTugasPageView extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.05, vertical: height * 0.02),
               child: Obx(() {
-                if (laporanPageController.isLoading.value) {
+                if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
-                } else if (argument.statusTugasUser == null) {
-                  return DetailTugasKirim();
+                } else if (argument.statusTugasUser == 'Gagal') {
+                  return DetailTugasGagal();
                 } else if (argument.statusTugasUser == 'Diperiksa') {
                   return DetailTugasDiperiksa();
                 } else if (argument.statusTugasUser == 'Selesai') {
                   return DetailTugasSelesai();
                 } else {
-                  return DetailTugasGagal();
+                  return DetailTugasKirim();
                 }
               })),
         ));

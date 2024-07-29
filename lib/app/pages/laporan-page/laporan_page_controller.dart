@@ -10,9 +10,9 @@ import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_model.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_response.dart';
-import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_image_model.dart';
-import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_model.dart';
-import 'package:fun_education_app/app/api/tugas/models/show_current_tugas_response.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:get/get.dart';
@@ -127,7 +127,7 @@ class LaporanPageController extends GetxController {
     }
   }
 
-  showCurrentAlurBelajar() async {
+  Future showCurrentAlurBelajar() async {
     try {
       final response = await alurBelajarService.getShowCurrentAlurBelajar();
       showCurrentAlurBelajarResponse =

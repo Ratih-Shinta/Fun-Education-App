@@ -1,17 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/common_detail_image.dart';
+import 'package:fun_education_app/app/global-component/common_grid_image.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class TugasContainer extends StatelessWidget {
-  final LaporanPageController laporanPageController =
-      Get.put(LaporanPageController());
+class TugasContainer extends GetView<DetailTugasPageController> {
   final argument = Get.arguments;
-
   final String? status;
   final bool pointContainer;
 
@@ -25,12 +25,25 @@ class TugasContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: pointContainer == true ? opacity5GreyColor : opacity10BlueColor,
+        color: status == 'Selesai'
+            ? opacity5GreyColor
+            : status == 'Gagal'
+                ? opacity5GreyColor
+                : argument.category == 'Dikte & Menulis'
+                    ? blueColor.withOpacity(0.1)
+                    : argument.category == 'Kreasi'
+                        ? primaryColor.withOpacity(0.1)
+                        : argument.category == 'Membaca'
+                            ? greenColor.withOpacity(0.1)
+                            : argument.category == 'Berhitung'
+                                ? warningColor.withOpacity(0.1)
+                                : dangerColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
@@ -41,7 +54,15 @@ class TugasContainer extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 decoration: BoxDecoration(
-                  color: opacity60BlueColor,
+                  color: argument.category == 'Dikte & Menulis'
+                      ? blueColor.withOpacity(0.6)
+                      : argument.category == 'Kreasi'
+                          ? primaryColor.withOpacity(0.6)
+                          : argument.category == 'Membaca'
+                              ? greenColor.withOpacity(0.6)
+                              : argument.category == 'Berhitung'
+                                  ? warningColor.withOpacity(0.6)
+                                  : opacity20GreyColor,
                   borderRadius: BorderRadius.circular(29),
                 ),
                 child: AutoSizeText.rich(
@@ -55,11 +76,9 @@ class TugasContainer extends StatelessWidget {
               SizedBox(width: 10),
               // if (pointContainer)
               Obx(() {
-                if (laporanPageController.isLoading.value) {
+                if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
-                } else if (argument.statusTugasUser == null) {
-                  return SizedBox(width: 1);
-                } else {
+                } else if (argument.statusTugasUser != null) {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     decoration: BoxDecoration(
@@ -78,6 +97,8 @@ class TugasContainer extends StatelessWidget {
                       ),
                     ),
                   );
+                } else {
+                  return SizedBox(width: 1);
                 }
               })
             ],
@@ -105,17 +126,23 @@ class TugasContainer extends StatelessWidget {
                   SizedBox(height: 7),
                   Row(
                     children: [
-                      SvgPicture.asset(
-                        iconCalender,
-                        color: pointContainer == true
-                            ? opacity50GreyColor
-                            : blueColor,
-                      ),
+                      SvgPicture.asset(iconCalender,
+                          color: pointContainer == true
+                              ? opacity50GreyColor
+                              : argument.category == 'Dikte & Menulis'
+                                  ? blueColor
+                                  : argument.category == 'Kreasi'
+                                      ? primaryColor
+                                      : argument.category == 'Membaca'
+                                          ? greenColor
+                                          : argument.category == 'Berhitung'
+                                              ? warningColor
+                                              : dangerColor),
                       SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
                           text:
-                              '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.createdAt)}',
+                              '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(argument.createdAt!)}',
                           style: tsBodySmallSemibold(blackColor),
                         ),
                       ),
@@ -146,7 +173,7 @@ class TugasContainer extends StatelessWidget {
                           AutoSizeText.rich(
                             TextSpan(
                               text:
-                                  '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.deadline)}',
+                                  '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.deadline!)}',
                               style: tsBodySmallSemibold(blackColor),
                             ),
                           ),
@@ -172,6 +199,34 @@ class TugasContainer extends StatelessWidget {
               text: 'Deskripsi :\n',
               style: tsBodyMediumSemibold(blackColor),
             ),
+          ),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: argument.images?.length ?? 0,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: width * 0.02,
+              mainAxisSpacing: height * 0.01,
+              childAspectRatio: 1.4,
+            ),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Get.to(
+                    () => CommonDetailImage(
+                      imagePath: argument.images![index].image.toString(),
+                      isNetwork: true,
+                    ),
+                  );
+                },
+                child: CommonGridImage(
+                  imagePath: argument.images![index].image.toString(),
+                  isDelete: false,
+                  isNetwork: true,
+                ),
+              );
+            },
           ),
           AutoSizeText.rich(
             TextSpan(
