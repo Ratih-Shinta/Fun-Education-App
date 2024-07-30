@@ -42,4 +42,15 @@ class TugasService {
       throw Exception(e);
     }
   }
+  
+  Future<Response> getShowByIdTugas(String tugasId) async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: '${ApiEndPoint.showByIdTugas}$tugasId',
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
