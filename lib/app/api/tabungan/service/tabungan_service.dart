@@ -35,7 +35,6 @@ class TabunganService {
           endpoint: ApiEndPoint.storePengajuanTabungan,
           isAuthorize: true,
           data: {'user_id': userId, 'category': category});
-
       return response;
     } catch (e) {
       throw Exception(e);

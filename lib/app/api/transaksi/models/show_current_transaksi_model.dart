@@ -1,21 +1,36 @@
-import 'package:fun_education_app/app/api/transaksi/models/item_transaction_model.dart';
-
 class ShowCurrentTransaksiModel {
-    String date;
-    List<ItemTransactionModel> transaction;
+  String? id;
+  String? userId;
+  String? category;
+  String? amount;
+  String? desc;
+  DateTime? date;
 
-    ShowCurrentTransaksiModel({
-        required this.date,
-        required this.transaction,
-    });
+  ShowCurrentTransaksiModel({
+    this.id,
+    this.userId,
+    this.category,
+    this.amount,
+    this.desc,
+    this.date,
+  });
 
-    factory ShowCurrentTransaksiModel.fromJson(Map<String, dynamic> json) => ShowCurrentTransaksiModel(
-        date: json["date"],
-        transaction: List<ItemTransactionModel>.from(json["transaction"].map((x) => ItemTransactionModel.fromJson(x))),
-    );
+  factory ShowCurrentTransaksiModel.fromJson(Map<String, dynamic> json) =>
+      ShowCurrentTransaksiModel(
+        id: json["id"],
+        userId: json["user_id"],
+        category: json["category"],
+        amount: json["amount"],
+        desc: json["desc"],
+        date: DateTime.parse(json["date"]),
+      );
 
-    Map<String, dynamic> toJson() => {
-        "date": date,
-        "transaction": List<dynamic>.from(transaction.map((x) => x.toJson())),
-    };
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "user_id": userId,
+        "category": category,
+        "amount": amount,
+        "desc": desc,
+        "date": date?.toIso8601String(),
+      };
 }
