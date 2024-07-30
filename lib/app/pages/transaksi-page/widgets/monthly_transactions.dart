@@ -98,7 +98,7 @@ class MonthlyTransactions extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return TransactionHistory(
+            return TransactionHistory(index: index,
                 // transactionModelIndex: index,
                 // transactionIndex: index,
                 );

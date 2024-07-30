@@ -5,7 +5,6 @@ import 'package:fun_education_app/app/global-component/common_detail_image.dart'
 import 'package:fun_education_app/app/global-component/common_grid_image.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

@@ -16,4 +16,19 @@ class TransaksiService {
       throw Exception(e);
     }
   }
+
+  Future<Response> getTransaksiByMonth(String month) async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showCurrentTransaksi,
+        isAuthorize: true,
+        queryParameters: {
+          'month': month,
+        },
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

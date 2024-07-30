@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:fun_education_app/app/api/transaksi/models/item_transaction_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_response.dart';
 import 'package:fun_education_app/app/api/transaksi/service/show_current_transaksi_service.dart';
@@ -13,8 +12,8 @@ class TransaksiPageController extends GetxController {
   ShowCurrentTransaksiResponse? showCurrentTransaksiResponse;
   RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModel =
       <ShowCurrentTransaksiModel>[].obs;
-  RxList<ItemTransactionModel> itemTransactionModel =
-      <ItemTransactionModel>[].obs;
+  // RxList<ItemTransactionModel> itemTransactionModel =
+  //     <ItemTransactionModel>[].obs;
 
   RxBool isOpen = false.obs;
 
@@ -55,31 +54,31 @@ class TransaksiPageController extends GetxController {
       final response = await transaksiService.getShowCurrentTransaksi();
       showCurrentTransaksiResponse =
           ShowCurrentTransaksiResponse.fromJson(response.data);
-      showCurrentTransaksiModel.value = showCurrentTransaksiResponse!.data;
-      itemTransactionModel.assignAll(
-          showCurrentTransaksiModel.expand((model) => model.transaction));
+      showCurrentTransaksiModel.value = showCurrentTransaksiResponse!.data!;
+      // itemTransactionModel.assignAll(
+      //     showCurrentTransaksiModel.expand((model) => model.transaction));
       update();
     } catch (e) {
       print(e);
     }
   }
 
-  ShowCurrentTransaksiModel? getTransactionModel(int index) {
-    if (index < showCurrentTransaksiModel.length) {
-      return showCurrentTransaksiModel[index];
-    }
-    return null;
-  }
+  // ShowCurrentTransaksiModel? getTransactionModel(int index) {
+  //   if (index < showCurrentTransaksiModel.length) {
+  //     return showCurrentTransaksiModel[index];
+  //   }
+  //   return null;
+  // }
 
-  ItemTransactionModel? getTransaction(
-      int transactionModelIndex, int transactionIndex) {
-    final transactionModel = getTransactionModel(transactionModelIndex);
-    if (transactionModel != null &&
-        transactionIndex < transactionModel.transaction.length) {
-      return transactionModel.transaction[transactionIndex];
-    }
-    return null;
-  }
+  // ItemTransactionModel? getTransaction(
+  //     int transactionModelIndex, int transactionIndex) {
+  //   final transactionModel = getTransactionModel(transactionModelIndex);
+  //   if (transactionModel != null &&
+  //       transactionIndex < transactionModel.transaction.length) {
+  //     return transactionModel.transaction[transactionIndex];
+  //   }
+  //   return null;
+  // }
 
   final List<BarChartGroupData> mingguanData = [
     makeGroupData(0, 200000, 400000),

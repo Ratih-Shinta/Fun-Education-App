@@ -227,9 +227,11 @@ class SavingPageView extends GetView<SavingPageController> {
                     ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 10,
+                      itemCount: transaksiPageController
+                          .showCurrentTransaksiModel.length,
                       itemBuilder: (BuildContext context, int index) {
                         return TransactionHistory(
+                          index: index,
                           // transactionModelIndex: index,
                           // transactionIndex: index,
                         );

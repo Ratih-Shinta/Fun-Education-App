@@ -4,12 +4,15 @@ import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_contro
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class TransactionHistory extends GetView<TransaksiPageController> {
+class TransactionHistory extends StatelessWidget {
+  final TransaksiPageController controller = Get.put(TransaksiPageController());
+  final int index;
   // final int transactionModelIndex;
   // final int transactionIndex;
 
-  const TransactionHistory({
+  TransactionHistory({
     Key? key,
+    required this.index,
     // required this.transactionModelIndex,
     // required this.transactionIndex,
   }) : super(key: key);
@@ -55,16 +58,18 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                       horizontal: width * 0.023,
                     ),
                     decoration: BoxDecoration(
-                      color: 
-                      // isIncome ? warningColor : 
-                      primaryColor,
+                      color: controller
+                                  .showCurrentTransaksiModel[index].category ==
+                              'income'
+                          ? warningColor
+                          : primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(
-                      // isIncome
-                      //     ? Icons.arrow_upward_rounded
-                      //     : 
-                          Icons.arrow_downward_rounded,
+                      controller.showCurrentTransaksiModel[index].category ==
+                              'income'
+                          ? Icons.arrow_upward_rounded
+                          : Icons.arrow_downward_rounded,
                       color: whiteColor,
                       size: 20,
                     ),
@@ -72,16 +77,20 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                   AutoSizeText.rich(
                     textAlign: TextAlign.start,
                     TextSpan(
-                      text:
-                      //  isIncome ? 'Pemasukan\n' : 
-                       'Pengeluaran\n',
+                      text: controller
+                                  .showCurrentTransaksiModel[index].category ==
+                              'income'
+                          ? 'Pemasukan\n'
+                          : 'Pengeluaran\n',
                       style: tsBodyMediumSemibold(blackColor).copyWith(
                         height: 1.3,
                       ),
                       children: [
                         TextSpan(
-                          text: 'Tanggal : ',
-                          // text: controller.formatDate(controller.formatDate(transaction.date ?? "Unknown date")),
+                          text: controller.formatDate(controller
+                                  .showCurrentTransaksiModel[index].date
+                                  .toString() ??
+                              "Unknown date"),
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -92,13 +101,13 @@ class TransactionHistory extends GetView<TransaksiPageController> {
               ),
               AutoSizeText.rich(
                 TextSpan(
-                  text: 'Rp. 100.000\n',
-                  // isIncome
-                  //     ? '+Rp. ${transaction.amount}'
-                  //     : '-Rp. ${transaction.amount}',
+                  text:
+                      'Rp. ${controller.showCurrentTransaksiModel[index].category == 'income' ? '+Rp. ${controller.showCurrentTransaksiModel[index].amount}' : '-Rp. ${controller.showCurrentTransaksiModel[index].amount}'}',
                   style: tsBodySmallSemibold(
-                    // isIncome ? greenColor :
-                     dangerColor),
+                      controller.showCurrentTransaksiModel[index].category ==
+                              'income'
+                          ? greenColor
+                          : dangerColor),
                 ),
               ),
             ],
@@ -123,8 +132,10 @@ class TransactionHistory extends GetView<TransaksiPageController> {
                 ),
                 children: [
                   TextSpan(
-                    text: 'Tidak Ada\n',
+                    // text: 'Tidak Ada\n',
                     // desc ? 'Tidak Ada' : transaction.desc!,
+                    text:
+                        '${controller.showCurrentTransaksiModel[index].desc ?? 'Tidak Ada'}',
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],

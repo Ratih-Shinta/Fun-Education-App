@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/tugas_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tab_item.dart';
@@ -91,13 +90,12 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                         return TugasWidget(
                           controllerArguments:
                               controller.showCurrentTugasModelDiperiksa[index],
-                          category: '${controller
-                              .showCurrentTugasModelDiperiksa[index].category}',
-                          title: '${controller
-                              .showCurrentTugasModelDiperiksa[index].title}',
-                          status: '${controller
-                                  .showCurrentTugasModelDiperiksa[index]
-                                  .statusTugasUser}',
+                          category:
+                              '${controller.showCurrentTugasModelDiperiksa[index].category}',
+                          title:
+                              '${controller.showCurrentTugasModelDiperiksa[index].title}',
+                          status:
+                              '${controller.showCurrentTugasModelDiperiksa[index].statusTugasUser}',
                         );
                       },
                     );
@@ -118,12 +116,12 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                         return TugasWidget(
                           controllerArguments:
                               controller.showCurrentTugasModelSelesai[index],
-                          category: '${controller
-                              .showCurrentTugasModelSelesai[index].category}',
-                          title: '${controller
-                              .showCurrentTugasModelSelesai[index].title}',
-                          status: '${controller.showCurrentTugasModelSelesai[index]
-                                  .statusTugasUser}',
+                          category:
+                              '${controller.showCurrentTugasModelSelesai[index].category}',
+                          title:
+                              '${controller.showCurrentTugasModelSelesai[index].title}',
+                          status:
+                              '${controller.showCurrentTugasModelSelesai[index].statusTugasUser}',
                         );
                       },
                     );
