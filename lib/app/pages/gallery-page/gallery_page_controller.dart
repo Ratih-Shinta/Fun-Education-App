@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 import 'package:fun_education_app/app/api/album-photos/models/show_all_album_photo_model.dart';
 import 'package:fun_education_app/app/api/album-photos/models/show_all_album_photo_response.dart';
 import 'package:fun_education_app/app/api/album-photos/services/show_all_album_photo_service.dart';
@@ -5,6 +8,7 @@ import 'package:fun_education_app/app/api/all-photos/models/show_all_photos_mode
 import 'package:fun_education_app/app/api/all-photos/models/show_all_photos_response.dart';
 import 'package:fun_education_app/app/api/all-photos/services/show_all_photos_service.dart';
 import 'package:get/get.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class GalleryPageController extends GetxController {
   RxBool isLoadingAllPhotos = false.obs;
@@ -49,7 +53,6 @@ class GalleryPageController extends GetxController {
       showAllAlbumPhotoResponse =
           ShowAllAlbumPhotoResponse.fromJson(response.data);
       showAllAlbumPhotoModel.value = showAllAlbumPhotoResponse!.data;
-      // print(showAllAlbumPhotoModel[1].gallery!.length);
       print(showAllAlbumPhotoModel[0].desc);
       update();
     } catch (e) {
@@ -57,6 +60,28 @@ class GalleryPageController extends GetxController {
       print(e);
     } finally {
       isLoadingAllAlbumPhoto(false);
+    }
+  }
+
+  Future savePhotoToGallery(String url) async {
+    try {
+      var response = await Dio().get(
+        url,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      final result = await ImageGallerySaver.saveImage(
+        Uint8List.fromList(response.data),
+        quality: 60,
+        name: "downloaded_image",
+      );
+      if (result['isSuccess']) {
+        Get.snackbar("Success", "Photo saved to gallery");
+      } else {
+        Get.snackbar("Error", "Failed to save photo");
+      }
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", "An error occurred while saving the photo");
     }
   }
 }

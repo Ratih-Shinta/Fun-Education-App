@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
 void bottomSheetDetailGallery(
     BuildContext context, String title, String description, String imageUrl) {
+  final GalleryPageController controller = Get.put(GalleryPageController());
   final Size mediaQuery = MediaQuery.of(context).size;
   final double width = mediaQuery.width;
   final double height = mediaQuery.height;
@@ -69,7 +72,10 @@ void bottomSheetDetailGallery(
               ),
               CommonButton(
                 text: 'Download Gambar',
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  controller.savePhotoToGallery(imageUrl);
+                  Navigator.pop(context);
+                },
                 color: blackColor,
                 icon: Icons.download,
               )

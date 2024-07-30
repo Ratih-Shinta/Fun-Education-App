@@ -127,35 +127,11 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                 ),
               ),
               SizedBox(height: height * 0.03),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AutoSizeText(
-                    '${argument.gallery.length} Photos',
-                    group: AutoSizeGroup(),
-                    maxLines: 1,
-                    style: tsBodyMediumSemibold(blackColor),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.05,
-                        vertical: height * 0.01,
-                      ),
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: AutoSizeText(
-                        group: AutoSizeGroup(),
-                        maxLines: 1,
-                        'Pilih',
-                        style: tsBodySmallMedium(whiteColor),
-                      ),
-                    ),
-                  ),
-                ],
+              AutoSizeText(
+                '${argument.gallery.length} Photos',
+                group: AutoSizeGroup(),
+                maxLines: 1,
+                style: tsBodyMediumSemibold(blackColor),
               ),
               SizedBox(height: height * 0.02),
               Obx(() {
