@@ -33,7 +33,7 @@ class LaporanContainer extends GetView<LaporanPageController> {
               Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/icons/icDocument.svg',
+                    iconDocument,
                     color: poin == '25'
                         ? dangerColor
                         : poin == '50'

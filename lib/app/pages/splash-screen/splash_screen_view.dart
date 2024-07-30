@@ -21,7 +21,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
                     color: opacityPrimaryColor,
                     borderRadius: BorderRadius.circular(14)),
                 child: SvgPicture.asset(
-                  logo,
+                  iconLogo,
                   width: 65,
                 )),
             SizedBox(height: 15),

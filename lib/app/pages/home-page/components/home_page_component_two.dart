@@ -7,8 +7,8 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class HomePageComponentTwo extends GetView<HomePageController> {
-  final LaporanPageController laporanPageController =
-      Get.put(LaporanPageController());
+  // final LaporanPageController laporanPageController =
+  //     Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +59,7 @@ class HomePageComponentTwo extends GetView<HomePageController> {
                     ),
                     children: [
                       TextSpan(
-                        text:
-                            '${controller.shiftMasukModel.value.shiftMasuk}',
+                        text: '${controller.showCurrentUserModel.value.shift}',
                         style: tsBodyMediumSemibold(blackColor),
                       ),
                     ],
@@ -79,7 +78,5 @@ class HomePageComponentTwo extends GetView<HomePageController> {
         ),
       ),
     );
-
-    
   }
 }

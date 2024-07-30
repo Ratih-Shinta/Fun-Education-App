@@ -31,7 +31,7 @@ class LoginPageView extends GetView<LoginPageController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      'assets/logo.svg',
+                      'assets/icons/icLogo.svg',
                       width: width * 0.08,
                     ),
                     SizedBox(width: width * 0.01),
@@ -46,7 +46,7 @@ class LoginPageView extends GetView<LoginPageController> {
                 SizedBox(height: height * 0.06),
                 Column(
                   children: [
-                    SvgPicture.asset('assets/images/login.svg'),
+                    SvgPicture.asset('assets/images/imgLogin.svg'),
                     SizedBox(height: height * 0.03),
                     AutoSizeText.rich(
                       group: AutoSizeGroup(),

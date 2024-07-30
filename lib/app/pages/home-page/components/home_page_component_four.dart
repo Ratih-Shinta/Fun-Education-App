@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class HomePageComponentFour extends GetView<HomePageController> {
   HomePageComponentFour({super.key});
   final LaporanPageController laporanController =
-      Get.put<LaporanPageController>(LaporanPageController());
+      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +32,21 @@ class HomePageComponentFour extends GetView<HomePageController> {
         ),
         SizedBox(height: height * 0.02),
         ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: laporanController.showCurrentTugasModel.length,
           itemBuilder: (BuildContext context, int index) {
             return TugasWidget(
+              controllerArguments:
+                  laporanController.showCurrentTugasModel[index],
               category:
-                  laporanController.showCurrentTugasModel[index].category!,
-              title: laporanController.showCurrentTugasModel[index].title!,
-              status: laporanController
-                      .showCurrentTugasModel[index].statusTugasUser ??
-                  'null',
+                  '${laporanController.showCurrentTugasModel[index].category}',
+              title: '${laporanController.showCurrentTugasModel[index].title}',
+              status:
+                  '${laporanController.showCurrentTugasModel[index].statusTugasUser}',
             );
           },
-        ),
+        )
       ],
     );
   }

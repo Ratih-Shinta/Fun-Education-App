@@ -23,10 +23,9 @@ class HomePageView extends GetView<HomePageController> {
           backgroundColor: transparentColor,
           leading: IconButton(
             icon: SvgPicture.asset(
-              'assets/icons/icPerson.svg',
+              'assets/icons/icUser.svg',
               width: 24,
               height: 24,
-              color: blackColor,
             ),
             onPressed: () {
               Get.toNamed(Routes.PROFILE_PAGE);
