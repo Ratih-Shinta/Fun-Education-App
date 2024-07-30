@@ -22,6 +22,7 @@ dependencies:
   intl: null
   fl_chart: 
   easy_date_timeline: 
+  image_gallery_saver: ^2.0.3
   
 dev_dependencies:
   flutter_test:

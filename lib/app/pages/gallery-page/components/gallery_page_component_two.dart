@@ -16,35 +16,11 @@ class GalleryPageComponentTwo extends GetView<GalleryPageController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            AutoSizeText(
-              group: AutoSizeGroup(),
-              maxLines: 1,
-              'Semua Foto',
-              style: tsBodyMediumSemibold(blackColor),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.05,
-                  vertical: height * 0.01,
-                ),
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: AutoSizeText(
-                  group: AutoSizeGroup(),
-                  maxLines: 1,
-                  'Pilih',
-                  style: tsBodySmallMedium(whiteColor),
-                ),
-              ),
-            ),
-          ],
+        AutoSizeText(
+          group: AutoSizeGroup(),
+          maxLines: 1,
+          'Semua Foto',
+          style: tsBodyMediumSemibold(blackColor),
         ),
         SizedBox(height: height * 0.02),
         Obx(() {
