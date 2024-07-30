@@ -1,9 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
 class ProfileComponentOne extends StatelessWidget {
-  const ProfileComponentOne({super.key});
+  ProfileComponentOne({super.key});
+  final HomePageController homePageController = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class ProfileComponentOne extends StatelessWidget {
                   style: tsBodyLargeSemibold(blackColor),
                 ),
                 Container(
-                  width: width * 0.6, // Use available width
+                  width: width * 0.6,
                   child: AutoSizeText(
                     'Radya Hukma Shabiyya Harbani',
                     // overflow: TextOverflow.ellipsis,
@@ -93,7 +96,7 @@ class ProfileComponentOne extends StatelessWidget {
                     style: tsBodySmallRegular(blackColor),
                   ),
                   AutoSizeText(
-                    '1.500 ',
+                    '${homePageController.showTotalPointModel.value.point}',
                     group: AutoSizeGroup(),
                     maxLines: 2,
                     style: tsBodyMediumSemibold(blackColor),

@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_model.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
 
 LeaderboardResponse leaderboardResponseFromJson(String str) => LeaderboardResponse.fromJson(json.decode(str));
 

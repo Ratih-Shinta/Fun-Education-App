@@ -8,7 +8,7 @@ class LeaderboardService {
   Future<Response> getLeaderboardWeekly() async {
     try {
       final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.baseUrlLeaderboard,
+        endpoint: ApiEndPoint.showLeaderboard,
         isAuthorize: true,
         queryParameters: {'type': 'weekly'},
       );
@@ -21,9 +21,21 @@ class LeaderboardService {
   Future<Response> getLeaderboardMonthly() async {
     try {
       final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.baseUrlLeaderboard,
+        endpoint: ApiEndPoint.showLeaderboard,
         isAuthorize: true,
         queryParameters: {'type': 'monthly'},
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getTotalPoint() async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showtotalPoint,
+        isAuthorize: true,
       );
       return response;
     } catch (e) {

@@ -33,7 +33,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
           overflow: TextOverflow.ellipsis,
         ),
         Container(
-          width: width * 0.35,
+          // width: width * 0.35,
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           decoration: BoxDecoration(
               color: successColor, borderRadius: BorderRadius.circular(10)),
@@ -45,7 +45,7 @@ class HomePageComponentOne extends GetView<HomePageController> {
                     text: 'Total Point', style: tsBodySmallRegular(whiteColor)),
               ),
               IconPoint(
-                point: '100',
+                point: '${controller.showTotalPointModel.value.point}',
                 color: successColor,
               )
             ],
