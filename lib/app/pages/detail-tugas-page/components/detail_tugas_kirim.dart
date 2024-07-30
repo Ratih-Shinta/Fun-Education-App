@@ -5,13 +5,11 @@ import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class DetailTugasKirim extends GetView<DetailTugasPageController> {
-  final laporanController = Get.put(LaporanPageController());
   DetailTugasKirim({super.key});
   final argument = Get.arguments;
 

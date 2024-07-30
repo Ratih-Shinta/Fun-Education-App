@@ -8,8 +8,8 @@ import 'package:fun_education_app/app/api/laporan-harian/models/show-current-poi
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
-import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_model.dart';
-import 'package:fun_education_app/app/api/leaderboard/models/leaderboard_response.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_response.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';

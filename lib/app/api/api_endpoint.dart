@@ -12,13 +12,17 @@ class ApiEndPoint {
   static String baseUrlPengajuanTabungan = '$baseUrl/pengajuan-tabungan';
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
   static String baseUrlTugas = '$baseUrl/tugas';
-    static String baseUrlLeaderboard = '$baseUrl/leaderboard/index';
+  static String baseUrlLeaderboard = '$baseUrl/leaderboard';
 
 
   //Auth
   static String login = '$baseUrlAuth/login';
   static String register = '$baseUrlAuth/register';
   static String logout = '$baseUrlAuth/logout';
+
+  //Leaderboard
+  static String showLeaderboard = '$baseUrlLeaderboard/index';
+  static String showtotalPoint = '$baseUrlLeaderboard/point';
 
   //Tugas
   static String showCurrentTugas = '$baseUrlTugas/show-current';

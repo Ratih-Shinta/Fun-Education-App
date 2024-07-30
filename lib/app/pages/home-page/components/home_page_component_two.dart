@@ -7,8 +7,6 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class HomePageComponentTwo extends GetView<HomePageController> {
-  // final LaporanPageController laporanPageController =
-  //     Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {

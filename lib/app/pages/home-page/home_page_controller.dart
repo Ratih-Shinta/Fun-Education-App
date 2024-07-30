@@ -1,19 +1,15 @@
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_model.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_response.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/service/show_latest_catatan_darurat_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
+import 'package:fun_education_app/app/api/leaderboard/models/show-total-point/total_point_response.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_response.dart';
 import 'package:fun_education_app/app/api/shift-masuk/service/shift_masuk_sevice.dart';
-import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
-import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
-import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
-import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:fun_education_app/app/api/users/models/show_current_user_model.dart';
 import 'package:fun_education_app/app/api/users/models/show_current_user_response.dart';
 import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class HomePageController extends GetxController {
   RxBool isLoadingLatestCatatan = false.obs;
@@ -31,6 +27,10 @@ class HomePageController extends GetxController {
   Rx<ShowLatestCatatanDaruratModel> showLatestCatatanDaruratModel =
       ShowLatestCatatanDaruratModel().obs;
 
+  LeaderboardService leaderboardService = LeaderboardService();
+  Rx<ShowTotalPointResponse> showTotalPointModel = ShowTotalPointResponse(point: '0').obs;
+
+
   RxBool isLoading = true.obs;
 
   @override
@@ -38,9 +38,23 @@ class HomePageController extends GetxController {
     showCurrentShiftMasuk();
     showCurrentUser();
     showLatestCatatanDarurat();
+    showTotalPoint();
     update();
     super.onInit();
   }
+
+  Future showTotalPoint() async {
+    try {
+      final response = await leaderboardService.getTotalPoint();
+      final totalPointResponse = ShowTotalPointResponse.fromJson(response.data);
+      showTotalPointModel.value = totalPointResponse;
+      isLoading.value = false;
+      update();
+    } catch (e) {
+      print(e);
+    }
+  }
+
 
   Future showCurrentShiftMasuk() async {
     try {
