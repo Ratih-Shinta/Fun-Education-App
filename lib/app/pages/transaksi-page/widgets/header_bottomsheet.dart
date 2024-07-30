@@ -49,6 +49,7 @@ class HeaderBottomsheet extends StatelessWidget {
                   ),
                 ],
               ),
+              overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
           ],

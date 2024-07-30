@@ -51,9 +51,9 @@ BoxShadow shadowBlackBlur10Color5 = BoxShadow(
 final BorderRadius defaulBorderRadius = BorderRadius.circular(15);
 
 //LOGO
-const String logo = 'assets/logo.svg';
+const String iconLogo = 'assets/icons/icLogo.svg';
 const String iconChat = 'assets/icons/icChat.svg';
-const String iconDocument = 'assets/icons/document.svg';
+const String iconDocument = 'assets/icons/icDocument.svg';
 const String iconTravelCase = 'assets/icons/icTravelCase.svg';
 const String iconSPP = 'assets/icons/icSPP.svg';
 const String iconCalender = 'assets/icons/icCalender.svg';

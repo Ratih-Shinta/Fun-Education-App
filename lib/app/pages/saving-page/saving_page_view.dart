@@ -127,7 +127,7 @@ class SavingPageView extends GetView<SavingPageController> {
                                   AutoSizeText.rich(
                                     TextSpan(
                                         text:
-                                            'Rp. ${controller.showCurrentTabunganModel.value.pemasukanTerakhir}',
+                                            'Rp. ${controller.showCurrentTabunganModel.value.lastIncome}',
                                         style: tsBodyLargeSemibold(blackColor)),
                                   ),
                                 ],
@@ -171,7 +171,7 @@ class SavingPageView extends GetView<SavingPageController> {
                                   AutoSizeText.rich(
                                     TextSpan(
                                         text:
-                                            'Rp. ${controller.showCurrentTabunganModel.value.pengeluaranTerakhir}',
+                                            'Rp. ${controller.showCurrentTabunganModel.value.lastOutcome}',
                                         style: tsBodyLargeSemibold(whiteColor)),
                                     maxLines: 2,
                                   ),

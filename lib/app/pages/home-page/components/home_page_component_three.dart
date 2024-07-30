@@ -126,72 +126,80 @@ class HomePageComponentThree extends GetView<HomePageController> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                width: width * 0.44,
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: opacity10GreenColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              iconDocument,
-                              width: 35,
-                              color: greenColor,
-                            ),
-                            SizedBox(width: 8.0),
-                            AutoSizeText.rich(
-                              TextSpan(
-                                text: 'Laporan \n',
-                                style: tsBodySmallRegular(blackColor).copyWith(
-                                  height: 1.3,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Harian',
-                                    style: tsBodySmallRegular(blackColor),
-                                  ),
-                                ],
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
+                },
+                child: Container(
+                  width: width * 0.44,
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: opacity10GreenColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                iconDocument,
+                                width: 35,
+                                color: greenColor,
                               ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    AutoSizeText.rich(
-                      TextSpan(
-                          text: 'Sangat Baik',
-                          style: tsBodyMediumSemibold(blackColor)),
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        SvgPicture.asset('assets/icons/calender.svg'),
-                        SizedBox(width: 8.0),
-                        AutoSizeText.rich(
-                          TextSpan(
-                              text: 'Today',
-                              style: tsBodySmallRegular(greyColor)),
-                        ),
-                      ],
-                    ),
-                  ],
+                              SizedBox(width: 8.0),
+                              AutoSizeText.rich(
+                                TextSpan(
+                                  text: 'Laporan \n',
+                                  style:
+                                      tsBodySmallRegular(blackColor).copyWith(
+                                    height: 1.3,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Harian',
+                                      style: tsBodySmallRegular(blackColor),
+                                    ),
+                                  ],
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 12,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      AutoSizeText.rich(
+                        TextSpan(
+                            text: 'Sangat Baik',
+                            style: tsBodyMediumSemibold(blackColor)),
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.calendar_today_outlined,
+                              size: 14, color: greyColor),
+                          SizedBox(width: 5),
+                          AutoSizeText.rich(
+                            TextSpan(
+                                text: 'Today',
+                                style: tsBodySmallRegular(greyColor)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              )
             ],
           )
         ],

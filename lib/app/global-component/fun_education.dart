@@ -18,7 +18,7 @@ class FunEducation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
-          logo,
+          iconLogo,
           width: width,
         ),
         SizedBox(width: width * 0.2),

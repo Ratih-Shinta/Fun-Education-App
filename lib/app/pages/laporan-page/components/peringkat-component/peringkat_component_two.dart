@@ -85,7 +85,6 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
               ? controller.leaderboardModelWeekly.length
               : controller.leaderboardModelMonthly.length,
           itemBuilder: (BuildContext context, int index) {
-            
             Color backgroundColor;
             switch (index) {
               case 0:
@@ -108,10 +107,15 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                   margin: EdgeInsets.only(bottom: 5),
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color:
-                        controller.leaderboardModelWeekly[index].isUser == true
+                    color: controller.selectedPeriod.value == 'Mingguan'
+                        ? (controller.leaderboardModelWeekly[index].isUser ==
+                                true
                             ? opacity50SuccessColor
-                            : backgroundColor,
+                            : backgroundColor)
+                        : (controller.leaderboardModelMonthly[index].isUser ==
+                                true
+                            ? opacity50SuccessColor
+                            : backgroundColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
@@ -128,11 +132,15 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         decoration: BoxDecoration(
-                          color:
-                              controller.leaderboardModelWeekly[index].isUser ==
-                                      true
+                          color: controller.selectedPeriod.value == 'Mingguan'
+                              ? (controller.leaderboardModelWeekly[index]
+                                          .isUser == true
                                   ? successColor
-                                  : blackColor,
+                                  : blackColor)
+                              : (controller.leaderboardModelMonthly[index]
+                                          .isUser == true
+                                  ? successColor
+                                  : blackColor),
                           borderRadius: BorderRadius.circular(13),
                         ),
                         child: AutoSizeText.rich(TextSpan(

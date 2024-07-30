@@ -58,8 +58,7 @@ class LaporanPageController extends GetxController {
 
   @override
   void onInit() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showCurrentAlurBelajar();
+    showCurrentAlurBelajar();
       showCurrentPointMingguan();
       showCurrentPointBulanan();
       showCurrentTugas();
@@ -67,7 +66,6 @@ class LaporanPageController extends GetxController {
       showCurrentTugasSelesai();
       showLeaderboardWeelky();
       showLeaderboardMonthly();
-    });
     super.onInit();
   }
 

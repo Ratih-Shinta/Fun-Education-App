@@ -16,12 +16,6 @@ class HomePageComponentOne extends GetView<HomePageController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Text(
-        //   'Hello, ${controller.showCurrentUserModel.value.nickname}',
-        //   style: tsTitleMediumRegular(blackColor).copyWith(
-        //     height: 1.3,
-        //   ),
-        // ),
         AutoSizeText.rich(
           TextSpan(
             text: 'Hello,\n',
