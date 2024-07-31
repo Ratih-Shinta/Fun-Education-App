@@ -60,6 +60,7 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
             CommonButton(
               text: 'Tutup',
               onPressed: () {
+                controller.showCurrentTransaksiByMonth();
                 Get.back();
                 // print(controller
                 //     .showCurrentLaporanBulananModel.value

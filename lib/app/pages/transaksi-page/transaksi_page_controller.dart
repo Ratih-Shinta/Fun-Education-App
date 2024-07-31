@@ -12,6 +12,8 @@ class TransaksiPageController extends GetxController {
   ShowCurrentTransaksiResponse? showCurrentTransaksiResponse;
   RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModel =
       <ShowCurrentTransaksiModel>[].obs;
+  RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModelByMonth =
+      <ShowCurrentTransaksiModel>[].obs;
   // RxList<ItemTransactionModel> itemTransactionModel =
   //     <ItemTransactionModel>[].obs;
 
@@ -22,7 +24,7 @@ class TransaksiPageController extends GetxController {
   @override
   void onInit() {
     showCurrentTransaksi();
-    showCurrentTransaksi();
+    showCurrentTransaksiByMonth();
     update();
     super.onInit();
   }
@@ -55,30 +57,28 @@ class TransaksiPageController extends GetxController {
       showCurrentTransaksiResponse =
           ShowCurrentTransaksiResponse.fromJson(response.data);
       showCurrentTransaksiModel.value = showCurrentTransaksiResponse!.data!;
-      // itemTransactionModel.assignAll(
-      //     showCurrentTransaksiModel.expand((model) => model.transaction));
+      print('show current : ${showCurrentTransaksiModel[2].amount}');
       update();
     } catch (e) {
       print(e);
     }
   }
 
-  // ShowCurrentTransaksiModel? getTransactionModel(int index) {
-  //   if (index < showCurrentTransaksiModel.length) {
-  //     return showCurrentTransaksiModel[index];
-  //   }
-  //   return null;
-  // }
-
-  // ItemTransactionModel? getTransaction(
-  //     int transactionModelIndex, int transactionIndex) {
-  //   final transactionModel = getTransactionModel(transactionModelIndex);
-  //   if (transactionModel != null &&
-  //       transactionIndex < transactionModel.transaction.length) {
-  //     return transactionModel.transaction[transactionIndex];
-  //   }
-  //   return null;
-  // }
+  Future<void> showCurrentTransaksiByMonth() async {
+    try {
+      isOpen(true);
+      final response =
+          await transaksiService.getTransaksiByMonth(selectedMonth.value);
+      showCurrentTransaksiResponse =
+          ShowCurrentTransaksiResponse.fromJson(response.data);
+      showCurrentTransaksiModelByMonth.value =
+          showCurrentTransaksiResponse!.data!;
+      print('by month : ${showCurrentTransaksiModelByMonth[0].amount}');
+      update();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   final List<BarChartGroupData> mingguanData = [
     makeGroupData(0, 200000, 400000),
