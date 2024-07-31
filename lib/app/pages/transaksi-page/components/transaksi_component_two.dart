@@ -83,7 +83,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (controller.showCurrentTransaksiModel
+          } else if (controller.showCurrentTransaksiModelByMonth
               .every((item) => item.amount == null)) {
             return Padding(
               padding: EdgeInsets.only(
@@ -115,6 +115,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
               ),
             );
           } else {
+            // return Text('data');
             return MonthlyTransactions();
           }
         }),

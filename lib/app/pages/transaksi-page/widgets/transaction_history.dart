@@ -5,16 +5,16 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class TransactionHistory extends StatelessWidget {
-  final TransaksiPageController controller = Get.put(TransaksiPageController());
-  final int index;
-  // final int transactionModelIndex;
-  // final int transactionIndex;
+  final String categoryController;
+  final String amountController;
+  final String descController;
+  final String dateController;
 
   TransactionHistory({
     Key? key,
-    required this.index,
-    // required this.transactionModelIndex,
-    // required this.transactionIndex,
+    required this.categoryController,
+    required this.amountController,
+    required this.descController, required this.dateController,
   }) : super(key: key);
 
   @override
@@ -22,17 +22,6 @@ class TransactionHistory extends StatelessWidget {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
-
-    // final transaction =
-    //     controller.getTransaction(transactionModelIndex, transactionIndex);
-    // if (transaction == null) {
-    //   return Container(
-    //     child: const Text("Transaction not found"),
-    //   );
-    // }
-
-    // bool isIncome = transaction.category == 'income';
-    // bool desc = transaction.desc == '';
 
     return Container(
       margin: EdgeInsets.only(bottom: height * 0.01),
@@ -58,16 +47,13 @@ class TransactionHistory extends StatelessWidget {
                       horizontal: width * 0.023,
                     ),
                     decoration: BoxDecoration(
-                      color: controller
-                                  .showCurrentTransaksiModel[index].category ==
-                              'income'
+                      color: categoryController == 'income'
                           ? warningColor
                           : primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(
-                      controller.showCurrentTransaksiModel[index].category ==
-                              'income'
+                      categoryController == 'income'
                           ? Icons.arrow_upward_rounded
                           : Icons.arrow_downward_rounded,
                       color: whiteColor,
@@ -77,9 +63,7 @@ class TransactionHistory extends StatelessWidget {
                   AutoSizeText.rich(
                     textAlign: TextAlign.start,
                     TextSpan(
-                      text: controller
-                                  .showCurrentTransaksiModel[index].category ==
-                              'income'
+                      text: categoryController == 'income'
                           ? 'Pemasukan\n'
                           : 'Pengeluaran\n',
                       style: tsBodyMediumSemibold(blackColor).copyWith(
@@ -87,10 +71,7 @@ class TransactionHistory extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: controller.formatDate(controller
-                                  .showCurrentTransaksiModel[index].date
-                                  .toString() ??
-                              "Unknown date"),
+                          text: dateController,
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -102,9 +83,9 @@ class TransactionHistory extends StatelessWidget {
               AutoSizeText.rich(
                 TextSpan(
                   text:
-                      'Rp. ${controller.showCurrentTransaksiModel[index].category == 'income' ? '+Rp. ${controller.showCurrentTransaksiModel[index].amount}' : '-Rp. ${controller.showCurrentTransaksiModel[index].amount}'}',
+                      'Rp. ${categoryController == 'income' ? '+Rp. ${amountController}' : '-Rp. ${amountController}'}',
                   style: tsBodySmallSemibold(
-                      controller.showCurrentTransaksiModel[index].category ==
+                      categoryController ==
                               'income'
                           ? greenColor
                           : dangerColor),
@@ -132,10 +113,8 @@ class TransactionHistory extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    // text: 'Tidak Ada\n',
-                    // desc ? 'Tidak Ada' : transaction.desc!,
                     text:
-                        '${controller.showCurrentTransaksiModel[index].desc ?? 'Tidak Ada'}',
+                        '${descController ?? 'Tidak Ada'}',
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],
