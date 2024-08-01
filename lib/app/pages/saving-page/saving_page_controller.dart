@@ -1,3 +1,6 @@
+import 'package:fun_education_app/app/api/pengajuan-tabungan/model/current_pengajuan_tabungan_model.dart';
+import 'package:fun_education_app/app/api/pengajuan-tabungan/model/current_pengajuan_tabungan_response.dart';
+import 'package:fun_education_app/app/api/pengajuan-tabungan/service/pengajuan_tabungan_service.dart';
 import 'package:fun_education_app/app/api/tabungan/models/minimum-pengajuan-model/minimum_pengajuan_model.dart';
 import 'package:fun_education_app/app/api/tabungan/models/minimum-pengajuan-model/minimum_pengajuan_response.dart';
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_model.dart';
@@ -15,22 +18,42 @@ class SavingPageController extends GetxController {
   RxList<ShowCurrentMinimumPengajuanModel> showCurrentMinimumPengajuanModel =
       <ShowCurrentMinimumPengajuanModel>[].obs;
 
-  RxBool isLoading = false.obs;
+  PengajuanTabunganService pengajuanTabunganService =
+      PengajuanTabunganService();
+  CurrentPengajuanTabunganResponse? currentPengajuanTabunganiResponse;
+  Rx<CurrentPengajuanTabunganModel> currentPengajuanTabunganModel =
+      CurrentPengajuanTabunganModel().obs;
+
+  RxBool isLoading = true.obs;
   RxBool isVisibleSignIn = true.obs;
 
   var selectedOption = ''.obs;
 
-  var status = 'Ajukan'.obs;
-
+  var status = 'Diperiksa'.obs;
 
   @override
   void onInit() {
     showCurrentTabungan();
     showCurrentMinimumPengajuan();
     pengajuanTabungan();
-
+    currentPengajuanTabungan();
     update();
     super.onInit();
+  }
+
+  Future currentPengajuanTabungan() async {
+    try {
+      final response =
+          await pengajuanTabunganService.getShowCurrentPengajuanTabungan();
+      currentPengajuanTabunganiResponse =
+          CurrentPengajuanTabunganResponse.fromJson(response.data);
+      currentPengajuanTabunganModel.value =
+          currentPengajuanTabunganiResponse!.data;
+      print('pengajuan tabungan : ${currentPengajuanTabunganModel.value}');
+      update();
+    } catch (e) {
+      print('pengajuan tabungan error : $e');
+    }
   }
 
   Future showCurrentTabungan() async {
@@ -40,6 +63,7 @@ class SavingPageController extends GetxController {
           ShowCurrentTabunganResponse.fromJson(response.data);
       showCurrentTabunganModel.value = showCurrentTabunganResponse!.data;
       update();
+      print('saving amount : ${showCurrentTabunganModel.value.saving}');
     } catch (e) {
       print(e);
     }
@@ -72,7 +96,8 @@ class SavingPageController extends GetxController {
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response = await tabunganService.pengajuanTabungan(userId, selectedCategory);
+        final response =
+            await tabunganService.pengajuanTabungan(userId, selectedCategory);
         Get.snackbar(
             'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
       } else {
@@ -93,5 +118,13 @@ class SavingPageController extends GetxController {
     print(showCurrentMinimumPengajuanModel[selectedIndex].isEnough!);
 
     return showCurrentMinimumPengajuanModel[selectedIndex].isEnough!;
+  }
+
+  Future<void> onREfresh() async {
+    showCurrentTabungan();
+    showCurrentMinimumPengajuan();
+    pengajuanTabungan();
+    currentPengajuanTabungan();
+    update();
   }
 }

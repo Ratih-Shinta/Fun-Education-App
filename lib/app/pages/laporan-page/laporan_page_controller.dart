@@ -16,7 +16,6 @@ import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_c
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class LaporanPageController extends GetxController {
   HomePageController homePageController = Get.put(HomePageController());
