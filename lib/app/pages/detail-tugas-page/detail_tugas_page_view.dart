@@ -5,6 +5,7 @@ import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_kirim.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_selesai.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -45,19 +46,28 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.05, vertical: height * 0.02),
-              child: Obx(() {
-                if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (argument.statusTugasUser == 'Gagal') {
-                  return DetailTugasGagal();
-                } else if (argument.statusTugasUser == 'Diperiksa') {
-                  return DetailTugasDiperiksa();
-                } else if (argument.statusTugasUser == 'Selesai') {
-                  return DetailTugasSelesai();
-                } else {
-                  return DetailTugasKirim();
-                }
-              })),
+              child: Column(
+                children: [
+                  TugasContainer(),
+                  Obx(() {
+                    if (controller.isLoading.value) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      switch (
+                          controller.showCurrentTugasUserModel.value.status) {
+                        case 'Gagal':
+                          return DetailTugasGagal();
+                        case 'Diperiksa':
+                          return DetailTugasDiperiksa();
+                        case 'Selesai':
+                          return DetailTugasSelesai();
+                        default:
+                          return DetailTugasKirim();
+                      }
+                    }
+                  }),
+                ],
+              )),
         ));
   }
 }

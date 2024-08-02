@@ -42,11 +42,12 @@ class GalleryPageComponentTwo extends GetView<GalleryPageController> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    bottomSheetDetailGallery(
+                    bottomSheetDetailGallery( 
                       context,
                       controller.showAllPhotosModel[index].title!,
                       controller.showAllPhotosModel[index].description!,
                       controller.showAllPhotosModel[index].image!,
+                      controller.showAllPhotosModel[index].createdAt!.toString(),
                     );
                   },
                   child: Container(

@@ -44,49 +44,48 @@ class CustomBarChartData {
             return makeGroupData(
                 true,
                 0,
-                controller.showCurrentPointMingguanModel.value.mondayPoint!
-                    .toDouble(),
+                (controller.showCurrentPointMingguanModel.value.mondayPoint ?? 0).toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 1:
             return makeGroupData(
                 true,
                 1,
-                controller.showCurrentPointMingguanModel.value.tuesdayPoint!
+                (controller.showCurrentPointMingguanModel.value.tuesdayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 2:
             return makeGroupData(
                 true,
                 2,
-                controller.showCurrentPointMingguanModel.value.wednesdayPoint!
+                (controller.showCurrentPointMingguanModel.value.wednesdayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 3:
             return makeGroupData(
                 true,
                 3,
-                controller.showCurrentPointMingguanModel.value.thursdayPoint!
+                (controller.showCurrentPointMingguanModel.value.thursdayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 4:
             return makeGroupData(
                 true,
                 4,
-                controller.showCurrentPointMingguanModel.value.fridayPoint!
+                (controller.showCurrentPointMingguanModel.value.fridayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 5:
             return makeGroupData(
                 true,
                 5,
-                controller.showCurrentPointMingguanModel.value.saturdayPoint!
+                (controller.showCurrentPointMingguanModel.value.saturdayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 6:
             return makeGroupData(
                 true,
                 6,
-                controller.showCurrentPointMingguanModel.value.sundayPoint!
+                (controller.showCurrentPointMingguanModel.value.sundayPoint ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           default:
@@ -100,28 +99,28 @@ class CustomBarChartData {
             return makeGroupData(
                 false,
                 0,
-                controller.showCurrentPointBulananModel.value.week1Point!
+                (controller.showCurrentPointBulananModel.value.week1Point ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 1:
             return makeGroupData(
                 false,
                 1,
-                controller.showCurrentPointBulananModel.value.week2Point!
+                (controller.showCurrentPointBulananModel.value.week2Point ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 2:
             return makeGroupData(
                 false,
                 2,
-                controller.showCurrentPointBulananModel.value.week3Point!
+                (controller.showCurrentPointBulananModel.value.week3Point ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           case 3:
             return makeGroupData(
                 false,
                 3,
-                controller.showCurrentPointBulananModel.value.week4Point!
+                (controller.showCurrentPointBulananModel.value.week4Point ?? 0)
                     .toDouble(),
                 isTouched: i == controller.touchedIndex.value);
           default:

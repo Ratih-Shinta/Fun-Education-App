@@ -10,7 +10,7 @@ class CommonGridImage extends StatelessWidget {
     required this.imagePath,
     required this.isNetwork,
     required this.isDelete,
-    this.deleteFunction, 
+    this.deleteFunction,
   }) : super(key: key);
   final String imagePath;
   final bool isNetwork;
@@ -28,9 +28,11 @@ class CommonGridImage extends StatelessWidget {
       decoration: BoxDecoration(
         color: greyColor.withOpacity(0.1),
         image: DecorationImage(
-          image: isNetwork == true ? NetworkImage(imagePath) : FileImage(
-            File(imagePath),
-          ) as ImageProvider<Object>,
+          image: isNetwork == true
+              ? NetworkImage(imagePath)
+              : FileImage(
+                  File(imagePath),
+                ) as ImageProvider<Object>,
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(15),
@@ -40,15 +42,15 @@ class CommonGridImage extends StatelessWidget {
               onTap: deleteFunction,
               child: Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.02,
-                  vertical: height * 0.01,
+                  horizontal: width * 0.014,
+                  vertical: height * 0.005,
                 ),
                 decoration: BoxDecoration(
                   color: blackColor.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
-                  Icons.delete_rounded,
+                  Icons.clear_rounded,
                   color: whiteColor,
                   size: 20,
                 ),

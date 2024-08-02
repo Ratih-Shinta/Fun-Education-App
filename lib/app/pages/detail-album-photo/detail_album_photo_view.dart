@@ -158,7 +158,8 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                             argument.gallery![index].title!,
                             argument.gallery![index].description!,
                             argument.gallery![index].image!,
-                          );
+                            argument.gallery![index].createdAt!.toString(),
+                          ); 
                         },
                         child: Container(
                           decoration: BoxDecoration(

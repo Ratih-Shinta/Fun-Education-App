@@ -2,12 +2,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/global-component/common_detail_image.dart';
+import 'package:fun_education_app/app/global-component/common_grid_image.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
-import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/multiline_text_field.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class DetailTugasKirim extends GetView<DetailTugasPageController> {
   DetailTugasKirim({super.key});
@@ -22,9 +23,6 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TugasContainer(
-          pointContainer: false,
-        ),
         Row(
           children: [
             SvgPicture.asset('assets/icons/icTaskList.svg'),
@@ -37,55 +35,48 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           ],
         ),
         SizedBox(height: height * 0.02),
-        Container(
-          margin: EdgeInsets.only(bottom: 15),
-          height: height * 0.092,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
+        Obx(() {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: controller.imageFileList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: width * 0.02,
+              mainAxisSpacing: height * 0.01,
+              childAspectRatio: 1.4,
+            ),
             itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: Container(
-                      width: width * 0.27,
-                      decoration: BoxDecoration(
-                        color: greyColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10,
-                    right: 25,
-                    child: Container(
-                      width: 18,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.white,
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Icon(
-                          Icons.close,
-                          size: 15,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              return InkWell(
+                onTap: () {
+                  Get.to(() => CommonDetailImage(
+                        imagePath: controller.imageFileList[index].path,
+                        isNetwork: false,
+                      ));
+                },
+                child: CommonGridImage(
+                  imagePath: controller.imageFileList[index].path,
+                  isDelete: true,
+                  deleteFunction: () {
+                    controller.deleteImage(index);
+                  },
+                  isNetwork: false,
+                ),
               );
             },
-          ),
-        ),
+          );
+        }),
+        SizedBox(height: height * 0.015),
         CommonButton(
           text: 'Tambah Gambar',
           color: opacity10GreyColor,
           textColor: blackColor,
           icon: Icons.image,
+          onPressed: () {
+            controller.selectImage();
+          },
         ),
+        SizedBox(height: height * 0.02),
         AutoSizeText.rich(
           TextSpan(
             text: 'Catatan Orang Tua\n',
@@ -102,21 +93,13 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        Container(
-          height: 150,
-          width: width,
-          margin: EdgeInsets.only(top: 10, bottom: 20),
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: opacity5GreyColor),
-          child: AutoSizeText.rich(
-            TextSpan(
-              text: 'Ketik Disini...',
-              style: tsBodySmallRegular(opacity50GreyColor),
-            ),
-          ),
-        ),
+        SizedBox(height: height * 0.01),
+        MultilineTextField(
+            maxlines: 5,
+            hintText: 'Ketik Disini...',
+            onChanged: (value) {},
+            controller: controller.noteController),
+        SizedBox(height: height * 0.02),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,7 +125,13 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           ],
         ),
         SizedBox(height: 15),
-        CommonButton(text: 'Kirim Tugas', color: blackColor)
+        CommonButton(
+          text: 'Kirim Tugas',
+          color: blackColor,
+          onPressed: () {
+            controller.storeKirimTaskUser();
+          },
+        )
       ],
     );
   }

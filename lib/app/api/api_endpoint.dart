@@ -13,7 +13,8 @@ class ApiEndPoint {
   static String baseUrlAllAlbumPhotos = '$baseUrl/album';
   static String baseUrlTugas = '$baseUrl/tugas';
   static String baseUrlLeaderboard = '$baseUrl/leaderboard';
-
+  static String baseUrlTugasUser = '$baseUrl/tugas-user';
+  static String baseUrlTugasUserImage = '$baseUrl/tugas-user-image';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -27,6 +28,9 @@ class ApiEndPoint {
   //Tugas
   static String showCurrentTugas = '$baseUrlTugas/show-current';
   static String showByIdTugas = '$baseUrlTugas/show/';
+  static String showCurrentTugasUser = '$baseUrlTugasUser/show-current/';
+  static String storeKirimTugasUser = '$baseUrlTugasUser/store';
+  static String storeKirimTugasUserImage = '$baseUrlTugasUserImage/store';
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';
@@ -59,7 +63,7 @@ class ApiEndPoint {
 
   //Pengajuan Tabungan
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
-  
+
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
 }

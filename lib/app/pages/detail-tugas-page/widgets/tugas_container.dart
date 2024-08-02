@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_detail_image.dart';
 import 'package:fun_education_app/app/global-component/common_grid_image.dart';
@@ -10,15 +12,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class TugasContainer extends GetView<DetailTugasPageController> {
+  TugasContainer({super.key});
   final argument = Get.arguments;
-  final String? status;
-  final bool pointContainer;
-
-  TugasContainer({
-    Key? key,
-    this.status,
-    required this.pointContainer,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +25,9 @@ class TugasContainer extends GetView<DetailTugasPageController> {
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: status == 'Selesai'
+        color: argument.statusTugasUser == 'Selesai'
             ? opacity5GreyColor
-            : status == 'Gagal'
+            : argument.statusTugasUser == 'Gagal'
                 ? opacity5GreyColor
                 : argument.category == 'Dikte & Menulis'
                     ? blueColor.withOpacity(0.1)
@@ -73,7 +68,6 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                 ),
               ),
               SizedBox(width: 10),
-              // if (pointContainer)
               Obx(() {
                 if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
@@ -81,9 +75,9 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     decoration: BoxDecoration(
-                      color: status == 'Diperiksa'
+                      color: argument.statusTugasUser == 'Diperiksa'
                           ? warningColor
-                          : status == 'Selesai'
+                          : argument.statusTugasUser == 'Selesai'
                               ? successColor
                               : dangerColor,
                       borderRadius: BorderRadius.circular(29),
@@ -91,7 +85,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                     child: AutoSizeText.rich(
                       textAlign: TextAlign.start,
                       TextSpan(
-                        text: status,
+                        text: argument.statusTugasUser,
                         style: tsBodySmallSemibold(whiteColor),
                       ),
                     ),
@@ -126,17 +120,19 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                   Row(
                     children: [
                       SvgPicture.asset(iconCalender,
-                          color: pointContainer == true
+                          color: argument.statusTugasUser == 'Selesai'
                               ? opacity50GreyColor
-                              : argument.category == 'Dikte & Menulis'
-                                  ? blueColor
-                                  : argument.category == 'Kreasi'
-                                      ? primaryColor
-                                      : argument.category == 'Membaca'
-                                          ? greenColor
-                                          : argument.category == 'Berhitung'
-                                              ? warningColor
-                                              : dangerColor),
+                              : argument.statusTugasUser == 'Gagal'
+                                  ? opacity50GreyColor
+                                  : argument.category == 'Dikte & Menulis'
+                                      ? blueColor
+                                      : argument.category == 'Kreasi'
+                                          ? primaryColor
+                                          : argument.category == 'Membaca'
+                                              ? greenColor
+                                              : argument.category == 'Berhitung'
+                                                  ? warningColor
+                                                  : dangerColor),
                       SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
@@ -164,15 +160,17 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                         children: [
                           SvgPicture.asset(
                             iconCalender,
-                            color: pointContainer == true
+                            color: argument.statusTugasUser == 'Selesai'
                                 ? opacity50GreyColor
-                                : dangerColor,
+                                : argument.statusTugasUser == 'Gagal'
+                                    ? opacity50GreyColor
+                                    : dangerColor,
                           ),
                           SizedBox(width: 5),
                           AutoSizeText.rich(
                             TextSpan(
                               text:
-                                  '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(argument.deadline!)}',
+                                  '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(argument.deadline!)}',
                               style: tsBodySmallSemibold(blackColor),
                             ),
                           ),
@@ -233,13 +231,16 @@ class TugasContainer extends GetView<DetailTugasPageController> {
               style: tsBodySmallMedium(blackColor),
             ),
           ),
-          if (pointContainer)
+          if (argument.statusTugasUser == 'Selesai' ||
+              argument.statusTugasUser == 'Gagal')
             Container(
               width: width,
               margin: EdgeInsets.only(top: 15),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               decoration: BoxDecoration(
-                color: status == 'Selesai' ? successColor : dangerColor,
+                color: argument.statusTugasUser == 'Selesai'
+                    ? successColor
+                    : dangerColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
@@ -253,7 +254,9 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                   ),
                   IconPoint(
                       point: '${argument.point.toString()}',
-                      color: status == 'Selesai' ? successColor : dangerColor),
+                      color: argument.statusTugasUser == 'Selesai'
+                          ? successColor
+                          : dangerColor),
                 ],
               ),
             ),

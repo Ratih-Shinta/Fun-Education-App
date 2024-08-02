@@ -59,19 +59,18 @@ class LaporanPageController extends GetxController {
   @override
   void onInit() {
     showCurrentAlurBelajar();
-      showCurrentPointMingguan();
-      showCurrentPointBulanan();
-      showCurrentTugas();
-      showCurrentTugasDiperiksa();
-      showCurrentTugasSelesai();
-      showLeaderboardWeelky();
-      showLeaderboardMonthly();
+    showCurrentPointMingguan();
+    showCurrentPointBulanan();
+    showCurrentTugas();
+    showCurrentTugasDiperiksa();
+    showCurrentTugasSelesai();
+    showLeaderboardWeelky();
+    showLeaderboardMonthly();
     super.onInit();
   }
 
   Future showCurrentTugas() async {
     try {
-      isLoading(true);
       final response = await tugasService.getCurrentTugas();
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
@@ -80,16 +79,12 @@ class LaporanPageController extends GetxController {
       print('current tugas ${showCurrentTugasModel.length}');
       update();
     } catch (e) {
-      isLoading(true);
       print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
   Future showCurrentTugasDiperiksa() async {
     try {
-      isLoading(true);
       final response = await tugasService.getCurrentTugasDiperiksa();
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
@@ -99,10 +94,7 @@ class LaporanPageController extends GetxController {
           'current tugas diperiksa : ${showCurrentTugasModelDiperiksa.length}');
       update();
     } catch (e) {
-      isLoading(true);
       print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
@@ -118,10 +110,7 @@ class LaporanPageController extends GetxController {
       isLoading.value = false;
       update();
     } catch (e) {
-      isLoading(true);
       print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
@@ -262,9 +251,5 @@ class LaporanPageController extends GetxController {
 
   void updateSelectedDate(DateTime date) {
     selectedDate.value = date;
-  }
-
-  Future<void> refresh() async {
-    showCurrentAlurBelajar();
   }
 }

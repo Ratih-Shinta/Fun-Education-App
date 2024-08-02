@@ -20,13 +20,13 @@ class SavingPageController extends GetxController {
 
   var selectedOption = ''.obs;
 
-  var status = 'Ajukan'.obs;
+  var status = 'Selesai'.obs;
 
 
   @override
   void onInit() {
     showCurrentTabungan();
-    showCurrentMinimumPengajuan();
+    // showCurrentMinimumPengajuan();
     pengajuanTabungan();
 
     update();
@@ -72,7 +72,7 @@ class SavingPageController extends GetxController {
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response = await tabunganService.pengajuanTabungan(userId, selectedCategory);
+        final response = await tabunganService.postStorePengajuanTabungan(userId, selectedCategory);
         Get.snackbar(
             'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
       } else {
@@ -81,8 +81,6 @@ class SavingPageController extends GetxController {
     } catch (e) {
       isLoading(true);
       print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
