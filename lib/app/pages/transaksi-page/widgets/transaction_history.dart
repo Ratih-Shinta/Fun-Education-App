@@ -112,7 +112,7 @@ class TransactionHistory extends StatelessWidget {
                 children: [
                   TextSpan(
                     text:
-                        '${descController ?? 'Tidak Ada'}',
+                        '${descController}',
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],

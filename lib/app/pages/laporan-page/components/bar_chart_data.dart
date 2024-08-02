@@ -45,6 +45,7 @@ class CustomBarChartData {
                 true,
                 0,
                 (controller.showCurrentPointMingguanModel.value.mondayPoint ?? 0).toDouble(),
+
                 isTouched: i == controller.touchedIndex.value);
           case 1:
             return makeGroupData(
