@@ -43,7 +43,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
           ),
           SizedBox(height: height * 0.03),
           Obx(() {
-            if (controller.status.value == 'Gagal') {
+            if (controller.status == 'Gagal') {
               return Column(
                 children: [
                   Container(
@@ -89,7 +89,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   CommonButton(text: 'Selesai', color: dangerColor)
                 ],
               );
-            } else if (controller.status.value == 'Diterima') {
+            } else if (controller.status == 'Diterima') {
               return Column(
                 children: [
                   Container(
@@ -135,7 +135,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   CommonButton(text: 'Selesai', color: successColor)
                 ],
               );
-            } else if (controller.status.value == 'Diajukan') {
+            } else if (controller.status == 'Diajukan') {
               return Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
