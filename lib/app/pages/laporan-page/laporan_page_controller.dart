@@ -43,6 +43,8 @@ class LaporanPageController extends GetxController {
   ShowCurrentTugasResponse? showCurrentTugasResponse;
   RxList<ShowCurrentTugasModel> showCurrentTugasModel =
       <ShowCurrentTugasModel>[].obs;
+  RxList<ShowCurrentTugasModel> showCurrentTugasModelTerbaru =
+      <ShowCurrentTugasModel>[].obs;
   RxList<ShowCurrentTugasModel> showCurrentTugasModelDiperiksa =
       <ShowCurrentTugasModel>[].obs;
   RxList<ShowCurrentTugasModel> showCurrentTugasModelSelesai =
@@ -76,6 +78,21 @@ class LaporanPageController extends GetxController {
       showCurrentTugasModel.value = showCurrentTugasResponse!.data;
       isLoading.value = false;
       print('current tugas ${showCurrentTugasModel.length}');
+      update();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+    Future showCurrentTugasTerbaru() async {
+    try {
+      final response = await tugasService.getCurrentTugasTerbaru();
+      showCurrentTugasResponse =
+          ShowCurrentTugasResponse.fromJson(response.data);
+      showCurrentTugasModelTerbaru.value = showCurrentTugasResponse!.data;
+      isLoading.value = false;
+      print(
+          'current tugas Terbaru : ${showCurrentTugasModelTerbaru.length}');
       update();
     } catch (e) {
       print(e);

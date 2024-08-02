@@ -17,6 +17,19 @@ class TugasService {
     }
   }
 
+  Future<Response> getCurrentTugasTerbaru() async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showCurrentTugas,
+        isAuthorize: true,
+        queryParameters: {'status': 'Terbaru'},
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<Response> getCurrentTugasDiperiksa() async {
     try {
       final response = await _dioInstance.getRequest(

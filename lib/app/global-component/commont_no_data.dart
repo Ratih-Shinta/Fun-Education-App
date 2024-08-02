@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
-class DetailTugasGagal extends StatelessWidget {
-  const DetailTugasGagal({super.key});
+class CommontNoData extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  const CommontNoData({super.key, required this.title, required this.subTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,13 @@ class DetailTugasGagal extends StatelessWidget {
         AutoSizeText.rich(
           textAlign: TextAlign.center,
           TextSpan(
-            text: 'Ananda Tidak Mengerjakan Tugas\n',
+            text: '$title\n',
             style: tsBodyMediumSemibold(blackColor).copyWith(
               height: 1.3,
             ),
             children: [
               TextSpan(
-                text: 'Selalu Periksa Tenggat Waktu',
+                text: '$subTitle',
                 style: tsBodySmallRegular(blackColor),
               ),
             ],
