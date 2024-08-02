@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
+import 'package:fun_education_app/app/global-component/common_detail_image.dart';
+import 'package:fun_education_app/app/global-component/common_grid_image.dart';
+import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class DetailTugasDiperiksa extends StatelessWidget {
+class DetailTugasDiperiksa extends GetView<DetailTugasPageController> {
   const DetailTugasDiperiksa({super.key});
 
   @override
@@ -16,10 +19,6 @@ class DetailTugasDiperiksa extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TugasContainer(
-          pointContainer: false,
-          status: 'Diperiksa',
-        ),
         Row(
           children: [
             SvgPicture.asset('assets/icons/icTaskList.svg'),
@@ -31,25 +30,38 @@ class DetailTugasDiperiksa extends StatelessWidget {
           ],
         ),
         SizedBox(height: height * 0.02),
-        Container(
-          margin: EdgeInsets.only(bottom: 20),
-          height: height * 0.092,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(right: 16),
-                child: Container(
-                  width: width * 0.27,
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              );
-            },
+        GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount:
+              controller.showCurrentTugasUserModel.value.images?.length ?? 0,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: width * 0.02,
+            mainAxisSpacing: height * 0.01,
+            childAspectRatio: 1.4,
           ),
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Get.to(
+                  () => CommonDetailImage(
+                    imagePath: controller
+                        .showCurrentTugasUserModel.value.images![index].image
+                        .toString(),
+                    isNetwork: true,
+                  ),
+                );
+              },
+              child: CommonGridImage(
+                imagePath: controller
+                    .showCurrentTugasUserModel.value.images![index].image
+                    .toString(),
+                isDelete: false,
+                isNetwork: true,
+              ),
+            );
+          },
         ),
         AutoSizeText.rich(
           TextSpan(
@@ -76,7 +88,7 @@ class DetailTugasDiperiksa extends StatelessWidget {
               color: opacity5GreyColor),
           child: AutoSizeText.rich(
             TextSpan(
-              text: 'Sudah lumayan lancar kok bu...',
+              text: '${controller.showCurrentTugasUserModel.value.note}',
               style: tsBodySmallSemibold(blackColor),
             ),
           ),

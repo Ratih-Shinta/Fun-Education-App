@@ -163,7 +163,7 @@ class TugasWidget extends StatelessWidget {
                         AutoSizeText.rich(
                           TextSpan(
                             text:
-                                '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(controllerArguments.createdAt)}',
+                                '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controllerArguments.createdAt)}',
                             style: tsBodySmallSemibold(blackColor).copyWith(
                               height: 1.3,
                             ),
@@ -197,7 +197,7 @@ class TugasWidget extends StatelessWidget {
                             AutoSizeText.rich(
                               TextSpan(
                                 text:
-                                    '${DateFormat('EEEE, d\nMMMM', 'id_ID').format(controllerArguments.deadline)}',
+                                    '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controllerArguments.deadline)}',
                                 style: tsBodySmallSemibold(blackColor).copyWith(
                                   height: 1.3,
                                 ),

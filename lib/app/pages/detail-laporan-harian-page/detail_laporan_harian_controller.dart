@@ -17,33 +17,24 @@ class DetailLaporanHarianController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showCurrentLaporanHarian();
-    });
-  }
-
-  Future<void> refresh() async {
     showCurrentLaporanHarian();
   }
+
 
   Future showCurrentLaporanHarian() async {
     String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value);
     DateTime parsedDate = DateTime.parse(formattedDate);
     try {
-      isLoading(true);
       final response =
           await laporanHarianService.getShowCurrentLaporanHarian(parsedDate);
       showCurrentLaporanHarianResponse =
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
-      isLoading.value = false;
       update();
     } catch (e) {
       isLoading(true);
       print(e);
-    } finally {
-      isLoading(false);
     }
   }
 }

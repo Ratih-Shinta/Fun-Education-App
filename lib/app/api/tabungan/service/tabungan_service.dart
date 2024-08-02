@@ -29,7 +29,7 @@ class TabunganService {
     }
   }
 
-  Future<Response> pengajuanTabungan(String userId, String category) async {
+  Future<Response> postStorePengajuanTabungan(String userId, String category) async {
     try {
       final response = await _dioInstance.postRequest(
           endpoint: ApiEndPoint.currentPengajuanTabungan,

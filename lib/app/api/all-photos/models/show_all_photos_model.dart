@@ -4,6 +4,7 @@ class ShowAllPhotosModel {
   String? image;
   String? title;
   String? description;
+  DateTime? createdAt;
 
   ShowAllPhotosModel({
     this.id,
@@ -11,6 +12,7 @@ class ShowAllPhotosModel {
     this.image,
     this.title,
     this.description,
+    this.createdAt,
   });
 
   factory ShowAllPhotosModel.fromJson(Map<String, dynamic> json) =>
@@ -20,6 +22,7 @@ class ShowAllPhotosModel {
         image: json["image"],
         title: json["title"],
         description: json["description"],
+        createdAt: DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -28,5 +31,6 @@ class ShowAllPhotosModel {
         "image": image,
         "title": title,
         "description": description,
+        "created_at": createdAt?.toIso8601String(),
       };
 }

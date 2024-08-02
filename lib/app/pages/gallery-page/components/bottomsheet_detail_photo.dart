@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-void bottomSheetDetailGallery(
-    BuildContext context, String title, String description, String imageUrl) {
+void bottomSheetDetailGallery(BuildContext context, String title,
+    String description, String imageUrl, String createAt) {
   final GalleryPageController controller = Get.put(GalleryPageController());
   final Size mediaQuery = MediaQuery.of(context).size;
   final double width = mediaQuery.width;
@@ -49,7 +51,21 @@ void bottomSheetDetailGallery(
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.01),
+              Row(
+                children: [
+                  Icon(
+                    Icons.calendar_today_rounded,
+                    color: blackColor,
+                    size: 17  ,
+                  ),
+                  SizedBox(width: width * 0.01),
+                  AutoSizeText(
+                      '${DateFormat('EEEE, d MMMM', 'id_ID').format(DateTime.parse(createAt))}',
+                      style: tsBodySmallRegular(blackColor))
+                ],
+              ),
+              SizedBox(height: height * 0.015),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
