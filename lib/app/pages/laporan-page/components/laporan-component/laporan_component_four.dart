@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/commont_no_data.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tugas_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tab_item.dart';
@@ -39,9 +40,15 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
             labelColor: primaryColor,
             unselectedLabelColor: greyColor,
             tabs: [
-              TabItem(title: 'Terbaru', count: 2),
-              TabItem(title: 'Diperiksa', count: 3),
-              TabItem(title: 'Selesai', count: 5),
+              TabItem(
+                  title: 'Terbaru',
+                  count: controller.showCurrentTugasModelTerbaru.length),
+              TabItem(
+                  title: 'Diperiksa',
+                  count: controller.showCurrentTugasModelDiperiksa.length),
+              TabItem(
+                  title: 'Selesai',
+                  count: controller.showCurrentTugasModelSelesai.length),
             ]),
         SizedBox(height: 20),
         SizedBox(
@@ -53,22 +60,24 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                 () {
                   if (controller.isLoading.value) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (controller.showCurrentTugasModel.isEmpty) {
-                    return Center(child: Text('Data Kosong'));
+                  } else if (controller.showCurrentTugasModelTerbaru.isEmpty) {
+                    return CommontNoData(
+                        title: 'Tidak Ada Tugas Terbaru',
+                        subTitle: 'Tidak Ada Tugas Terbaru Saat Ini');
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: controller.showCurrentTugasModel.length,
+                      itemCount: controller.showCurrentTugasModelTerbaru.length,
                       itemBuilder: (BuildContext context, int index) {
                         return TugasWidget(
                           controllerArguments:
-                              controller.showCurrentTugasModel[index],
+                              controller.showCurrentTugasModelTerbaru[index],
                           category:
-                              '${controller.showCurrentTugasModel[index].category}',
+                              '${controller.showCurrentTugasModelTerbaru[index].category}',
                           title:
-                              '${controller.showCurrentTugasModel[index].title}',
+                              '${controller.showCurrentTugasModelTerbaru[index].title}',
                           status:
-                              '${controller.showCurrentTugasModel[index].statusTugasUser}',
+                              '${controller.showCurrentTugasModelTerbaru[index].statusTugasUser}',
                         );
                       },
                     );
@@ -79,8 +88,11 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                 () {
                   if (controller.isLoading.value) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (controller.showCurrentTugasModel.isEmpty) {
-                    return Center(child: Text('Data Kosong'));
+                  } else if (controller
+                      .showCurrentTugasModelDiperiksa.isEmpty) {
+                    return CommontNoData(
+                        title: 'Tidak Ada Tugas Diperiksa',
+                        subTitle: 'Tidak Ada Tugas Diperiksa Saat Ini');
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -106,8 +118,10 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                 () {
                   if (controller.isLoading.value) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (controller.showCurrentTugasModel.isEmpty) {
-                    return Center(child: Text('Tidak ada'));
+                  } else if (controller.showCurrentTugasModelSelesai.isEmpty) {
+                    return CommontNoData(
+                        title: 'Tidak Ada Tugas Selesai',
+                        subTitle: 'Tidak Ada Tugas Selesai Saat Ini');
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),

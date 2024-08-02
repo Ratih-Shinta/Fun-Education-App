@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_detail_image.dart';
 import 'package:fun_education_app/app/global-component/common_grid_image.dart';
@@ -13,7 +11,7 @@ import 'package:intl/intl.dart';
 
 class TugasContainer extends GetView<DetailTugasPageController> {
   TugasContainer({super.key});
-  final argument = Get.arguments;
+  // final argument = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +23,20 @@ class TugasContainer extends GetView<DetailTugasPageController> {
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: argument.statusTugasUser == 'Selesai'
+        color: controller.showByIdTugasModel.value.statusTugasUser == 'Selesai'
             ? opacity5GreyColor
-            : argument.statusTugasUser == 'Gagal'
+            : controller.showByIdTugasModel.value.statusTugasUser == 'Gagal'
                 ? opacity5GreyColor
-                : argument.category == 'Dikte & Menulis'
+                : controller.showByIdTugasModel.value.category ==
+                        'Dikte & Menulis'
                     ? blueColor.withOpacity(0.1)
-                    : argument.category == 'Kreasi'
+                    : controller.showByIdTugasModel.value.category == 'Kreasi'
                         ? primaryColor.withOpacity(0.1)
-                        : argument.category == 'Membaca'
+                        : controller.showByIdTugasModel.value.category ==
+                                'Membaca'
                             ? greenColor.withOpacity(0.1)
-                            : argument.category == 'Berhitung'
+                            : controller.showByIdTugasModel.value.category ==
+                                    'Berhitung'
                                 ? warningColor.withOpacity(0.1)
                                 : dangerColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
@@ -48,13 +49,16 @@ class TugasContainer extends GetView<DetailTugasPageController> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 decoration: BoxDecoration(
-                  color: argument.category == 'Dikte & Menulis'
+                  color: controller.showByIdTugasModel.value.category ==
+                          'Dikte & Menulis'
                       ? blueColor.withOpacity(0.6)
-                      : argument.category == 'Kreasi'
+                      : controller.showByIdTugasModel.value.category == 'Kreasi'
                           ? primaryColor.withOpacity(0.6)
-                          : argument.category == 'Membaca'
+                          : controller.showByIdTugasModel.value.category ==
+                                  'Membaca'
                               ? greenColor.withOpacity(0.6)
-                              : argument.category == 'Berhitung'
+                              : controller.showByIdTugasModel.value.category ==
+                                      'Berhitung'
                                   ? warningColor.withOpacity(0.6)
                                   : opacity20GreyColor,
                   borderRadius: BorderRadius.circular(29),
@@ -62,7 +66,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                 child: AutoSizeText.rich(
                   textAlign: TextAlign.start,
                   TextSpan(
-                    text: '${argument.category}',
+                    text: '${controller.showByIdTugasModel.value.category}',
                     style: tsBodySmallSemibold(whiteColor),
                   ),
                 ),
@@ -71,21 +75,28 @@ class TugasContainer extends GetView<DetailTugasPageController> {
               Obx(() {
                 if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
-                } else if (argument.statusTugasUser != null) {
+                } else if (controller
+                        .showByIdTugasModel.value.statusTugasUser !=
+                    null) {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     decoration: BoxDecoration(
-                      color: argument.statusTugasUser == 'Diperiksa'
-                          ? warningColor
-                          : argument.statusTugasUser == 'Selesai'
-                              ? successColor
-                              : dangerColor,
+                      color:
+                          controller.showByIdTugasModel.value.statusTugasUser ==
+                                  'Diperiksa'
+                              ? warningColor
+                              : controller.showByIdTugasModel.value
+                                          .statusTugasUser ==
+                                      'Selesai'
+                                  ? successColor
+                                  : dangerColor,
                       borderRadius: BorderRadius.circular(29),
                     ),
                     child: AutoSizeText.rich(
                       textAlign: TextAlign.start,
                       TextSpan(
-                        text: argument.statusTugasUser,
+                        text:
+                            controller.showByIdTugasModel.value.statusTugasUser,
                         style: tsBodySmallSemibold(whiteColor),
                       ),
                     ),
@@ -100,7 +111,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
           AutoSizeText.rich(
             textAlign: TextAlign.start,
             TextSpan(
-              text: '${argument.title}',
+              text: '${controller.showByIdTugasModel.value.title}',
               style: tsBodyMediumSemibold(blackColor),
             ),
           ),
@@ -120,24 +131,36 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                   Row(
                     children: [
                       SvgPicture.asset(iconCalender,
-                          color: argument.statusTugasUser == 'Selesai'
+                          color: controller.showByIdTugasModel.value
+                                      .statusTugasUser ==
+                                  'Selesai'
                               ? opacity50GreyColor
-                              : argument.statusTugasUser == 'Gagal'
+                              : controller.showByIdTugasModel.value
+                                          .statusTugasUser ==
+                                      'Gagal'
                                   ? opacity50GreyColor
-                                  : argument.category == 'Dikte & Menulis'
+                                  : controller.showByIdTugasModel.value
+                                              .category ==
+                                          'Dikte & Menulis'
                                       ? blueColor
-                                      : argument.category == 'Kreasi'
+                                      : controller.showByIdTugasModel.value
+                                                  .category ==
+                                              'Kreasi'
                                           ? primaryColor
-                                          : argument.category == 'Membaca'
+                                          : controller.showByIdTugasModel.value
+                                                      .category ==
+                                                  'Membaca'
                                               ? greenColor
-                                              : argument.category == 'Berhitung'
+                                              : controller.showByIdTugasModel
+                                                          .value.category ==
+                                                      'Berhitung'
                                                   ? warningColor
                                                   : dangerColor),
                       SizedBox(width: 5),
                       AutoSizeText.rich(
                         TextSpan(
                           text:
-                              '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(argument.createdAt!)}',
+                              '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(controller.showByIdTugasModel.value.createdAt ?? DateTime.now())}',
                           style: tsBodySmallSemibold(blackColor),
                         ),
                       ),
@@ -160,9 +183,13 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                         children: [
                           SvgPicture.asset(
                             iconCalender,
-                            color: argument.statusTugasUser == 'Selesai'
+                            color: controller.showByIdTugasModel.value
+                                        .statusTugasUser ==
+                                    'Selesai'
                                 ? opacity50GreyColor
-                                : argument.statusTugasUser == 'Gagal'
+                                : controller.showByIdTugasModel.value
+                                            .statusTugasUser ==
+                                        'Gagal'
                                     ? opacity50GreyColor
                                     : dangerColor,
                           ),
@@ -170,7 +197,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                           AutoSizeText.rich(
                             TextSpan(
                               text:
-                                  '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(argument.deadline!)}',
+                                  '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.deadline ?? DateTime.now())}',
                               style: tsBodySmallSemibold(blackColor),
                             ),
                           ),
@@ -200,7 +227,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
           GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: argument.images?.length ?? 0,
+            itemCount: controller.showByIdTugasModel.value.images?.length ?? 0,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: width * 0.02,
@@ -212,13 +239,17 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                 onTap: () {
                   Get.to(
                     () => CommonDetailImage(
-                      imagePath: argument.images![index].image.toString(),
+                      imagePath: controller
+                          .showByIdTugasModel.value.images![index].image
+                          .toString(),
                       isNetwork: true,
                     ),
                   );
                 },
                 child: CommonGridImage(
-                  imagePath: argument.images![index].image.toString(),
+                  imagePath: controller
+                      .showByIdTugasModel.value.images![index].image
+                      .toString(),
                   isDelete: false,
                   isNetwork: true,
                 ),
@@ -227,18 +258,20 @@ class TugasContainer extends GetView<DetailTugasPageController> {
           ),
           AutoSizeText.rich(
             TextSpan(
-              text: '${argument.description}',
+              text: '${controller.showByIdTugasModel.value.description}',
               style: tsBodySmallMedium(blackColor),
             ),
           ),
-          if (argument.statusTugasUser == 'Selesai' ||
-              argument.statusTugasUser == 'Gagal')
+          if (controller.showByIdTugasModel.value.statusTugasUser ==
+                  'Selesai' ||
+              controller.showByIdTugasModel.value.statusTugasUser == 'Gagal')
             Container(
               width: width,
               margin: EdgeInsets.only(top: 15),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               decoration: BoxDecoration(
-                color: argument.statusTugasUser == 'Selesai'
+                color: controller.showByIdTugasModel.value.statusTugasUser ==
+                        'Selesai'
                     ? successColor
                     : dangerColor,
                 borderRadius: BorderRadius.circular(10),
@@ -253,10 +286,13 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                     ),
                   ),
                   IconPoint(
-                      point: '${argument.point.toString()}',
-                      color: argument.statusTugasUser == 'Selesai'
-                          ? successColor
-                          : dangerColor),
+                      point:
+                          '${controller.showByIdTugasModel.value.point.toString()}',
+                      color:
+                          controller.showByIdTugasModel.value.statusTugasUser ==
+                                  'Selesai'
+                              ? successColor
+                              : dangerColor),
                 ],
               ),
             ),

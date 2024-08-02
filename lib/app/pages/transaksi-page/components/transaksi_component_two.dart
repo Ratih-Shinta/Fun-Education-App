@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/commont_no_data.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/components/bottomsheet_pilih_bulan.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
@@ -91,26 +91,9 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
                 top: height * 0.15,
               ),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/imgGagal.svg',
-                    ),
-                    SizedBox(height: height * 0.01),
-                    AutoSizeText(
-                      'Belum Ada Riwayat',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsBodyMediumSemibold(blackColor),
-                    ),
-                    AutoSizeText(
-                      'Untuk Bulan Tersebut Belum Ada Riwayat',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsLabelLargeRegular(blackColor),
-                    ),
-                  ],
+                child: CommontNoData(
+                  title: 'Belum Ada Riwayat',
+                  subTitle: 'Untuk Bulan Tersebut Belum Ada Riwayat',
                 ),
               ),
             );

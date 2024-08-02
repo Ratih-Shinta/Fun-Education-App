@@ -1,8 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
-import 'package:get/get.dart';
 
 class TransactionHistory extends StatelessWidget {
   final String categoryController;

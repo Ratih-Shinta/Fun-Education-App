@@ -17,7 +17,7 @@ import 'package:image_picker/image_picker.dart';
 class DetailTugasPageController extends GetxController {
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
   var imageFileList = <XFile>[].obs;
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController noteController = TextEditingController();
@@ -40,6 +40,7 @@ class DetailTugasPageController extends GetxController {
     super.onInit();
     showByIdTugas(Get.arguments.id);
     showCurrentTugasUser(Get.arguments.id);
+    update();
   }
 
   Future showCurrentTugasUser(String tugasId) async {
@@ -57,19 +58,23 @@ class DetailTugasPageController extends GetxController {
     }
   }
 
-  Future showByIdTugas(String tugasId) async {
+  Future<void> showByIdTugas(String tugasById) async {
+    isLoading.value = true;
+    update(); // Memaksa update UI saat mulai loading
+
     try {
-      isLoading(true);
-      final response = await tugasService.getShowByIdTugas(tugasId);
+      final response = await tugasService.getShowByIdTugas(tugasById);
       showByIdTugasResponse = ShowByIdTugasResponse.fromJson(response.data);
       showByIdTugasModel.value = showByIdTugasResponse!.data;
-      update();
       print('showbyid ${showByIdTugasModel.value.statusTugasUser}');
-      isLoading.value = false;
     } catch (e) {
       print(e);
+    } finally {
+      isLoading.value = false;
+      update(); // Memaksa update UI setelah selesai
     }
   }
+  // Get.arguments.id
 
   void deleteImage(int index) {
     imageFileList.removeAt(index);

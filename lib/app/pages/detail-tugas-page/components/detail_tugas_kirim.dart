@@ -117,7 +117,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: IconPoint(
-                point: '${argument.point.toString()}',
+                point: '${argument?.point?.toString() ?? '0'}',
                 color: successColor,
                 textStyle: tsBodySmallSemibold(whiteColor),
               ),
