@@ -62,9 +62,9 @@ class ApiEndPoint {
       '$baseUrlMinimumPengajuan/show-current';
 
   //Pengajuan Tabungan
-
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
   static String currentPengajuanTabungan = '$baseUrlPengajuanTabungan/show-current';
+  static String deletePengajuanTabungan = '$baseUrlPengajuanTabungan/delete/';
   
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';

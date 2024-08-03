@@ -6,6 +6,8 @@ import 'package:fun_education_app/app/api/tabungan/models/minimum-pengajuan-mode
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_model.dart';
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_response.dart';
 import 'package:fun_education_app/app/api/tabungan/service/tabungan_service.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class SavingPageController extends GetxController {
@@ -14,9 +16,9 @@ class SavingPageController extends GetxController {
   Rx<ShowCurrentTabunganModel> showCurrentTabunganModel =
       ShowCurrentTabunganModel().obs;
 
-  ShowCurrentMinimumPengajuanResponse? showCurrentMinimumPengajuanResponse;
-  RxList<ShowCurrentMinimumPengajuanModel> showCurrentMinimumPengajuanModel =
-      <ShowCurrentMinimumPengajuanModel>[].obs;
+  // ShowCurrentMinimumPengajuanResponse? showCurrentMinimumPengajuanResponse;
+  // RxList<ShowCurrentMinimumPengajuanModel> showCurrentMinimumPengajuanModel =
+  //     <ShowCurrentMinimumPengajuanModel>[].obs;
 
   PengajuanTabunganService pengajuanTabunganService =
       PengajuanTabunganService();
@@ -28,14 +30,15 @@ class SavingPageController extends GetxController {
   RxBool isVisibleSignIn = true.obs;
 
   var selectedOption = ''.obs;
-
-  var status = 'Selesai'.obs;
+  final minimumPengajuanTabungan = 100000.obs;
+  var status = 'null'.obs;
+  var isEnough = false.obs;
 
   @override
   void onInit() {
     showCurrentTabungan();
     // showCurrentMinimumPengajuan();
-    pengajuanTabungan();
+    storePengajuanTabungan();
     currentPengajuanTabungan();
     update();
     super.onInit();
@@ -63,25 +66,47 @@ class SavingPageController extends GetxController {
           ShowCurrentTabunganResponse.fromJson(response.data);
       showCurrentTabunganModel.value = showCurrentTabunganResponse!.data;
       update();
-      print('saving amount : ${showCurrentTabunganModel.value.saving}');
+      print('saving amount : ${showCurrentTabunganModel.value.savingInt}');
     } catch (e) {
       print(e);
     }
   }
 
-  Future showCurrentMinimumPengajuan() async {
+  Future deleteTaskByAdmin(String pengajuanId) async {
     try {
-      final response = await tabunganService.getShowCurrentMinimumPengajuan();
-      showCurrentMinimumPengajuanResponse =
-          ShowCurrentMinimumPengajuanResponse.fromJson(response.data);
-      showCurrentMinimumPengajuanModel.value =
-          showCurrentMinimumPengajuanResponse!.data;
+      await tabunganService.deletePengajuanTabungan(pengajuanId);
+      currentPengajuanTabunganModel.value = CurrentPengajuanTabunganModel();
       update();
-      print(showCurrentMinimumPengajuanModel);
+      Get.snackbar(
+        "Berhasil",
+        "Pengajuan Tabungan berhasil dihapus",
+        backgroundColor: successColor,
+        colorText: whiteColor,
+      );
     } catch (e) {
+      Get.snackbar(
+        "Gagal",
+        "Pengajuan Tabungan gagal dihapus",
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+      );
       print(e);
     }
   }
+
+  // Future showCurrentMinimumPengajuan() async {
+  //   try {
+  //     final response = await tabunganService.getShowCurrentMinimumPengajuan();
+  //     showCurrentMinimumPengajuanResponse =
+  //         ShowCurrentMinimumPengajuanResponse.fromJson(response.data);
+  //     showCurrentMinimumPengajuanModel.value =
+  //         showCurrentMinimumPengajuanResponse!.data;
+  //     update();
+  //     print(showCurrentMinimumPengajuanModel);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   void selectedCategory(String option) {
     selectedOption.value = option;
@@ -89,16 +114,18 @@ class SavingPageController extends GetxController {
     print("Selected Option: $option");
   }
 
-  Future<void> pengajuanTabungan() async {
+  Future<void> storePengajuanTabungan() async {
     try {
       isLoading(true);
-      final userId = showCurrentMinimumPengajuanModel[0].userId;
+      final userId = showCurrentTabunganModel.value.userId;
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response = await tabunganService.postStorePengajuanTabungan(userId, selectedCategory);
+        final response = await tabunganService.postStorePengajuanTabungan(
+            userId, selectedCategory);
         Get.snackbar(
             'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
+        Get.back();
       } else {
         print('userId is null');
       }
@@ -110,17 +137,21 @@ class SavingPageController extends GetxController {
 
   bool selectedCategoryIsEnough() {
     int selectedIndex = selectedOption.value == "SPP Bulanan" ? 0 : 1;
-
+  
     print("Selected Index: $selectedIndex");
-    print(showCurrentMinimumPengajuanModel[selectedIndex].isEnough!);
 
-    return showCurrentMinimumPengajuanModel[selectedIndex].isEnough!;
+    if (showCurrentTabunganModel.value.savingInt! >= 100000) {
+      isEnough(true);
+    } else {
+      isEnough(false);
+    }
+    print('isEnough: ${isEnough.value}');
+    return isEnough.value;
   }
 
-  Future<void> onREfresh() async {
+  Future<void> onRefresh() async {
     showCurrentTabungan();
-    showCurrentMinimumPengajuan();
-    pengajuanTabungan();
+    storePengajuanTabungan();
     currentPengajuanTabungan();
     update();
   }

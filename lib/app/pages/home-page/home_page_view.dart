@@ -31,17 +31,17 @@ class HomePageView extends GetView<HomePageController> {
               Get.toNamed(Routes.PROFILE_PAGE);
             },
           ),
-          actions: [
-            IconButton(
-              icon: SvgPicture.asset(
-                iconChat,
-                width: 24,
-                height: 24,
-                color: blackColor,
-              ),
-              onPressed: () {},
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: SvgPicture.asset(
+          //       iconChat,
+          //       width: 24,
+          //       height: 24,
+          //       color: blackColor,
+          //     ),
+          //     onPressed: () {},
+          //   ),
+          // ],
         ),
         body: SingleChildScrollView(child: SafeArea(child: Obx(
           () {

@@ -43,7 +43,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
           ),
           SizedBox(height: height * 0.03),
           Obx(() {
-            if (controller.status == 'Gagal') {
+            if (controller.currentPengajuanTabunganModel.value.status ==
+                'Rejected') {
               return Column(
                 children: [
                   Container(
@@ -86,10 +87,14 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                       ],
                     ),
                   ),
-                  CommonButton(text: 'Selesai', color: dangerColor)
+                  CommonButton(text: 'Selesai', color: dangerColor, onPressed: () {
+                          controller.deleteTaskByAdmin(controller
+                              .currentPengajuanTabunganModel.value.id!);
+                        },)
                 ],
               );
-            } else if (controller.status == 'Diterima') {
+            } else if (controller.currentPengajuanTabunganModel.value.status ==
+                'Accepted') {
               return Column(
                 children: [
                   Container(
@@ -135,7 +140,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   CommonButton(text: 'Selesai', color: successColor)
                 ],
               );
-            } else if (controller.status == 'Diajukan') {
+            } else if (controller.currentPengajuanTabunganModel.value.status ==
+                'Pending') {
               return Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(

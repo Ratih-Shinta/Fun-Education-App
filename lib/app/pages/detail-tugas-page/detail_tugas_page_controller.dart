@@ -122,7 +122,7 @@ class DetailTugasPageController extends GetxController {
 
       Get.snackbar(
         'Upload Successful',
-        'Album berhasil ditambahkan',
+        'Tugas berhasil dikirim',
         backgroundColor: successColor,
         colorText: whiteColor,
       );
@@ -130,7 +130,7 @@ class DetailTugasPageController extends GetxController {
     } catch (e) {
       Get.snackbar(
         'Upload Failed',
-        'Album gagal ditambahkan',
+        'Tugas gagal dikirim',
         backgroundColor: dangerColor,
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,

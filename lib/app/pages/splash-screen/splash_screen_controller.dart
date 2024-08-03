@@ -10,7 +10,7 @@ class SplashScreenController extends GetxController {
     SharedPreferences.getInstance().then((prefs) {
       final token = prefs.getString('token');
       if (token != null) {
-        Get.offAllNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.NAVBAR);
       } else {
         Get.offAllNamed(Routes.LOGIN_PAGE);
       }
