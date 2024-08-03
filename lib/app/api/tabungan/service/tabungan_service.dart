@@ -32,9 +32,21 @@ class TabunganService {
   Future<Response> postStorePengajuanTabungan(String userId, String category) async {
     try {
       final response = await _dioInstance.postRequest(
-          endpoint: ApiEndPoint.currentPengajuanTabungan,
+          endpoint: ApiEndPoint.storePengajuanTabungan,
           isAuthorize: true,
           data: {'user_id': userId, 'category': category});
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> deletePengajuanTabungan(String pengajuanId) async {
+    try {
+      final response = await _dioInstance.deleteRequest(
+          endpoint: '${ApiEndPoint.deletePengajuanTabungan}$pengajuanId',
+          isAuthorize: true,
+          );
       return response;
     } catch (e) {
       throw Exception(e);
