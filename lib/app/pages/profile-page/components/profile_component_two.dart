@@ -144,7 +144,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                       child: BarChart(BarChartData(
                         barTouchData: BarTouchData(
                             touchTooltipData: BarTouchTooltipData(
-                          getTooltipColor: (_) => blackColor.withOpacity(0.9),
+                          getTooltipColor: (_) => whiteColor.withOpacity(0.9),
                           getTooltipItem: (group, groupIndex, rod, rodIndex) {
                             BarChartWidgets().getWeekDay(group.x.toInt());
 
@@ -158,14 +158,14 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
 
                             return BarTooltipItem(
                               '${controller.selectedTime.value == 'Mingguan' ? BarChartWidgets().getWeekDay(group.x.toInt()) : BarChartWidgets().getWeekNumber(group.x.toInt())}\n',
-                              tsBodySmallSemibold(whiteColor),
+                              tsBodySmallSemibold(blackColor),
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: 'ireng: $tugasValue\n',
-                                    style: tsBodySmallSemibold(successColor)),
+                                    text: 'Tugas: $tugasValue\n',
+                                    style: tsBodySmallSemibold(blackColor)),
                                 TextSpan(
-                                    text: 'Red: $laporanValue',
-                                    style: tsBodySmallSemibold(dangerColor)),
+                                    text: 'Laporan: $laporanValue',
+                                    style: tsBodySmallSemibold(primaryColor)),
                               ],
                             );
                           },
