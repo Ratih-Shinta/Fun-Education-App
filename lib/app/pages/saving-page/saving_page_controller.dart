@@ -16,10 +16,6 @@ class SavingPageController extends GetxController {
   Rx<ShowCurrentTabunganModel> showCurrentTabunganModel =
       ShowCurrentTabunganModel().obs;
 
-  // ShowCurrentMinimumPengajuanResponse? showCurrentMinimumPengajuanResponse;
-  // RxList<ShowCurrentMinimumPengajuanModel> showCurrentMinimumPengajuanModel =
-  //     <ShowCurrentMinimumPengajuanModel>[].obs;
-
   PengajuanTabunganService pengajuanTabunganService =
       PengajuanTabunganService();
   CurrentPengajuanTabunganResponse? currentPengajuanTabunganiResponse;
@@ -37,7 +33,6 @@ class SavingPageController extends GetxController {
   @override
   void onInit() {
     showCurrentTabungan();
-    // showCurrentMinimumPengajuan();
     storePengajuanTabungan();
     currentPengajuanTabungan();
     update();
@@ -59,6 +54,27 @@ class SavingPageController extends GetxController {
     }
   }
 
+    Future<void> storePengajuanTabungan() async {
+    try {
+      isLoading(true);
+      final userId = showCurrentTabunganModel.value.userId;
+      final selectedCategory = selectedOption.value;
+
+      if (userId != null) {
+        final response = await pengajuanTabunganService.postStorePengajuanTabungan(
+            userId, selectedCategory);
+        Get.snackbar(
+            'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
+        Get.back();
+      } else {
+        print('userId is null');
+      }
+    } catch (e) {
+      isLoading(true);
+      print(e);
+    }
+  }
+
   Future showCurrentTabungan() async {
     try {
       final response = await tabunganService.getShowCurrentTabungan();
@@ -72,9 +88,9 @@ class SavingPageController extends GetxController {
     }
   }
 
-  Future deleteTaskByAdmin(String pengajuanId) async {
+  Future deletePengajuanTabungan(String pengajuanId) async {
     try {
-      await tabunganService.deletePengajuanTabungan(pengajuanId);
+      await pengajuanTabunganService.deletePengajuanTabungan(pengajuanId);
       currentPengajuanTabunganModel.value = CurrentPengajuanTabunganModel();
       update();
       Get.snackbar(
@@ -114,27 +130,6 @@ class SavingPageController extends GetxController {
     print("Selected Option: $option");
   }
 
-  Future<void> storePengajuanTabungan() async {
-    try {
-      isLoading(true);
-      final userId = showCurrentTabunganModel.value.userId;
-      final selectedCategory = selectedOption.value;
-
-      if (userId != null) {
-        final response = await tabunganService.postStorePengajuanTabungan(
-            userId, selectedCategory);
-        Get.snackbar(
-            'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
-        Get.back();
-      } else {
-        print('userId is null');
-      }
-    } catch (e) {
-      isLoading(true);
-      print(e);
-    }
-  }
-
   bool selectedCategoryIsEnough() {
     int selectedIndex = selectedOption.value == "SPP Bulanan" ? 0 : 1;
   
@@ -147,12 +142,5 @@ class SavingPageController extends GetxController {
     }
     print('isEnough: ${isEnough.value}');
     return isEnough.value;
-  }
-
-  Future<void> onRefresh() async {
-    showCurrentTabungan();
-    storePengajuanTabungan();
-    currentPengajuanTabungan();
-    update();
   }
 }

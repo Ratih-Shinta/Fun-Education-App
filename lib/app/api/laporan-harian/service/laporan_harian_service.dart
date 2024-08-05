@@ -5,15 +5,13 @@ import 'package:dio/dio.dart';
 class LaporanHarianService {
   final DioInstance _dioInstance = DioInstance();
 
-  Future<Response> getShowCurrentLaporanHarian(DateTime parsedDate) async {
-    // DateTime today = DateTime.now();
-    // String formattedDate = DateFormat('yyyy-MM-dd').format(today);
-    // DateTime parsedDate = DateTime.parse(formattedDate);
+  Future<Response> getShowCurrentLaporanHarian(String date) async {
     try {
       final response = await _dioInstance.getRequest(
           endpoint: ApiEndPoint.showCurrentLaporanHarian,
           isAuthorize: true,
-          queryParameters: {'date': parsedDate});
+          queryParameters: {'date': '$date'}
+          );
       return response;
     } catch (e) {
       throw Exception(e);

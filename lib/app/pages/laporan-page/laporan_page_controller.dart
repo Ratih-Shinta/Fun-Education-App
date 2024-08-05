@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_model.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_response.dart';
 import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur_belajar_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
@@ -14,23 +16,26 @@ import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_c
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
-import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_two.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class LaporanPageController extends GetxController {
-  HomePageController homePageController = Get.put(HomePageController());
-  RxBool isLoading = false.obs;
-  RxBool isLoadingLaporanHarian = false.obs;
+  RxBool isLoading = true.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
   var currentStatus = 'Tersedia'.obs;
+
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
+  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      <ShowCurrentLaporanHarianModel>[].obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
   Rx<ShowCurrentAlurBelajarModel> showCurrentAlurBelajarModel =
       ShowCurrentAlurBelajarModel().obs;
 
-  LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentPointMingguanResponse? showCurrentPointMingguanResponse;
   Rx<ShowCurrentPointMingguanModel> showCurrentPointMingguanModel =
       ShowCurrentPointMingguanModel().obs;
@@ -41,8 +46,6 @@ class LaporanPageController extends GetxController {
 
   TugasService tugasService = TugasService();
   ShowCurrentTugasResponse? showCurrentTugasResponse;
-  RxList<ShowCurrentTugasModel> showCurrentTugasModel =
-      <ShowCurrentTugasModel>[].obs;
   RxList<ShowCurrentTugasModel> showCurrentTugasModelTerbaru =
       <ShowCurrentTugasModel>[].obs;
   RxList<ShowCurrentTugasModel> showCurrentTugasModelDiperiksa =
@@ -62,37 +65,41 @@ class LaporanPageController extends GetxController {
     showCurrentAlurBelajar();
     showCurrentPointMingguan();
     showCurrentPointBulanan();
-    showCurrentTugas();
+    showCurrentTugasTerbaru();
     showCurrentTugasDiperiksa();
     showCurrentTugasSelesai();
     showLeaderboardWeelky();
     showLeaderboardMonthly();
+    showCurrentLaporanHarian(selectedDate.value);
+    update();
     super.onInit();
   }
 
-  Future showCurrentTugas() async {
+  Future showCurrentLaporanHarian(DateTime date) async {
     try {
-      final response = await tugasService.getCurrentTugas();
-      showCurrentTugasResponse =
-          ShowCurrentTugasResponse.fromJson(response.data);
-      showCurrentTugasModel.value = showCurrentTugasResponse!.data;
-      isLoading.value = false;
-      print('current tugas ${showCurrentTugasModel.length}');
+      final response = await laporanHarianService.getShowCurrentLaporanHarian(
+          '${DateFormat('yyyy-MM-dd').format(date)}');
+      showCurrentLaporanHarianResponse =
+          ShowCurrentLaporanHarianResponse.fromJson(response.data);
+      showCurrentLaporanHarianModel.value =
+          showCurrentLaporanHarianResponse!.data;
       update();
+      print('laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      // print('datetime : ${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
+      isLoading(false);
     } catch (e) {
-      print(e);
+      print('laporan error :  $e');
     }
   }
 
-    Future showCurrentTugasTerbaru() async {
+  Future showCurrentTugasTerbaru() async {
     try {
       final response = await tugasService.getCurrentTugasTerbaru();
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelTerbaru.value = showCurrentTugasResponse!.data;
       isLoading.value = false;
-      print(
-          'current tugas Terbaru : ${showCurrentTugasModelTerbaru.length}');
+      print('current tugas Terbaru : ${showCurrentTugasModelTerbaru.length}');
       update();
     } catch (e) {
       print(e);
@@ -239,20 +246,9 @@ class LaporanPageController extends GetxController {
     return dates;
   }
 
-  var selectedDate = DateTime.now().obs;
-  void changeDate(DateTime date) {
-    selectedDate.value = date;
-  }
-
   var currentIndex = 0.obs;
   void changeTab(int index) {
     currentIndex.value = index;
-  }
-
-  var selectedStatus = 0.obs;
-  final List<int> counts = [12, 3, 10];
-  void changeStatus(int index) {
-    selectedStatus.value = index;
   }
 
   var selectedTime = 'Mingguan'.obs;
@@ -265,7 +261,14 @@ class LaporanPageController extends GetxController {
     selectedPeriod.value = period;
   }
 
-  void updateSelectedDate(DateTime date) {
+  var selectedDate = DateTime.now().obs;
+  void setSelectedDate(DateTime date) {
     selectedDate.value = date;
+    DateFormat('yyyy-MM-dd').format(selectedDate.value);
+    isLoading(true);
+    showCurrentLaporanHarian(selectedDate.value);
+    // LaporanPageComponentTwo();
+    print(selectedDate.value);
+    update();
   }
 }

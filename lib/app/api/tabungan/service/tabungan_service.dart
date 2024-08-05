@@ -16,40 +16,4 @@ class TabunganService {
       throw Exception(e);
     }
   }
-
-  Future<Response> getShowCurrentMinimumPengajuan() async {
-    try {
-      final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.showCurrentMinimumPengajuan,
-        isAuthorize: true
-      );
-      return response;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  Future<Response> postStorePengajuanTabungan(String userId, String category) async {
-    try {
-      final response = await _dioInstance.postRequest(
-          endpoint: ApiEndPoint.storePengajuanTabungan,
-          isAuthorize: true,
-          data: {'user_id': userId, 'category': category});
-      return response;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
-  Future<Response> deletePengajuanTabungan(String pengajuanId) async {
-    try {
-      final response = await _dioInstance.deleteRequest(
-          endpoint: '${ApiEndPoint.deletePengajuanTabungan}$pengajuanId',
-          isAuthorize: true,
-          );
-      return response;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
 }

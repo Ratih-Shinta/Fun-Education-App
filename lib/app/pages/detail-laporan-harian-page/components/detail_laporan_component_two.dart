@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
-  const DetailLaporanComponentTwo({super.key});
+   DetailLaporanComponentTwo({super.key});
+  final LaporanPageController laporanPageController =
+      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else if (controller.showCurrentLaporanHarianResponse?.data == null) {
+      } else if (laporanPageController.showCurrentLaporanHarianResponse?.data == null) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: height * 0.15,
@@ -60,14 +63,14 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: controller.showCurrentLaporanHarianModel.length,
+            itemCount: laporanPageController.showCurrentLaporanHarianModel.length,
             itemBuilder: (BuildContext context, int index) {
               return ReportWidget(
                 no: index + 1,
                 text:
-                    '${controller.showCurrentLaporanHarianModel[index].activity}',
+                    '${laporanPageController.showCurrentLaporanHarianModel[index].activity}',
                 point:
-                    '${controller.showCurrentLaporanHarianModel[index].grade}',
+                    '${laporanPageController.showCurrentLaporanHarianModel[index].grade}',
               );
             },
           ),

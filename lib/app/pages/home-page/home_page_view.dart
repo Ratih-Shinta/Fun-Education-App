@@ -52,6 +52,7 @@ class HomePageView extends GetView<HomePageController> {
                       horizontal: width * 0.05,
                       vertical: height * 0.015,
                     ),
+                    // child: Text('data'),
                     child: Column(
                       children: [
                         HomePageComponentOne(),

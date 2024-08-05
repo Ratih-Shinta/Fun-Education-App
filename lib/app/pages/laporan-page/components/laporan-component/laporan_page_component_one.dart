@@ -21,7 +21,7 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
         focusDate: controller.selectedDate.value,
         lastDate: DateTime(DateTime.now().year, 12, 31),
         onDateChange: (selectedDate) {
-          controller.updateSelectedDate(selectedDate);
+          controller.setSelectedDate(selectedDate);
         },
         dayProps: EasyDayProps(
           width: width / 6.5,

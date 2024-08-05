@@ -88,7 +88,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                     ),
                   ),
                   CommonButton(text: 'Selesai', color: dangerColor, onPressed: () {
-                          controller.deleteTaskByAdmin(controller
+                          controller.deletePengajuanTabungan(controller
                               .currentPengajuanTabunganModel.value.id!);
                         },)
                 ],

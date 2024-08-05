@@ -7,10 +7,11 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class LaporanContainer extends GetView<LaporanPageController> {
+class LaporanContainer extends StatelessWidget {
+  final String date;
   final String poin;
   final String catatan;
-  const LaporanContainer(this.poin, this.catatan, {super.key});
+  const LaporanContainer(this.poin, this.catatan, {super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class LaporanContainer extends GetView<LaporanPageController> {
                       children: [
                         TextSpan(
                           text:
-                              '${DateFormat('EEEE, dd MMMM yyyy').format(controller.selectedDate.value)}',
+                              '$date',
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -132,7 +133,7 @@ class LaporanContainer extends GetView<LaporanPageController> {
                         children: [
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor: catatan == '0'
+                            backgroundColor: catatan == null
                                 ? opacity50GreyColor
                                 : successColor,
                           ),
