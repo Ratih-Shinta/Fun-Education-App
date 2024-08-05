@@ -7,22 +7,21 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class LaporanPageComponentTwo extends GetView<LaporanPageController> {
-  final DetailLaporanHarianController detailLaporanHarianController =
-      Get.put<DetailLaporanHarianController>(DetailLaporanHarianController());
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double height = mediaQuery.height;
 
     return Obx(() {
-      if (controller.isLoading.value == true) {
+      if (controller.isLoading.value) {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else
-      if (detailLaporanHarianController.showCurrentLaporanHarianResponse?.totalPoint == null) {
+      } else if (controller.showCurrentLaporanHarianResponse?.totalPoint ==
+          null) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: height * 0.15,
@@ -56,10 +55,15 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
         return InkWell(
           onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),
           child: LaporanContainer(
-              detailLaporanHarianController
-                  .showCurrentLaporanHarianResponse!.totalPoint
-                  .toString(),
-              '1'),
+            controller.showCurrentLaporanHarianResponse?.totalPoint
+                    .toString() ??
+                '0',
+            controller.showCurrentLaporanHarianResponse?.note == null
+                ? '0'
+                : '1',
+            date:
+                '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(controller.selectedDate.value)}',
+          ),
         );
       }
     });

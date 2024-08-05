@@ -12,8 +12,8 @@ String showCurrentLaporanHarianResponseToJson(ShowCurrentLaporanHarianResponse d
 
 class ShowCurrentLaporanHarianResponse {
     List<ShowCurrentLaporanHarianModel> data;
-    String note;
-    int totalPoint;
+    dynamic note;
+    dynamic totalPoint;
 
     ShowCurrentLaporanHarianResponse({
         required this.data,

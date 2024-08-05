@@ -66,85 +66,29 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
             ],
           ),
           ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount:
-                    transaksiPageController.showCurrentTransaksiModel.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return TransactionHistory(
-                    categoryController: transaksiPageController
-                        .showCurrentTransaksiModel[index].category!,
-                    amountController: transaksiPageController
-                        .showCurrentTransaksiModel[index].amount!,
-                    descController: transaksiPageController
-                            .showCurrentTransaksiModel[index].desc ??
-                        'Tidak Ada',
-                    dateController: DateFormat('dd MMMM yyyy', 'id_ID').format(
-                        DateTime.parse(transaksiPageController
-                            .showCurrentTransaksiModel[index].date
-                            .toString())),
-                  );
-                },
-              )
-          // Obx(() {
-          //   if (controller.isLoading.value) {
-          //     return CircularProgressIndicator();
-          //   } else if (transaksiPageController
-          //           .showCurrentTransaksiModel[0].amount ==
-          //       null) {
-          //     return Padding(
-          //       padding: EdgeInsets.only(
-          //         bottom: height * 0.15,
-          //         top: height * 0.15,
-          //       ),
-          //       child: Center(
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: [
-          //             SvgPicture.asset(
-          //               'assets/images/imgGagal.svg',
-          //             ),
-          //             SizedBox(height: height * 0.01),
-          //             AutoSizeText(
-          //               'Belum Ada Riwayat',
-          //               group: AutoSizeGroup(),
-          //               maxLines: 1,
-          //               style: tsBodyMediumSemibold(blackColor),
-          //             ),
-          //             AutoSizeText(
-          //               'Untuk Bulan Tersebut Belum Ada Riwayat',
-          //               group: AutoSizeGroup(),
-          //               maxLines: 1,
-          //               style: tsLabelLargeRegular(blackColor),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     );
-          //   } else {
-          //     return ListView.builder(
-          //       shrinkWrap: true,
-          //       physics: NeverScrollableScrollPhysics(),
-          //       itemCount:
-          //           transaksiPageController.showCurrentTransaksiModel.length,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return TransactionHistory(
-          //           categoryController: transaksiPageController
-          //               .showCurrentTransaksiModel[index].category!,
-          //           amountController: transaksiPageController
-          //               .showCurrentTransaksiModel[index].amount!,
-          //           descController: transaksiPageController
-          //                   .showCurrentTransaksiModel[index].desc ??
-          //               'Tidak Ada',
-          //           dateController: DateFormat('dd MMMM yyyy', 'id_ID').format(
-          //               DateTime.parse(transaksiPageController
-          //                   .showCurrentTransaksiModel[index].date
-          //                   .toString())),
-          //         );
-          //       },
-          //     );
-          //   }
-          // })
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: transaksiPageController.showCurrentTransaksiModel.length,
+            itemBuilder: (BuildContext context, int index) {
+              return TransactionHistory(
+                categoryController: transaksiPageController
+                    .showCurrentTransaksiModel[index].category!,
+                amountController: transaksiPageController
+                    .showCurrentTransaksiModel[index].amount!,
+                descController: transaksiPageController
+                        .showCurrentTransaksiModel[index].desc ??
+                    'Tidak Ada',
+                dateController: DateFormat('dd MMMM yyyy', 'id_ID').format(
+                    DateTime.parse(transaksiPageController
+                        .showCurrentTransaksiModel[index].date
+                        .toString())),
+                // dateController: controller.formatDate(controller
+                //         .showCurrentTransaksiModel[index].date
+                //         .toString() ??
+                //     "Unknown date"),
+              );
+            },
+          ),
         ],
       ),
     );

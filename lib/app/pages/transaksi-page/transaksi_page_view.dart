@@ -38,7 +38,9 @@ class TransaksiPageView extends StatelessWidget {
               vertical: height * 0.01,
             ),
             child: Column(
-              children: [TransaksiComponentOne(), TransaksiComponentTwo()],
+              children: [
+                // TransaksiComponentOne(), 
+                TransaksiComponentTwo()],
             ),
           ),
         ),

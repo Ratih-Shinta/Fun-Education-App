@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/global-component/loading_overlay.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_component_four.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_one.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_three.dart';
@@ -11,16 +12,27 @@ class LaporanComponent extends GetView<LaporanPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: ListView(
-        children: [
-          SizedBox(height: 20),
-          LaporanPageComponentOne(),
-          LaporanPageComponentTwo(),
-          LaporanPageComponentThree(),
-          LaporanComponentFour()
-        ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        // await controller.showCurrentAlurBelajar();
+        // await controller.showCurrentTugasTerbaru();
+        // await controller.showCurrentTugasDiperiksa();
+        // await controller.showCurrentTugasSelesai();
+        await controller
+            .showCurrentLaporanHarian(controller.selectedDate.value);
+        controller.update();
+      },
+      child: DefaultTabController(
+        length: 3,
+        child: ListView(
+          children: [
+            SizedBox(height: 20),
+            LaporanPageComponentOne(),
+            LaporanPageComponentTwo(),
+            LaporanPageComponentThree(),
+            LaporanComponentFour()
+          ],
+        ),
       ),
     );
   }

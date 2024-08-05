@@ -6,6 +6,10 @@ import 'package:fun_education_app/app/api/leaderboard/models/show-total-point/to
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_response.dart';
 import 'package:fun_education_app/app/api/shift-masuk/service/shift_masuk_sevice.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
+import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:fun_education_app/app/api/users/models/show_current_user_model.dart';
 import 'package:fun_education_app/app/api/users/models/show_current_user_response.dart';
 import 'package:fun_education_app/app/api/users/service/user_service.dart';
@@ -29,6 +33,14 @@ class HomePageController extends GetxController {
 
   LeaderboardService leaderboardService = LeaderboardService();
   Rx<ShowTotalPointResponse> showTotalPointModel = ShowTotalPointResponse(point: '0').obs;
+  
+    TugasService tugasService = TugasService();
+  ShowCurrentTugasResponse? showCurrentTugasResponse;
+  RxList<ShowCurrentTugasModel> showCurrentTugasModel =
+      <ShowCurrentTugasModel>[].obs;
+        RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
+      <ShowCurrentTugasImageModel>[].obs;
+
 
 
   RxBool isLoading = true.obs;
@@ -39,8 +51,23 @@ class HomePageController extends GetxController {
     showCurrentUser();
     showLatestCatatanDarurat();
     showTotalPoint();
+    showCurrentTugas();
     update();
     super.onInit();
+  }
+
+  Future showCurrentTugas() async {
+    try {
+      final response = await tugasService.getCurrentTugas();
+      showCurrentTugasResponse =
+          ShowCurrentTugasResponse.fromJson(response.data);
+      showCurrentTugasModel.value = showCurrentTugasResponse!.data;
+      isLoading.value = false;
+      print('current tugas ${showCurrentTugasModel.length}');
+      update();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future showTotalPoint() async {
