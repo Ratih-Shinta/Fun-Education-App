@@ -38,7 +38,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                 subtitle: 'Pilih Pengeluaran Tabungan',
                 color: primaryColor,
               ),
-              Column(
+              Obx(() => Column(
                     children: [
                       CustomRadioButton(
                         title: 'SPP Bulanan',
@@ -66,7 +66,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                         ),
                       ),
                     ],
-                  ),
+                  )),
               Obx(
                 () => controller.selectedCategoryIsEnough() == true
                     ? GestureDetector(

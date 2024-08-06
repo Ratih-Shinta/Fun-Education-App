@@ -5,11 +5,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/bar_chart_widgets.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pilih_periode.dart';
+import 'package:fun_education_app/app/pages/profile-page/components/bottomsheet_select_period_task.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
+import 'package:fun_education_app/app/pages/profile-page/widgets/task_line_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class ProfileComponentTwo extends GetView<ProfilePageController> {
+  final ReportLineChart reportBarChart = ReportLineChart();
+
   ProfileComponentTwo({super.key});
 
   @override
@@ -41,15 +45,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   showModalBottomSheet<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return BottomsheetPilihPeriode(
-                        title: 'Pilih Periode',
-                        subtitle: 'Pilih Untuk Melihat Perkembangan Point',
-                        options: ['Bulanan', 'Mingguan'],
-                        onOptionSelected: (option) {
-                          controller.setSelectedTime(option);
-                        },
-                        selectedOption: controller.selectedTime,
-                      );
+                      return BottomsheetSelectPeriodTask();
                     },
                     isScrollControlled: true,
                     backgroundColor: whiteColor,
@@ -64,7 +60,8 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   child: Row(
                     children: [
                       AutoSizeText.rich(TextSpan(
-                          text: controller.selectedTime.value,
+                          text:
+                              '${controller.selectedReportPoint.value.toString()} Laporan',
                           style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
@@ -91,7 +88,8 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
               Obx(() {
                 return AutoSizeText.rich(
                   TextSpan(
-                    text: '${controller.selectedTime.value}\n',
+                    text:
+                        '${controller.selectedReportPoint.value.toString()} Laporan Terakhir\n',
                     style:
                         tsBodyMediumSemibold(blackColor).copyWith(height: 1.3),
                     children: [
@@ -137,69 +135,17 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 ],
               ),
               SizedBox(height: 20),
-              Obx(
-                () {
+              Obx(() {
+                if (controller.isLoading.value)
+                  return Center(child: CircularProgressIndicator());
+                else
                   return AspectRatio(
-                      aspectRatio: 1.3,
-                      child: BarChart(BarChartData(
-                        barTouchData: BarTouchData(
-                            touchTooltipData: BarTouchTooltipData(
-                          getTooltipColor: (_) => whiteColor.withOpacity(0.9),
-                          getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                            BarChartWidgets().getWeekDay(group.x.toInt());
-
-                            String laporanValue =
-                                group.barRods[0].toY.toInt().toString();
-                            String tugasValue = (group.barRods[1].toY -
-                                    0.2 -
-                                    group.barRods[0].toY)
-                                .toInt()
-                                .toString();
-
-                            return BarTooltipItem(
-                              '${controller.selectedTime.value == 'Mingguan' ? BarChartWidgets().getWeekDay(group.x.toInt()) : BarChartWidgets().getWeekNumber(group.x.toInt())}\n',
-                              tsBodySmallSemibold(blackColor),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Tugas: $tugasValue\n',
-                                    style: tsBodySmallSemibold(blackColor)),
-                                TextSpan(
-                                    text: 'Laporan: $laporanValue',
-                                    style: tsBodySmallSemibold(primaryColor)),
-                              ],
-                            );
-                          },
-                        )),
-                        titlesData: FlTitlesData(
-                          show: true,
-                          rightTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          topTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          bottomTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              showTitles: true,
-                              reservedSize:
-                                  controller.selectedTime.value == 'Mingguan'
-                                      ? 25
-                                      : 48,
-                              getTitlesWidget:
-                                  controller.selectedTime.value == 'Mingguan'
-                                      ? BarChartWidgets().mingguanTitles
-                                      : BarChartWidgets().bulananTitles,
-                            ),
-                          ),
-                          leftTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                        ),
-                        borderData: FlBorderData(show: false),
-                        barGroups: controller.selectedTime.value == 'Mingguan'
-                            ? controller.mingguanData
-                            : controller.bulananData,
-                        gridData: const FlGridData(show: false),
-                      )));
-                },
-              )
+                    aspectRatio: 0.6,
+                    child: LineChart(
+                      reportBarChart.reportLineChart(),
+                    ),
+                  );
+              }),
             ],
           ),
         ),

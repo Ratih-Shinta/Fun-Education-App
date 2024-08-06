@@ -87,10 +87,14 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                       ],
                     ),
                   ),
-                  CommonButton(text: 'Selesai', color: dangerColor, onPressed: () {
-                          controller.deletePengajuanTabungan(controller
-                              .currentPengajuanTabunganModel.value.id!);
-                        },)
+                  CommonButton(
+                    text: 'Selesai',
+                    color: dangerColor,
+                    onPressed: () {
+                      controller.deletePengajuanTabungan(
+                          controller.currentPengajuanTabunganModel.value.id!);
+                    },
+                  )
                 ],
               );
             } else if (controller.currentPengajuanTabunganModel.value.status ==

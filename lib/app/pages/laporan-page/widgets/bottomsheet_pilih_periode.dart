@@ -47,7 +47,7 @@ class BottomsheetPilihPeriode extends StatelessWidget {
             children: [
               HeaderBottomsheet(
                   title: title, subtitle: subtitle, color: primaryColor),
-              _buildOptions(width, height),
+              buildOptions(width, height),
               CommonButton(
                 text: 'Tutup',
                 color: blackColor,
@@ -62,7 +62,7 @@ class BottomsheetPilihPeriode extends StatelessWidget {
     );
   }
 
-  Widget _buildOptions(double width, double height) {
+  Widget buildOptions(double width, double height) {
     return Column(
       children: options.map((option) {
         return Column(

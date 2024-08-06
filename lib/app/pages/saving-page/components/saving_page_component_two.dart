@@ -65,30 +65,31 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
               )
             ],
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: transaksiPageController.showCurrentTransaksiModel.length,
-            itemBuilder: (BuildContext context, int index) {
-              return TransactionHistory(
-                categoryController: transaksiPageController
-                    .showCurrentTransaksiModel[index].category!,
-                amountController: transaksiPageController
-                    .showCurrentTransaksiModel[index].amount!,
-                descController: transaksiPageController
-                        .showCurrentTransaksiModel[index].desc ??
-                    'Tidak Ada',
-                dateController: DateFormat('dd MMMM yyyy', 'id_ID').format(
-                    DateTime.parse(transaksiPageController
-                        .showCurrentTransaksiModel[index].date
-                        .toString())),
-                // dateController: controller.formatDate(controller
-                //         .showCurrentTransaksiModel[index].date
-                //         .toString() ??
-                //     "Unknown date"),
-              );
-            },
-          ),
+          Obx(() => ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount:
+                    transaksiPageController.showCurrentTransaksiModel.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TransactionHistory(
+                    categoryController: transaksiPageController
+                        .showCurrentTransaksiModel[index].category!,
+                    amountController: transaksiPageController
+                        .showCurrentTransaksiModel[index].amount!,
+                    descController: transaksiPageController
+                            .showCurrentTransaksiModel[index].desc ??
+                        'Tidak Ada',
+                    dateController: DateFormat('dd MMMM yyyy', 'id_ID').format(
+                        DateTime.parse(transaksiPageController
+                            .showCurrentTransaksiModel[index].date
+                            .toString())),
+                    // dateController: controller.formatDate(controller
+                    //         .showCurrentTransaksiModel[index].date
+                    //         .toString() ??
+                    //     "Unknown date"),
+                  );
+                },
+              )),
         ],
       ),
     );

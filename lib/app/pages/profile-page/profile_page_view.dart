@@ -42,6 +42,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
               ),
             ),
           ),
-        ));
+        )
+        );
   }
 }

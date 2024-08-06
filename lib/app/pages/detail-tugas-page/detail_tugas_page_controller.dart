@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show_current_image_tugas_user_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show_current_tugas_user_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show_current_tugas_user_response.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-current-tugas/show_current_image_tugas_user_model.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-current-tugas/show_current_tugas_user_model.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-current-tugas/show_current_tugas_user_response.dart';
 import 'package:fun_education_app/app/api/tugas-user/service/tugas_user_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-by-id-tugas/show_current_by_id_response.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';

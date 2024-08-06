@@ -31,25 +31,25 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
           ],
         ),
         SizedBox(height: 10),
-        TabBar(
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorColor: primaryColor,
-            tabAlignment: TabAlignment.start,
-            isScrollable: true,
-            dividerColor: transparentColor,
-            labelColor: primaryColor,
-            unselectedLabelColor: greyColor,
-            tabs: [
-              TabItem(
-                  title: 'Terbaru',
-                  count: controller.showCurrentTugasModelTerbaru.length),
-              TabItem(
-                  title: 'Diperiksa',
-                  count: controller.showCurrentTugasModelDiperiksa.length),
-              TabItem(
-                  title: 'Selesai',
-                  count: controller.showCurrentTugasModelSelesai.length),
-            ]),
+        Obx(() => TabBar(
+                indicatorSize: TabBarIndicatorSize.label,
+                indicatorColor: primaryColor,
+                tabAlignment: TabAlignment.start,
+                isScrollable: true,
+                dividerColor: transparentColor,
+                labelColor: primaryColor,
+                unselectedLabelColor: greyColor,
+                tabs: [
+                  TabItem(
+                      title: 'Terbaru',
+                      count: controller.showCurrentTugasModelTerbaru.length),
+                  TabItem(
+                      title: 'Diperiksa',
+                      count: controller.showCurrentTugasModelDiperiksa.length),
+                  TabItem(
+                      title: 'Selesai',
+                      count: controller.showCurrentTugasModelSelesai.length),
+                ])),
         SizedBox(height: 20),
         SizedBox(
           // Expanded(

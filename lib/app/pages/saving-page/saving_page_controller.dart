@@ -54,18 +54,19 @@ class SavingPageController extends GetxController {
     }
   }
 
-    Future<void> storePengajuanTabungan() async {
+  Future<void> storePengajuanTabungan() async {
     try {
       isLoading(true);
       final userId = showCurrentTabunganModel.value.userId;
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response = await pengajuanTabunganService.postStorePengajuanTabungan(
-            userId, selectedCategory);
+        final response = await pengajuanTabunganService
+            .postStorePengajuanTabungan(userId, selectedCategory);
+        await currentPengajuanTabungan();
+        Get.back();
         Get.snackbar(
             'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
-        Get.back();
       } else {
         print('userId is null');
       }
@@ -132,7 +133,7 @@ class SavingPageController extends GetxController {
 
   bool selectedCategoryIsEnough() {
     int selectedIndex = selectedOption.value == "SPP Bulanan" ? 0 : 1;
-  
+
     print("Selected Index: $selectedIndex");
 
     if (showCurrentTabunganModel.value.savingInt! >= 100000) {
