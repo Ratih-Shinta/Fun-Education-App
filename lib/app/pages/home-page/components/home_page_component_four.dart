@@ -32,22 +32,21 @@ class HomePageComponentFour extends GetView<HomePageController> {
           ],
         ),
         SizedBox(height: height * 0.02),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: controller.showCurrentTugasModel.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TugasWidget(
-              controllerArguments:
-                  controller.showCurrentTugasModel[index],
-              category:
-                  '${controller.showCurrentTugasModel[index].category}',
-              title: '${controller.showCurrentTugasModel[index].title}',
-              status:
-                  '${controller.showCurrentTugasModel[index].statusTugasUser}',
-            );
-          },
-        )
+        Obx(() => ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: controller.showCurrentTugasModel.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TugasWidget(
+                  controllerArguments: controller.showCurrentTugasModel[index],
+                  category:
+                      '${controller.showCurrentTugasModel[index].category}',
+                  title: '${controller.showCurrentTugasModel[index].title}',
+                  status:
+                      '${controller.showCurrentTugasModel[index].statusTugasUser}',
+                );
+              },
+            ))
       ],
     );
   }

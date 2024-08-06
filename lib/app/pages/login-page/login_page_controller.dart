@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  late TextEditingController nicknameController;
-  late TextEditingController passwordController;
+  TextEditingController nicknameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   RxBool isLoading = false.obs;
   RxBool isVisibleSignIn = true.obs;
@@ -15,8 +15,8 @@ class LoginPageController extends GetxController {
 
   @override
   void onInit() {
-    nicknameController = TextEditingController();
-    passwordController = TextEditingController();
+    nicknameController.text = 'Syahran';
+    passwordController.text = 'rafapass';
 
     authenticationService = AuthenticationService();
     super.onInit();

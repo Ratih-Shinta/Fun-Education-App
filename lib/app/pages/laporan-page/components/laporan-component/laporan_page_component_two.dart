@@ -55,9 +55,7 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
         return InkWell(
           onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),
           child: LaporanContainer(
-            controller.showCurrentLaporanHarianResponse?.totalPoint
-                    .toString() ??
-                '0',
+            controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
             controller.showCurrentLaporanHarianResponse?.note == null
                 ? '0'
                 : '1',

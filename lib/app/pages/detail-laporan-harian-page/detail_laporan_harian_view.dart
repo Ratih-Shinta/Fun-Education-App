@@ -57,7 +57,7 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
               DetailLaporanComponentThree(),
               SizedBox(height: height * 0.02),
               DetailLaporanComponentFour(),
-              DetailComponentFive(),
+              // DetailComponentFive(),
             ],
           ),
         ),

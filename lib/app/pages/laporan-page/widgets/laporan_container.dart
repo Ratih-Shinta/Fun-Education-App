@@ -9,9 +9,10 @@ import 'package:intl/intl.dart';
 
 class LaporanContainer extends StatelessWidget {
   final String date;
-  final String poin;
+  final int poin;
   final String catatan;
-  const LaporanContainer(this.poin, this.catatan, {super.key, required this.date});
+  const LaporanContainer(this.poin, this.catatan,
+      {super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class LaporanContainer extends StatelessWidget {
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: poin == '25'
+        color: poin <= 25
             ? dangerColor.withOpacity(0.1)
-            : poin == '50'
+            : poin <= 50
                 ? warningColor.withOpacity(0.1)
                 : successColor.withOpacity(0.1),
       ),
@@ -35,9 +36,9 @@ class LaporanContainer extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     iconDocument,
-                    color: poin == '25'
+                    color: poin <= 25
                         ? dangerColor
-                        : poin == '50'
+                        : poin <= 50
                             ? warningColor
                             : greenColor,
                     height: 40,
@@ -50,8 +51,7 @@ class LaporanContainer extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text:
-                              '$date',
+                          text: '$date',
                           style: tsBodySmallRegular(blackColor),
                         ),
                       ],
@@ -88,29 +88,29 @@ class LaporanContainer extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                       decoration: BoxDecoration(
-                        color: poin == '25'
+                        color: poin <= 25
                             ? dangerColor
-                            : poin == '50'
+                            : poin <= 50
                                 ? warningColor
                                 : successColor,
                         borderRadius: BorderRadius.circular(29),
                       ),
                       child: IconPoint(
-                        point: poin,
-                        color: poin == '25'
+                        point: poin.toString(),
+                        color: poin <= 25
                             ? dangerColor
-                            : poin == '50'
+                            : poin <= 50
                                 ? warningColor
                                 : successColor,
                         textStyle: tsBodySmallSemibold(whiteColor),
                       ),
                     ),
                     AutoSizeText.rich(TextSpan(
-                      text: poin == '25'
+                      text: poin <= 25
                           ? 'Kurang'
-                          : poin == '50'
+                          : poin <= 50
                               ? 'Cukup'
-                              : poin == '75'
+                              : poin <= 75
                                   ? 'Baik'
                                   : 'Sangat Baik',
                       style: tsBodySmallSemibold(blackColor),
@@ -133,9 +133,13 @@ class LaporanContainer extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor: catatan == null
+                            backgroundColor: catatan.isEmpty
                                 ? opacity50GreyColor
-                                : successColor,
+                                : poin <= 25
+                                    ? dangerColor
+                                    : poin <= 50
+                                        ? warningColor
+                                        : successColor,
                           ),
                           SizedBox(width: 5),
                           AutoSizeText.rich(TextSpan(
