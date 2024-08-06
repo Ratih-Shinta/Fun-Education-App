@@ -1,4 +1,4 @@
-import 'package:fun_education_app/app/api/tugas-user/models/show_current_image_tugas_user_model.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-current-tugas/show_current_image_tugas_user_model.dart';
 
 class ShowCurrentTugasUserModel {
   String? id;

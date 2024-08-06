@@ -28,9 +28,12 @@ class ApiEndPoint {
   //Tugas
   static String showCurrentTugas = '$baseUrlTugas/show-current';
   static String showByIdTugas = '$baseUrlTugas/show/';
+
+  //Tugas User
   static String showCurrentTugasUser = '$baseUrlTugasUser/show-current/';
   static String storeKirimTugasUser = '$baseUrlTugasUser/store';
   static String storeKirimTugasUserImage = '$baseUrlTugasUserImage/store';
+  static String showStatisticCurrent = '$baseUrlTugasUser/statistic';
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';

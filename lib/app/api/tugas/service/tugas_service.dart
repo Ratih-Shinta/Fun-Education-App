@@ -60,6 +60,7 @@ class TugasService {
     try {
       final response = await _dioInstance.getRequest(
         endpoint: '${ApiEndPoint.showByIdTugas}$tugasId',
+        isAuthorize: true
       );
       return response;
     } catch (e) {
