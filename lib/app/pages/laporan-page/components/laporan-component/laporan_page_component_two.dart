@@ -14,11 +14,16 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double height = mediaQuery.height;
+    final double width = mediaQuery.width;
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return Center(
-          child: CircularProgressIndicator(),
+        return Container(
+          height: height * 0.51,
+          width: width,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
         );
       } else if (controller.showCurrentLaporanHarianResponse?.totalPoint ==
           null) {

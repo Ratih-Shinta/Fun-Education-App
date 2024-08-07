@@ -16,7 +16,7 @@ class TransaksiPageView extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, size: 15),
           onPressed: () {
             Get.back();
           },
@@ -24,7 +24,7 @@ class TransaksiPageView extends StatelessWidget {
         title: AutoSizeText.rich(
           TextSpan(
             text: 'Riwayat Transaksi',
-            style: tsBodyLargeSemibold(blackColor),
+            style: tsBodyMediumSemibold(blackColor),
           ),
         ),
         backgroundColor: backgroundColor,
@@ -39,8 +39,9 @@ class TransaksiPageView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // TransaksiComponentOne(), 
-                TransaksiComponentTwo()],
+                // TransaksiComponentOne(),
+                TransaksiComponentTwo()
+              ],
             ),
           ),
         ),

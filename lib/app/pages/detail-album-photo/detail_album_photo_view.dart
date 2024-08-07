@@ -29,7 +29,7 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios_new_rounded,
-              size: 20,
+              size: 15,
             ),
             onPressed: () {
               Get.back();
@@ -39,7 +39,7 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
             group: AutoSizeGroup(),
             maxLines: 1,
             'Detail Album',
-            style: tsBodyLargeSemibold(blackColor),
+            style: tsBodyMediumSemibold(blackColor),
           ),
         ),
       ),
@@ -159,7 +159,7 @@ class DetailAlbumPhotoView extends GetView<DetailAlbumPhotoController> {
                             argument.gallery![index].description!,
                             argument.gallery![index].image!,
                             argument.gallery![index].createdAt!.toString(),
-                          ); 
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(

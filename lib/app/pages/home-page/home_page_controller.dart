@@ -1,6 +1,9 @@
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_model.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_response.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/service/show_latest_catatan_darurat_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
+import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-total-point/total_point_response.dart';
 import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
@@ -14,9 +17,14 @@ import 'package:fun_education_app/app/api/users/models/show_current_user_model.d
 import 'package:fun_education_app/app/api/users/models/show_current_user_response.dart';
 import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HomePageController extends GetxController {
   RxBool isLoadingLatestCatatan = false.obs;
+  RxInt totalPoint = 0.obs;
+
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
 
   ShiftMasukService shiftMasukService = ShiftMasukService();
   ShiftMasukResponse? shiftMasukResponse;
@@ -32,16 +40,15 @@ class HomePageController extends GetxController {
       ShowLatestCatatanDaruratModel().obs;
 
   LeaderboardService leaderboardService = LeaderboardService();
-  Rx<ShowTotalPointResponse> showTotalPointModel = ShowTotalPointResponse(point: '0').obs;
-  
-    TugasService tugasService = TugasService();
+  Rx<ShowTotalPointResponse> showTotalPointModel =
+      ShowTotalPointResponse(point: '0').obs;
+
+  TugasService tugasService = TugasService();
   ShowCurrentTugasResponse? showCurrentTugasResponse;
   RxList<ShowCurrentTugasModel> showCurrentTugasModel =
       <ShowCurrentTugasModel>[].obs;
-        RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
+  RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
       <ShowCurrentTugasImageModel>[].obs;
-
-
 
   RxBool isLoading = true.obs;
 
@@ -52,8 +59,26 @@ class HomePageController extends GetxController {
     showLatestCatatanDarurat();
     showTotalPoint();
     showCurrentTugas();
+    showCurrentLaporanHarian(DateTime.now());
     update();
     super.onInit();
+  }
+
+  Future showCurrentLaporanHarian(DateTime date) async {
+    try {
+      final response = await laporanHarianService.getShowCurrentLaporanHarian(
+          '${DateFormat('yyyy-MM-dd').format(date)}');
+      showCurrentLaporanHarianResponse =
+          ShowCurrentLaporanHarianResponse.fromJson(response.data);
+      totalPoint.value = showCurrentLaporanHarianResponse!.totalPoint;
+      update();
+      print(
+          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      // print('datetime : ${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
+      isLoading(false);
+    } catch (e) {
+      print('laporan error :  $e');
+    }
   }
 
   Future showCurrentTugas() async {
@@ -82,7 +107,6 @@ class HomePageController extends GetxController {
     }
   }
 
-
   Future showCurrentShiftMasuk() async {
     try {
       final response = await shiftMasukService.getCurrentShiftMasuk();
@@ -110,9 +134,12 @@ class HomePageController extends GetxController {
   Future showLatestCatatanDarurat() async {
     try {
       isLoadingLatestCatatan(true);
-      final response = await catatanDaruratService.getShowLatestCatatanDarurat();
-      showLatestCatatanDaruratResponse = ShowLatestCatatanDaruratResponse.fromJson(response.data);
-      showLatestCatatanDaruratModel.value = showLatestCatatanDaruratResponse!.data;
+      final response =
+          await catatanDaruratService.getShowLatestCatatanDarurat();
+      showLatestCatatanDaruratResponse =
+          ShowLatestCatatanDaruratResponse.fromJson(response.data);
+      showLatestCatatanDaruratModel.value =
+          showLatestCatatanDaruratResponse!.data;
       update();
     } catch (e) {
       isLoadingLatestCatatan(true);
@@ -121,6 +148,4 @@ class HomePageController extends GetxController {
       isLoadingLatestCatatan(false);
     }
   }
-
-  
 }

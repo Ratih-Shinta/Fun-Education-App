@@ -49,7 +49,7 @@ class TransactionHistory extends StatelessWidget {
                       color: categoryController == 'income'
                           ? warningColor
                           : primaryColor,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(11),
                     ),
                     child: Icon(
                       categoryController == 'income'

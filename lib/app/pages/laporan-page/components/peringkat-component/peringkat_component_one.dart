@@ -19,6 +19,7 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
 
     return Column(
       children: [
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -51,13 +52,13 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   decoration: BoxDecoration(
                     color: whiteColor,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(25),
                   ),
                   child: Row(
                     children: [
                       AutoSizeText.rich(TextSpan(
                           text:
-                              '${controller.selectedReportPoint.value} Laporan',
+                              '${controller.selectedReportPoint.value} Laporan (Terakhir)',
                           style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
@@ -73,22 +74,23 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 20),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: opacity5GreyColor,
           ),
           child: AspectRatio(
-            aspectRatio: 0.49,
+            aspectRatio: 0.61,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      text: '${controller.selectedReportPoint.value} Laporan\n',
+                      text:
+                          '${controller.selectedReportPoint.value} Laporan (Terakhir)\n',
                       style: tsBodyMediumSemibold(blackColor)
-                          .copyWith(height: 1.3),
+                          .copyWith(height: 1.5),
                       children: [
                         TextSpan(
                             text: 'Perkembangan point ananda',
@@ -139,13 +141,13 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                     )
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
                 Obx(() {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else
                     return AspectRatio(
-                      aspectRatio: 0.6,
+                      aspectRatio: 0.8,
                       child: LineChart(
                         reportLineChart.reportLineChart(),
                       ),

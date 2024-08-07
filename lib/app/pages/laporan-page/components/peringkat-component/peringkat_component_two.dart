@@ -18,6 +18,7 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
 
     return Column(
       children: [
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -105,8 +106,8 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
             return Obx(
               () {
                 return Container(
-                  margin: EdgeInsets.only(bottom: 5),
-                  padding: EdgeInsets.all(15),
+                  margin: EdgeInsets.only(bottom: 8),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: controller.selectedPeriod.value == 'Mingguan'
                         ? (controller.leaderboardModelWeekly[index].isUser ==
@@ -125,21 +126,23 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                       AutoSizeText.rich(
                         TextSpan(
                             text:
-                                '${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].rank : controller.leaderboardModelMonthly[index].rank}   ${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].fullName : controller.leaderboardModelMonthly[index].fullName}',
+                                '${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].rank : controller.leaderboardModelMonthly[index].rank}    ${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].fullName : controller.leaderboardModelMonthly[index].fullName}',
                             style: tsBodySmallSemibold(blackColor)),
                         overflow: TextOverflow.ellipsis,
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                         decoration: BoxDecoration(
                           color: controller.selectedPeriod.value == 'Mingguan'
                               ? (controller.leaderboardModelWeekly[index]
-                                          .isUser == true
+                                          .isUser ==
+                                      true
                                   ? successColor
                                   : blackColor)
                               : (controller.leaderboardModelMonthly[index]
-                                          .isUser == true
+                                          .isUser ==
+                                      true
                                   ? successColor
                                   : blackColor),
                           borderRadius: BorderRadius.circular(13),

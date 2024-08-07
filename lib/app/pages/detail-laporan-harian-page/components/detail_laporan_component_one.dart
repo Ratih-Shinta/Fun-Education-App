@@ -30,16 +30,17 @@ class DetailLaporanComponentOne extends GetView<DetailLaporanHarianController> {
               TextSpan(
                 text:
                     '${DateFormat('dd MMMM yyyy', 'id_ID').format(laporanPageController.selectedDate.value)}',
-                style: tsBodySmallRegular(blackColor),
+                style: tsBodyLargeRegular(blackColor),
               ),
             ],
           ),
           maxLines: 1,
         ),
         Container(
-          margin: EdgeInsets.only(top: 10, bottom: 20),
-          child: TotalPointItem(totalPoint: laporanPageController.showCurrentLaporanHarianResponse!.totalPoint)
-        ),
+            margin: EdgeInsets.only(top: 10, bottom: 20),
+            child: TotalPointItem(
+                totalPoint: laporanPageController
+                    .showCurrentLaporanHarianResponse!.totalPoint)),
       ],
     );
   }

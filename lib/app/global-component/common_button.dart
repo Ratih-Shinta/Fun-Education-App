@@ -17,7 +17,8 @@ class CommonButton extends StatelessWidget {
     required this.color,
     this.onPressed,
     this.icon,
-    this.textColor, this.svgIcon, 
+    this.textColor,
+    this.svgIcon,
   }) : super(key: key);
 
   @override
@@ -55,7 +56,8 @@ class CommonButton extends StatelessWidget {
             ],
             if (svgIcon != null) ...[
               SizedBox(width: 10),
-              SvgPicture.asset( svgIcon!,
+              SvgPicture.asset(
+                svgIcon!,
                 color: textColor ?? whiteColor,
                 width: 18,
               )

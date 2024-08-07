@@ -70,28 +70,28 @@ class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
                 () => Column(
                   children: [
                     CustomRadioButtonPeriod(
-                      title: '5 Laporan Terakhir',
+                      title: '5 Tugas Terakhir',
                       value: '5',
                       groupValue: controller.selectedTaskPoint.value,
                       onChanged: (value) => controller.selectedTaskPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
-                      title: '10 Laporan Terakhir',
+                      title: '10 Tugas Terakhir',
                       value: '10',
                       groupValue: controller.selectedTaskPoint.value,
                       onChanged: (value) => controller.selectedTaskPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
-                      title: '20 Laporan Terakhir',
+                      title: '20 Tugas Terakhir',
                       value: '20',
                       groupValue: controller.selectedTaskPoint.value,
                       onChanged: (value) => controller.selectedTaskPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
-                      title: '30 Laporan Terakhir',
+                      title: '30 Tugas Terakhir',
                       value: '30',
                       groupValue: controller.selectedTaskPoint.value,
                       onChanged: (value) => controller.selectedTaskPoint(value),

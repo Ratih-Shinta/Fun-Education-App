@@ -28,7 +28,7 @@ class SavingInformationView extends StatelessWidget {
                 },
                 child: Icon(
                   Icons.arrow_back_ios_new_rounded,
-                  size: 20,
+                  size: 15,
                   color: blackColor,
                 ),
               ),

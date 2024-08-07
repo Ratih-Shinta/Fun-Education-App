@@ -18,31 +18,38 @@ class ProfilePageView extends GetView<ProfilePageController> {
         backgroundColor: backgroundColor,
         appBar: AppBar(
           backgroundColor: transparentColor,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: blackColor,
+              size: 15,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
           title: AutoSizeText(
             'Profil Ananda',
-            style: tsTitleSmallSemibold(blackColor),
+            style: tsBodyMediumSemibold(blackColor),
           ),
         ),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: height * 0.02,
-                horizontal: width * 0.05,
-              ),
-              child: Column(
-                children: [
-                  ProfileComponentOne(),
-                  SizedBox(height: height * 0.02),
-                  ProfileComponentTwo(),
-                  SizedBox(height: height * 0.04),
-                  ProfileComponentThree()
-                ],
-              ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: height * 0.02,
+              horizontal: width * 0.05,
+            ),
+            child: Column(
+              children: [
+                ProfileComponentOne(),
+                SizedBox(height: height * 0.02),
+                ProfileComponentTwo(),
+                SizedBox(height: height * 0.04),
+                ProfileComponentThree()
+              ],
             ),
           ),
-        )
-        );
+        ));
   }
 }

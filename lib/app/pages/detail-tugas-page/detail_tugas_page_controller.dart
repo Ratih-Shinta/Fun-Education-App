@@ -118,6 +118,10 @@ class DetailTugasPageController extends GetxController {
         }
       }
 
+      await laporanPageController.showCurrentTugasTerbaru();
+      await laporanPageController.showCurrentTugasDiperiksa();
+      await laporanPageController.showCurrentTugasSelesai();
+
       Get.back();
 
       Get.snackbar(

@@ -87,7 +87,10 @@ class HomePageComponentThree extends GetView<HomePageController> {
                   );
                 },
                 child: Container(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.symmetric(
+                    vertical: height * 0.02,
+                    horizontal: width * 0.045,
+                  ),
                   decoration: BoxDecoration(
                     color: opacity5GreyColor,
                     borderRadius: BorderRadius.circular(10),
@@ -107,29 +110,29 @@ class HomePageComponentThree extends GetView<HomePageController> {
                             color: whiteColor,
                             borderRadius: BorderRadius.circular(24),
                           ),
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 6,
-                                backgroundColor:
-                                    controller.showLatestCatatanDaruratModel ==
-                                            1
-                                        ? successColor
-                                        : greyColor,
-                              ),
-                              SizedBox(width: 5),
-                              AutoSizeText.rich(
-                                TextSpan(
-                                    text:
-                                        '${controller.showLatestCatatanDaruratModel == 1 ? '1 Catatan' : '0 Catatan'}',
-                                    style: tsBodySmallSemibold(controller
-                                                .showLatestCatatanDaruratModel ==
-                                            1
-                                        ? blackColor
-                                        : greyColor)),
-                              ),
-                            ],
-                          ))
+                          child: Obx(() {
+                            final catatan = controller
+                                .showLatestCatatanDaruratModel.value?.catatan;
+                            final hasCatatan =
+                                catatan != null && catatan.isNotEmpty;
+                            return Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 6,
+                                  backgroundColor:
+                                      hasCatatan ? successColor : greyColor,
+                                ),
+                                SizedBox(width: 5),
+                                AutoSizeText.rich(
+                                  TextSpan(
+                                      text:
+                                          '${hasCatatan ? '1 Catatan' : '0 Catatan'}',
+                                      style: tsBodySmallSemibold(
+                                          hasCatatan ? blackColor : greyColor)),
+                                ),
+                              ],
+                            );
+                          })),
                     ],
                   ),
                 ),
@@ -139,75 +142,93 @@ class HomePageComponentThree extends GetView<HomePageController> {
                 onTap: () {
                   Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
                 },
-                child: Container(
-                  width: width * 0.44,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: opacity10GreenColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Obx(() => Container(
+                      width: width * 0.44,
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: controller.totalPoint.value <= 25
+                            ? dangerColor.withOpacity(0.1)
+                            : controller.totalPoint.value <= 50
+                                ? warningColor.withOpacity(0.1)
+                                : controller.totalPoint.value <= 75
+                                    ? successColor.withOpacity(0.1)
+                                    : successColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SvgPicture.asset(
-                                iconDocument,
-                                width: 35,
-                                color: greenColor,
-                              ),
-                              SizedBox(width: 8.0),
-                              AutoSizeText.rich(
-                                TextSpan(
-                                  text: 'Laporan \n',
-                                  style:
-                                      tsBodySmallRegular(blackColor).copyWith(
-                                    height: 1.3,
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    iconDocument,
+                                    width: 35,
+                                    color: controller.totalPoint.value <= 25
+                                        ? dangerColor
+                                        : controller.totalPoint.value <= 50
+                                            ? warningColor
+                                            : controller.totalPoint.value <= 75
+                                                ? successColor
+                                                : successColor,
                                   ),
-                                  children: [
+                                  SizedBox(width: 8.0),
+                                  AutoSizeText.rich(
                                     TextSpan(
-                                      text: 'Harian',
-                                      style: tsBodySmallRegular(blackColor),
+                                      text: 'Laporan \n',
+                                      style: tsBodySmallRegular(blackColor)
+                                          .copyWith(
+                                        height: 1.3,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Harian',
+                                          style: tsBodySmallRegular(blackColor),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 12,
                               ),
                             ],
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 12,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      AutoSizeText.rich(
-                        TextSpan(
-                            text: 'Sangat Baik',
-                            style: tsBodyMediumSemibold(blackColor)),
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.calendar_today_outlined,
-                              size: 14, color: greyColor),
-                          SizedBox(width: 5),
+                          SizedBox(height: 15),
                           AutoSizeText.rich(
                             TextSpan(
-                                text: 'Today',
-                                style: tsBodySmallRegular(greyColor)),
+                                text: controller.totalPoint.value <= 25
+                                    ? 'Kurang'
+                                    : controller.totalPoint.value <= 50
+                                        ? 'Cukup'
+                                        : controller.totalPoint.value <= 75
+                                            ? 'Baik'
+                                            : 'Sangat Baik',
+                                style: tsBodyMediumSemibold(blackColor)),
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.calendar_today_outlined,
+                                  size: 14, color: greyColor),
+                              SizedBox(width: 5),
+                              AutoSizeText.rich(
+                                TextSpan(
+                                    text: 'Today',
+                                    style: tsBodySmallRegular(greyColor)),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
+                    )),
               )
             ],
           )

@@ -19,6 +19,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
     final double height = mediaQuery.height;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -53,7 +54,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
         SizedBox(height: 20),
         SizedBox(
           // Expanded(
-          height: height * 5,
+          height: height * 4,
           child: TabBarView(
             children: [
               Obx(
