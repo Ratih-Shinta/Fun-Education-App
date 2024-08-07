@@ -1,12 +1,9 @@
 import 'package:fun_education_app/app/api/pengajuan-tabungan/model/current_pengajuan_tabungan_model.dart';
 import 'package:fun_education_app/app/api/pengajuan-tabungan/model/current_pengajuan_tabungan_response.dart';
 import 'package:fun_education_app/app/api/pengajuan-tabungan/service/pengajuan_tabungan_service.dart';
-import 'package:fun_education_app/app/api/tabungan/models/minimum-pengajuan-model/minimum_pengajuan_model.dart';
-import 'package:fun_education_app/app/api/tabungan/models/minimum-pengajuan-model/minimum_pengajuan_response.dart';
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_model.dart';
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_response.dart';
 import 'package:fun_education_app/app/api/tabungan/service/tabungan_service.dart';
-import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 

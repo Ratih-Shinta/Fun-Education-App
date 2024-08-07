@@ -3,8 +3,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/bar_chart_widgets.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pilih_periode.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/bar_chart_widgets.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/peringkat-component/bottomsheet_pilih_periode_report.dart';
 import 'package:fun_education_app/app/pages/profile-page/components/bottomsheet_select_period_task.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_line_chart.dart';
@@ -12,7 +12,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class ProfileComponentTwo extends GetView<ProfilePageController> {
-  final ReportLineChart reportBarChart = ReportLineChart();
+  final TaskLineChart taskLineChart = TaskLineChart();
 
   ProfileComponentTwo({super.key});
 
@@ -61,7 +61,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                     children: [
                       AutoSizeText.rich(TextSpan(
                           text:
-                              '${controller.selectedReportPoint.value.toString()} Laporan',
+                              '${controller.selectedTaskPoint.value.toString()} Laporan',
                           style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
@@ -89,7 +89,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 return AutoSizeText.rich(
                   TextSpan(
                     text:
-                        '${controller.selectedReportPoint.value.toString()} Laporan Terakhir\n',
+                        '${controller.selectedTaskPoint.value.toString()} Laporan Terakhir\n',
                     style:
                         tsBodyMediumSemibold(blackColor).copyWith(height: 1.3),
                     children: [
@@ -142,7 +142,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   return AspectRatio(
                     aspectRatio: 0.6,
                     child: LineChart(
-                      reportBarChart.reportLineChart(),
+                      taskLineChart.taskLineChart(),
                     ),
                   );
               }),

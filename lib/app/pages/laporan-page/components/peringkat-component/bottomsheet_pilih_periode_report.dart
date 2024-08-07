@@ -1,13 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/custon-radio-button.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
-  const BottomsheetSelectPeriodTask({super.key});
+class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
+  const BottomsheetSelectPeriodReport({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,33 +73,33 @@ class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
                     CustomRadioButtonPeriod(
                       title: '5 Laporan Terakhir',
                       value: '5',
-                      groupValue: controller.selectedTaskPoint.value,
+                      groupValue: controller.selectedReportPoint.value,
                       onChanged: (value) =>
-                          controller.selectedTaskPoint(value),
+                          controller.selectedReportPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: '10 Laporan Terakhir',
                       value: '10',
-                      groupValue: controller.selectedTaskPoint.value,
+                      groupValue: controller.selectedReportPoint.value,
                       onChanged: (value) =>
-                          controller.selectedTaskPoint(value),
+                          controller.selectedReportPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: '20 Laporan Terakhir',
                       value: '20',
-                      groupValue: controller.selectedTaskPoint.value,
+                      groupValue: controller.selectedReportPoint.value,
                       onChanged: (value) =>
-                          controller.selectedTaskPoint(value),
+                          controller.selectedReportPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: '30 Laporan Terakhir',
                       value: '30',
-                      groupValue: controller.selectedTaskPoint.value,
+                      groupValue: controller.selectedReportPoint.value,
                       onChanged: (value) =>
-                          controller.selectedTaskPoint(value),
+                          controller.selectedReportPoint(value),
                     ),
                   ],
                 ),

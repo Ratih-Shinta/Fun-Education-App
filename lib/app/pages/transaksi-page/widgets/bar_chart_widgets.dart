@@ -72,7 +72,7 @@ class BarChartWidgets {
         style: tsBodyMediumSemibold(blackColor),
       );
     } else {
-      return SizedBox.shrink(); // returns an empty widget for invalid values
+      return SizedBox.shrink();
     }
   }
 

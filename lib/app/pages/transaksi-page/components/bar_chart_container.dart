@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/bar_chart_widgets.dart';
+import 'package:fun_education_app/app/pages/transaksi-page/widgets/bar_chart_widgets.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';

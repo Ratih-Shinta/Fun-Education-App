@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_model.dart';
 import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_belajar_response.dart';
@@ -12,6 +13,9 @@ import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_response.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_model.dart';
+import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_response.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
@@ -26,10 +30,23 @@ class LaporanPageController extends GetxController {
   RxInt touchedIndex = (-1).obs;
   var currentStatus = 'Tersedia'.obs;
 
+  var spots = <FlSpot>[].obs;
+  var touchedTitle = <DateTime>[].obs;
+  var bottomTitles = <String?>[].obs;
+  var maxX = 0.0.obs;
+
+  var selectedReportPoint = '5'.obs;
+
   LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
   RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
       <ShowCurrentLaporanHarianModel>[].obs;
+
+  ShowStatisticCurrentResponse? showStatisticCurrentResponse;
+  RxList<ShowStatisticCurrentModel> showStatisticCurrentModel =
+      <ShowStatisticCurrentModel>[].obs;
+  RxList<ShowStatisticBottomTitleModel> showStatisticBottomTitleModel =
+      <ShowStatisticBottomTitleModel>[].obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -71,8 +88,38 @@ class LaporanPageController extends GetxController {
     showLeaderboardWeelky();
     showLeaderboardMonthly();
     showCurrentLaporanHarian(selectedDate.value);
+    showStatisticCurrentTugasUser();
     update();
     super.onInit();
+  }
+
+  Future showStatisticCurrentTugasUser() async {
+    try {
+      final response = await laporanHarianService.getStatisticCurrentLaporan(
+        selectedReportPoint.value,
+      );
+      showStatisticCurrentResponse =
+          ShowStatisticCurrentResponse.fromJson(response.data);
+      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data!;
+      print(showStatisticCurrentModel);
+
+      spots.value = showStatisticCurrentResponse!.data!
+          .map((e) => FlSpot(
+                showStatisticCurrentModel.indexOf(e).toDouble(),
+                e.totalPoint!.toDouble(),
+              ))
+          .toList();
+      touchedTitle.value =
+          showStatisticCurrentResponse!.data!.map((e) => e.date!).toList();
+      bottomTitles.value = showStatisticCurrentResponse!.bottomTitle!
+          .map((e) => e.date!)
+          .toList();
+      maxX.value = spots.length - 1.0;
+      isLoading(false);
+      update();
+    } catch (e) {
+      print('statistik error : $e');
+    }
   }
 
   Future showCurrentLaporanHarian(DateTime date) async {
@@ -84,7 +131,8 @@ class LaporanPageController extends GetxController {
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
       update();
-      print('laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      print(
+          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
       // print('datetime : ${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
       isLoading(false);
     } catch (e) {
