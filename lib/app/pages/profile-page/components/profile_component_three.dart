@@ -52,29 +52,7 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
                 text: 'Logout',
                 color: dangerColor,
                 svgIcon: 'assets/icons/icLogout.svg',
-              )
-              // ElevatedButton(
-              //     onPressed: () => controller.logout(),
-              //     style: ElevatedButton.styleFrom(
-              //         backgroundColor: primaryColor,
-              //         shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(10)),
-              //         fixedSize: Size(
-              //             MediaQuery.of(context).size.width, height * 0.07)),
-              //     child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       crossAxisAlignment: CrossAxisAlignment.center,
-              //       children: [
-              //         Text("Logout", style: tsBodyMediumSemibold(whiteColor)),
-              //         const SizedBox(
-              //           width: 10,
-              //         ),
-              //         const Icon(
-              //           Icons.logout_rounded,
-              //           color: Colors.white,
-              //         )
-              //       ],
-              //     )),
+              ),
             ],
           ),
         ),

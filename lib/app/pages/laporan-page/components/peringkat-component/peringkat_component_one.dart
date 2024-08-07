@@ -79,7 +79,7 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
             color: opacity5GreyColor,
           ),
           child: AspectRatio(
-            aspectRatio: 0.53,
+            aspectRatio: 0.49,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -99,6 +99,46 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                     group: AutoSizeGroup(),
                   );
                 }),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          '-',
+                          style: tsTitleLargeSemibold(dangerColor),
+                        ),
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          'Rata - Rata',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.05),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 6,
+                          backgroundColor: successColor,
+                        ),
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          'Point Laporan',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
                 SizedBox(height: 20),
                 Obx(() {
                   if (controller.isLoading.value)
