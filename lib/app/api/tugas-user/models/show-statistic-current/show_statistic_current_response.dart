@@ -12,14 +12,14 @@ ShowStatisticCurrentResponse showStatisticCurrentResponseFromJson(String str) =>
 String showStatisticCurrentResponseToJson(ShowStatisticCurrentResponse data) => json.encode(data.toJson());
 
 class ShowStatisticCurrentResponse {
-    int? totalData;
-    List<ShowStatisticCurrentModel> ?data;
-    List<ShowStatisticBottomTitleModel>? bottomTitle;
+    int totalData;
+    List<ShowStatisticCurrentModel> data;
+    List<ShowStatisticBottomTitleModel> bottomTitle;
 
     ShowStatisticCurrentResponse({
-        this.totalData,
-        this.data,
-        this.bottomTitle,
+        required this.totalData,
+        required this.data,
+        required this.bottomTitle,
     });
 
     factory ShowStatisticCurrentResponse.fromJson(Map<String, dynamic> json) => ShowStatisticCurrentResponse(
@@ -30,8 +30,8 @@ class ShowStatisticCurrentResponse {
 
     Map<String, dynamic> toJson() => {
         "total_data": totalData,
-        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
-        "bottom_title": List<dynamic>.from(bottomTitle!.map((x) => x.toJson())),
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "bottom_title": List<dynamic>.from(bottomTitle.map((x) => x.toJson())),
     };
 }
 

@@ -15,7 +15,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
     final double height = mediaQuery.height;
 
     return SizedBox(
-      height: height * 0.41,
+      height: height * 0.4,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -29,46 +29,44 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
             vertical: height * 0.03,
             horizontal: width * 0.06,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              HeaderBottomsheet(
-                title: 'Ajukan Pengeluaran Tabungan',
-                subtitle: 'Pilih Pengeluaran Tabungan',
-                color: primaryColor,
-              ),
-              Obx(() => Column(
-                    children: [
-                      CustomRadioButton(
-                        title: 'SPP Bulanan',
-                        subtitle: 'Saldo Minimal Rp. 100.000',
-                        icon: iconSPP,
-                        value: 'SPP Bulanan',
-                        groupValue: controller.selectedOption.value,
-                        onChanged: (value) =>
-                            controller.selectedCategory(value),
-                        style: tsBodySmallRegular(
-                          controller.isEnough.value ? greenColor : dangerColor,
-                        ),
+          child: Obx(
+            () => Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HeaderBottomsheet(
+                  title: 'Ajukan Pengeluaran Tabungan',
+                  subtitle: 'Pilih Pengeluaran Tabungan',
+                  color: primaryColor,
+                ),
+                Column(
+                  children: [
+                    CustomRadioButton(
+                      title: 'SPP Bulanan',
+                      subtitle: 'Saldo Minimal Rp. 100.000',
+                      icon: iconSPP,
+                      value: 'SPP Bulanan',
+                      groupValue: controller.selectedOption.value,
+                      onChanged: (value) => controller.selectedCategory(value),
+                      style: tsBodySmallRegular(
+                        controller.isEnough.value ? greenColor : dangerColor,
                       ),
-                      SizedBox(height: height * 0.02),
-                      CustomRadioButton(
-                        title: 'Kegiatan Belajar Diluar',
-                        subtitle: 'Saldo Minimal Rp. 100.000',
-                        icon: iconTravelCase,
-                        value: 'Kegiatan Belajar Diluar',
-                        groupValue: controller.selectedOption.value,
-                        onChanged: (value) =>
-                            controller.selectedCategory(value),
-                        style: tsBodySmallRegular(
-                          controller.isEnough.value ? greenColor : dangerColor,
-                        ),
+                    ),
+                    SizedBox(height: height * 0.02),
+                    CustomRadioButton(
+                      title: 'Kegiatan Belajar Diluar',
+                      subtitle: 'Saldo Minimal Rp. 100.000',
+                      icon: iconTravelCase,
+                      value: 'Kegiatan Belajar Diluar',
+                      groupValue: controller.selectedOption.value,
+                      onChanged: (value) => controller.selectedCategory(value),
+                      style: tsBodySmallRegular(
+                        controller.isEnough.value ? greenColor : dangerColor,
                       ),
-                    ],
-                  )),
-              Obx(
-                () => controller.selectedCategoryIsEnough() == true
+                    ),
+                  ],
+                ),
+                controller.selectedCategoryIsEnough() == true
                     ? GestureDetector(
                         onTap: () => controller.storePengajuanTabungan(),
                         child: Container(
@@ -104,8 +102,8 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                           ),
                         ),
                       ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

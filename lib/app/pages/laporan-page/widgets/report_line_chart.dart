@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
+import 'package:fun_education_app/app/pages/laporan-page/widgets/report_title_chart.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_title_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -10,7 +11,7 @@ import 'package:intl/intl.dart';
 class ReportLineChart {
   LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
-  final TaskTitleChart taskTitleChart = TaskTitleChart();
+  final ReportTitleChart reportTitleChart = ReportTitleChart();
 
   LineChartData reportLineChart() {
     return LineChartData(
@@ -54,20 +55,14 @@ class ReportLineChart {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 40,
-            getTitlesWidget: laporanPageController.selectedReportPoint == '5'
-                ? taskTitleChart.bottomTitleWidgets5Data
-                : laporanPageController.selectedReportPoint == '10'
-                    ? taskTitleChart.bottomTitleWidgets10Data
-                    : laporanPageController.selectedReportPoint == '20'
-                    ? taskTitleChart.bottomTitleWidgets20Data
-                    : taskTitleChart.bottomTitleWidgets30Data,
+            getTitlesWidget: reportTitleChart.bottomTitleWidgets,
             interval: 1,
           ),
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            getTitlesWidget: taskTitleChart.leftTitleWidgets,
+            getTitlesWidget: reportTitleChart.leftTitleWidgets,
             reservedSize: 42,
             interval: 1,
           ),

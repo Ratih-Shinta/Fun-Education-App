@@ -19,8 +19,7 @@ class ProfilePageController extends GetxController {
   ShowStatisticCurrentResponse? showStatisticCurrentResponse;
   RxList<ShowStatisticCurrentModel> showStatisticCurrentModel =
       <ShowStatisticCurrentModel>[].obs;
-  RxList<ShowStatisticBottomTitleModel> showStatisticBottomTitleModel =
-      <ShowStatisticBottomTitleModel>[].obs;
+
 
   var spots = <FlSpot>[].obs;
   var touchedTitle = <DateTime>[].obs;
@@ -47,17 +46,20 @@ class ProfilePageController extends GetxController {
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data!;
       print(showStatisticCurrentModel);
 
-      spots.value = showStatisticCurrentResponse!.data!
+      spots.value = showStatisticCurrentModel
           .map((e) => FlSpot(
                 showStatisticCurrentModel.indexOf(e).toDouble(),
                 e.totalPoint!.toDouble(),
               ))
           .toList();
       touchedTitle.value =
-          showStatisticCurrentResponse!.data!.map((e) => e.date!).toList();
-      bottomTitles.value = showStatisticCurrentResponse!.bottomTitle!
-          .map((e) => e.date!)
-          .toList();
+          showStatisticCurrentModel.map((e) => e.date!).toList();
+
+      bottomTitles.value = List<String?>.filled(spots.length, null);
+      for (var title in showStatisticCurrentResponse!.bottomTitle) {
+        bottomTitles[title.bottomTitleCase!] = title.date;
+      }
+
       maxX.value = spots.length - 1.0;
       isLoading(false);
       update();

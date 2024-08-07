@@ -110,12 +110,9 @@ class HomePageController extends GetxController {
   Future showLatestCatatanDarurat() async {
     try {
       isLoadingLatestCatatan(true);
-      final response =
-          await catatanDaruratService.getShowLatestCatatanDarurat();
-      showLatestCatatanDaruratResponse =
-          ShowLatestCatatanDaruratResponse.fromJson(response.data);
-      showLatestCatatanDaruratModel.value =
-          showLatestCatatanDaruratResponse!.data;
+      final response = await catatanDaruratService.getShowLatestCatatanDarurat();
+      showLatestCatatanDaruratResponse = ShowLatestCatatanDaruratResponse.fromJson(response.data);
+      showLatestCatatanDaruratModel.value = showLatestCatatanDaruratResponse!.data;
       update();
     } catch (e) {
       isLoadingLatestCatatan(true);

@@ -82,71 +82,76 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
             color: opacity5GreyColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Obx(() {
-                return AutoSizeText.rich(
-                  TextSpan(
-                    text:
-                        '${controller.selectedTaskPoint.value.toString()} Laporan Terakhir\n',
-                    style:
-                        tsBodyMediumSemibold(blackColor).copyWith(height: 1.3),
-                    children: [
-                      TextSpan(
-                          text: 'Perkembangan point ananda',
-                          style: tsBodySmallRegular(blackColor)),
-                    ],
-                  ),
-                  maxLines: 2,
-                  group: AutoSizeGroup(),
-                );
-              }),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 7,
-                        backgroundColor: blackColor,
-                      ),
-                      SizedBox(width: 5),
-                      AutoSizeText.rich(TextSpan(
-                          text: 'Point Tugas',
-                          style: tsBodySmallRegular(blackColor)))
-                    ],
-                  ),
-                  SizedBox(width: 10),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 7,
-                        backgroundColor: primaryColor,
-                      ),
-                      SizedBox(width: 5),
-                      AutoSizeText.rich(TextSpan(
-                          text: 'Point Laporan',
-                          style: tsBodySmallRegular(blackColor)))
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 20),
-              Obx(() {
-                if (controller.isLoading.value)
-                  return Center(child: CircularProgressIndicator());
-                else
-                  return AspectRatio(
-                    aspectRatio: 0.6,
-                    child: LineChart(
-                      taskLineChart.taskLineChart(),
+          child: AspectRatio(
+            aspectRatio: 0.6,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Obx(() {
+                  return AutoSizeText.rich(
+                    TextSpan(
+                      text:
+                          '${controller.selectedTaskPoint.value.toString()} Laporan Terakhir\n',
+                      style: tsBodyMediumSemibold(blackColor)
+                          .copyWith(height: 1.3),
+                      children: [
+                        TextSpan(
+                            text: 'Perkembangan point ananda',
+                            style: tsBodySmallRegular(blackColor)),
+                      ],
                     ),
+                    maxLines: 2,
+                    group: AutoSizeGroup(),
                   );
-              }),
-            ],
+                }),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 7,
+                          backgroundColor: blackColor,
+                        ),
+                        SizedBox(width: 5),
+                        AutoSizeText.rich(TextSpan(
+                            text: 'Point Tugas',
+                            style: tsBodySmallRegular(blackColor)))
+                      ],
+                    ),
+                    SizedBox(width: 10),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 7,
+                          backgroundColor: primaryColor,
+                        ),
+                        SizedBox(width: 5),
+                        AutoSizeText.rich(TextSpan(
+                            text: 'Point Laporan',
+                            style: tsBodySmallRegular(blackColor)))
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(height: 20),
+                Obx(() {
+                  if (controller.isLoading.value)
+                    return Center(child: CircularProgressIndicator());
+                  else
+                    return Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 90),
+                        child: LineChart(
+                          taskLineChart.taskLineChart(),
+                        ),
+                      ),
+                    );
+                }),
+              ],
+            ),
           ),
         ),
         CommonButton(

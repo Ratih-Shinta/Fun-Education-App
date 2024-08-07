@@ -88,12 +88,12 @@ class LaporanPageController extends GetxController {
     showLeaderboardWeelky();
     showLeaderboardMonthly();
     showCurrentLaporanHarian(selectedDate.value);
-    showStatisticCurrentTugasUser();
+    showStatisticCurrentLaporanUser();
     update();
     super.onInit();
   }
 
-  Future showStatisticCurrentTugasUser() async {
+  Future showStatisticCurrentLaporanUser() async {
     try {
       final response = await laporanHarianService.getStatisticCurrentLaporan(
         selectedReportPoint.value,
@@ -103,17 +103,22 @@ class LaporanPageController extends GetxController {
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data!;
       print(showStatisticCurrentModel);
 
-      spots.value = showStatisticCurrentResponse!.data!
+     
+
+      spots.value = showStatisticCurrentModel
           .map((e) => FlSpot(
                 showStatisticCurrentModel.indexOf(e).toDouble(),
                 e.totalPoint!.toDouble(),
               ))
           .toList();
       touchedTitle.value =
-          showStatisticCurrentResponse!.data!.map((e) => e.date!).toList();
-      bottomTitles.value = showStatisticCurrentResponse!.bottomTitle!
-          .map((e) => e.date!)
-          .toList();
+          showStatisticCurrentModel.map((e) => e.date!).toList();
+
+      bottomTitles.value = List<String?>.filled(spots.length, null);
+      for (var title in showStatisticCurrentResponse!.bottomTitle) {
+        bottomTitles[title.bottomTitleCase!] = title.date;
+      }
+
       maxX.value = spots.length - 1.0;
       isLoading(false);
       update();
@@ -266,22 +271,6 @@ class LaporanPageController extends GetxController {
       print(e);
     } finally {
       isLoading(false);
-    }
-  }
-
-  void onHorizontalDrag(DragEndDetails details) {
-    if (details.primaryVelocity != null) {
-      if (details.primaryVelocity! < 0) {
-        // swiped left
-        if (currentIndex.value < 1) {
-          changeTab(currentIndex.value + 1);
-        }
-      } else if (details.primaryVelocity! > 0) {
-        // swiped right
-        if (currentIndex.value > 0) {
-          changeTab(currentIndex.value - 1);
-        }
-      }
     }
   }
 

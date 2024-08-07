@@ -37,7 +37,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                         color: opacity5GreyColor,
                         borderRadius: BorderRadius.circular(10)),
                     child: AutoSizeText(
-                      '${controller.showLatestCatatanDaruratModel == 1 ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan'}',
+                      '${controller.showLatestCatatanDaruratModel != null ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan Darurat'}',
                       maxLines: 10,
                       style: tsBodySmallMedium(blackColor),
                     )),

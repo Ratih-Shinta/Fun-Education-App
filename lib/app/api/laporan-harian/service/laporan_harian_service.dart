@@ -5,6 +5,18 @@ import 'package:dio/dio.dart';
 class LaporanHarianService {
   final DioInstance _dioInstance = DioInstance();
 
+  Future<Response> getShowCurrentAvailable() async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showCurrentAvailable,
+        isAuthorize: true,
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<Response> getStatisticCurrentLaporan(String amount) async {
     try {
       final response = await _dioInstance.getRequest(
