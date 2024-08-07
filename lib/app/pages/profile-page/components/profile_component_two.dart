@@ -83,8 +83,8 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
             color: opacity5GreyColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: AspectRatio(
-            aspectRatio: 0.6,
+          child: Container(
+            // aspectRatio: 0.6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -132,7 +132,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                       children: [
                         CircleAvatar(
                           radius: 6,
-                          backgroundColor: successColor,
+                          backgroundColor: primaryColor,
                         ),
                         SizedBox(width: width * 0.02),
                         AutoSizeText(
@@ -150,12 +150,10 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else
-                    return Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 90),
-                        child: LineChart(
-                          taskLineChart.taskLineChart(),
-                        ),
+                    return AspectRatio(
+                      aspectRatio: 0.6,
+                      child: LineChart(
+                        taskLineChart.taskLineChart(),
                       ),
                     );
                 }),
