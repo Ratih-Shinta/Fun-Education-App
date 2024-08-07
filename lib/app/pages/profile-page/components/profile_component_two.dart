@@ -9,6 +9,7 @@ import 'package:fun_education_app/app/pages/profile-page/components/bottomsheet_
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_line_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class ProfileComponentTwo extends GetView<ProfilePageController> {
@@ -110,28 +111,36 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 7,
-                          backgroundColor: blackColor,
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          '-',
+                          style: tsTitleLargeSemibold(dangerColor),
                         ),
-                        SizedBox(width: 5),
-                        AutoSizeText.rich(TextSpan(
-                            text: 'Point Tugas',
-                            style: tsBodySmallRegular(blackColor)))
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          'Rata - Rata',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: width * 0.05),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          radius: 7,
-                          backgroundColor: primaryColor,
+                          radius: 6,
+                          backgroundColor: successColor,
                         ),
-                        SizedBox(width: 5),
-                        AutoSizeText.rich(TextSpan(
-                            text: 'Point Laporan',
-                            style: tsBodySmallRegular(blackColor)))
+                        SizedBox(width: width * 0.02),
+                        AutoSizeText(
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          'Point Tugas',
+                          style: tsBodySmallRegular(blackColor),
+                        ),
                       ],
                     )
                   ],
@@ -158,6 +167,9 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
           text: 'Lihat Riwayat Laporan',
           color: blackColor,
           icon: Icons.navigate_next_outlined,
+          onPressed: () {
+            Get.toNamed(Routes.REPORT_HISTORY_PAGE);
+          },
         )
       ],
     );
