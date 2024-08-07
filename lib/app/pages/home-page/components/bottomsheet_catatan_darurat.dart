@@ -28,21 +28,19 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                   title: 'Catatan Darurat',
                   subtitle: 'Khusus Keadaan Mendesak',
                   color: dangerColor),
-              Obx(
-                () => Expanded(
-                  child: Container(
+              Expanded(
+                child: Container(
                     width: width,
-                      margin: EdgeInsets.symmetric(vertical: height * 0.03),
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          color: opacity5GreyColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: AutoSizeText(
-                        '${controller.showLatestCatatanDaruratModel.value.catatan}',
-                        maxLines: 10,
-                        style: tsBodySmallMedium(blackColor),
-                      )),
-                ),
+                    margin: EdgeInsets.symmetric(vertical: height * 0.03),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: opacity5GreyColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: AutoSizeText(
+                      '${controller.showLatestCatatanDaruratModel == 1 ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan'}',
+                      maxLines: 10,
+                      style: tsBodySmallMedium(blackColor),
+                    )),
               ),
               CommonButton(
                 text: 'Tutup',
