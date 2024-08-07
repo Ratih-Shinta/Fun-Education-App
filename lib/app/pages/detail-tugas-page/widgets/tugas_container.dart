@@ -19,170 +19,123 @@ class TugasContainer extends GetView<DetailTugasPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: controller.showByIdTugasModel.value.statusTugasUser == 'Selesai'
-            ? opacity5GreyColor
-            : controller.showByIdTugasModel.value.statusTugasUser == 'Gagal'
-                ? opacity5GreyColor
-                : controller.showByIdTugasModel.value.category ==
-                        'Dikte & Menulis'
-                    ? blueColor.withOpacity(0.1)
-                    : controller.showByIdTugasModel.value.category == 'Kreasi'
-                        ? primaryColor.withOpacity(0.1)
-                        : controller.showByIdTugasModel.value.category ==
-                                'Membaca'
-                            ? greenColor.withOpacity(0.1)
-                            : controller.showByIdTugasModel.value.category ==
-                                    'Berhitung'
-                                ? warningColor.withOpacity(0.1)
-                                : dangerColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                decoration: BoxDecoration(
-                  color: controller.showByIdTugasModel.value.category ==
+    return Obx(() {
+      return Container(
+        margin: EdgeInsets.only(bottom: 20),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: controller.showByIdTugasModel.value.statusTugasUser ==
+                  'Selesai'
+              ? opacity5GreyColor
+              : controller.showByIdTugasModel.value.statusTugasUser == 'Gagal'
+                  ? opacity5GreyColor
+                  : controller.showByIdTugasModel.value.category ==
                           'Dikte & Menulis'
-                      ? blueColor.withOpacity(0.6)
+                      ? blueColor.withOpacity(0.1)
                       : controller.showByIdTugasModel.value.category == 'Kreasi'
-                          ? primaryColor.withOpacity(0.6)
+                          ? primaryColor.withOpacity(0.1)
                           : controller.showByIdTugasModel.value.category ==
                                   'Membaca'
-                              ? greenColor.withOpacity(0.6)
+                              ? greenColor.withOpacity(0.1)
                               : controller.showByIdTugasModel.value.category ==
                                       'Berhitung'
-                                  ? warningColor.withOpacity(0.6)
-                                  : opacity20GreyColor,
-                  borderRadius: BorderRadius.circular(29),
-                ),
-                child: AutoSizeText.rich(
-                  textAlign: TextAlign.start,
-                  TextSpan(
-                    text: '${controller.showByIdTugasModel.value.category}',
-                    style: tsBodySmallSemibold(whiteColor),
+                                  ? warningColor.withOpacity(0.1)
+                                  : dangerColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: controller.showByIdTugasModel.value.category ==
+                            'Dikte & Menulis'
+                        ? blueColor.withOpacity(0.6)
+                        : controller.showByIdTugasModel.value.category ==
+                                'Kreasi'
+                            ? primaryColor.withOpacity(0.6)
+                            : controller.showByIdTugasModel.value.category ==
+                                    'Membaca'
+                                ? greenColor.withOpacity(0.6)
+                                : controller.showByIdTugasModel.value
+                                            .category ==
+                                        'Berhitung'
+                                    ? warningColor.withOpacity(0.6)
+                                    : opacity20GreyColor,
+                    borderRadius: BorderRadius.circular(29),
                   ),
-                ),
-              ),
-              SizedBox(width: 10),
-              Obx(() {
-                if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (controller
-                        .showByIdTugasModel.value.statusTugasUser !=
-                    null) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    decoration: BoxDecoration(
-                      color:
-                          controller.showByIdTugasModel.value.statusTugasUser ==
-                                  'Diperiksa'
-                              ? warningColor
-                              : controller.showByIdTugasModel.value
-                                          .statusTugasUser ==
-                                      'Selesai'
-                                  ? successColor
-                                  : dangerColor,
-                      borderRadius: BorderRadius.circular(29),
-                    ),
-                    child: AutoSizeText.rich(
-                      textAlign: TextAlign.start,
-                      TextSpan(
-                        text:
-                            controller.showByIdTugasModel.value.statusTugasUser,
-                        style: tsBodySmallSemibold(whiteColor),
-                      ),
-                    ),
-                  );
-                } else {
-                  return SizedBox(width: 1);
-                }
-              })
-            ],
-          ),
-          SizedBox(height: 20),
-          AutoSizeText.rich(
-            textAlign: TextAlign.start,
-            TextSpan(
-              text: '${controller.showByIdTugasModel.value.title}',
-              style: tsBodyMediumSemibold(blackColor),
-            ),
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  AutoSizeText.rich(
+                  child: AutoSizeText.rich(
+                    textAlign: TextAlign.start,
                     TextSpan(
-                      text: 'Dibuat pada :',
-                      style: tsBodySmallRegular(greyColor),
+                      text: '${controller.showByIdTugasModel.value.category}',
+                      style: tsBodySmallSemibold(whiteColor),
                     ),
                   ),
-                  SizedBox(height: 7),
-                  Row(
-                    children: [
-                      SvgPicture.asset(iconCalender,
-                          color: controller.showByIdTugasModel.value
-                                      .statusTugasUser ==
-                                  'Selesai'
-                              ? opacity50GreyColor
-                              : controller.showByIdTugasModel.value
-                                          .statusTugasUser ==
-                                      'Gagal'
-                                  ? opacity50GreyColor
-                                  : controller.showByIdTugasModel.value
-                                              .category ==
-                                          'Dikte & Menulis'
-                                      ? blueColor
-                                      : controller.showByIdTugasModel.value
-                                                  .category ==
-                                              'Kreasi'
-                                          ? primaryColor
-                                          : controller.showByIdTugasModel.value
-                                                      .category ==
-                                                  'Membaca'
-                                              ? greenColor
-                                              : controller.showByIdTugasModel
-                                                          .value.category ==
-                                                      'Berhitung'
-                                                  ? warningColor
-                                                  : dangerColor),
-                      SizedBox(width: 5),
-                      AutoSizeText.rich(
+                ),
+                SizedBox(width: 10),
+                Obx(() {
+                  // if (controller.isLoading.value) {
+                  //   return Center(child: CircularProgressIndicator());
+                  // } else
+                  if (controller.showByIdTugasModel.value.statusTugasUser !=
+                      null) {
+                    return Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: controller
+                                    .showByIdTugasModel.value.statusTugasUser ==
+                                'Diperiksa'
+                            ? warningColor
+                            : controller.showByIdTugasModel.value
+                                        .statusTugasUser ==
+                                    'Selesai'
+                                ? successColor
+                                : dangerColor,
+                        borderRadius: BorderRadius.circular(29),
+                      ),
+                      child: AutoSizeText.rich(
+                        textAlign: TextAlign.start,
                         TextSpan(
-                          text:
-                              '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(controller.showByIdTugasModel.value.createdAt ?? DateTime.now())}',
-                          style: tsBodySmallSemibold(blackColor),
+                          text: controller
+                              .showByIdTugasModel.value.statusTugasUser,
+                          style: tsBodySmallSemibold(whiteColor),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    );
+                  } else {
+                    return SizedBox(width: 1);
+                  }
+                })
+              ],
+            ),
+            SizedBox(height: 20),
+            AutoSizeText.rich(
+              textAlign: TextAlign.start,
+              TextSpan(
+                text: '${controller.showByIdTugasModel.value.title}',
+                style: tsBodyMediumSemibold(blackColor),
               ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      AutoSizeText.rich(
-                        TextSpan(
-                          text: 'Tenggat Waktu :',
-                          style: tsBodySmallRegular(greyColor),
-                        ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Dibuat pada :',
+                        style: tsBodySmallRegular(greyColor),
                       ),
-                      SizedBox(height: 7),
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            iconCalender,
+                    ),
+                    SizedBox(height: 7),
+                    Row(
+                      children: [
+                        SvgPicture.asset(iconCalender,
                             color: controller.showByIdTugasModel.value
                                         .statusTugasUser ==
                                     'Selesai'
@@ -191,113 +144,167 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                                             .statusTugasUser ==
                                         'Gagal'
                                     ? opacity50GreyColor
-                                    : dangerColor,
+                                    : controller.showByIdTugasModel.value
+                                                .category ==
+                                            'Dikte & Menulis'
+                                        ? blueColor
+                                        : controller.showByIdTugasModel.value
+                                                    .category ==
+                                                'Kreasi'
+                                            ? primaryColor
+                                            : controller.showByIdTugasModel
+                                                        .value.category ==
+                                                    'Membaca'
+                                                ? greenColor
+                                                : controller.showByIdTugasModel
+                                                            .value.category ==
+                                                        'Berhitung'
+                                                    ? warningColor
+                                                    : dangerColor),
+                        SizedBox(width: 5),
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text:
+                                '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(controller.showByIdTugasModel.value.createdAt ?? DateTime.now())}',
+                            style: tsBodySmallSemibold(blackColor),
                           ),
-                          SizedBox(width: 5),
-                          AutoSizeText.rich(
-                            TextSpan(
-                              text:
-                                  '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.deadline ?? DateTime.now())}',
-                              style: tsBodySmallSemibold(blackColor),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: width * 0.06,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20, bottom: 25),
-            height: 1,
-            width: double.infinity,
-            color: opacity20GreyColor,
-          ),
-          AutoSizeText.rich(
-            TextSpan(
-              text: 'Deskripsi :\n',
-              style: tsBodyMediumSemibold(blackColor),
-            ),
-          ),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: controller.showByIdTugasModel.value.images?.length ?? 0,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: width * 0.02,
-              mainAxisSpacing: height * 0.01,
-              childAspectRatio: 1.4,
-            ),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Get.to(
-                    () => CommonDetailImage(
-                      imagePath: controller
-                          .showByIdTugasModel.value.images![index].image
-                          .toString(),
-                      isNetwork: true,
+                        ),
+                      ],
                     ),
-                  );
-                },
-                child: CommonGridImage(
-                  imagePath: controller
-                      .showByIdTugasModel.value.images![index].image
-                      .toString(),
-                  isDelete: false,
-                  isNetwork: true,
+                  ],
                 ),
-              );
-            },
-          ),
-          AutoSizeText.rich(
-            TextSpan(
-              text: '${controller.showByIdTugasModel.value.description}',
-              style: tsBodySmallMedium(blackColor),
-            ),
-          ),
-          if (controller.showByIdTugasModel.value.statusTugasUser ==
-                  'Selesai' ||
-              controller.showByIdTugasModel.value.statusTugasUser == 'Gagal')
-            Container(
-              width: width,
-              margin: EdgeInsets.only(top: 15),
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              decoration: BoxDecoration(
-                color: controller.showByIdTugasModel.value.statusTugasUser ==
-                        'Selesai'
-                    ? successColor
-                    : dangerColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText.rich(
-                    TextSpan(
-                      text: 'Ananda Mendapatkan Poin',
-                      style: tsBodySmallRegular(whiteColor),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        AutoSizeText.rich(
+                          TextSpan(
+                            text: 'Tenggat Waktu :',
+                            style: tsBodySmallRegular(greyColor),
+                          ),
+                        ),
+                        SizedBox(height: 7),
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              iconCalender,
+                              color: controller.showByIdTugasModel.value
+                                          .statusTugasUser ==
+                                      'Selesai'
+                                  ? opacity50GreyColor
+                                  : controller.showByIdTugasModel.value
+                                              .statusTugasUser ==
+                                          'Gagal'
+                                      ? opacity50GreyColor
+                                      : dangerColor,
+                            ),
+                            SizedBox(width: 5),
+                            AutoSizeText.rich(
+                              TextSpan(
+                                text:
+                                    '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.deadline ?? DateTime.now())}',
+                                style: tsBodySmallSemibold(blackColor),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
-                  IconPoint(
-                      point:
-                          '${controller.showByIdTugasModel.value.point.toString()}',
-                      color:
-                          controller.showByIdTugasModel.value.statusTugasUser ==
-                                  'Selesai'
-                              ? successColor
-                              : dangerColor),
-                ],
+                    SizedBox(
+                      width: width * 0.06,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20, bottom: 25),
+              height: 1,
+              width: double.infinity,
+              color: opacity20GreyColor,
+            ),
+            AutoSizeText.rich(
+              TextSpan(
+                text: 'Deskripsi :\n',
+                style: tsBodyMediumSemibold(blackColor),
               ),
             ),
-        ],
-      ),
-    );
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount:
+                  controller.showByIdTugasModel.value.images?.length ?? 0,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: width * 0.02,
+                mainAxisSpacing: height * 0.01,
+                childAspectRatio: 1.4,
+              ),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Get.to(
+                      () => CommonDetailImage(
+                        imagePath: controller
+                            .showByIdTugasModel.value.images![index].image
+                            .toString(),
+                        isNetwork: true,
+                      ),
+                    );
+                  },
+                  child: CommonGridImage(
+                    imagePath: controller
+                        .showByIdTugasModel.value.images![index].image
+                        .toString(),
+                    isDelete: false,
+                    isNetwork: true,
+                  ),
+                );
+              },
+            ),
+            AutoSizeText.rich(
+              TextSpan(
+                text: '${controller.showByIdTugasModel.value.description}',
+                style: tsBodySmallMedium(blackColor),
+              ),
+            ),
+            if (controller.showByIdTugasModel.value.statusTugasUser ==
+                    'Selesai' ||
+                controller.showByIdTugasModel.value.statusTugasUser == 'Gagal')
+              Container(
+                width: width,
+                margin: EdgeInsets.only(top: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                decoration: BoxDecoration(
+                  color: controller.showByIdTugasModel.value.statusTugasUser ==
+                          'Selesai'
+                      ? successColor
+                      : dangerColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Ananda Mendapatkan Poin',
+                        style: tsBodySmallRegular(whiteColor),
+                      ),
+                    ),
+                    IconPoint(
+                        point:
+                            '${controller.showByIdTugasModel.value.point.toString()}',
+                        color: controller
+                                    .showByIdTugasModel.value.statusTugasUser ==
+                                'Selesai'
+                            ? successColor
+                            : dangerColor),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      );
+    });
   }
 }

@@ -46,15 +46,14 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
               horizontal: width * 0.05, vertical: height * 0.02),
           child: Column(
             children: [
-              Obx(() {
-                if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (controller.showByIdTugasModel.value == null) {
-                  return Center(child: Text('Data Kosong'));
-                } else {
-                  return TugasContainer();
-                }
-              }),
+              // Obx(() {
+              //   if (controller.isLoading.value) {
+              //     return Center(child: CircularProgressIndicator());
+              //   } else {
+              //     return TugasContainer();
+              //   }
+              // }),
+              TugasContainer(),
               Obx(() {
                 if (controller.isLoading.value) {
                   return Center(child: CircularProgressIndicator());
