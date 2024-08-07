@@ -1,17 +1,18 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_title_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class TaskLineChart {
-  final ProfilePageController profilePageController =
-      Get.put(ProfilePageController());
+class ReportLineChart {
+  LaporanPageController laporanPageController =
+      Get.put(LaporanPageController());
   final TaskTitleChart taskTitleChart = TaskTitleChart();
 
-  LineChartData taskLineChart() {
+  LineChartData reportLineChart() {
     return LineChartData(
       lineTouchData: LineTouchData(
         enabled: true,
@@ -23,7 +24,7 @@ class TaskLineChart {
             return touchedSpots.map((LineBarSpot touchedSpot) {
               final TextStyle textStyle = tsBodySmallSemibold(whiteColor);
               return LineTooltipItem(
-                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(profilePageController.touchedTitle[touchedSpot.x.toInt()])}',
+                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(laporanPageController.touchedTitle[touchedSpot.x.toInt()])}',
                 textStyle,
               );
             }).toList();
@@ -53,11 +54,11 @@ class TaskLineChart {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 40,
-            getTitlesWidget: profilePageController.selectedTaskPoint == '5'
+            getTitlesWidget: laporanPageController.selectedReportPoint == '5'
                 ? taskTitleChart.bottomTitleWidgets5Data
-                : profilePageController.selectedTaskPoint == '10'
+                : laporanPageController.selectedReportPoint == '10'
                     ? taskTitleChart.bottomTitleWidgets10Data
-                    : profilePageController.selectedTaskPoint == '20'
+                    : laporanPageController.selectedReportPoint == '20'
                     ? taskTitleChart.bottomTitleWidgets20Data
                     : taskTitleChart.bottomTitleWidgets30Data,
             interval: 1,
@@ -83,13 +84,13 @@ class TaskLineChart {
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: profilePageController.maxX.value,
+      maxX: laporanPageController.maxX.value,
       minY: 0,
       maxY: 100,
       lineBarsData: [
         LineChartBarData(
           // ignore: invalid_use_of_protected_member
-          spots: profilePageController.spots.value,
+          spots: laporanPageController.spots.value,
           isCurved: true,
           gradient: LinearGradient(
             colors: [

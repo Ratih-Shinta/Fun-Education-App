@@ -27,7 +27,7 @@ class ProfilePageController extends GetxController {
   var bottomTitles = <String?>[].obs;
   var maxX = 0.0.obs;
 
-  var selectedReportPoint = '5'.obs;
+  var selectedTaskPoint = '5'.obs;
 
   @override
   void onInit() {
@@ -40,7 +40,7 @@ class ProfilePageController extends GetxController {
   Future showStatisticCurrentTugasUser() async {
     try {
       final response = await tugasUserService.getStatisticCurrentTugas(
-        selectedReportPoint.value,
+        selectedTaskPoint.value,
       );
       showStatisticCurrentResponse =
           ShowStatisticCurrentResponse.fromJson(response.data);

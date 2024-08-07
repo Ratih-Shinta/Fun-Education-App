@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/timeline_tile_alur_belajar_ananda.dart';
+import 'package:fun_education_app/app/pages/laporan-page/widgets/timeline_tile_alur_belajar_ananda.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';

@@ -2,16 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/bar_chart_data.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pilih_periode.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/peringkat-component/bottomsheet_pilih_periode_report.dart';
+import 'package:fun_education_app/app/pages/laporan-page/widgets/report_line_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class PeringkatComponentOne extends GetView<LaporanPageController> {
+  final ReportLineChart reportLineChart = ReportLineChart();
   PeringkatComponentOne({super.key});
-
-  final CustomBarChartData barChartData = CustomBarChartData();
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +41,7 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   showModalBottomSheet<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return BottomsheetPilihPeriode(
-                        title: 'Pilih Periode',
-                        subtitle: 'Pilih Untuk Melihat Perkembangan Point',
-                        options: ['Bulanan', 'Mingguan'],
-                        onOptionSelected: (option) {
-                          controller.setSelectedTime(option);
-                        },
-                        selectedOption: controller.selectedTime,
-                      );
+                      return BottomsheetSelectPeriodReport();
                     },
                     isScrollControlled: true,
                     backgroundColor: whiteColor,
@@ -65,7 +56,8 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   child: Row(
                     children: [
                       AutoSizeText.rich(TextSpan(
-                          text: controller.selectedTime.value,
+                          text:
+                              '${controller.selectedReportPoint.value} Laporan',
                           style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
@@ -87,14 +79,14 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
             color: opacity5GreyColor,
           ),
           child: AspectRatio(
-            aspectRatio: 1.3,
+            aspectRatio: 0.53,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      text: '${controller.selectedTime.value}\n',
+                      text: '${controller.selectedReportPoint.value} Laporan\n',
                       style: tsBodyMediumSemibold(blackColor)
                           .copyWith(height: 1.3),
                       children: [
@@ -108,19 +100,17 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   );
                 }),
                 SizedBox(height: 20),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Obx(
-                      () => BarChart(
-                        controller.selectedTime.value == 'Mingguan'
-                            ? barChartData.mingguanBar()
-                            : barChartData.bulananBar(),
-                        swapAnimationDuration: controller.animDuration,
+                Obx(() {
+                  if (controller.isLoading.value)
+                    return Center(child: CircularProgressIndicator());
+                  else
+                    return AspectRatio(
+                      aspectRatio: 0.6,
+                      child: LineChart(
+                        reportLineChart.reportLineChart(),
                       ),
-                    ),
-                  ),
-                ),
+                    );
+                }),
               ],
             ),
           ),
