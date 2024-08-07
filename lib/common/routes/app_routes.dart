@@ -18,6 +18,7 @@ abstract class Routes {
   static const GALLERY_PAGE = _Paths.GALLERY_PAGE;
   static const DETAIL_ALBUM_PHOTO = _Paths.DETAIL_ALBUM_PHOTO;
   static const DETAIL_TUGAS_PAGE = _Paths.DETAIL_TUGAS_PAGE;
+  static const REPORT_HISTORY_PAGE = _Paths.REPORT_HISTORY_PAGE;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const GALLERY_PAGE = '/gallery-page';
   static const DETAIL_ALBUM_PHOTO = '/detail-album-photo';
   static const DETAIL_TUGAS_PAGE = '/detail-tugas-page';
+  static const REPORT_HISTORY_PAGE = '/report-history-page';
 }

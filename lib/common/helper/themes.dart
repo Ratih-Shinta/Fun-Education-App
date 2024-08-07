@@ -32,6 +32,11 @@ const Color opacity30GoldColor = Color(0x30F9C105);
 const Color opacity30BronzeColor = Color(0x30C58D5B);
 const Color opacity50SuccessColor = Color(0x500CD644);
 
+//DATE TIME HASH CODE
+int getHashCode(DateTime key) {
+  return key.day * 1000000 + key.month * 10000 + key.year;
+}
+
 //BOX SHADOW
 BoxShadow shadowBlackBlur15Color5 = BoxShadow(
   color: greyColor.withOpacity(0.5),

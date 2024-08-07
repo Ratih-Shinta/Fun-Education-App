@@ -15,6 +15,8 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart'
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
 import 'package:fun_education_app/app/pages/navbar/navbar_main_view.dart';
+import 'package:fun_education_app/app/pages/report-history-page/report_history_binding.dart';
+import 'package:fun_education_app/app/pages/report-history-page/report_history_view.dart';
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_binding.dart';
 import 'package:fun_education_app/app/pages/saving-information-page/saving_information_view.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_binding.dart';
@@ -115,6 +117,11 @@ class AppPages {
       name: _Paths.DETAIL_TUGAS_PAGE,
       page: () => DetailTugasPageView(),
       binding: DetailTugasPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORT_HISTORY_PAGE,
+      page: () => ReportHistoryView(),
+      binding: ReportHistoryBinding(),
     ),
   ];
 }
