@@ -74,92 +74,15 @@ class ReportTitleChart {
     );
   }
 
-  Widget bottomTitleWidgets10Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = laporanPageController.bottomTitles[0] ?? '';
-        break;
-      case 3:
-        text = laporanPageController.bottomTitles[1] ?? '';
-        break;
-      case 6:
-        text = laporanPageController.bottomTitles[2] ?? '';
-        break;
-      case 9:
-        text = laporanPageController.bottomTitles[3] ?? '';
-
-      default:
-        text = '';
-        break;
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    String text = '';
+    if (value.toInt() < laporanPageController.bottomTitles.length) {
+      text = laporanPageController.bottomTitles[value.toInt()] ?? '';
     }
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget bottomTitleWidgets20Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = laporanPageController.bottomTitles[0] ?? '';
-        break;
-      case 5:
-        text = laporanPageController.bottomTitles[1] ?? '';
-        break;
-      case 10:
-        text = laporanPageController.bottomTitles[2] ?? '';
-        break;
-      case 15:
-        text = laporanPageController.bottomTitles[3] ?? '';
-        break;
-      case 20:
-        text = laporanPageController.bottomTitles[4] ?? '';
-
-      default:
-        text = '';
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget bottomTitleWidgets30Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = laporanPageController.bottomTitles[0] ?? '';
-        break;
-      case 10:
-        text = laporanPageController.bottomTitles[1] ?? '';
-        break;
-      case 20:
-        text = laporanPageController.bottomTitles[2] ?? '';
-        break;
-      case 29:
-        text = laporanPageController.bottomTitles[3] ?? '';
-
-      default:
-        text = '';
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
+      child: Text(
         text,
         style: tsLabelMediumSemibold(blackColor),
         textAlign: TextAlign.center,

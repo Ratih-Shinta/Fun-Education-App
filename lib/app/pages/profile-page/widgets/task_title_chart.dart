@@ -40,125 +40,15 @@ class TaskTitleChart {
     );
   }
 
-  Widget bottomTitleWidgets5Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = profilePageController.bottomTitles[0] ?? '';
-        break;
-      case 1:
-        text = profilePageController.bottomTitles[1] ?? '';
-        break;
-      case 2:
-        text = profilePageController.bottomTitles[2] ?? '';
-        break;
-      case 3:
-        text = profilePageController.bottomTitles[3] ?? '';
-        break;
-      case 4:
-        text = profilePageController.bottomTitles[4] ?? '';
-
-      default:
-        text = '';
-        break;
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    String text = '';
+    if (value.toInt() < profilePageController.bottomTitles.length) {
+      text = profilePageController.bottomTitles[value.toInt()] ?? '';
     }
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget bottomTitleWidgets10Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = profilePageController.bottomTitles[0] ?? '';
-        break;
-      case 3:
-        text = profilePageController.bottomTitles[1] ?? '';
-        break;
-      case 6:
-        text = profilePageController.bottomTitles[2] ?? '';
-        break;
-      case 9:
-        text = profilePageController.bottomTitles[3] ?? '';
-
-      default:
-        text = '';
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget bottomTitleWidgets20Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = profilePageController.bottomTitles[0] ?? '';
-        break;
-      case 5:
-        text = profilePageController.bottomTitles[1] ?? '';
-        break;
-      case 10:
-        text = profilePageController.bottomTitles[2] ?? '';
-        break;
-      case 15:
-        text = profilePageController.bottomTitles[3] ?? '';
-        break;
-      case 20:
-        text = profilePageController.bottomTitles[4] ?? '';
-
-      default:
-        text = '';
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  Widget bottomTitleWidgets30Data(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = profilePageController.bottomTitles[0] ?? '';
-        break;
-      case 10:
-        text = profilePageController.bottomTitles[1] ?? '';
-        break;
-      case 20:
-        text = profilePageController.bottomTitles[2] ?? '';
-        break;
-      case 29:
-        text = profilePageController.bottomTitles[3] ?? '';
-
-      default:
-        text = '';
-        break;
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
+      child: Text(
         text,
         style: tsLabelMediumSemibold(blackColor),
         textAlign: TextAlign.center,

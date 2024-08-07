@@ -53,13 +53,7 @@ class TaskLineChart {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 40,
-            getTitlesWidget: profilePageController.selectedTaskPoint == '5'
-                ? taskTitleChart.bottomTitleWidgets5Data
-                : profilePageController.selectedTaskPoint == '10'
-                    ? taskTitleChart.bottomTitleWidgets10Data
-                    : profilePageController.selectedTaskPoint == '20'
-                    ? taskTitleChart.bottomTitleWidgets20Data
-                    : taskTitleChart.bottomTitleWidgets30Data,
+            getTitlesWidget: taskTitleChart.bottomTitleWidgets,
             interval: 1,
           ),
         ),

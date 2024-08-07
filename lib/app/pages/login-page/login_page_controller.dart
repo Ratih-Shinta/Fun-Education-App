@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  TextEditingController nicknameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController nicknameController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
 
   RxBool isLoading = false.obs;
   RxBool isVisibleSignIn = true.obs;
