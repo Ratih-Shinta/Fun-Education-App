@@ -111,13 +111,22 @@ class HomePageComponentThree extends GetView<HomePageController> {
                             children: [
                               CircleAvatar(
                                 radius: 6,
-                                backgroundColor: successColor,
+                                backgroundColor:
+                                    controller.showLatestCatatanDaruratModel ==
+                                            1
+                                        ? successColor
+                                        : greyColor,
                               ),
                               SizedBox(width: 5),
                               AutoSizeText.rich(
                                 TextSpan(
-                                    text: '1 Catatan',
-                                    style: tsBodySmallSemibold(blackColor)),
+                                    text:
+                                        '${controller.showLatestCatatanDaruratModel == 1 ? '1 Catatan' : '0 Catatan'}',
+                                    style: tsBodySmallSemibold(controller
+                                                .showLatestCatatanDaruratModel ==
+                                            1
+                                        ? blackColor
+                                        : greyColor)),
                               ),
                             ],
                           ))
