@@ -4,6 +4,8 @@ import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-curre
 import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_model.dart';
 import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_response.dart';
 import 'package:fun_education_app/app/api/tugas-user/service/tugas_user_service.dart';
+import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
+import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -17,12 +19,12 @@ class ProfilePageController extends GetxController {
   RxInt touchedIndex = (-1).obs;
 
   TugasUserService tugasUserService = TugasUserService();
-  ShowStatisticCurrentResponse? showStatisticCurrentResponse;
-  RxList<ShowStatisticCurrentModel> showStatisticCurrentModel =
-      <ShowStatisticCurrentModel>[].obs;
+  StatisticTaskResponse? showStatisticCurrentResponse;
+  RxList<StatisticTaskModel> showStatisticCurrentModel =
+      <StatisticTaskModel>[].obs;
 
   var spots = <FlSpot>[].obs;
-  var touchedTitle = <DateTime>[].obs;
+  var touchedTitle = <String?>[].obs;
   var bottomTitles = <String?>[].obs;
   var maxX = 0.0.obs;
 
@@ -41,19 +43,19 @@ class ProfilePageController extends GetxController {
       final response = await tugasUserService.getStatisticCurrentTugas(
         selectedTaskPoint.value,
       );
-      showStatisticCurrentResponse =
-          ShowStatisticCurrentResponse.fromJson(response.data);
-      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data!;
+      showStatisticCurrentResponse = StatisticTaskResponse.fromJson(response.data);
+          
+      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
       print(showStatisticCurrentModel);
 
-      // spots.value = showStatisticCurrentModel
-      //     .map((e) => FlSpot(
-      //           showStatisticCurrentModel.indexOf(e).toDouble(),
-      //           e.totalPoint!.toDouble(),
-      //         ))
-      //     .toList();
+      spots.value = showStatisticCurrentModel
+          .map((e) => FlSpot(
+                showStatisticCurrentModel.indexOf(e).toDouble(),
+                e.totalPoint!.toDouble(),
+              ))
+          .toList();
       touchedTitle.value =
-          showStatisticCurrentModel.map((e) => e.date!).toList();
+          showStatisticCurrentModel.map((e) => e.title).toList();
 
       bottomTitles.value = List<String?>.filled(spots.length, null);
       for (var title in showStatisticCurrentResponse!.bottomTitle) {

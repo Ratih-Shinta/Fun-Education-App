@@ -63,6 +63,7 @@ class DetailTugasDiperiksa extends GetView<DetailTugasPageController> {
             );
           },
         ),
+        SizedBox(height: height * 0.03),
         AutoSizeText.rich(
           TextSpan(
             text: 'Catatan Orang Tua\n',

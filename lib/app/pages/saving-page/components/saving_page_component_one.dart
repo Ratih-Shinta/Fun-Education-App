@@ -1,8 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:fun_education_app/app/global-component/loading_overlay.dart';
 import 'package:fun_education_app/app/pages/saving-page/saving_page_controller.dart';
 import 'package:fun_education_app/app/pages/saving-page/components/ajukan_pengeluaran_container.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -63,7 +60,7 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                     )
                   ],
                 ),
-                SizedBox(height: height * 0.03),
+                SizedBox(height: height * 0.05),
                 AutoSizeText.rich(
                   textAlign: TextAlign.center,
                   TextSpan(
@@ -81,7 +78,7 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                   ),
                   maxLines: 2,
                 ),
-                SizedBox(height: height * 0.055),
+                SizedBox(height: height * 0.06),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -96,14 +93,14 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                         children: [
                           Container(
                             margin: EdgeInsets.only(right: 4.5, bottom: 8),
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: warningColor,
                                 borderRadius: BorderRadius.circular(10)),
                             child: Icon(
                               Icons.arrow_downward_rounded,
                               color: whiteColor,
-                              size: 27,
+                              size: 20,
                             ),
                           ),
                           AutoSizeText.rich(
@@ -136,14 +133,14 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                         children: [
                           Container(
                             margin: EdgeInsets.only(right: 4.5, bottom: 8),
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: whiteColor,
                                 borderRadius: BorderRadius.circular(10)),
                             child: Icon(
                               Icons.arrow_upward_rounded,
                               color: primaryColor,
-                              size: 27,
+                              size: 20,
                             ),
                           ),
                           AutoSizeText.rich(

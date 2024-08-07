@@ -17,10 +17,10 @@ class LaporanContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 30),
-      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.only(top: 30, bottom: 30),
+      padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
         color: poin <= 25
             ? dangerColor.withOpacity(0.1)
             : poin <= 50
@@ -43,6 +43,7 @@ class LaporanContainer extends StatelessWidget {
                             : greenColor,
                     height: 40,
                   ),
+                  SizedBox(width: 8),
                   AutoSizeText.rich(
                     TextSpan(
                       text: 'Laporan Harian\n',
@@ -70,9 +71,9 @@ class LaporanContainer extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(top: 15),
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(18),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
                 color: opacity50WhiteColor),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,6 +83,7 @@ class LaporanContainer extends StatelessWidget {
                   style: tsBodySmallRegular(blackColor),
                 )),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       margin: EdgeInsets.only(right: 10, top: 5, bottom: 15),
@@ -105,16 +107,19 @@ class LaporanContainer extends StatelessWidget {
                         textStyle: tsBodySmallSemibold(whiteColor),
                       ),
                     ),
-                    AutoSizeText.rich(TextSpan(
-                      text: poin <= 25
-                          ? 'Kurang'
-                          : poin <= 50
-                              ? 'Cukup'
-                              : poin <= 75
-                                  ? 'Baik'
-                                  : 'Sangat Baik',
-                      style: tsBodySmallSemibold(blackColor),
-                    )),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: AutoSizeText.rich(TextSpan(
+                        text: poin <= 25
+                            ? 'Kurang'
+                            : poin <= 50
+                                ? 'Cukup'
+                                : poin <= 75
+                                    ? 'Baik'
+                                    : 'Sangat Baik',
+                        style: tsBodySmallSemibold(blackColor),
+                      )),
+                    ),
                   ],
                 ),
                 AutoSizeText.rich(TextSpan(

@@ -20,7 +20,9 @@ class HomePageView extends GetView<HomePageController> {
     return Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(
-          backgroundColor: transparentColor,
+          backgroundColor: backgroundColor,
+          elevation: 0,
+          foregroundColor: backgroundColor,
           leading: IconButton(
             icon: SvgPicture.asset(
               'assets/icons/icUser.svg',
@@ -31,45 +33,39 @@ class HomePageView extends GetView<HomePageController> {
               Get.toNamed(Routes.PROFILE_PAGE);
             },
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: SvgPicture.asset(
-          //       iconChat,
-          //       width: 24,
-          //       height: 24,
-          //       color: blackColor,
-          //     ),
-          //     onPressed: () {},
-          //   ),
-          // ],
         ),
-        body: SingleChildScrollView(child: SafeArea(child: Obx(
-          () {
-            return LoadingOverlay(
-                isLoading: controller.isLoading.value,
-                child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.05,
-                      vertical: height * 0.015,
-                    ),
-                    child: Column(
-                      children: [
-                        HomePageComponentOne(),
-                        SizedBox(
-                          height: height * 0.025,
-                        ),
-                        HomePageComponentTwo(),
-                        SizedBox(
-                          height: height * 0.025,
-                        ),
-                        HomePageComponentThree(),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                        HomePageComponentFour(),
-                      ],
-                    )));
+        body: RefreshIndicator(
+          onRefresh: () async {
+            
           },
-        ))));
+          child: SingleChildScrollView(child: SafeArea(child: Obx(
+            () {
+              return LoadingOverlay(
+                  isLoading: controller.isLoading.value,
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.05,
+                        vertical: height * 0.015,
+                      ),
+                      child: Column(
+                        children: [
+                          HomePageComponentOne(),
+                          SizedBox(
+                            height: height * 0.025,
+                          ),
+                          HomePageComponentTwo(),
+                          SizedBox(
+                            height: height * 0.025,
+                          ),
+                          HomePageComponentThree(),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          HomePageComponentFour(),
+                        ],
+                      )));
+            },
+          ))),
+        ));
   }
 }

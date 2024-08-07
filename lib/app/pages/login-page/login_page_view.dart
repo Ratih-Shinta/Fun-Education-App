@@ -69,6 +69,7 @@ class LoginPageView extends GetView<LoginPageController> {
                 ),
                 SizedBox(height: height * 0.06),
                 CommonWarning(
+                  icon: Icons.info_outline_rounded,
                   backColor: warningColor,
                   text: 'Isi dengan kata sandi yang telah diberikan oleh guru',
                 ),

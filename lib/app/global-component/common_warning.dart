@@ -26,7 +26,7 @@ class CommonWarning extends StatelessWidget {
         vertical: height * 0.015,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
         color: backColor,
       ),
       child: Row(
@@ -35,19 +35,14 @@ class CommonWarning extends StatelessWidget {
             Icon(
               icon,
               color: whiteColor,
-              size: 25,
+              size: width * 0.06,
             ),
-          if (icon != null)
-            SizedBox(width: width * 0.025),
+          if (icon != null) SizedBox(width: width * 0.025),
           Flexible(
             child: AutoSizeText(
               text,
               maxLines: 5,
-              style: GoogleFonts.poppins(
-                color: whiteColor,
-                fontWeight: FontWeight.w600,
-                fontSize: figmaFontsize(11),
-              ),
+              style: tsBodySmallMedium(whiteColor),
             ),
           ),
         ],

@@ -7,24 +7,25 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  auto_size_text: 
+  auto_size_text: null
   cupertino_icons: null
   dio: null
+  easy_date_timeline: null
+  fl_chart: ^0.68.0
   flutter:
     sdk: flutter
-  flutter_svg: 
-  get:
+  flutter_svg: null
+  get: null
   google_fonts: null
-  image_picker: null
-  pinput: null
-  shared_preferences: null
-  timeline_tile:
-  intl: null
-  fl_chart: 
-  easy_date_timeline: 
   image_gallery_saver: ^2.0.3
+  image_picker: null
+  intl: null
+  pinput: null
+  pull_to_refresh: ^2.0.0
+  shared_preferences: null
   table_calendar: ^3.1.2
-  
+  timeline_tile: null
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

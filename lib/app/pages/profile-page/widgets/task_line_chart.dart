@@ -23,7 +23,7 @@ class TaskLineChart {
             return touchedSpots.map((LineBarSpot touchedSpot) {
               final TextStyle textStyle = tsBodySmallSemibold(whiteColor);
               return LineTooltipItem(
-                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(profilePageController.touchedTitle[touchedSpot.x.toInt()])}',
+                '${touchedSpot.y.toString()}\n${profilePageController.touchedTitle[touchedSpot.x.toInt()]}',
                 textStyle,
               );
             }).toList();

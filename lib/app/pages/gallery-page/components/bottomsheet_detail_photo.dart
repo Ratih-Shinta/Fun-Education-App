@@ -18,7 +18,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
     backgroundColor: whiteColor,
     builder: (context) {
       return SizedBox(
-        height: height * 0.6,
+        height: height * 0.7,
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: height * 0.03,
@@ -50,21 +50,22 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.01),
+              SizedBox(height: height * 0.015),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.calendar_today_rounded,
                     color: blackColor,
-                    size: 17  ,
+                    size: 20,
                   ),
-                  SizedBox(width: width * 0.01),
+                  SizedBox(width: width * 0.02),
                   AutoSizeText(
                       '${DateFormat('EEEE, d MMMM', 'id_ID').format(DateTime.parse(createAt))}',
                       style: tsBodySmallRegular(blackColor))
                 ],
               ),
-              SizedBox(height: height * 0.015),
+              SizedBox(height: height * 0.03),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                       group: AutoSizeGroup(),
                       maxLines: 2,
                       '${title}',
-                      style: tsBodyLargeSemibold(blackColor),
+                      style: tsBodyMediumSemibold(blackColor),
                     ),
                     SizedBox(height: height * 0.005),
                     AutoSizeText(

@@ -10,7 +10,8 @@ class HomePageComponentOne extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -31,10 +32,10 @@ class HomePageComponentOne extends GetView<HomePageController> {
           overflow: TextOverflow.ellipsis,
         ),
         Container(
-          // width: width * 0.35,
+          width: width * 0.35,
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           decoration: BoxDecoration(
-              color: successColor, borderRadius: BorderRadius.circular(10)),
+              color: successColor, borderRadius: BorderRadius.circular(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

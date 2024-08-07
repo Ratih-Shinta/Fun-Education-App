@@ -65,7 +65,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                                         'Berhitung'
                                     ? warningColor.withOpacity(0.6)
                                     : opacity20GreyColor,
-                    borderRadius: BorderRadius.circular(29),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: AutoSizeText.rich(
                     textAlign: TextAlign.start,
@@ -165,7 +165,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                         AutoSizeText.rich(
                           TextSpan(
                             text:
-                                '${DateFormat('EEEE,d\nMMMM', 'id_ID').format(controller.showByIdTugasModel.value.createdAt ?? DateTime.now())}',
+                                '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.createdAt ?? DateTime.now())}',
                             style: tsBodySmallSemibold(blackColor),
                           ),
                         ),
@@ -262,6 +262,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                 );
               },
             ),
+            SizedBox(height: 25),
             AutoSizeText.rich(
               TextSpan(
                 text: '${controller.showByIdTugasModel.value.description}',
@@ -274,7 +275,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
               Container(
                 width: width,
                 margin: EdgeInsets.only(top: 15),
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 decoration: BoxDecoration(
                   color: controller.showByIdTugasModel.value.statusTugasUser ==
                           'Selesai'

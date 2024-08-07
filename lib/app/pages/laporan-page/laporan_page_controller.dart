@@ -24,7 +24,8 @@ import 'package:fun_education_app/app/pages/laporan-page/components/laporan-comp
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class LaporanPageController extends GetxController {
+class LaporanPageController extends GetxController with SingleGetTickerProviderMixin {
+  TabController? tabControllerAll;
   RxBool isLoading = true.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
@@ -79,6 +80,7 @@ class LaporanPageController extends GetxController {
 
   @override
   void onInit() {
+    tabControllerAll = TabController(length: 3, vsync: this);
     showCurrentAlurBelajar();
     showCurrentPointMingguan();
     showCurrentPointBulanan();

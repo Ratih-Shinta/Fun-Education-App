@@ -29,7 +29,7 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios_new_rounded,
-              size: 20,
+              size: 15,
             ),
             onPressed: () {
               Get.back();
@@ -37,7 +37,7 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           ),
           title: AutoSizeText(
             'Detail Laporan',
-            style: tsBodyLargeSemibold(blackColor),
+            style: tsBodyMediumSemibold(blackColor),
           ),
         ),
       ),
@@ -55,8 +55,9 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
               DetailLaporanComponentTwo(),
               SizedBox(height: height * 0.02),
               DetailLaporanComponentThree(),
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.04),
               DetailLaporanComponentFour(),
+              SizedBox(height: height * 0.02),
               // DetailComponentFive(),
             ],
           ),

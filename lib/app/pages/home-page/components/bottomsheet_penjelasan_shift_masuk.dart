@@ -32,7 +32,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
                           title: 'Jam Belajar Siswa',
                           subtitle: 'Shift Masuk',
                           color: warningColor),
-                      SizedBox(height: height * 0.02),
+                      SizedBox(height: height * 0.03),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: width * 0.06),
                         child: Column(

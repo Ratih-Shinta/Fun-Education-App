@@ -6,7 +6,6 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class HomePageComponentTwo extends GetView<HomePageController> {
-
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -26,7 +25,7 @@ class HomePageComponentTwo extends GetView<HomePageController> {
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: height * 0.02,
-          horizontal: height * 0.015,
+          horizontal: height * 0.02,
         ),
         decoration: BoxDecoration(
           color: whiteColor,
@@ -39,15 +38,16 @@ class HomePageComponentTwo extends GetView<HomePageController> {
               children: [
                 Container(
                   margin: EdgeInsets.only(right: 9),
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       color: primaryColor,
-                      borderRadius: BorderRadius.circular(5)),
+                      borderRadius: BorderRadius.circular(10)),
                   child: Icon(
                     Icons.access_time_filled,
                     color: whiteColor,
                   ),
                 ),
+                SizedBox(width: 3),
                 AutoSizeText.rich(
                   TextSpan(
                     text: 'Shift Masuk\n',
@@ -67,9 +67,9 @@ class HomePageComponentTwo extends GetView<HomePageController> {
               ],
             ),
             Icon(
-              Icons.arrow_forward_ios,
+              Icons.arrow_forward_ios_rounded,
               color: blackColor,
-              size: 20,
+              size: 17,
             )
           ],
         ),

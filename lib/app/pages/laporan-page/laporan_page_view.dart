@@ -28,7 +28,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
               ),
             ),
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(55),
+              preferredSize: const Size.fromHeight(70),
               child: ClipRRect(
                 child: Container(
                   padding: EdgeInsets.all(5),

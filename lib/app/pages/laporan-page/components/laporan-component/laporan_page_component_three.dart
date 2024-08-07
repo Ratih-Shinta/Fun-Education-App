@@ -7,7 +7,6 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class LaporanPageComponentThree extends GetView<LaporanPageController> {
-
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -27,6 +26,7 @@ class LaporanPageComponentThree extends GetView<LaporanPageController> {
             ),
           ],
         ),
+        SizedBox(height: height * 0.008),
         InkWell(
           onTap: () {
             showModalBottomSheet<void>(
@@ -49,13 +49,13 @@ class LaporanPageComponentThree extends GetView<LaporanPageController> {
           child: Container(
             margin: EdgeInsets.only(top: height * 0.015, bottom: height * 0.03),
             padding: EdgeInsets.symmetric(
-              horizontal: width * 0.03,
-              vertical: height * 0.01,
+              horizontal: width * 0.035,
+              vertical: height * 0.015,
             ),
             // height: height * 0.14,
             decoration: BoxDecoration(
               color: blackColor,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +140,7 @@ class LaporanPageComponentThree extends GetView<LaporanPageController> {
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  size: 20,
+                  size: 18,
                   color: whiteColor,
                 ),
               ],

@@ -7,7 +7,8 @@ class IconPoint extends StatelessWidget {
   final String point;
   final Color color;
   final TextStyle? textStyle;
-  const IconPoint({Key? key, required this.point, required this.color, this.textStyle});
+  const IconPoint(
+      {Key? key, required this.point, required this.color, this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class IconPoint extends StatelessWidget {
         SvgPicture.asset(
           'assets/icons/icDiamond.svg',
         ),
+        SizedBox(width: 5),
         AutoSizeText.rich(
           TextSpan(
             text: '${point} Poin',

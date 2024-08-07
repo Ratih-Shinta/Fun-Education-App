@@ -1,10 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/transaksi-page/widgets/bar_chart_widgets.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/peringkat-component/bottomsheet_pilih_periode_report.dart';
 import 'package:fun_education_app/app/pages/profile-page/components/bottomsheet_select_period_task.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_line_chart.dart';
@@ -21,8 +20,10 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,14 +78,14 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
           ],
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 15),
-          padding: const EdgeInsets.all(20),
+          margin: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
-            color: opacity5GreyColor,
             borderRadius: BorderRadius.circular(10),
+            color: opacity5GreyColor,
           ),
-          child: Container(
-            // aspectRatio: 0.6,
+          child: AspectRatio(
+            aspectRatio: 0.61,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -92,9 +93,9 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   return AutoSizeText.rich(
                     TextSpan(
                       text:
-                          '${controller.selectedTaskPoint.value.toString()} Laporan Terakhir\n',
+                          '${controller.selectedTaskPoint.value} Tugas (Terakhir)\n',
                       style: tsBodyMediumSemibold(blackColor)
-                          .copyWith(height: 1.3),
+                          .copyWith(height: 1.5),
                       children: [
                         TextSpan(
                             text: 'Perkembangan point ananda',
@@ -145,13 +146,13 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                     )
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
                 Obx(() {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else
                     return AspectRatio(
-                      aspectRatio: 0.6,
+                      aspectRatio: 0.8,
                       child: LineChart(
                         taskLineChart.taskLineChart(),
                       ),

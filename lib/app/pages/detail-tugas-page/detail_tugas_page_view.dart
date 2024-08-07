@@ -27,7 +27,7 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios_new_rounded,
-              size: 20,
+              size: 15,
             ),
             onPressed: () {
               Get.back();
@@ -35,7 +35,7 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           ),
           title: AutoSizeText(
             'Detail Tugas',
-            style: tsBodyLargeSemibold(blackColor),
+            style: tsBodyMediumSemibold(blackColor),
           ),
         ),
       ),

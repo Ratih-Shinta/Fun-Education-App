@@ -18,6 +18,7 @@ class LaporanComponent extends GetView<LaporanPageController> {
         // await controller.showCurrentTugasTerbaru();
         // await controller.showCurrentTugasDiperiksa();
         // await controller.showCurrentTugasSelesai();
+        controller.selectedDate.value =DateTime.now();
         await controller
             .showCurrentLaporanHarian(controller.selectedDate.value);
         controller.update();

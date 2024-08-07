@@ -36,7 +36,7 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
               AutoSizeText.rich(
                 TextSpan(
                     text: 'Riwayat Transaksi',
-                    style: tsBodyLargeSemibold(blackColor)),
+                    style: tsBodyMediumSemibold(blackColor)),
               ),
               InkWell(
                 onTap: () {

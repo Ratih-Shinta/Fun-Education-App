@@ -111,7 +111,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               decoration: BoxDecoration(
                 color: successColor,
                 borderRadius: BorderRadius.circular(20),
