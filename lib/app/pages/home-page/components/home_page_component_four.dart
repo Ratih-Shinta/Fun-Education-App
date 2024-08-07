@@ -6,12 +6,11 @@ import 'package:fun_education_app/app/pages/laporan-page/widgets/tugas_widget.da
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomePageComponentFour extends GetView<HomePageController> {
   HomePageComponentFour({super.key});
-  // final LaporanPageController controller =
-  //     Get.put(LaporanPageController());
+  final LaporanPageController laporanController =
+      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +34,17 @@ class HomePageComponentFour extends GetView<HomePageController> {
         Obx(() => ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: controller.showCurrentTugasModel.length,
+              itemCount: laporanController.showCurrentTugasModelTerbaru.length,
               itemBuilder: (BuildContext context, int index) {
                 return TugasWidget(
-                  controllerArguments: controller.showCurrentTugasModel[index],
+                  controllerArguments:
+                      laporanController.showCurrentTugasModelTerbaru[index],
                   category:
-                      '${controller.showCurrentTugasModel[index].category}',
-                  title: '${controller.showCurrentTugasModel[index].title}',
+                      '${laporanController.showCurrentTugasModelTerbaru[index].category}',
+                  title:
+                      '${laporanController.showCurrentTugasModelTerbaru[index].title}',
                   status:
-                      '${controller.showCurrentTugasModel[index].statusTugasUser}',
+                      '${laporanController.showCurrentTugasModelTerbaru[index].statusTugasUser}',
                 );
               },
             ))
