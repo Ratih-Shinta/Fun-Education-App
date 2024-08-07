@@ -12,7 +12,8 @@ class TransactionHistory extends StatelessWidget {
     Key? key,
     required this.categoryController,
     required this.amountController,
-    required this.descController, required this.dateController,
+    required this.descController,
+    required this.dateController,
   }) : super(key: key);
 
   @override
@@ -81,12 +82,10 @@ class TransactionHistory extends StatelessWidget {
               AutoSizeText.rich(
                 TextSpan(
                   text:
-                      'Rp. ${categoryController == 'income' ? '+Rp. ${amountController}' : '-Rp. ${amountController}'}',
-                  style: tsBodySmallSemibold(
-                      categoryController ==
-                              'income'
-                          ? greenColor
-                          : dangerColor),
+                      '${categoryController == 'income' ? '+Rp. ${amountController}' : '-Rp. ${amountController}'}',
+                  style: tsBodySmallSemibold(categoryController == 'income'
+                      ? greenColor
+                      : dangerColor),
                 ),
               ),
             ],
@@ -111,8 +110,7 @@ class TransactionHistory extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text:
-                        '${descController}',
+                    text: '${descController}',
                     style: tsBodySmallRegular(blackColor),
                   ),
                 ],
