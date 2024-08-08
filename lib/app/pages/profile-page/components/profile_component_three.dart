@@ -50,7 +50,8 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
               SizedBox(height: height * 0.02),
               CommonButton(
                 text: 'Logout',
-                color: dangerColor,
+                backgroundColor: dangerColor,
+                textColor: whiteColor,
                 svgIcon: 'assets/icons/icLogout.svg',
               ),
             ],

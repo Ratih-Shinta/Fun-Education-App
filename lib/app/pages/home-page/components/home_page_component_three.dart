@@ -203,13 +203,15 @@ class HomePageComponentThree extends GetView<HomePageController> {
                           SizedBox(height: 15),
                           AutoSizeText.rich(
                             TextSpan(
-                                text: controller.totalPoint.value <= 25
-                                    ? 'Kurang'
-                                    : controller.totalPoint.value <= 50
-                                        ? 'Cukup'
-                                        : controller.totalPoint.value <= 75
-                                            ? 'Baik'
-                                            : 'Sangat Baik',
+                                text: controller.totalPoint.value == 0
+                                    ? 'Tidak Ada Laporan'
+                                    : controller.totalPoint.value <= 25
+                                        ? 'Kurang'
+                                        : controller.totalPoint.value <= 50
+                                            ? 'Cukup'
+                                            : controller.totalPoint.value <= 75
+                                                ? 'Baik'
+                                                : 'Sangat Baik',
                                 style: tsBodyMediumSemibold(blackColor)),
                           ),
                           SizedBox(height: 15),

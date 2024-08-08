@@ -92,7 +92,8 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                   controller.savePhotoToGallery(imageUrl);
                   Navigator.pop(context);
                 },
-                color: blackColor,
+                backgroundColor: blackColor,
+                textColor: whiteColor,
                 icon: Icons.download,
               )
             ],

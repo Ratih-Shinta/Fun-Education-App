@@ -63,7 +63,7 @@ class AddPhotoView extends StatelessWidget {
                       CommonButton(
                         text: 'Masuk',
                         onPressed: () {},
-                        color: secondaryColor,
+                        backgroundColor: secondaryColor, textColor: whiteColor,
                       )
                     ],
                   ),

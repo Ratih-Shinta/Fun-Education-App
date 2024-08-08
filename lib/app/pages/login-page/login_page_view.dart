@@ -110,7 +110,7 @@ class LoginPageView extends GetView<LoginPageController> {
                 CommonButton(
                   // isLoading: controller.isLoading.value,
                   text: 'Masuk',
-                  color: blackColor,
+                  backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
                     controller.login();

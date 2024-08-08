@@ -69,7 +69,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         SizedBox(height: height * 0.015),
         CommonButton(
           text: 'Tambah Gambar',
-          color: opacity10GreyColor,
+          backgroundColor: opacity10GreyColor,
           textColor: blackColor,
           icon: Icons.image,
           onPressed: () {
@@ -127,10 +127,10 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         SizedBox(height: 15),
         CommonButton(
           text: 'Kirim Tugas',
-          color: blackColor,
+          backgroundColor: blackColor,
           onPressed: () {
             controller.storeKirimTaskUser();
-          },
+          }, textColor: whiteColor,
         )
       ],
     );

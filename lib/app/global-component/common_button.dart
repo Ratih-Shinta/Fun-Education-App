@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,20 +6,21 @@ import 'package:fun_education_app/common/helper/themes.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
-  final Color color;
+  final Color backgroundColor;
+  final Color textColor;
   final VoidCallback? onPressed;
   final IconData? icon;
-  final Color? textColor;
+  final bool? isLoading;
   final String? svgIcon;
 
   CommonButton({
     Key? key,
     required this.text,
-    required this.color,
+    required this.backgroundColor,
+    required this.textColor,
     this.onPressed,
     this.icon,
-    this.textColor,
-    this.svgIcon,
+    this.isLoading, this.svgIcon,
   }) : super(key: key);
 
   @override
@@ -31,26 +33,39 @@ class CommonButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 15),
         width: width,
-        height: height * 0.07,
+        height: height * 0.068,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: color,
+          color: backgroundColor,
         ),
         alignment: Alignment.center,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AutoSizeText.rich(
-              TextSpan(
-                text: text,
-                style: tsBodySmallSemibold(textColor ?? whiteColor),
-              ),
-            ),
+            isLoading == true
+                ? SizedBox(
+                    child: CircularProgressIndicator(
+                      color: whiteColor,
+                    ),
+                  )
+                : isLoading == null
+                    ? AutoSizeText.rich(
+                        TextSpan(
+                          text: text,
+                          style: tsBodySmallSemibold(textColor),
+                        ),
+                      )
+                    : AutoSizeText.rich(
+                        TextSpan(
+                          text: text,
+                          style: tsBodySmallSemibold(textColor),
+                        ),
+                      ),
             if (icon != null) ...[
               SizedBox(width: 10),
               Icon(
                 icon,
-                color: textColor ?? whiteColor,
+                color: textColor,
                 size: 18,
               ),
             ],

@@ -13,12 +13,15 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DetailTugasPageController extends GetxController {
+  RefreshController refreshController = RefreshController();
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
   RxBool isLoading = true.obs;
   var imageFileList = <XFile>[].obs;
+
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController noteController = TextEditingController();
 
@@ -50,6 +53,7 @@ class DetailTugasPageController extends GetxController {
       showCurrentTugasUserResponse =
           ShowCurrentTugasUserResponse.fromJson(response.data);
       showCurrentTugasUserModel.value = showCurrentTugasUserResponse!.data;
+      isLoading(false);
       update();
       print('showCurrentTugasUser ${showCurrentTugasUserModel.value.status}');
       isLoading.value = false;

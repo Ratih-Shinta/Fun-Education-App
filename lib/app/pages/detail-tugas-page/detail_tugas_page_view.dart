@@ -10,6 +10,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class DetailTugasPageView extends GetView<DetailTugasPageController> {
+  final argurment = Get.arguments;
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -39,40 +40,50 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: width * 0.05, vertical: height * 0.02),
-          child: Column(
-            children: [
-              // Obx(() {
-              //   if (controller.isLoading.value) {
-              //     return Center(child: CircularProgressIndicator());
-              //   } else {
-              //     return TugasContainer();
-              //   }
-              // }),
-              TugasContainer(),
-              Obx(() {
-                if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
-                } else {
-                  switch (controller.showCurrentTugasUserModel.value.status) {
-                    case 'Gagal':
-                      return CommontNoData(
-                          title: 'Ananda Tidak Mengerjakan Tugas',
-                          subTitle: 'Selalu Periksa Tenggat Waktu');
-                    case 'Diperiksa':
-                      return DetailTugasDiperiksa();
-                    case 'Selesai':
-                      return DetailTugasSelesai();
-                    default:
-                      return DetailTugasKirim();
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await controller.showByIdTugas(Get.arguments.id);
+          await controller.showCurrentTugasUser(Get.arguments.id);
+
+          controller.update();
+        },
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.05, vertical: height * 0.02),
+            child: Column(
+              children: [
+                // Obx(() {
+                //   if (controller.isLoading.value) {
+                //     return Center(child: CircularProgressIndicator());
+                //   } else {
+                //     return TugasContainer();
+                //   }
+                // }),
+                TugasContainer(),
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
+                    switch (controller.showCurrentTugasUserModel.value.status) {
+                      case 'Gagal':
+                        return CommontNoData(
+                            title: 'Ananda Tidak Mengerjakan Tugas',
+                            subTitle: 'Selalu Periksa Tenggat Waktu');
+                      case 'Diperiksa':
+                        return DetailTugasDiperiksa();
+                      case 'Selesai':
+                        return DetailTugasSelesai();
+                      default:
+                      
+                        return DetailTugasKirim();
+                        
+                    }
                   }
-                }
-              }),
-            ],
+                }),
+              ],
+            ),
           ),
         ),
       ),

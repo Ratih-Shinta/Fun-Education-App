@@ -50,7 +50,8 @@ class BottomsheetPilihPeriode extends StatelessWidget {
               buildOptions(width, height),
               CommonButton(
                 text: 'Tutup',
-                color: blackColor,
+                backgroundColor: blackColor,
+                textColor: whiteColor,
                 onPressed: () {
                   Get.back();
                 },
