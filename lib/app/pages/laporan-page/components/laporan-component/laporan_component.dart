@@ -14,11 +14,11 @@ class LaporanComponent extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        // await controller.showCurrentAlurBelajar();
-        // await controller.showCurrentTugasTerbaru();
-        // await controller.showCurrentTugasDiperiksa();
-        // await controller.showCurrentTugasSelesai();
-        controller.selectedDate.value =DateTime.now();
+        await controller.showCurrentAlurBelajar();
+        await controller.showCurrentTugasTerbaru();
+        await controller.showCurrentTugasDiperiksa();
+        await controller.showCurrentTugasSelesai();
+        controller.selectedDate.value = DateTime.now();
         await controller
             .showCurrentLaporanHarian(controller.selectedDate.value);
         controller.update();

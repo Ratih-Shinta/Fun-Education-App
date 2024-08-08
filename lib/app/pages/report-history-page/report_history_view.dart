@@ -5,10 +5,11 @@ import 'package:fun_education_app/app/pages/report-history-page/components/repor
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_one.dart';
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_three.dart';
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_two.dart';
+import 'package:fun_education_app/app/pages/report-history-page/report_history_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class ReportHistoryView extends GetView {
+class ReportHistoryView extends GetView<ReportHistoryController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -35,27 +36,35 @@ class ReportHistoryView extends GetView {
           style: tsBodyMediumSemibold(blackColor),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: width * 0.05,
-            right: width * 0.05,
-            bottom: height * 0.04,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height * 0.02),
-              ReportHistoryPageComponentOne(),
-              SizedBox(height: height * 0.015),
-              ReportHistoryPageComponentTwo(),
-              SizedBox(height: height * 0.05),
-              ReportHistoryPageComponentThree(),
-              SizedBox(height: height * 0.02),
-              ReportHistoryPageComponentFour(),
-              SizedBox(height: height * 0.02),
-              ReportHistoryPageComponentFive(),
-            ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          controller.showCurrentLaporanHarian();
+          controller.ShowCurrentAvailable();
+          controller.update();
+        },
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: width * 0.05,
+              right: width * 0.05,
+              bottom: height * 0.04,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: height * 0.02),
+                ReportHistoryPageComponentOne(),
+                SizedBox(height: height * 0.015),
+                ReportHistoryPageComponentTwo(),
+                SizedBox(height: height * 0.05),
+                ReportHistoryPageComponentThree(),
+                SizedBox(height: height * 0.02),
+                ReportHistoryPageComponentFour(),
+                SizedBox(height: height * 0.02),
+                ReportHistoryPageComponentFive(),
+              ],
+            ),
           ),
         ),
       ),

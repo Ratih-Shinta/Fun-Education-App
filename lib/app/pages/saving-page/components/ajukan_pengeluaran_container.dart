@@ -89,7 +89,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   ),
                   CommonButton(
                     text: 'Selesai',
-                    color: dangerColor,
+                    backgroundColor: dangerColor,
+                    textColor: whiteColor,
                     onPressed: () {
                       controller.deletePengajuanTabungan(
                           controller.currentPengajuanTabunganModel.value.id!);
@@ -143,7 +144,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                   ),
                   CommonButton(
                     text: 'Selesai',
-                    color: successColor,
+                    backgroundColor: successColor,
+                    textColor: whiteColor,
                     onPressed: () {
                       controller.deletePengajuanTabungan(
                           controller.currentPengajuanTabunganModel.value.id!);

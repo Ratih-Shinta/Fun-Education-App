@@ -108,7 +108,7 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
             SizedBox(height: height * 0.03),
             CommonButton(
               text: 'Tutup',
-              color: blackColor,
+              backgroundColor: blackColor,
               textColor: whiteColor,
               onPressed: () async {
                 await controller.showStatisticCurrentLaporanUser();

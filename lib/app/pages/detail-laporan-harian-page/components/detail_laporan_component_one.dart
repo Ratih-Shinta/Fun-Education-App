@@ -40,7 +40,7 @@ class DetailLaporanComponentOne extends GetView<DetailLaporanHarianController> {
             margin: EdgeInsets.only(top: 10, bottom: 20),
             child: TotalPointItem(
                 totalPoint: laporanPageController
-                    .showCurrentLaporanHarianResponse!.totalPoint)),
+                    .showCurrentLaporanHarianResponse?.totalPoint?? 0)),
       ],
     );
   }

@@ -80,7 +80,7 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
             color: opacity5GreyColor,
           ),
           child: AspectRatio(
-            aspectRatio: 0.61,
+            aspectRatio: 0.6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[

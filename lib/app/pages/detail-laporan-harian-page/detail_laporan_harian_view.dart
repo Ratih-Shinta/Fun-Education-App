@@ -6,11 +6,15 @@ import 'package:fun_education_app/app/pages/detail-laporan-harian-page/component
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/components/detail_laporan_component_three.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/components/detail_laporan_component_two.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
-  const DetailLaporanHarianView({super.key});
+  DetailLaporanHarianView({super.key});
+  final argument = Get.arguments;
+  final LaporanPageController laporanPageController =
+      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +45,36 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: height * 0.02,
-            horizontal: width * 0.05,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DetailLaporanComponentOne(),
-              DetailLaporanComponentTwo(),
-              SizedBox(height: height * 0.02),
-              DetailLaporanComponentThree(),
-              SizedBox(height: height * 0.04),
-              DetailLaporanComponentFour(),
-              SizedBox(height: height * 0.02),
-              // DetailComponentFive(),
-            ],
+      body:
+      //  RefreshIndicator(
+      //   onRefresh: () async {
+      //     await laporanPageController.showCurrentLaporanHarian(argument);
+      //     controller.update();
+      //   },
+      //   child: 
+        SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: height * 0.02,
+              horizontal: width * 0.05,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DetailLaporanComponentOne(),
+                DetailLaporanComponentTwo(),
+                SizedBox(height: height * 0.02),
+                DetailLaporanComponentThree(),
+                SizedBox(height: height * 0.04),
+                DetailLaporanComponentFour(),
+                SizedBox(height: height * 0.02),
+                // DetailComponentFive(),
+              ],
+            ),
           ),
         ),
-      ),
+      // ),
     );
   }
 }

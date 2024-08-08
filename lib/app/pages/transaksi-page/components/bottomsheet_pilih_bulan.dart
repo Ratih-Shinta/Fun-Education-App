@@ -68,7 +68,8 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
                 // controller
                 //     .showCurrentDetailLaporanBulanan();
               },
-              color: blackColor,
+              backgroundColor: blackColor,
+              textColor: whiteColor,
             )
           ],
         ),

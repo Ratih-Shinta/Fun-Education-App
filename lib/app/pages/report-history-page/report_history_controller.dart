@@ -42,11 +42,13 @@ class ReportHistoryController extends GetxController {
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
-      userGrade.value = showCurrentLaporanHarianResponse!.totalPoint;
-      userNote.value = showCurrentLaporanHarianResponse!.note ?? 'Tidak Ada Catatan';
+      userGrade.value = showCurrentLaporanHarianResponse!.totalPoint ?? 0;
+      userNote.value =
+          showCurrentLaporanHarianResponse!.note ?? 'Tidak Ada Catatan';
       update();
       print('seleced date : ${selectedDay.value}');
-      print('laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      print(
+          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');

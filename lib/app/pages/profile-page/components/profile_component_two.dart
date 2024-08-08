@@ -85,7 +85,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
             color: opacity5GreyColor,
           ),
           child: AspectRatio(
-            aspectRatio: 0.61,
+            aspectRatio: 0.6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -164,7 +164,8 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
         ),
         CommonButton(
           text: 'Lihat Riwayat Laporan',
-          color: blackColor,
+          backgroundColor: blackColor,
+          textColor: whiteColor,
           icon: Icons.navigate_next_outlined,
           onPressed: () {
             Get.toNamed(Routes.REPORT_HISTORY_PAGE);

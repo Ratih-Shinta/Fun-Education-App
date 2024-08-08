@@ -16,38 +16,47 @@ class GalleryPageView extends GetView<GalleryPageController> {
     final double height = mediaQuery.height;
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: width * 0.05,
-              vertical: height * 0.04,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AutoSizeText.rich(
-                  group: AutoSizeGroup(),
-                  maxLines: 1,
-                  TextSpan(
-                    text: 'Galeri ',
-                    style: tsTitleSmallRegular(blackColor),
-                    children: [
-                      TextSpan(
-                        text: 'Ananda',
-                        style: tsTitleSmallSemibold(blackColor),
-                      ),
-                    ],
-                  ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await controller.showAllAlbum();
+          await controller.showAllPhotos();
+          controller.update();
+        },
+        child: ListView(
+          // physics: BouncingScrollPhysics(),
+          children: [
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.05,
+                  vertical: height * 0.04,
                 ),
-                SizedBox(height: height * 0.03),
-                GalleryPageComponentOne(),
-                SizedBox(height: height * 0.04),
-                GalleryPageComponentTwo(),
-              ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText.rich(
+                      group: AutoSizeGroup(),
+                      maxLines: 1,
+                      TextSpan(
+                        text: 'Galeri ',
+                        style: tsTitleSmallRegular(blackColor),
+                        children: [
+                          TextSpan(
+                            text: 'Ananda',
+                            style: tsTitleSmallSemibold(blackColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: height * 0.03),
+                    GalleryPageComponentOne(),
+                    SizedBox(height: height * 0.04),
+                    GalleryPageComponentTwo(),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
