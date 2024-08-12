@@ -154,7 +154,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                 ],
               );
             } else if (controller.currentPengajuanTabunganModel.value.status ==
-                'Pending') {
+                'Pending' || controller.currentPengajuanTabunganModel.value.status == 'Pending Accepted'
+                ) {
               return Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
@@ -174,7 +175,8 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                         Flexible(
                           child: AutoSizeText.rich(
                             TextSpan(
-                                text: 'Kegiatan Belajar Diluar',
+                                text:
+                                    '${controller.currentPengajuanTabunganModel.value.category}',
                                 style: tsBodyMediumSemibold(blackColor)),
                           ),
                         ),

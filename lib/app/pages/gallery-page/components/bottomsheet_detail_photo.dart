@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/global-component/common_detail_image.dart';
 import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
     backgroundColor: whiteColor,
     builder: (context) {
       return SizedBox(
-        height: height * 0.7,
+        height: height * 0.65,
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: height * 0.03,
@@ -39,18 +40,31 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                 ),
               ),
               SizedBox(height: height * 0.02),
-              Container(
-                height: height * 0.25,
-                decoration: BoxDecoration(
-                  color: greyColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(imageUrl.toString()),
-                    fit: BoxFit.fill,
+              InkWell(
+                onTap: () {
+                  Get.to(
+                    () => CommonDetailImage(
+                      imagePath: imageUrl.toString(),
+                      isNetwork: true,
+                    ),
+                  );
+                },
+                child: Container(
+                  width: width,
+                  height: height * 0.27,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        '${imageUrl.toString()}',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.015),
+              SizedBox(height: height * 0.02),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -65,7 +79,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                       style: tsBodySmallRegular(blackColor))
                 ],
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.015),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
