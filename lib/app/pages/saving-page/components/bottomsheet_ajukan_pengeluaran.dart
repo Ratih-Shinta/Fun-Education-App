@@ -85,8 +85,13 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                         ),
                       )
                     : GestureDetector(
-                        onTap: () => Get.snackbar('Pengajuan Gagal',
-                            'Saldo Tabungan Anda Tidak Mencukupi'),
+                        onTap: () => Get.snackbar(
+                          'Pengajuan Gagal',
+                          'Saldo Tabungan Anda Tidak Mencukupi',
+                          backgroundColor: dangerColor,
+                          colorText: whiteColor,
+                          snackPosition: SnackPosition.BOTTOM,
+                        ),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 15),
                           width: width,

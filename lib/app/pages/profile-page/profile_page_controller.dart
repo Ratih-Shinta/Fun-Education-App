@@ -43,8 +43,9 @@ class ProfilePageController extends GetxController {
       final response = await tugasUserService.getStatisticCurrentTugas(
         selectedTaskPoint.value,
       );
-      showStatisticCurrentResponse = StatisticTaskResponse.fromJson(response.data);
-          
+      showStatisticCurrentResponse =
+          StatisticTaskResponse.fromJson(response.data);
+
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
       print(showStatisticCurrentModel);
 
@@ -80,11 +81,22 @@ class ProfilePageController extends GetxController {
 
       prefs.remove('token');
 
-      Get.snackbar("Logout Success", "You have been logged out");
+      Get.snackbar(
+        "Logout Success",
+        "You have been logged out",
+        backgroundColor: successColor,
+        colorText: whiteColor,
+      );
       Get.offAllNamed(Routes.LOGIN_PAGE);
     } catch (e) {
       isLoading.value = true;
-      Get.snackbar("Logout Failed", "Network Error" + e.toString());
+      Get.snackbar(
+        "Logout Failed",
+        "Network Error" + e.toString(),
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } finally {
       isLoading.value = false;
     }

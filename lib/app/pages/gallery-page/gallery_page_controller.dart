@@ -7,6 +7,7 @@ import 'package:fun_education_app/app/api/album-photos/services/show_all_album_p
 import 'package:fun_education_app/app/api/all-photos/models/show_all_photos_model.dart';
 import 'package:fun_education_app/app/api/all-photos/models/show_all_photos_response.dart';
 import 'package:fun_education_app/app/api/all-photos/services/show_all_photos_service.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
@@ -75,13 +76,30 @@ class GalleryPageController extends GetxController {
         name: "downloaded_image",
       );
       if (result['isSuccess']) {
-        Get.snackbar("Success", "Photo saved to gallery");
+        Get.snackbar(
+          "Success",
+          "Photo saved to gallery",
+          backgroundColor: successColor,
+          colorText: whiteColor,
+        );
       } else {
-        Get.snackbar("Error", "Failed to save photo");
+        Get.snackbar(
+          "Error",
+          "Failed to save photo",
+          backgroundColor: dangerColor,
+          colorText: whiteColor,
+          snackPosition: SnackPosition.BOTTOM,
+        );
       }
     } catch (e) {
       print(e);
-      Get.snackbar("Error", "An error occurred while saving the photo");
+      Get.snackbar(
+        "Error",
+        "An error occurred while saving the photo",
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }

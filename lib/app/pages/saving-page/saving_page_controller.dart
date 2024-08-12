@@ -51,7 +51,7 @@ class SavingPageController extends GetxController {
     }
   }
 
-  Future<void> storePengajuanTabungan() async {
+  Future storePengajuanTabungan() async {
     try {
       isLoading(true);
       final userId = showCurrentTabunganModel.value.userId;
@@ -63,7 +63,11 @@ class SavingPageController extends GetxController {
         await currentPengajuanTabungan();
         Get.back();
         Get.snackbar(
-            'Pengajuan Berhasil', 'Pengajuan Pengeluaran Tabungan Berhasil');
+          'Pengajuan Berhasil',
+          'Pengajuan Pengeluaran Tabungan Berhasil',
+          backgroundColor: successColor,
+          colorText: whiteColor,
+        );
       } else {
         print('userId is null');
       }
@@ -103,6 +107,7 @@ class SavingPageController extends GetxController {
         "Pengajuan Tabungan gagal dihapus",
         backgroundColor: dangerColor,
         colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
       );
       print(e);
     }
