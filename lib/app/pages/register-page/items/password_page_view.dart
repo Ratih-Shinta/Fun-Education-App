@@ -1,21 +1,23 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
-import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
+import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class LoginPageView extends GetView<LoginPageController> {
-  const LoginPageView({super.key});
+class PasswordPageView extends GetView<RegisterPageController> {
+  const PasswordPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
@@ -26,6 +28,7 @@ class LoginPageView extends GetView<LoginPageController> {
               horizontal: width * 0.05,
             ),
             child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,19 +49,19 @@ class LoginPageView extends GetView<LoginPageController> {
                 SizedBox(height: height * 0.06),
                 Column(
                   children: [
-                    SvgPicture.asset('assets/images/imgLogin.svg'),
+                    SvgPicture.asset('assets/images/imgPassword.svg'),
                     SizedBox(height: height * 0.03),
                     AutoSizeText.rich(
                       group: AutoSizeGroup(),
                       textAlign: TextAlign.center,
                       TextSpan(
-                        text: 'Buat Password Untuk Akses\n',
+                        text: 'Selamat Datang di\n',
                         style: tsTitleMediumRegular(blackColor).copyWith(
                           height: 1.3,
                         ),
                         children: [
                           TextSpan(
-                            text: 'FunEducation App',
+                            text: 'Fun Education',
                             style: tsTitleMediumSemibold(blackColor),
                           ),
                         ],
@@ -77,32 +80,32 @@ class LoginPageView extends GetView<LoginPageController> {
                 Column(
                   children: [
                     CommonTextField(
-                      prefixIcon: Icon(Icons.person_2_outlined,
-                          color: greyColor.withOpacity(0.5)),
-                      fieldController: controller.nicknameController,
-                      obscureText: false,
-                      hintText: 'Nama Lengkap',
-                      keyboardType: TextInputType.name,
-                    ),
-                    SizedBox(height: height * 0.01),
-                    CommonTextField(
                       prefixIcon: Icon(Icons.lock_outline_rounded,
                           color: greyColor.withOpacity(0.5)),
-                      fieldController: controller.passwordController,
+                      // fieldController: controller.nicknameController,
                       obscureText: false,
                       hintText: 'Kata Sandi',
                       keyboardType: TextInputType.name,
                     ),
+                    SizedBox(height: height * 0.01),
+                    CommonTextField(
+                      // fieldController: controller.passwordController,
+                      obscureText: controller.isVisibleSignIn.value,
+                      hintText: 'Konfirmasi Kata Sandi',
+                      keyboardType: TextInputType.name,
+                      prefixIcon: Icon(Icons.lock_outline_rounded,
+                          color: greyColor.withOpacity(0.5)),
+                    ),
                   ],
                 ),
-                SizedBox(height: height * 0.03),
+                SizedBox(height: height * 0.08),
                 CommonButton(
                   // isLoading: controller.isLoading.value,
-                  text: 'Masuk',
+                  text: 'Daftar',
                   backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
-                    controller.login();
+                    // controller.login();
                   },
                 )
               ],

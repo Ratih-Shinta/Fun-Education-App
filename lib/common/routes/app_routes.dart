@@ -6,6 +6,7 @@ abstract class Routes {
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const REGISTER_PAGE = _Paths.REGISTER_PAGE;
+  static const PASSWORD_PAGE = _Paths.PASSWORD_PAGE;
   static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
   static const ADD_PHOTO_PAGE = _Paths.ADD_PHOTO_PAGE;
   static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE =
@@ -28,6 +29,7 @@ abstract class _Paths {
   static const SPLASH_SCREEN = '/splash-screen';
   static const HOME_PAGE = '/home-page';
   static const REGISTER_PAGE = '/register';
+  static const PASSWORD_PAGE = '/password';
   static const LOGIN_PAGE = '/login';
   static const ADD_PHOTO_PAGE = '/add-photo-page';
   static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE = '/hal-yang-perlu-diperhatikan-page';
