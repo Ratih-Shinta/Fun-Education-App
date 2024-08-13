@@ -15,6 +15,8 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart'
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
 import 'package:fun_education_app/app/pages/navbar/navbar_main_view.dart';
+import 'package:fun_education_app/app/pages/pending-page/pending_page_binding.dart';
+import 'package:fun_education_app/app/pages/pending-page/pending_page_view.dart';
 import 'package:fun_education_app/app/pages/register-page/items/password_page_view.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_binding.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_view.dart';
@@ -38,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.PENDING_PAGE;
 
   static final routes = [
     GetPage(
@@ -70,6 +72,11 @@ class AppPages {
       name: _Paths.PASSWORD_PAGE,
       page: () => PasswordPageView(),
       binding: RegisterPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENDING_PAGE,
+      page: () => PendingPageView(),
+      binding: PendingPageBinding(),
     ),
     GetPage(
       name: _Paths.HOME_PAGE,
