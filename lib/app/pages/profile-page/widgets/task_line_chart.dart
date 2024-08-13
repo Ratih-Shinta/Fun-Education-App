@@ -4,7 +4,6 @@ import 'package:fun_education_app/app/pages/profile-page/profile_page_controller
 import 'package:fun_education_app/app/pages/profile-page/widgets/task_title_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class TaskLineChart {
   final ProfilePageController profilePageController =

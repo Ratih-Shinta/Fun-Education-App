@@ -10,6 +10,7 @@ dependencies:
   auto_size_text: null
   cupertino_icons: null
   dio: null
+  dropdown_button2: ^2.3.9
   easy_date_timeline: null
   fl_chart: ^0.68.0
   flutter:

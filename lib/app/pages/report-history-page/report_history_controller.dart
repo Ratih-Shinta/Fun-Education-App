@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-available/event_model.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show-current-available/show_current_available_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
