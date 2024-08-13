@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/report-history-page/report_history_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';

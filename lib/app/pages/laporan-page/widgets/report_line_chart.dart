@@ -2,8 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/report_title_chart.dart';
-import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
-import 'package:fun_education_app/app/pages/profile-page/widgets/task_title_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

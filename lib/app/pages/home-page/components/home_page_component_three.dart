@@ -112,7 +112,7 @@ class HomePageComponentThree extends GetView<HomePageController> {
                           ),
                           child: Obx(() {
                             final catatan = controller
-                                .showLatestCatatanDaruratModel.value?.catatan;
+                                .showLatestCatatanDaruratModel.value.catatan;
                             final hasCatatan =
                                 catatan != null && catatan.isNotEmpty;
                             return Row(

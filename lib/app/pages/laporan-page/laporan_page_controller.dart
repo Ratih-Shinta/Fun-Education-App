@@ -20,7 +20,6 @@ import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_c
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_two.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -102,7 +101,7 @@ class LaporanPageController extends GetxController with SingleGetTickerProviderM
       );
       showStatisticCurrentResponse =
           ShowStatisticCurrentResponse.fromJson(response.data);
-      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data!;
+      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
       print(showStatisticCurrentModel);
 
      

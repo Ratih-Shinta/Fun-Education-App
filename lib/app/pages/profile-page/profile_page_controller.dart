@@ -1,12 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_response.dart';
 import 'package:fun_education_app/app/api/tugas-user/service/tugas_user_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.dart';
-import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
