@@ -21,9 +21,7 @@ class LoginPageController extends GetxController {
 
     authenticationService = AuthenticationService();
     super.onInit();
-  }
-
-  
+  }  
 
   Future<void> login() async {
     try {

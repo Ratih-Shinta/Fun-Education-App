@@ -20,7 +20,6 @@ class ApiEndPoint {
   static String login = '$baseUrlAuth/login';
   static String register = '$baseUrlAuth/register';
   static String logout = '$baseUrlAuth/logout';
-  static String pushNotification = '$baseUrlAuth/send-notification/';
 
   //Leaderboard
   static String showLeaderboard = '$baseUrlLeaderboard/index';

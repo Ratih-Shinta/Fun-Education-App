@@ -40,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.PENDING_PAGE;
+  static const INITIAL = Routes.REGISTER_PAGE;
 
   static final routes = [
     GetPage(

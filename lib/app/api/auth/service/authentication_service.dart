@@ -11,22 +11,54 @@ class AuthenticationService {
       final fcmToken = await FirebaseMessaging.instance.getToken();
       final response = await _dioInstance.postRequest(
           endpoint: ApiEndPoint.login,
-          data: {'nickname': nickname, 'password': password, 'fcm_token' : fcmToken});
-          print(response.data);
+          data: {
+            'nickname': nickname,
+            'password': password,
+            'fcm_token': fcmToken
+          });
+      print(response.data);
       return response;
     } catch (e) {
       throw Exception(e);
     }
   }
 
-   Future<Response> logout() async {
+  Future<Response> register(
+    String fullName,
+    String nickname,
+    String birth,
+    String address,
+    String shift,
+    String password,
+    String gender,
+  ) async {
     try {
-      final response =  await _dioInstance.deleteRequest(
-          endpoint: ApiEndPoint.logout,
-          isAuthorize: true
+      final fcmToken = await FirebaseMessaging.instance.getToken();
+      final response = await _dioInstance.postRequest(
+        endpoint: ApiEndPoint.register,
+        data: {
+          'full_name': fullName,
+          'nickname': nickname,
+          'birth': birth,
+          'address': address,
+          'shift': shift,
+          'password': password,
+          'gender': gender,
+          'fcm_token': fcmToken
+        },
       );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 
-       return response;
+  Future<Response> logout() async {
+    try {
+      final response = await _dioInstance.deleteRequest(
+          endpoint: ApiEndPoint.logout, isAuthorize: true);
+
+      return response;
     } catch (e) {
       throw Exception(e);
     }
