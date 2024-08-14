@@ -31,6 +31,7 @@ const Color opacity50WhiteColor = Color(0x50FFFFFF);
 const Color opacity30GoldColor = Color(0x30F9C105);
 const Color opacity30BronzeColor = Color(0x30C58D5B);
 const Color opacity50SuccessColor = Color(0x500CD644);
+const Color silverColor = Color(0xFF1C1F2833);
 
 //DATE TIME HASH CODE
 int getHashCode(DateTime key) {

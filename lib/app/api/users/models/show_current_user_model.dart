@@ -8,6 +8,9 @@ class ShowCurrentUserModel {
     String? gender;
     String? profilePicture;
     String? role;
+    dynamic fcmToken;
+    bool? isVerified;
+    DateTime? createdAt;
 
     ShowCurrentUserModel({
         this.id,
@@ -19,6 +22,9 @@ class ShowCurrentUserModel {
         this.gender,
         this.profilePicture,
         this.role,
+        this.fcmToken,
+        this.isVerified,
+        this.createdAt,
     });
 
     factory ShowCurrentUserModel.fromJson(Map<String, dynamic> json) => ShowCurrentUserModel(
@@ -31,6 +37,9 @@ class ShowCurrentUserModel {
         gender: json["gender"],
         profilePicture: json["profile_picture"],
         role: json["role"],
+        fcmToken: json["fcm_token"],
+        isVerified: json["is_verified"],
+        createdAt: DateTime.parse(json["created_at"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -43,5 +52,8 @@ class ShowCurrentUserModel {
         "gender": gender,
         "profile_picture": profilePicture,
         "role": role,
+        "fcm_token": fcmToken,
+        "is_verified": isVerified,
+        "created_at": createdAt?.toIso8601String(),
     };
 }

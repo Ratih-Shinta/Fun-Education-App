@@ -7,6 +7,7 @@ import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class RegisterPageView extends GetView<RegisterPageController> {
@@ -68,7 +69,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                     CommonTextField(
                       prefixIcon: Icon(Icons.person_2_outlined,
                           color: greyColor.withOpacity(0.5)),
-                      // fieldController: controller.nicknameController,
+                      fieldController: controller.fullNameController,
                       obscureText: false,
                       hintText: 'Nama Lengkap',
                       keyboardType: TextInputType.name,
@@ -77,7 +78,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                     CommonTextField(
                       prefixIcon: Icon(Icons.person_2_outlined,
                           color: greyColor.withOpacity(0.5)),
-                      // fieldController: controller.nicknameController,
+                      fieldController: controller.nicknameController,
                       obscureText: false,
                       hintText: 'Nama Panggilan',
                       keyboardType: TextInputType.name,
@@ -86,7 +87,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                     CommonTextField(
                       prefixIcon: Icon(Icons.calendar_today_outlined,
                           color: greyColor.withOpacity(0.5)),
-                      // fieldController: controller.nicknameController,
+                      fieldController: controller.birthController,
                       obscureText: false,
                       hintText: 'Tempat, Tanggal Lahir',
                       keyboardType: TextInputType.name,
@@ -95,10 +96,82 @@ class RegisterPageView extends GetView<RegisterPageController> {
                     CommonTextField(
                       prefixIcon: Icon(Icons.location_on_outlined,
                           color: greyColor.withOpacity(0.5)),
-                      // fieldController: controller.nicknameController,
+                      fieldController: controller.addressController,
                       obscureText: false,
                       hintText: 'Alamat Lengkap',
                       keyboardType: TextInputType.name,
+                    ),
+                    SizedBox(height: height * 0.01),
+                    DropdownButtonFormField2<String>(
+                      isExpanded: true,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: height * 0.02,
+                        ),
+                        fillColor: whiteColor,
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      hint: Obx(() => Row(
+                            children: [
+                              Icon(Icons.access_time_outlined,
+                                  color: greyColor.withOpacity(0.5)),
+                              SizedBox(width: 8),
+                              Text(
+                                  controller.selectedGender.value.isEmpty
+                                      ? 'Pilih shift'
+                                      : controller.selectedGender.value,
+                                  style: tsBodySmallMedium(blackColor)),
+                            ],
+                          )),
+                      items: controller.genderList
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.access_time_outlined,
+                                        color: greyColor.withOpacity(0.5)),
+                                    SizedBox(width: 8),
+                                    Text(item,
+                                        style: tsBodySmallMedium(blackColor)),
+                                  ],
+                                ),
+                              ))
+                          .toList(),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Pilih shift';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        controller.setSelectedGender(value!);
+                      },
+                      onSaved: (value) {
+                        controller.selectedGender.value = value!;
+                      },
+                      buttonStyleData: const ButtonStyleData(
+                        padding: EdgeInsets.only(right: 8),
+                      ),
+                      iconStyleData: const IconStyleData(
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: blackColor,
+                        ),
+                        iconSize: 24,
+                      ),
+                      dropdownStyleData: DropdownStyleData(
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      menuItemStyleData: const MenuItemStyleData(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                      ),
                     ),
                   ],
                 ),
@@ -122,39 +195,56 @@ class RegisterPageView extends GetView<RegisterPageController> {
                       isExpanded: true,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
-                          vertical: height * 0.01,
-                          horizontal: width * 0.02,
+                          vertical: height * 0.02,
                         ),
-                        fillColor: whiteColor, // Box merah
-                        filled: true, // Agar warna latar diterapkan
+                        fillColor: whiteColor,
+                        filled: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none, // Tidak ada border
+                          borderSide: BorderSide.none,
                         ),
                       ),
-                      hint: Text(
-                        '${controller.selectedShift}',
-                        style: TextStyle(fontSize: 14),
-                      ),
+                      hint: Obx(() => Row(
+                            children: [
+                              Icon(
+                                Icons.access_time_outlined,
+                                color: greyColor,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                  controller.selectedShift.value.isEmpty
+                                      ? 'Pilih shift'
+                                      : controller.selectedShift.value,
+                                  style: tsBodySmallMedium(blackColor)),
+                            ],
+                          )),
                       items: controller.shiftList
                           .map((item) => DropdownMenuItem<String>(
                                 value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.access_time_outlined,
+                                      color: greyColor,
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(item,
+                                        style: tsBodySmallMedium(blackColor)),
+                                  ],
                                 ),
                               ))
                           .toList(),
                       validator: (value) {
-                        if (value == null) {
-                          return '${controller.selectedShift}';
+                        if (value == null || value.isEmpty) {
+                          return 'Pilih shift';
                         }
                         return null;
                       },
+                      onChanged: (value) {
+                        controller.setSelectedShift(value!);
+                      },
                       onSaved: (value) {
-                        controller.selectedShift.value = value.toString();
+                        controller.selectedShift.value = value!;
                       },
                       buttonStyleData: const ButtonStyleData(
                         padding: EdgeInsets.only(right: 8),
@@ -180,12 +270,13 @@ class RegisterPageView extends GetView<RegisterPageController> {
                 ),
                 SizedBox(height: height * 0.14),
                 CommonButton(
-                  // isLoading: controller.isLoading.value,
+                  isLoading: controller.isLoading.value,
                   text: 'Lanjut',
                   backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
-                    // controller.login();
+                    controller.saveRegisterValue();
+                    Get.toNamed(Routes.PASSWORD_PAGE);
                   },
                 )
               ],

@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
@@ -7,6 +6,7 @@ import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PasswordPageView extends GetView<RegisterPageController> {
@@ -74,7 +74,8 @@ class PasswordPageView extends GetView<RegisterPageController> {
                 CommonWarning(
                   icon: Icons.info_outline_rounded,
                   backColor: warningColor,
-                  text: 'Isi dengan kata sandi yang telah diberikan oleh guru',
+                  text:
+                      'Perubahan kata sandi hanya bisa oleh guru, kontak guru apabila lupa',
                 ),
                 SizedBox(height: height * 0.03),
                 Column(
@@ -82,15 +83,15 @@ class PasswordPageView extends GetView<RegisterPageController> {
                     CommonTextField(
                       prefixIcon: Icon(Icons.lock_outline_rounded,
                           color: greyColor.withOpacity(0.5)),
-                      // fieldController: controller.nicknameController,
+                      fieldController: controller.passwordController,
                       obscureText: false,
                       hintText: 'Kata Sandi',
                       keyboardType: TextInputType.name,
                     ),
                     SizedBox(height: height * 0.01),
                     CommonTextField(
-                      // fieldController: controller.passwordController,
-                      obscureText: controller.isVisibleSignIn.value,
+                      fieldController: controller.confirmPasswordController,
+                      obscureText: true,
                       hintText: 'Konfirmasi Kata Sandi',
                       keyboardType: TextInputType.name,
                       prefixIcon: Icon(Icons.lock_outline_rounded,
@@ -100,12 +101,23 @@ class PasswordPageView extends GetView<RegisterPageController> {
                 ),
                 SizedBox(height: height * 0.08),
                 CommonButton(
-                  // isLoading: controller.isLoading.value,
+                  isLoading: controller.isLoading.value,
                   text: 'Daftar',
                   backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
-                    // controller.login();
+                    String? validationMessage = controller.validatePassword();
+                    if (validationMessage != null) {
+                      Get.snackbar('Error', validationMessage,
+                          backgroundColor: Colors.red, colorText: Colors.white);
+                    } else {
+                      controller.password.value =
+                          controller.passwordController.text;
+                      controller.register();
+                      Get.snackbar('Success', 'Password valid',
+                          backgroundColor: Colors.green,
+                          colorText: Colors.white);
+                    }
                   },
                 )
               ],

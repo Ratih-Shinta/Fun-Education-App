@@ -2,9 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
+import 'package:fun_education_app/app/pages/pending-page/pending_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
+import 'package:get/get.dart';
 
-class PendingPageView extends StatelessWidget {
+class PendingPageView extends GetView<PendingPageController> {
+  final HomePageController homePageController = Get.put(HomePageController());
+
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -63,15 +69,33 @@ class PendingPageView extends StatelessWidget {
                 ],
               ),
               SizedBox(height: height * 0.06),
-              CommonButton(
-                // isLoading: controller.isLoading.value,
-                text: 'Masuk',
-                backgroundColor: blackColor,
-                textColor: whiteColor,
-                // onPressed: () {
-                //   controller.login();
-                // },
-              )
+              Obx(
+                () {
+                  if (homePageController
+                          .showCurrentUserModel.value.isVerified ==
+                      true) {
+                    return CommonButton(
+                      isLoading: controller.isLoading.value,
+                      text: 'Masuk',
+                      backgroundColor: blackColor,
+                      textColor: whiteColor,
+                      onPressed: () {
+                        Get.offAllNamed(Routes.HOME_PAGE);
+                      },
+                    );
+                  } else {
+                    return CommonButton(
+                      isLoading: controller.isLoading.value,
+                      text: 'Masuk',
+                      backgroundColor: silverColor.withOpacity(0.2),
+                      textColor: whiteColor,
+                      onPressed: () {
+                        Get.snackbar('Not verified', 'Belum di verifikasi oleh guru');
+                      },
+                    );
+                  }
+                },
+              ),
             ],
           ),
         ),
