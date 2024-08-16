@@ -92,7 +92,7 @@ class HomePageComponentThree extends GetView<HomePageController> {
                     horizontal: width * 0.045,
                   ),
                   decoration: BoxDecoration(
-                    color: opacity5GreyColor,
+                    color: greyColor.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
@@ -212,7 +212,10 @@ class HomePageComponentThree extends GetView<HomePageController> {
                                             : controller.totalPoint.value <= 75
                                                 ? 'Baik'
                                                 : 'Sangat Baik',
-                                style: tsBodyMediumSemibold(blackColor)),
+                                style: controller.totalPoint.value == 0
+                                    ? tsBodySmallSemibold(blackColor)
+                                    : tsBodyMediumSemibold(blackColor)),
+                            // style: tsBodyMediumSemibold(blackColor)),
                           ),
                           SizedBox(height: 15),
                           Row(

@@ -34,7 +34,7 @@ class MultilineTextField extends StatelessWidget {
           horizontal: width * 0.05,
         ),
         filled: true,
-        fillColor: opacity5GreyColor,
+        fillColor: greyColor.withOpacity(0.05),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),

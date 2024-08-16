@@ -18,7 +18,7 @@ class UserDataContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: height * 0.027, horizontal: width * 0.057),
       decoration: BoxDecoration(
-          color: opacityBlackColor, borderRadius: BorderRadius.circular(10)),
+          color: blackColor.withOpacity(0.05), borderRadius: BorderRadius.circular(10)),
       child: AutoSizeText.rich(
         textAlign: TextAlign.start,
         TextSpan(

@@ -98,7 +98,7 @@ class BottomsheetAjukanPengeluaran extends GetView<SavingPageController> {
                           height: height * 0.07,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: opacity50GreyColor,
+                            color: greyColor.withOpacity(0.5),
                           ),
                           alignment: Alignment.center,
                           child: Text(

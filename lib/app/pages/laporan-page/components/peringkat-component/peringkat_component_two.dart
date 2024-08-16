@@ -89,16 +89,16 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
             Color backgroundColor;
             switch (index) {
               case 0:
-                backgroundColor = opacity30GoldColor;
+                backgroundColor = goldColor.withOpacity(0.3);
                 break;
               case 1:
-                backgroundColor = opacity50GreyColor;
+                backgroundColor = greyColor.withOpacity(0.5);
                 break;
               case 2:
-                backgroundColor = opacity30BronzeColor;
+                backgroundColor = bronzeColor.withOpacity(0.3);
                 break;
               default:
-                backgroundColor = opacity5GreyColor;
+                backgroundColor = greyColor.withOpacity(0.05);
                 break;
             }
 
@@ -111,11 +111,11 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                     color: controller.selectedPeriod.value == 'Mingguan'
                         ? (controller.leaderboardModelWeekly[index].isUser ==
                                 true
-                            ? opacity50SuccessColor
+                            ? successColor.withOpacity(0.5)
                             : backgroundColor)
                         : (controller.leaderboardModelMonthly[index].isUser ==
                                 true
-                            ? opacity50SuccessColor
+                            ? successColor.withOpacity(0.5)
                             : backgroundColor),
                     borderRadius: BorderRadius.circular(10),
                   ),

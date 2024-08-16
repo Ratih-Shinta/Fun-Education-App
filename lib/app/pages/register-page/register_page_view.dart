@@ -214,7 +214,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                               Text(
                                   controller.selectedShift.value.isEmpty
                                       ? 'Pilih shift'
-                                      : controller.selectedShift.value,
+                                      : 'Jam ${controller.selectedShift.value}',
                                   style: tsBodySmallMedium(blackColor)),
                             ],
                           )),
@@ -228,7 +228,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                                       color: greyColor,
                                     ),
                                     SizedBox(width: 8),
-                                    Text(item,
+                                    Text('Jam $item',
                                         style: tsBodySmallMedium(blackColor)),
                                   ],
                                 ),

@@ -37,7 +37,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    color: opacity5GreyColor,
+                    color: greyColor.withOpacity(0.05),
                   ),
                   child: TabBar(
                     labelStyle: tsBodySmallSemibold(blackColor),

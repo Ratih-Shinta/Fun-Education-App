@@ -37,7 +37,7 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
             onTap: onTap,
             child: Container(
               decoration: BoxDecoration(
-                  color: isSelected ? primaryColor : opacity10GreyColor,
+                  color: isSelected ? primaryColor : greyColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

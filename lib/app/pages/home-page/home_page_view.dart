@@ -10,6 +10,7 @@ import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePageView extends GetView<HomePageController> {
   final LaporanPageController laporanPageController =
@@ -37,14 +38,23 @@ class HomePageView extends GetView<HomePageController> {
             },
           ),
         ),
-        body: RefreshIndicator(
+        body: SmartRefresher(
           onRefresh: () async {
             await controller.showCurrentUser();
             await controller.showCurrentShiftMasuk();
             await controller.showLatestCatatanDarurat();
             await controller.showCurrentLaporanHarian(DateTime.now());
             await laporanPageController.showCurrentTugasTerbaru();
+            controller.refreshController.refreshCompleted();
           },
+          controller: controller.refreshController,
+          header: WaterDropHeader(
+            complete: Text(
+              'Refresh Completed',
+              style: tsBodySmallRegular(blackColor),
+            ),
+            waterDropColor: primaryColor,
+          ),
           child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: SafeArea(child: Obx(

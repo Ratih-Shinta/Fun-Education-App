@@ -7,6 +7,7 @@ import 'package:fun_education_app/app/pages/report-history-page/components/repor
 import 'package:fun_education_app/app/pages/report-history-page/report_history_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ReportHistoryView extends GetView<ReportHistoryController> {
   @override
@@ -35,12 +36,21 @@ class ReportHistoryView extends GetView<ReportHistoryController> {
           style: tsBodyMediumSemibold(blackColor),
         ),
       ),
-      body: RefreshIndicator(
+      body: SmartRefresher(
         onRefresh: () async {
           controller.showCurrentLaporanHarian();
           controller.ShowCurrentAvailable();
           controller.update();
+          controller.refreshController.refreshCompleted();
         },
+        controller: controller.refreshController,
+        header: WaterDropHeader(
+          complete: Text(
+            'Refresh Completed',
+            style: tsBodySmallRegular(blackColor),
+          ),
+          waterDropColor: primaryColor,
+        ),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Padding(

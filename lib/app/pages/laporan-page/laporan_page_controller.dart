@@ -22,8 +22,12 @@ import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_c
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class LaporanPageController extends GetxController with SingleGetTickerProviderMixin {
+class LaporanPageController extends GetxController
+    with SingleGetTickerProviderMixin {
+  RefreshController refreshController = RefreshController();
+  RefreshController peringkatRefreshController = RefreshController();
   TabController? tabControllerAll;
   RxBool isLoading = true.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
@@ -103,8 +107,6 @@ class LaporanPageController extends GetxController with SingleGetTickerProviderM
           ShowStatisticCurrentResponse.fromJson(response.data);
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
       print(showStatisticCurrentModel);
-
-     
 
       spots.value = showStatisticCurrentModel
           .map((e) => FlSpot(

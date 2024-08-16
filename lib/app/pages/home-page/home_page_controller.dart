@@ -17,8 +17,10 @@ import 'package:fun_education_app/app/api/users/models/show_current_user_respons
 import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePageController extends GetxController {
+  RefreshController refreshController = RefreshController();
   RxBool isLoadingLatestCatatan = false.obs;
   RxInt totalPoint = 0.obs;
 

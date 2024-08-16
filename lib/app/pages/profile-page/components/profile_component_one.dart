@@ -63,7 +63,7 @@ class ProfileComponentOne extends StatelessWidget {
               width: width * 0.44,
               height: height * 0.11,
               decoration: BoxDecoration(
-                color: opacity10BlueColor,
+                color: blueColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(

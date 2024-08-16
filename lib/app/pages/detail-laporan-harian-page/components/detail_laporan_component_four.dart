@@ -28,7 +28,7 @@ class DetailLaporanComponentFour extends GetView<DetailLaporanHarianController> 
           margin: const EdgeInsets.only(top: 10, bottom: 20),
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: opacity5GreyColor,
+            color: greyColor.withOpacity(0.05),
             borderRadius: BorderRadius.circular(10),
           ),
           child: AutoSizeText.rich(
