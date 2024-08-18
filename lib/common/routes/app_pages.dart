@@ -34,13 +34,15 @@ import 'package:fun_education_app/app/pages/saving-page/saving_page_binding.dart
 import 'package:fun_education_app/app/pages/saving-page/saving_page_view.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_binding.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_view.dart';
+import 'package:fun_education_app/app/pages/verification-page/verification_page_binding.dart';
+import 'package:fun_education_app/app/pages/verification-page/verification_page_view.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.VERIFICATION_PAGE;
 
   static final routes = [
     GetPage(
@@ -72,6 +74,11 @@ class AppPages {
       name: _Paths.PASSWORD_PAGE,
       page: () => PasswordPageView(),
       binding: RegisterPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFICATION_PAGE,
+      page: () => VerificationPageView(),
+      binding: VerificationPageBinding(),
     ),
     GetPage(
       name: _Paths.PENDING_PAGE,
