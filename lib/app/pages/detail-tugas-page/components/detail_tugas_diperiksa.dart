@@ -86,7 +86,7 @@ class DetailTugasDiperiksa extends GetView<DetailTugasPageController> {
           padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: opacity5GreyColor),
+              color: greyColor.withOpacity(0.05),),
           child: AutoSizeText.rich(
             TextSpan(
               text: '${controller.showCurrentTugasUserModel.value.note}',

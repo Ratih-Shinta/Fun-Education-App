@@ -7,9 +7,11 @@ import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ReportHistoryController extends GetxController {
+  RefreshController refreshController = RefreshController();
   Rx<DateTime> selectedDay = DateTime.now().obs;
   Rx<DateTime> focusedDay = DateTime.now().obs;
   RxInt userGrade = 0.obs;

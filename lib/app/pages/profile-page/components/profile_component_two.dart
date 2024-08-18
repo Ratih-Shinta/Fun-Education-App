@@ -80,7 +80,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
           padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: opacity5GreyColor,
+            color: greyColor.withOpacity(0.05),
           ),
           child: AspectRatio(
             aspectRatio: 0.6,

@@ -18,7 +18,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
             Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    color: opacityPrimaryColor,
+                    color: primaryColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(14)),
                 child: SvgPicture.asset(
                   iconLogo,

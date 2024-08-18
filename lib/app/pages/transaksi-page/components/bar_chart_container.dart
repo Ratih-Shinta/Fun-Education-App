@@ -13,7 +13,7 @@ class BarChartContainer extends GetView<TransaksiPageController> {
         margin: EdgeInsets.symmetric(vertical: 20),
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: opacity5GreyColor,
+          color: greyColor.withOpacity(0.05),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

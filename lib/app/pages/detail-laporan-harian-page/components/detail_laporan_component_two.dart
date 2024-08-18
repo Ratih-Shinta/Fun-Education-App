@@ -59,7 +59,7 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
               horizontal: width * 0.035, vertical: height * 0.01),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: opacity5SecondaryColor),
+              color: secondaryColor.withOpacity(0.05)),
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,

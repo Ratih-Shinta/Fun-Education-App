@@ -69,7 +69,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         SizedBox(height: height * 0.015),
         CommonButton(
           text: 'Tambah Gambar',
-          backgroundColor: opacity10GreyColor,
+          backgroundColor: greyColor.withOpacity(0.1),
           textColor: blackColor,
           icon: Icons.image,
           onPressed: () {

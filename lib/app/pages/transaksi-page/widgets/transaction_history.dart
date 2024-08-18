@@ -98,7 +98,7 @@ class TransactionHistory extends StatelessWidget {
               horizontal: width * 0.05,
             ),
             decoration: BoxDecoration(
-              color: opacityBlackColor,
+              color: blackColor.withOpacity(0.05),
               borderRadius: BorderRadius.circular(10),
             ),
             child: AutoSizeText.rich(

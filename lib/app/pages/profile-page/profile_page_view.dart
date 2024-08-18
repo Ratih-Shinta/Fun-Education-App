@@ -7,6 +7,7 @@ import 'package:fun_education_app/app/pages/profile-page/components/profile_comp
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
   final HomePageController homePageController = Get.put(HomePageController());
@@ -35,12 +36,21 @@ class ProfilePageView extends GetView<ProfilePageController> {
             style: tsBodyMediumSemibold(blackColor),
           ),
         ),
-        body: RefreshIndicator(
+        body: SmartRefresher(
           onRefresh: () async {
             await controller.showStatisticCurrentTugasUser();
             await homePageController.showCurrentUser();
             controller.update();
+            controller.refreshController.refreshCompleted();
           },
+          controller: controller.refreshController,
+          header: WaterDropHeader(
+            complete: Text(
+              'Refresh Completed',
+              style: tsBodySmallRegular(blackColor),
+            ),
+            waterDropColor: primaryColor,
+          ),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(

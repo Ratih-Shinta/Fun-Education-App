@@ -8,6 +8,7 @@ import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_
 import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/tugas_container.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DetailTugasPageView extends GetView<DetailTugasPageController> {
   final argurment = Get.arguments;
@@ -40,13 +41,21 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           ),
         ),
       ),
-      body: RefreshIndicator(
+      body: SmartRefresher(
         onRefresh: () async {
           await controller.showByIdTugas(Get.arguments.id);
           await controller.showCurrentTugasUser(Get.arguments.id);
-
           controller.update();
+          controller.refreshController.refreshCompleted();
         },
+        controller: controller.refreshController,
+        header: WaterDropHeader(
+          complete: Text(
+            'Refresh Completed',
+            style: tsBodySmallRegular(blackColor),
+          ),
+          waterDropColor: primaryColor,
+        ),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Padding(
@@ -76,9 +85,7 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
                       case 'Selesai':
                         return DetailTugasSelesai();
                       default:
-                      
                         return DetailTugasKirim();
-                        
                     }
                   }
                 }),

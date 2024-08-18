@@ -34,7 +34,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                     margin: EdgeInsets.symmetric(vertical: height * 0.03),
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: opacity5GreyColor,
+                        color: greyColor.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(10)),
                     child: AutoSizeText(
                       '${controller.showLatestCatatanDaruratModel != null ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan Darurat'}',

@@ -26,9 +26,9 @@ class TugasContainer extends GetView<DetailTugasPageController> {
         decoration: BoxDecoration(
           color: controller.showByIdTugasModel.value.statusTugasUser ==
                   'Selesai'
-              ? opacity5GreyColor
+              ? greyColor.withOpacity(0.05)
               : controller.showByIdTugasModel.value.statusTugasUser == 'Gagal'
-                  ? opacity5GreyColor
+                  ? greyColor.withOpacity(0.05)
                   : controller.showByIdTugasModel.value.category ==
                           'Dikte & Menulis'
                       ? blueColor.withOpacity(0.1)
@@ -64,7 +64,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                                             .category ==
                                         'Berhitung'
                                     ? warningColor.withOpacity(0.6)
-                                    : opacity20GreyColor,
+                                    : greyColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: AutoSizeText.rich(
@@ -139,11 +139,11 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                             color: controller.showByIdTugasModel.value
                                         .statusTugasUser ==
                                     'Selesai'
-                                ? opacity50GreyColor
+                                ? greyColor.withOpacity(0.5)
                                 : controller.showByIdTugasModel.value
                                             .statusTugasUser ==
                                         'Gagal'
-                                    ? opacity50GreyColor
+                                    ? greyColor.withOpacity(0.5)
                                     : controller.showByIdTugasModel.value
                                                 .category ==
                                             'Dikte & Menulis'
@@ -191,11 +191,11 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                               color: controller.showByIdTugasModel.value
                                           .statusTugasUser ==
                                       'Selesai'
-                                  ? opacity50GreyColor
+                                  ? greyColor.withOpacity(0.5)
                                   : controller.showByIdTugasModel.value
                                               .statusTugasUser ==
                                           'Gagal'
-                                      ? opacity50GreyColor
+                                      ? greyColor.withOpacity(0.5)
                                       : dangerColor,
                             ),
                             SizedBox(width: 5),
@@ -221,7 +221,7 @@ class TugasContainer extends GetView<DetailTugasPageController> {
               margin: EdgeInsets.only(top: 20, bottom: 25),
               height: 1,
               width: double.infinity,
-              color: opacity20GreyColor,
+              color: greyColor.withOpacity(0.2),
             ),
             AutoSizeText.rich(
               TextSpan(

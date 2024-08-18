@@ -36,9 +36,9 @@ class TugasWidget extends StatelessWidget {
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
             color: status == 'Selesai'
-                ? opacity5GreyColor
+                ? greyColor.withOpacity(0.05)
                 : status == 'Gagal'
-                    ? opacity5GreyColor
+                    ? greyColor.withOpacity(0.05)
                     : category == 'Dikte & Menulis'
                         ? blueColor.withOpacity(0.1)
                         : category == 'Kreasi'
@@ -69,7 +69,7 @@ class TugasWidget extends StatelessWidget {
                                     ? greenColor.withOpacity(0.6)
                                     : category == 'Berhitung'
                                         ? warningColor.withOpacity(0.6)
-                                        : opacity20GreyColor,
+                                        : greyColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(29),
                       ),
                       child: AutoSizeText.rich(
@@ -128,7 +128,7 @@ class TugasWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 15),
               height: 1,
               width: width,
-              color: opacity20GreyColor,
+              color: greyColor.withOpacity(0.2),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,9 +146,9 @@ class TugasWidget extends StatelessWidget {
                         SvgPicture.asset(
                           iconCalender,
                           color: status == 'Selesai'
-                              ? opacity50GreyColor
+                              ? greyColor.withOpacity(0.5)
                               : status == 'Gagal'
-                                  ? opacity50GreyColor
+                                  ? greyColor.withOpacity(0.5)
                                   : category == 'Dikte & Menulis'
                                       ? blueColor
                                       : category == 'Kreasi'
@@ -188,9 +188,9 @@ class TugasWidget extends StatelessWidget {
                             SvgPicture.asset(
                               iconCalender,
                               color: status == 'Selesai'
-                                  ? opacity50GreyColor
+                                  ? greyColor.withOpacity(0.5)
                                   : status == 'Gagal'
-                                      ? opacity50GreyColor
+                                      ? greyColor.withOpacity(0.5)
                                       : dangerColor,
                             ),
                             SizedBox(width: 5),

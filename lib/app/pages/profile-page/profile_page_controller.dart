@@ -6,9 +6,11 @@ import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.da
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePageController extends GetxController {
+  RefreshController refreshController = RefreshController();
   RxBool isLoading = true.obs;
 
   late AuthenticationService authenticationService;

@@ -8,7 +8,7 @@ class BarChartWidgets {
   BarTouchData getBarTouchData(bool isWeekly, RxInt touchedIndex) {
     return BarTouchData(
       touchTooltipData: BarTouchTooltipData(
-        getTooltipColor: (_) => opacity50GreyColor,
+        getTooltipColor: (_) => greyColor.withOpacity(0.5),
         tooltipHorizontalAlignment: FLHorizontalAlignment.center,
         tooltipMargin: -10,
         getTooltipItem: (group, groupIndex, rod, rodIndex) {

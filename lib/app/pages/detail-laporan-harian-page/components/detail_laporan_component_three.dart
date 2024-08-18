@@ -16,7 +16,7 @@ class DetailLaporanComponentThree extends StatelessWidget {
           horizontal: width * 0.05, vertical: height * 0.02),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: opacity5SecondaryColor),
+          color: secondaryColor.withOpacity(0.05)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

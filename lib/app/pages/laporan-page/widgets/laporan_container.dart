@@ -71,7 +71,7 @@ class LaporanContainer extends StatelessWidget {
             padding: EdgeInsets.all(18),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: opacity50WhiteColor),
+                color: whiteColor.withOpacity(0.5)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -136,7 +136,7 @@ class LaporanContainer extends StatelessWidget {
                           CircleAvatar(
                             radius: 6,
                             backgroundColor: catatan.isEmpty
-                                ? opacity50GreyColor
+                                ? greyColor.withOpacity(0.5)
                                 : poin <= 25
                                     ? dangerColor
                                     : poin <= 50

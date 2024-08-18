@@ -61,6 +61,7 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
               )
             ],
           ),
+          SizedBox(height: height * 0.02),
           Obx(() => ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),

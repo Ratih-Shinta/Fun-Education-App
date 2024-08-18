@@ -4,14 +4,16 @@ import 'package:fun_education_app/app/pages/laporan-page/components/laporan-comp
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_three.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_two.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class LaporanComponent extends GetView<LaporanPageController> {
   const LaporanComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    return SmartRefresher(
       onRefresh: () async {
         await controller.showCurrentAlurBelajar();
         await controller.showCurrentTugasTerbaru();
@@ -21,7 +23,16 @@ class LaporanComponent extends GetView<LaporanPageController> {
         await controller
             .showCurrentLaporanHarian(controller.selectedDate.value);
         controller.update();
+        controller.refreshController.refreshCompleted();
       },
+      controller: controller.refreshController,
+      header: WaterDropHeader(
+        complete: Text(
+          'Refresh Completed',
+          style: tsBodySmallRegular(blackColor),
+        ),
+        waterDropColor: primaryColor,
+      ),
       child: DefaultTabController(
         length: 3,
         child: ListView(

@@ -34,7 +34,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                   width: width * 0.15,
                   height: height * 0.008,
                   decoration: BoxDecoration(
-                    color: opacity20GreyColor,
+                    color: greyColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

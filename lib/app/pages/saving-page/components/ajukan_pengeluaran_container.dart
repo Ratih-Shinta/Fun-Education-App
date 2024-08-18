@@ -51,7 +51,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                     margin: EdgeInsets.only(bottom: height * 0.02),
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: opacity5GreyColor,
+                      color: greyColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -106,7 +106,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                     margin: EdgeInsets.only(bottom: height * 0.02),
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: opacity5GreyColor,
+                      color: greyColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -159,7 +159,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
               return Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  color: opacity5GreyColor,
+                  color: greyColor.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(

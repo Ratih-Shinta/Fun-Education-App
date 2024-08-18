@@ -17,7 +17,7 @@ class ReportHistoryPageComponentFour extends GetView<ReportHistoryController> {
           horizontal: width * 0.035, vertical: height * 0.01),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: opacity5SecondaryColor),
+          color: secondaryColor.withOpacity(0.05)),
       child: Obx(() {
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),

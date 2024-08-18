@@ -10,8 +10,10 @@ import 'package:fun_education_app/app/api/all-photos/services/show_all_photos_se
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class GalleryPageController extends GetxController {
+  RefreshController refreshController = RefreshController();
   RxBool isLoadingAllPhotos = false.obs;
   RxBool isLoadingAllAlbumPhoto = false.obs;
 
