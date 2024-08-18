@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
-import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

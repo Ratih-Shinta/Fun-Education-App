@@ -6,7 +6,6 @@ import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
-import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PasswordPageView extends GetView<RegisterPageController> {

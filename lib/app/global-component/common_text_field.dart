@@ -4,7 +4,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 class CommonTextField extends StatelessWidget {
   final TextEditingController? fieldController;
   final bool obscureText;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final String hintText;
   final TextInputType? keyboardType;
   final IconButton? suffixIcon;
@@ -44,7 +44,7 @@ class CommonTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.transparent,
+            color: transparentColor,
           ),
           borderRadius: defaulBorderRadius,
         ),
