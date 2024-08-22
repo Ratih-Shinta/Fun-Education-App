@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  late TextEditingController nicknameController = TextEditingController();
+  final HomePageController homePageController = Get.put(HomePageController());
+  late TextEditingController emailController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
 
   RxBool isLoading = false.obs;
@@ -16,29 +18,40 @@ class LoginPageController extends GetxController {
 
   @override
   void onInit() {
-    nicknameController.text = 'Syahran';
-    passwordController.text = 'rafapass';
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
 
     authenticationService = AuthenticationService();
     super.onInit();
-  }  
+  }
 
   Future<void> login() async {
     try {
       isLoading(true);
       final response = await authenticationService.login(
-          nicknameController.text, passwordController.text);
+          emailController.text, passwordController.text);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-
       prefs.setString('token', response.data['token']);
+
+      // await homePageController.showCurrentUser();
+      // if (homePageController.showCurrentUserModel.value.isVerifiedEmail ==
+      //     false) {
+      //   Get.offNamed(Routes.VERIFICATION_PAGE);
+      // } else if (homePageController.showCurrentUserModel.value.isVerified ==
+      //     false) {
+      //   Get.offNamed(Routes.PENDING_PAGE);
+      // } else {
+      //   Get.offNamed(Routes.HOME_PAGE);
+      // }
+
       Get.snackbar(
         "Login Success",
         "Welcome Back!",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      Get.offAllNamed(Routes.NAVBAR);
+      Get.offNamed(Routes.VERIFICATION_PAGE);
     } catch (e) {
       isLoading(true);
       Get.snackbar(

@@ -6,13 +6,13 @@ import 'package:fun_education_app/app/api/dio_instance.dart';
 class AuthenticationService {
   final DioInstance _dioInstance = DioInstance();
 
-  Future<Response> login(String nickname, String password) async {
+  Future<Response> login(String email, String password) async {
     try {
       final fcmToken = await FirebaseMessaging.instance.getToken();
       final response = await _dioInstance.postRequest(
           endpoint: ApiEndPoint.login,
           data: {
-            'nickname': nickname,
+            'email': email,
             'password': password,
             'fcm_token': fcmToken
           });
@@ -26,6 +26,7 @@ class AuthenticationService {
   Future<Response> register(
     String fullName,
     String nickname,
+    String email,
     String birth,
     String address,
     String shift,
@@ -39,6 +40,7 @@ class AuthenticationService {
         data: {
           'full_name': fullName,
           'nickname': nickname,
+          'email' : email,
           'birth': birth,
           'address': address,
           'shift': shift,

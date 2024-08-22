@@ -66,7 +66,20 @@ class RegisterPageView extends GetView<RegisterPageController> {
                 RegisterComponentOne(),
                 SizedBox(height: height * 0.03),
                 RegisterComponentTwo(),
-                SizedBox(height: height * 0.14),
+                SizedBox(height: height * 0.08),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText('Sudah punya akun? ',
+                        style: tsBodySmallRegular(blackColor)),
+                    InkWell(
+                      child: AutoSizeText('Masuk',
+                          style: tsBodySmallSemibold(primaryColor)),
+                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
+                    ),
+                  ],
+                ),
+                SizedBox(height: height * 0.03),
                 CommonButton(
                   isLoading: controller.isLoading.value,
                   text: 'Lanjut',

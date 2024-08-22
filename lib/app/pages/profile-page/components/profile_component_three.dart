@@ -53,6 +53,9 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
                 backgroundColor: dangerColor,
                 textColor: whiteColor,
                 svgIcon: 'assets/icons/icLogout.svg',
+                onPressed: () {
+                  controller.logout();
+                },
               ),
             ],
           ),

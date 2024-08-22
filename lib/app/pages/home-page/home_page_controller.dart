@@ -126,7 +126,7 @@ class HomePageController extends GetxController {
       showCurrentUserModel.value = showCurrentUserResponse!.data;
       isLoading.value = false;
       update();
-      print(showCurrentUserModel.value.nickname);
+      print('showCurrentUserModel : ${showCurrentUserModel.value.nickname}');
     } catch (e) {
       print(e);
     }

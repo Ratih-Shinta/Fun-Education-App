@@ -15,11 +15,16 @@ class ApiEndPoint {
   static String baseUrlLeaderboard = '$baseUrl/leaderboard';
   static String baseUrlTugasUser = '$baseUrl/tugas-user';
   static String baseUrlTugasUserImage = '$baseUrl/tugas-user-image';
+  static String baseUrlOTP = '$baseUrl/otp';
 
   //Auth
   static String login = '$baseUrlAuth/login';
   static String register = '$baseUrlAuth/register';
   static String logout = '$baseUrlAuth/logout';
+
+  //OTP
+  static String sendOTP = '$baseUrlOTP/store';
+  static String checkOTP = '$baseUrlOTP/check';
 
   //Leaderboard
   static String showLeaderboard = '$baseUrlLeaderboard/index';

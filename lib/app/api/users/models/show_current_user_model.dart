@@ -10,6 +10,7 @@ class ShowCurrentUserModel {
     String? role;
     dynamic fcmToken;
     bool? isVerified;
+    bool? isVerifiedEmail;
     DateTime? createdAt;
 
     ShowCurrentUserModel({
@@ -24,6 +25,7 @@ class ShowCurrentUserModel {
         this.role,
         this.fcmToken,
         this.isVerified,
+        this.isVerifiedEmail,
         this.createdAt,
     });
 
@@ -39,6 +41,7 @@ class ShowCurrentUserModel {
         role: json["role"],
         fcmToken: json["fcm_token"],
         isVerified: json["is_verified"],
+        isVerifiedEmail: json["is_verified_email"],
         createdAt: DateTime.parse(json["created_at"]),
     );
 
@@ -54,6 +57,7 @@ class ShowCurrentUserModel {
         "role": role,
         "fcm_token": fcmToken,
         "is_verified": isVerified,
+        "is_verified_email": isVerifiedEmail,
         "created_at": createdAt?.toIso8601String(),
     };
 }

@@ -107,15 +107,18 @@ class PasswordPageView extends GetView<RegisterPageController> {
                   onPressed: () {
                     String? validationMessage = controller.validatePassword();
                     if (validationMessage != null) {
-                      Get.snackbar('Error', validationMessage,
-                          backgroundColor: Colors.red, colorText: Colors.white);
+                      Get.snackbar(
+                        'Password dan Konfimasi Password tidak sama',
+                        validationMessage,
+                        backgroundColor: dangerColor,
+                        colorText: whiteColor,
+                        snackPosition: SnackPosition.BOTTOM,
+                      );
                     } else {
                       controller.password.value =
                           controller.passwordController.text;
                       controller.register();
-                      Get.snackbar('Success', 'Password valid',
-                          backgroundColor: Colors.green,
-                          colorText: Colors.white);
+                      controller.sendOTP();
                     }
                   },
                 )
