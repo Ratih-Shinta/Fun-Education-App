@@ -1,10 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/verification-page/verification_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
-class VerificationPageView extends StatelessWidget {
+class VerificationPageView extends GetView<VerificationPageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -73,6 +77,7 @@ class VerificationPageView extends StatelessWidget {
                     showCursor: true,
                     textInputAction: TextInputAction.next,
                     validator: (value) {},
+                    controller: controller.otpController,
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     focusedPinTheme: defaultPinTheme.copyWith(
                       decoration: defaultPinTheme.decoration!.copyWith(
@@ -100,7 +105,7 @@ class VerificationPageView extends StatelessWidget {
                       width: width * 0.005,
                     ),
                     AutoSizeText(
-                      '00:59',
+                      '05.00',
                       group: AutoSizeGroup(),
                       maxLines: 1,
                       style: tsBodyMediumSemibold(primaryColor),
@@ -108,25 +113,19 @@ class VerificationPageView extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: height * 0.05),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: AutoSizeText(
-                    'Verifikasi',
-                    group: AutoSizeGroup(),
-                    maxLines: 1,
-                    style: tsBodySmallSemibold(whiteColor),
-                  ),
-                  style: ElevatedButton.styleFrom(
+                CommonButton(
+                    text: 'Verifikasi',
                     backgroundColor: primaryColor,
-                    minimumSize: Size(width, height * 0.065),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+                    textColor: whiteColor,
+                    onPressed: () {
+                      Get.toNamed(Routes.PENDING_PAGE);
+                      controller.checkOTP();
+                    },),
                 SizedBox(height: height * 0.015),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.sendOTP();
+                  },
                   child: AutoSizeText(
                     'Kirim Ulang Kode',
                     group: AutoSizeGroup(),

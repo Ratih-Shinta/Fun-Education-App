@@ -38,6 +38,7 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
         ),
         SizedBox(height: height * 0.01),
         CommonTextField(
+          fieldController: controller.emailController,
           prefixIcon:
               Icon(Icons.mail_outlined, color: greyColor.withOpacity(0.5)),
           // fieldController: controller.fullNameController,

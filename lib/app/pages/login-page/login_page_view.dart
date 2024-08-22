@@ -4,12 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
-  const LoginPageView({super.key});
+  LoginPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +77,14 @@ class LoginPageView extends GetView<LoginPageController> {
                 ),
                 SizedBox(height: height * 0.03),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CommonTextField(
                       prefixIcon: Icon(Icons.person_2_outlined,
                           color: greyColor.withOpacity(0.5)),
-                      fieldController: controller.nicknameController,
+                      fieldController: controller.emailController,
                       obscureText: false,
-                      hintText: 'Nama Lengkap',
+                      hintText: 'Email',
                       keyboardType: TextInputType.name,
                     ),
                     SizedBox(height: height * 0.01),
@@ -93,11 +96,29 @@ class LoginPageView extends GetView<LoginPageController> {
                       hintText: 'Kata Sandi',
                       keyboardType: TextInputType.name,
                     ),
+                    InkWell(
+                      child: AutoSizeText('Lupa Kata Sandi?',
+                          style: tsLabelLargeMedium(dangerColor)),
+                      // onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD_PAGE),
+                    )
+                  ],
+                ),
+                SizedBox(height: height * 0.03),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText('Belum punya akun? ',
+                        style: tsBodySmallRegular(blackColor)),
+                    InkWell(
+                      child: AutoSizeText('Daftar',
+                          style: tsBodySmallSemibold(primaryColor)),
+                      onTap: () => Get.toNamed(Routes.REGISTER_PAGE),
+                    ),
                   ],
                 ),
                 SizedBox(height: height * 0.03),
                 CommonButton(
-                  // isLoading: controller.isLoading.value,
+                  isLoading: controller.isLoading.value,
                   text: 'Masuk',
                   backgroundColor: blackColor,
                   textColor: whiteColor,

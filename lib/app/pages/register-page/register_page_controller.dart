@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:fun_education_app/app/api/OTP/service/otp_service.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,17 +11,18 @@ class RegisterPageController extends GetxController {
 
   late TextEditingController fullNameController;
   late TextEditingController nicknameController;
+  late TextEditingController emailController;
   late TextEditingController birthController;
   late TextEditingController addressController;
   late TextEditingController confirmPasswordController;
-  // late TextEditingController shiftController;
   late TextEditingController passwordController;
-  // late TextEditingController genderController;
 
   late AuthenticationService authenticationService;
+  late OTPService otpService;
 
   var fullName = ''.obs;
   var nickname = ''.obs;
+  var email = ''.obs;
   var birth = ''.obs;
   var address = ''.obs;
   var shift = ''.obs;
@@ -30,14 +33,14 @@ class RegisterPageController extends GetxController {
   void onInit() {
     fullNameController = TextEditingController();
     nicknameController = TextEditingController();
+    emailController = TextEditingController();
     birthController = TextEditingController();
     addressController = TextEditingController();
-    // shiftController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
-    // genderController = TextEditingController();
 
     authenticationService = AuthenticationService();
+    otpService = OTPService();
     super.onInit();
   }
 
@@ -51,6 +54,7 @@ class RegisterPageController extends GetxController {
   void saveRegisterValue() {
     fullName.value = fullNameController.text;
     nickname.value = nicknameController.text;
+    email.value = emailController.text;
     birth.value = birthController.text;
     address.value = addressController.text;
     shift.value = selectedShift.value;
@@ -62,6 +66,7 @@ class RegisterPageController extends GetxController {
       final response = await authenticationService.register(
         fullName.value,
         nickname.value,
+        email.value,
         birth.value,
         address.value,
         shift.value,
@@ -72,10 +77,21 @@ class RegisterPageController extends GetxController {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
 
-      Get.snackbar("Success", "Registration successful");
-      Get.offAllNamed(Routes.PENDING_PAGE);
+      Get.snackbar(
+        "Success",
+        "Registration successful",
+        backgroundColor: successColor,
+        colorText: whiteColor,
+      );
+      Get.offAllNamed(Routes.VERIFICATION_PAGE);
     } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar(
+        "Error",
+        'Ananada sudah terdaftar, silahkan login',
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -98,5 +114,31 @@ class RegisterPageController extends GetxController {
   ];
   void setSelectedGender(String value) {
     selectedGender.value = value;
+  }
+
+  Future<void> sendOTP() async {
+    try {
+      final response = await otpService.storeSendOTP(
+        email.value,
+      );
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', response.data['token']);
+
+      Get.snackbar(
+        "Success",
+        "Send OTP successful",
+        backgroundColor: successColor,
+        colorText: whiteColor,
+      );
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }
