@@ -14,21 +14,17 @@ String showCurrentUserResponseToJson(ShowCurrentUserResponse data) =>
 
 class ShowCurrentUserResponse {
   ShowCurrentUserModel data;
-  String token;
 
   ShowCurrentUserResponse({
     required this.data,
-    required this.token,
   });
 
   factory ShowCurrentUserResponse.fromJson(Map<String, dynamic> json) =>
       ShowCurrentUserResponse(
         data: ShowCurrentUserModel.fromJson(json["data"]),
-        token: json["token"],
       );
 
   Map<String, dynamic> toJson() => {
         "data": data.toJson(),
-        "token": token,
       };
 }

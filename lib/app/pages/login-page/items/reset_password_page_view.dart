@@ -33,6 +33,7 @@ class ResetPasswordPageView extends GetView<LoginPageController> {
             children: [
               Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +69,7 @@ class ResetPasswordPageView extends GetView<LoginPageController> {
                       ),
                       maxLines: 2,
                     ),
-                    SizedBox(height: height * 0.06),
+                    SizedBox(height: height * 0.045),
                     CommonWarning(
                       icon: Icons.info_outline_rounded,
                       backColor: warningColor,

@@ -1,35 +1,40 @@
+import 'package:flutter/material.dart';
+
 class ShowCurrentUserModel {
-    String? id;
-    String? fullName;
-    String? nickname;
-    String? birth;
-    String? address;
-    String? shift;
-    String? gender;
-    String? profilePicture;
-    String? role;
-    dynamic fcmToken;
-    bool? isVerified;
-    bool? isVerifiedEmail;
-    DateTime? createdAt;
+  String? id;
+  String? fullName;
+  String? nickname;
+  String? birth;
+  String? address;
+  String? shift;
+  String? gender;
+  String? profilePicture;
+  String? role;
+  dynamic fcmToken;
+  bool? isVerified;
+  bool? isVerifiedEmail;
+  bool? isGraduated;
+  DateTime? createdAt;
 
-    ShowCurrentUserModel({
-        this.id,
-        this.fullName,
-        this.nickname,
-        this.birth,
-        this.address,
-        this.shift,
-        this.gender,
-        this.profilePicture,
-        this.role,
-        this.fcmToken,
-        this.isVerified,
-        this.isVerifiedEmail,
-        this.createdAt,
-    });
+  ShowCurrentUserModel({
+    this.id,
+    this.fullName,
+    this.nickname,
+    this.birth,
+    this.address,
+    this.shift,
+    this.gender,
+    this.profilePicture,
+    this.role,
+    this.fcmToken,
+    this.isVerified,
+    this.isVerifiedEmail,
+    this.isGraduated,
+    this.createdAt,
+  });
 
-    factory ShowCurrentUserModel.fromJson(Map<String, dynamic> json) => ShowCurrentUserModel(
+  factory ShowCurrentUserModel.fromJson(Map<String, dynamic> json) =>
+      ShowCurrentUserModel(
         id: json["id"],
         fullName: json["full_name"],
         nickname: json["nickname"],
@@ -42,10 +47,11 @@ class ShowCurrentUserModel {
         fcmToken: json["fcm_token"],
         isVerified: json["is_verified"],
         isVerifiedEmail: json["is_verified_email"],
+        isGraduated: json["is_graduated"],
         createdAt: DateTime.parse(json["created_at"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "full_name": fullName,
         "nickname": nickname,
@@ -58,6 +64,7 @@ class ShowCurrentUserModel {
         "fcm_token": fcmToken,
         "is_verified": isVerified,
         "is_verified_email": isVerifiedEmail,
+        "is_graduated": isGraduated,
         "created_at": createdAt?.toIso8601String(),
-    };
+      };
 }

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  final HomePageController homePageController = Get.put(HomePageController());
+  // final HomePageController homePageController = Get.put(HomePageController());
   late TextEditingController emailController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
 
@@ -44,14 +44,14 @@ class LoginPageController extends GetxController {
       // } else {
       //   Get.offNamed(Routes.HOME_PAGE);
       // }
-      
+
       Get.snackbar(
         "Login Success",
         "Welcome Back!",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      Get.offNamed(Routes.VERIFICATION_PAGE);
+      Get.offNamed(Routes.NAVBAR);
     } catch (e) {
       isLoading(true);
       Get.snackbar(

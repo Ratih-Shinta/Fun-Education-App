@@ -99,7 +99,7 @@ class HomePageComponentThree extends GetView<HomePageController> {
                     children: [
                       AutoSizeText.rich(
                         TextSpan(
-                            text: 'Catatan Darurat',
+                            text: 'Informasi Penting',
                             style: tsBodySmallRegular(greyColor)),
                       ),
                       SizedBox(height: 10),

@@ -25,7 +25,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderBottomsheet(
-                  title: 'Catatan Darurat',
+                  title: 'Informasi Penting',
                   subtitle: 'Khusus Keadaan Mendesak',
                   color: dangerColor),
               Expanded(

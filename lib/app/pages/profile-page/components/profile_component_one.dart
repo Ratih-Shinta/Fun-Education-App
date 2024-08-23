@@ -24,7 +24,7 @@ class ProfileComponentOne extends StatelessWidget {
             CircleAvatar(
               radius: 40.0,
               backgroundImage: NetworkImage(
-                  "${homePageController.showCurrentUserModel.value.profilePicture}"),
+                  "${homePageController.showCurrentUserModel.value.profilePicture ?? 'https://ui-avatars.com/api/?name=Syahran+Fadhil&color=FFFFFF&background=47E5BC&size=128'}"),
               backgroundColor: transparentColor,
             ),
             SizedBox(width: width * 0.03),
@@ -32,7 +32,7 @@ class ProfileComponentOne extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  '${homePageController.showCurrentUserModel.value.nickname}',
+                  '${homePageController.showCurrentUserModel.value.nickname ?? 'Syahran'}',
                   group: AutoSizeGroup(),
                   maxLines: 1,
                   style: tsBodyLargeSemibold(blackColor),
@@ -40,7 +40,7 @@ class ProfileComponentOne extends StatelessWidget {
                 Container(
                   width: width * 0.6,
                   child: AutoSizeText(
-                    '${homePageController.showCurrentUserModel.value.fullName}',
+                    '${homePageController.showCurrentUserModel.value.fullName ?? 'Syahran Fadhil'}',
                     // overflow: TextOverflow.ellipsis,
                     style: tsBodySmallRegular(blackColor),
                     maxLines: 5,
