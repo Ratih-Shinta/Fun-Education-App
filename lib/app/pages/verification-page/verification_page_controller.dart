@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/OTP/service/otp_service.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
+import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VerificationPageController extends GetxController {
-  final LoginPageController loginPageController =
-      Get.put(LoginPageController());
+  // final LoginPageController loginPageController =
+  //     Get.put(LoginPageController());
+  final RegisterPageController registerPageController = Get.put(RegisterPageController());
   late TextEditingController otpController = TextEditingController();
   late OTPService otpService;
 
@@ -17,7 +19,6 @@ class VerificationPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    sendOTP();
     otpController = TextEditingController();
     otpService = OTPService();
   }
@@ -28,16 +29,13 @@ class VerificationPageController extends GetxController {
         otpController.text,
       );
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', response.data['token']);
-
-      Get.offAllNamed(Routes.PENDING_PAGE);
       Get.snackbar(
         "Success",
         "OTP successful",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      Get.offAllNamed(Routes.PENDING_PAGE);
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -46,33 +44,8 @@ class VerificationPageController extends GetxController {
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,
       );
-      // Get.snackbar("Error", e.toString());
     }
   }
 
-  Future<void> sendOTP() async {
-    try {
-      final response = await otpService.storeSendOTP(
-        loginPageController.emailController.text,
-      );
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', response.data['token']);
-
-      Get.snackbar(
-        "Success",
-        "Send OTP successful",
-        backgroundColor: successColor,
-        colorText: whiteColor,
-      );
-    } catch (e) {
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        backgroundColor: dangerColor,
-        colorText: whiteColor,
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
-  }
 }

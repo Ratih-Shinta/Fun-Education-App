@@ -117,8 +117,8 @@ class PasswordPageView extends GetView<RegisterPageController> {
                     } else {
                       controller.password.value =
                           controller.passwordController.text;
-                      controller.register();
                       controller.sendOTP();
+                      controller.register();
                     }
                   },
                 )

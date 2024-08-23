@@ -122,9 +122,6 @@ class RegisterPageController extends GetxController {
         email.value,
       );
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', response.data['token']);
-
       Get.snackbar(
         "Success",
         "Send OTP successful",

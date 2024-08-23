@@ -118,14 +118,11 @@ class VerificationPageView extends GetView<VerificationPageController> {
                     backgroundColor: primaryColor,
                     textColor: whiteColor,
                     onPressed: () {
-                      Get.toNamed(Routes.PENDING_PAGE);
                       controller.checkOTP();
                     },),
                 SizedBox(height: height * 0.015),
                 ElevatedButton(
-                  onPressed: () {
-                    controller.sendOTP();
-                  },
+                  onPressed: () {},
                   child: AutoSizeText(
                     'Kirim Ulang Kode',
                     group: AutoSizeGroup(),
