@@ -31,7 +31,8 @@ class ReportHistoryPageComponentOne extends StatelessWidget {
               style: tsBodySmallRegular(primaryColor),
             ),
             TextSpan(
-              text: '${homePageController.showCurrentUserModel.value.fullName}',
+              text:
+                  '${homePageController.showCurrentUserModel.value.fullName ?? 'Syahran Fadhil'}',
               style: tsBodySmallSemibold(whiteColor),
             ),
           ],

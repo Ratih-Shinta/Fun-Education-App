@@ -128,7 +128,7 @@ class HomePageController extends GetxController {
       update();
       print('showCurrentUserModel : ${showCurrentUserModel.value.nickname}');
     } catch (e) {
-      print(e);
+      print('showCurrentUserModel $e');
     }
   }
 

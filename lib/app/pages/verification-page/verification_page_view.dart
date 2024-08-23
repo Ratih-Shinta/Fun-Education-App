@@ -76,7 +76,6 @@ class VerificationPageView extends GetView<VerificationPageController> {
                     defaultPinTheme: defaultPinTheme,
                     showCursor: true,
                     textInputAction: TextInputAction.next,
-                    validator: (value) {},
                     controller: controller.otpController,
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     focusedPinTheme: defaultPinTheme.copyWith(
@@ -86,7 +85,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
                     ),
                     submittedPinTheme: defaultPinTheme.copyWith(
                       decoration: defaultPinTheme.decoration!.copyWith(
-                        color: primaryColor.withOpacity(0.2),
+                        color: primaryColor.withOpacity(0.05),
                       ),
                     ),
                   ),
@@ -114,34 +113,18 @@ class VerificationPageView extends GetView<VerificationPageController> {
                 ),
                 SizedBox(height: height * 0.05),
                 CommonButton(
-                    text: 'Verifikasi',
-                    backgroundColor: primaryColor,
-                    textColor: whiteColor,
-                    onPressed: () {
-                      controller.checkOTP();
-                    },),
+                  text: 'Verifikasi',
+                  backgroundColor: blackColor,
+                  textColor: whiteColor,
+                  onPressed: () {
+                    controller.checkOTP();
+                  },
+                ),
                 SizedBox(height: height * 0.015),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: AutoSizeText(
-                    'Kirim Ulang Kode',
-                    group: AutoSizeGroup(),
-                    maxLines: 1,
-                    style: tsBodySmallSemibold(primaryColor),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: backgroundColor,
-                    elevation: 0,
-                    foregroundColor: backgroundColor,
-                    minimumSize: Size(width, height * 0.065),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(
-                        color: primaryColor,
-                        width: 1.5,
-                      ),
-                    ),
-                  ),
+                CommonButton(
+                  text: 'Kirim Ulang Kode',
+                  backgroundColor: greyColor.withOpacity(0.1),
+                  textColor: blackColor,
                 ),
               ],
             ),

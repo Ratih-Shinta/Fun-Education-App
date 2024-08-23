@@ -45,7 +45,7 @@ class PasswordPageView extends GetView<RegisterPageController> {
                     ),
                   ],
                 ),
-                SizedBox(height: height * 0.06),
+                SizedBox(height: height * 0.025),
                 Column(
                   children: [
                     SvgPicture.asset('assets/images/imgPassword.svg'),
@@ -74,7 +74,7 @@ class PasswordPageView extends GetView<RegisterPageController> {
                   icon: Icons.info_outline_rounded,
                   backColor: warningColor,
                   text:
-                      'Perubahan kata sandi hanya bisa oleh guru, kontak guru apabila lupa',
+                      'Lupa kata sandi atau ingin mengubahnya? Silahkan hubungi guru.',
                 ),
                 SizedBox(height: height * 0.03),
                 Column(
