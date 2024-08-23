@@ -44,7 +44,7 @@ class LoginPageController extends GetxController {
       // } else {
       //   Get.offNamed(Routes.HOME_PAGE);
       // }
-
+      
       Get.snackbar(
         "Login Success",
         "Welcome Back!",
