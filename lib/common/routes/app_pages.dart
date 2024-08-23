@@ -12,6 +12,7 @@ import 'package:fun_education_app/app/pages/home-page/home_page_binding.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
+import 'package:fun_education_app/app/pages/login-page/items/reset_password_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_view.dart';
 import 'package:fun_education_app/app/pages/navbar/navbar_main_view.dart';
@@ -42,7 +43,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.REGISTER_PAGE;
+  static const INITIAL = Routes.RESET_PASSWORD_PAGE;
 
   static final routes = [
     GetPage(
@@ -80,6 +81,10 @@ class AppPages {
       page: () => VerificationPageView(),
       binding: VerificationPageBinding(),
     ),
+    GetPage(
+        name: _Paths.RESET_PASSWORD_PAGE,
+        page: () => ResetPasswordPageView(),
+        binding: LoginPageBinding()),
     GetPage(
       name: _Paths.PENDING_PAGE,
       page: () => PendingPageView(),

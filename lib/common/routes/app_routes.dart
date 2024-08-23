@@ -10,6 +10,7 @@ abstract class Routes {
   static const VERIFICATION_PAGE = _Paths.VERIFICATION_PAGE;
   static const PENDING_PAGE = _Paths.PENDING_PAGE;
   static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
+  static const RESET_PASSWORD_PAGE = _Paths.RESET_PASSWORD_PAGE;
   static const ADD_PHOTO_PAGE = _Paths.ADD_PHOTO_PAGE;
   static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE =
       _Paths.HAL_YANG_PERLU_DIPERHATIKAN_PAGE;
@@ -35,6 +36,7 @@ abstract class _Paths {
   static const VERIFICATION_PAGE = '/verification-page';
   static const PENDING_PAGE = '/pending-page';
   static const LOGIN_PAGE = '/login';
+  static const RESET_PASSWORD_PAGE = '/reset-password-page';
   static const ADD_PHOTO_PAGE = '/add-photo-page';
   static const HAL_YANG_PERLU_DIPERHATIKAN_PAGE =
       '/hal-yang-perlu-diperhatikan-page';
