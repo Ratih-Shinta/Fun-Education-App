@@ -103,12 +103,13 @@ class VerificationPageView extends GetView<VerificationPageController> {
                     SizedBox(
                       width: width * 0.005,
                     ),
-                    AutoSizeText(
-                      '05.00',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsBodyMediumSemibold(primaryColor),
-                    ),
+                    InkWell(
+                        child: Obx(
+                      () => AutoSizeText(
+                        controller.countDown.value,
+                        style: tsBodyMediumSemibold(primaryColor),
+                      ),
+                    )),
                   ],
                 ),
                 SizedBox(height: height * 0.05),
@@ -125,6 +126,9 @@ class VerificationPageView extends GetView<VerificationPageController> {
                   text: 'Kirim Ulang Kode',
                   backgroundColor: greyColor.withOpacity(0.1),
                   textColor: blackColor,
+                  onPressed: () {
+                    controller.sendOTP();
+                  },
                 ),
               ],
             ),

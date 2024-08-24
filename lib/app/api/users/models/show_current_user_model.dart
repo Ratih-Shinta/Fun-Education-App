@@ -4,13 +4,14 @@ class ShowCurrentUserModel {
   String? id;
   String? fullName;
   String? nickname;
+  String? email;
   String? birth;
   String? address;
   String? shift;
   String? gender;
   String? profilePicture;
   String? role;
-  dynamic fcmToken;
+  String? fcmToken;
   bool? isVerified;
   bool? isVerifiedEmail;
   bool? isGraduated;
@@ -20,6 +21,7 @@ class ShowCurrentUserModel {
     this.id,
     this.fullName,
     this.nickname,
+    this.email,
     this.birth,
     this.address,
     this.shift,
@@ -38,6 +40,7 @@ class ShowCurrentUserModel {
         id: json["id"],
         fullName: json["full_name"],
         nickname: json["nickname"],
+        email: json["email"],
         birth: json["birth"],
         address: json["address"],
         shift: json["shift"],
@@ -55,6 +58,7 @@ class ShowCurrentUserModel {
         "id": id,
         "full_name": fullName,
         "nickname": nickname,
+        "email": email,
         "birth": birth,
         "address": address,
         "shift": shift,
