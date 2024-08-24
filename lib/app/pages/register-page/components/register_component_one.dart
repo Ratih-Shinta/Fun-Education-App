@@ -19,11 +19,6 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
         CommonTextField(
           prefixIcon:
               Icon(Icons.person_outlined, color: greyColor.withOpacity(0.5)),
-          // prefixIcon: SvgPicture.asset(
-          //   'assets/icons/icProfile.svg',
-          //   width: 0.01,
-          //   height: 0.05,
-          // ),
           fieldController: controller.fullNameController,
           obscureText: false,
           hintText: 'Nama Lengkap',
@@ -41,7 +36,6 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
           fieldController: controller.emailController,
           prefixIcon:
               Icon(Icons.mail_outlined, color: greyColor.withOpacity(0.5)),
-          // fieldController: controller.fullNameController,
           obscureText: false,
           hintText: 'Email',
           keyboardType: TextInputType.emailAddress,

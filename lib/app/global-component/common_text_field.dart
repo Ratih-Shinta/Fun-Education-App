@@ -4,7 +4,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 class CommonTextField extends StatelessWidget {
   final TextEditingController? fieldController;
   final bool obscureText;
-  final Widget? prefixIcon;
+  final Icon? prefixIcon;
   final String hintText;
   final TextInputType? keyboardType;
   final IconButton? suffixIcon;
