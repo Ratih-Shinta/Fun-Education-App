@@ -77,7 +77,7 @@ class LoginPageView extends GetView<LoginPageController> {
                 ),
                 SizedBox(height: height * 0.03),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     CommonTextField(
                       prefixIcon: Icon(Icons.person_2_outlined,
@@ -92,7 +92,14 @@ class LoginPageView extends GetView<LoginPageController> {
                       prefixIcon: Icon(Icons.lock_outline_rounded,
                           color: greyColor.withOpacity(0.5)),
                       fieldController: controller.passwordController,
-                      obscureText: false,
+                      obscureText: true,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: greyColor.withOpacity(0.5),
+                        ),
+                        onPressed: () {},
+                      ),
                       hintText: 'Kata Sandi',
                       keyboardType: TextInputType.name,
                     ),
