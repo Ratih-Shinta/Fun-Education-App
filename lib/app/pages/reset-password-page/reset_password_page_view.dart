@@ -6,10 +6,11 @@ import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
+import 'package:fun_education_app/app/pages/reset-password-page/reset_password_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class ResetPasswordPageView extends GetView<LoginPageController> {
+class ResetPasswordPageView extends GetView<ResetPasswordPageController> {
   const ResetPasswordPageView({super.key});
 
   @override
@@ -81,7 +82,7 @@ class ResetPasswordPageView extends GetView<LoginPageController> {
                         CommonTextField(
                           prefixIcon: Icon(Icons.lock_outline_rounded,
                               color: greyColor.withOpacity(0.5)),
-                          fieldController: controller.passwordController,
+                          // fieldController: controller.passwordController,
                           obscureText: false,
                           hintText: 'Kata Sandi Baru',
                           keyboardType: TextInputType.name,
@@ -106,7 +107,7 @@ class ResetPasswordPageView extends GetView<LoginPageController> {
               //   color: primaryColor,
               // )
               CommonButton(
-                isLoading: controller.isLoading.value,
+                // isLoading: controller.isLoading.value,
                 text: 'Reset Password',
                 backgroundColor: blackColor,
                 textColor: whiteColor,
