@@ -7,19 +7,6 @@ import 'package:fun_education_app/app/api/dio_instance.dart';
 class TugasUserService {
   final DioInstance _dioInstance = DioInstance();
 
-  Future<Response> getStatisticCurrentTugas(String amount) async {
-    try {
-      final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.showStatisticCurrent,
-        isAuthorize: true,
-        queryParameters: {'amount': amount},
-      );
-      return response;
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
   Future<Response> getTugasUser(String tugasId) async {
     try {
       final response = await _dioInstance.getRequest(

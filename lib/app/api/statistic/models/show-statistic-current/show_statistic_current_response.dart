@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/show-statistic-current/show_statistic_current_model.dart';
 
 ShowStatisticCurrentResponse showStatisticCurrentResponseFromJson(String str) => ShowStatisticCurrentResponse.fromJson(json.decode(str));
 
