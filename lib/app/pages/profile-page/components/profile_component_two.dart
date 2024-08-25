@@ -61,7 +61,10 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                     children: [
                       AutoSizeText.rich(TextSpan(
                           text:
-                              '${controller.selectedTaskPoint.value.toString()} Laporan',
+                              // '${controller.selectedPoints.value.toString()} Laporan',
+                              controller.selectedPoints.value == 'weekly'
+                                  ? 'Mingguan'
+                                  : 'Bulanan',
                           style: tsBodySmallSemibold(blackColor))),
                       SizedBox(width: 5),
                       Icon(
@@ -90,8 +93,11 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      text:
-                          '${controller.selectedTaskPoint.value} Tugas (Terakhir)\n',
+                      // text:
+                      //     '${controller.selectedPoints.value} Tugas (Terakhir)\n',
+                      text: controller.selectedPoints.value == 'weekly'
+                          ? 'Mingguan (Terakhir)\n'
+                          : 'Bulanan (Terakhir)\n',
                       style: tsBodyMediumSemibold(blackColor)
                           .copyWith(height: 1.5),
                       children: [

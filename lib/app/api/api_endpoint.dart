@@ -22,6 +22,12 @@ class ApiEndPoint {
   static String register = '$baseUrlAuth/register';
   static String logout = '$baseUrlAuth/logout';
 
+  //Statistic
+  // static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic';
+  // static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
+  static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic-new';
+  static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
+
   //OTP
   static String sendOTP = '$baseUrlOTP/store';
   static String checkOTP = '$baseUrlOTP/check';
@@ -38,7 +44,6 @@ class ApiEndPoint {
   static String showCurrentTugasUser = '$baseUrlTugasUser/show-current/';
   static String storeKirimTugasUser = '$baseUrlTugasUser/store';
   static String storeKirimTugasUserImage = '$baseUrlTugasUserImage/store';
-  static String showStatisticCurrent = '$baseUrlTugasUser/statistic';
 
   //Shift Masuk
   static String showCurrentShiftMasuk = '$baseUrlShiftMasuk/show-current';
@@ -52,7 +57,6 @@ class ApiEndPoint {
   //Laporan Harian
   static String showCurrentLaporanHarian = '$baseUrlLaporanHarian/show-current';
   static String showCurrentPoint = '$baseUrlLaporanHarian/show-current-point';
-  static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
   static String showCurrentAvailable = '$baseUrlLaporanHarian/show-available';
 
   //Tabungan
@@ -73,9 +77,10 @@ class ApiEndPoint {
 
   //Pengajuan Tabungan
   static String storePengajuanTabungan = '$baseUrlPengajuanTabungan/store';
-  static String currentPengajuanTabungan = '$baseUrlPengajuanTabungan/show-current';
+  static String currentPengajuanTabungan =
+      '$baseUrlPengajuanTabungan/show-current';
   static String deletePengajuanTabungan = '$baseUrlPengajuanTabungan/delete/';
-  
+
   //Show All Photos
   static String showAllAlbumPhotos = '$baseUrlAllAlbumPhotos/index';
 }

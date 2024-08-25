@@ -69,32 +69,47 @@ class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
               child: Obx(
                 () => Column(
                   children: [
+                    // CustomRadioButtonPeriod(
+                    //   title: '5 Tugas Terakhir',
+                    //   value: '5',
+                    //   groupValue: controller.selectedPoints.value,
+                    //   onChanged: (value) => controller.selectedPoints(value),
+                    // ),
+                    // SizedBox(height: height * 0.01),
+                    // CustomRadioButtonPeriod(
+                    //   title: '10 Tugas Terakhir',
+                    //   value: '10',
+                    //   groupValue: controller.selectedPoints.value,
+                    //   onChanged: (value) => controller.selectedPoints(value),
+                    // ),
+                    // SizedBox(height: height * 0.01),
+                    // CustomRadioButtonPeriod(
+                    //   title: '20 Tugas Terakhir',
+                    //   value: '20',
+                    //   groupValue: controller.selectedPoints.value,
+                    //   onChanged: (value) => controller.selectedPoints(value),
+                    // ),
+                    // SizedBox(height: height * 0.01),
+                    // CustomRadioButtonPeriod(
+                    //   title: '30 Tugas Terakhir',
+                    //   value: '30',
+                    //   groupValue: controller.selectedPoints.value,
+                    //   onChanged: (value) => controller.selectedPoints(value),
+                    // ),
                     CustomRadioButtonPeriod(
-                      title: '5 Tugas Terakhir',
-                      value: '5',
-                      groupValue: controller.selectedTaskPoint.value,
-                      onChanged: (value) => controller.selectedTaskPoint(value),
+                      title: 'Mingguan (Terakhir)',
+                      value: 'weekly',
+                      groupValue: controller.selectedPoints.value,
+                      onChanged: (value) =>
+                          controller.selectedPoints(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
-                      title: '10 Tugas Terakhir',
-                      value: '10',
-                      groupValue: controller.selectedTaskPoint.value,
-                      onChanged: (value) => controller.selectedTaskPoint(value),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    CustomRadioButtonPeriod(
-                      title: '20 Tugas Terakhir',
-                      value: '20',
-                      groupValue: controller.selectedTaskPoint.value,
-                      onChanged: (value) => controller.selectedTaskPoint(value),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    CustomRadioButtonPeriod(
-                      title: '30 Tugas Terakhir',
-                      value: '30',
-                      groupValue: controller.selectedTaskPoint.value,
-                      onChanged: (value) => controller.selectedTaskPoint(value),
+                      title: 'Bulanan (Terakhir)',
+                      value: 'monthly',
+                      groupValue: controller.selectedPoints.value,
+                      onChanged: (value) =>
+                          controller.selectedPoints(value),
                     ),
                   ],
                 ),

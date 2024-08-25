@@ -13,9 +13,9 @@ import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_response.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_model.dart';
-import 'package:fun_education_app/app/api/tugas-user/models/show-statistic-current/show_statistic_current_response.dart';
+import 'package:fun_education_app/app/api/statistic/models/show-statistic-current/show_statistic_bottom_tile_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/show-statistic-current/show_statistic_current_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/show-statistic-current/show_statistic_current_response.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';

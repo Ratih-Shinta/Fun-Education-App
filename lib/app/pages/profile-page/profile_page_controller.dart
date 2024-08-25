@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
 import 'package:fun_education_app/app/api/tugas-user/service/tugas_user_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.dart';
@@ -17,17 +18,19 @@ class ProfilePageController extends GetxController {
 
   RxInt touchedIndex = (-1).obs;
 
-  TugasUserService tugasUserService = TugasUserService();
+  StatisticService statisticService = StatisticService();
   StatisticTaskResponse? showStatisticCurrentResponse;
   RxList<StatisticTaskModel> showStatisticCurrentModel =
       <StatisticTaskModel>[].obs;
 
   var spots = <FlSpot>[].obs;
-  var touchedTitle = <String?>[].obs;
+  // var touchedTitle = <String?>[].obs;
+  var touchedTitle = <DateTime?>[].obs;
   var bottomTitles = <String?>[].obs;
   var maxX = 0.0.obs;
 
-  var selectedTaskPoint = '5'.obs;
+  // var selectedPoints = '5'.obs;
+  var selectedPoints = 'weekly'.obs;
 
   @override
   void onInit() {
@@ -39,14 +42,11 @@ class ProfilePageController extends GetxController {
 
   Future showStatisticCurrentTugasUser() async {
     try {
-      final response = await tugasUserService.getStatisticCurrentTugas(
-        selectedTaskPoint.value,
+      final response = await statisticService.getStatisticCurrentTugas(
+        selectedPoints.value,
       );
-      showStatisticCurrentResponse =
-          StatisticTaskResponse.fromJson(response.data);
-
+      showStatisticCurrentResponse = StatisticTaskResponse.fromJson(response.data);
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
-      print(showStatisticCurrentModel);
 
       spots.value = showStatisticCurrentModel
           .map((e) => FlSpot(
@@ -54,8 +54,8 @@ class ProfilePageController extends GetxController {
                 e.totalPoint!.toDouble(),
               ))
           .toList();
-      touchedTitle.value =
-          showStatisticCurrentModel.map((e) => e.title).toList();
+      // touchedTitleTask.value = statisticTaskModel.map((e) => e.title!).toList();
+      touchedTitle.value = showStatisticCurrentModel.map((e) => e.date!).toList();
 
       bottomTitles.value = List<String?>.filled(spots.length, null);
       for (var title in showStatisticCurrentResponse!.bottomTitle) {
@@ -63,7 +63,7 @@ class ProfilePageController extends GetxController {
       }
 
       maxX.value = spots.length - 1.0;
-      isLoading(false);
+      isLoading.value = false;
       update();
     } catch (e) {
       print('statistik error : $e');
