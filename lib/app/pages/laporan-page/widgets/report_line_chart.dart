@@ -208,7 +208,7 @@ class ReportLineChart {
             return touchedSpots.map((LineBarSpot touchedSpot) {
               final TextStyle textStyle = tsBodySmallSemibold(whiteColor);
               return LineTooltipItem(
-                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(laporanPageController.touchedTitle[touchedSpot.x.toInt()]!)}',
+                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(laporanPageController.touchedTitle[touchedSpot.x.toInt()])}',
                 textStyle,
               );
             }).toList();

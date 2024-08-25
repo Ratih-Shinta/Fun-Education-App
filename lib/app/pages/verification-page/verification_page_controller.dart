@@ -3,18 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/OTP/service/otp_service.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
-import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
-import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class VerificationPageController extends GetxController {
   final HomePageController homePageController = Get.put(HomePageController());
-  // final LoginPageController loginPageController =
-  //     Get.put(LoginPageController());
-  // final RegisterPageController registerPageController = Get.put(RegisterPageController());
   late TextEditingController otpController = TextEditingController();
   late OTPService otpService;
 
@@ -55,7 +49,10 @@ class VerificationPageController extends GetxController {
     try {
       final response = await otpService.storeCheckOTP(
         otpController.text,
+        homePageController.showCurrentUserModel.value.email!,
       );
+
+      print(response.data);
 
       Get.snackbar(
         "Success",
@@ -67,7 +64,7 @@ class VerificationPageController extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        'OTP tidak valid',
+        e.toString(),
         backgroundColor: dangerColor,
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,
@@ -80,6 +77,8 @@ class VerificationPageController extends GetxController {
       final response = await otpService.storeSendOTP(
         homePageController.showCurrentUserModel.value.email!,
       );
+
+      print(response.data);
 
       Get.snackbar(
         "Success",

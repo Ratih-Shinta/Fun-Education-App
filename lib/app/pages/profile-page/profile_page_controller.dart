@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
 import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
-import 'package:fun_education_app/app/api/tugas-user/service/tugas_user_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.dart';
 import 'package:fun_education_app/common/helper/themes.dart';

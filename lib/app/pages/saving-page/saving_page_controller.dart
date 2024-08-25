@@ -70,6 +70,7 @@ class SavingPageController extends GetxController {
           backgroundColor: successColor,
           colorText: whiteColor,
         );
+        print(response.data);
       } else {
         print('userId is null');
       }

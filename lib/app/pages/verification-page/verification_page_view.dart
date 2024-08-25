@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/verification-page/verification_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
-import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
