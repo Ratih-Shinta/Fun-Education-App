@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
@@ -8,6 +7,7 @@ import 'package:get/get.dart';
 class ReportTitleChart {
   LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
+
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     TextStyle style = tsBodySmallRegular(blackColor);
     String text;
@@ -29,47 +29,78 @@ class ReportTitleChart {
         break;
       case 100:
         text = '100';
+        break;
       default:
         return Container();
     }
 
-    return AutoSizeText(
+    return Text(
       text,
       style: style,
       textAlign: TextAlign.left,
     );
   }
 
-  Widget bottomTitleWidgets5Data(double value, TitleMeta meta) {
+  Widget weeklyBottomTitle(double value, TitleMeta meta) {
+    TextStyle style = tsLabelLargeSemibold(blackColor);
     String text;
     switch (value.toInt()) {
       case 0:
-        text = laporanPageController.bottomTitles[0] ?? '';
+        text = 'SEN';
         break;
       case 1:
-        text = laporanPageController.bottomTitles[1] ?? '';
+        text = 'SEL';
         break;
       case 2:
-        text = laporanPageController.bottomTitles[2] ?? '';
+        text = 'RAB';
         break;
       case 3:
-        text = laporanPageController.bottomTitles[3] ?? '';
+        text = 'KAM';
         break;
       case 4:
-        text = laporanPageController.bottomTitles[4] ?? '';
-
-      default:
-        text = '';
+        text = 'JUM';
         break;
+      case 5:
+        text = 'SAB';
+        break;
+      case 6:
+        text = 'MIN';
+        break;
+      default:
+        return Container();
     }
 
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: AutoSizeText(
-        text,
-        style: tsLabelMediumSemibold(blackColor),
-        textAlign: TextAlign.center,
-      ),
+    return Text(
+      text,
+      style: style,
+      textAlign: TextAlign.left,
+    );
+  }
+
+  Widget monthlyBottomTitle(double value, TitleMeta meta) {
+    TextStyle style = tsLabelLargeSemibold(blackColor);
+    String text;
+    switch (value.toInt()) {
+      case 0:
+        text = 'Minggu\n1';
+        break;
+      case 10:
+        text = 'Minggu\n2';
+        break;
+      case 20:
+        text = 'Minggu\n3';
+        break;
+      case 30:
+        text = 'Minggu\n4';
+        break;
+      default:
+        return Container();
+    }
+
+    return Text(
+      text,
+      style: style,
+      textAlign: TextAlign.center,
     );
   }
 
