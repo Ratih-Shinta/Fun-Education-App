@@ -73,7 +73,7 @@ class CommonButton extends StatelessWidget {
               SizedBox(width: 10),
               SvgPicture.asset(
                 svgIcon!,
-                color: textColor ?? whiteColor,
+                color: textColor,
                 width: 18,
               )
             ],

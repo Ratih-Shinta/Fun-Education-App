@@ -122,6 +122,8 @@ class RegisterPageController extends GetxController {
         email.value,
       );
 
+      print(response.data);
+
       Get.snackbar(
         "Success",
         "Send OTP successful",
