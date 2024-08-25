@@ -54,7 +54,7 @@ class ProfilePageController extends GetxController {
                 e.totalPoint!.toDouble(),
               ))
           .toList();
-      // touchedTitleTask.value = statisticTaskModel.map((e) => e.title!).toList();
+      // touchedTitle.value = showStatisticCurrentModel.map((e) => e.title!).toList();
       touchedTitle.value = showStatisticCurrentModel.map((e) => e.date!).toList();
 
       bottomTitles.value = List<String?>.filled(spots.length, null);

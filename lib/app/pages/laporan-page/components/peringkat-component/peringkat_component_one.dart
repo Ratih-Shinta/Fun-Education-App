@@ -56,10 +56,15 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   ),
                   child: Row(
                     children: [
-                      AutoSizeText.rich(TextSpan(
-                          text:
-                              '${controller.selectedReportPoint.value} Laporan (Terakhir)',
-                          style: tsBodySmallSemibold(blackColor))),
+                      AutoSizeText(
+                        // '${controller.selectedPoint.value} Laporan (Terakhir)',
+                        controller.selectedPoint.value == 'weekly'
+                            ? 'Mingguan'
+                            : 'Bulanan',
+                        group: AutoSizeGroup(),
+                        maxLines: 1,
+                        style: tsBodySmallSemibold(blackColor),
+                      ),
                       SizedBox(width: 5),
                       Icon(
                         Icons.keyboard_arrow_down_rounded,
@@ -88,7 +93,10 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   return AutoSizeText.rich(
                     TextSpan(
                       text:
-                          '${controller.selectedReportPoint.value} Laporan (Terakhir)\n',
+                          // '${controller.selectedPoint.value} Laporan (Terakhir)\n',
+                          controller.selectedPoint.value == 'weekly'
+                              ? 'Mingguan (Terakhir)\n'
+                              : 'Bulanan (Terakhir)\n',
                       style: tsBodyMediumSemibold(blackColor)
                           .copyWith(height: 1.5),
                       children: [
@@ -146,8 +154,8 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else
-                    return AspectRatio(
-                      aspectRatio: 0.8,
+                    return Expanded(
+                      // aspectRatio: 0.8,
                       child: LineChart(
                         reportLineChart.reportLineChart(),
                       ),

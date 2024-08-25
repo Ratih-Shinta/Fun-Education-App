@@ -26,7 +26,7 @@ class ApiEndPoint {
   // static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic';
   // static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
   static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic-new';
-  static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
+  static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic-new';
 
   //OTP
   static String sendOTP = '$baseUrlOTP/store';
