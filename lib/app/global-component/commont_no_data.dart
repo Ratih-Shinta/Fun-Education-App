@@ -13,7 +13,7 @@ class CommontNoData extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 40),
-        SvgPicture.asset('assets/images/imgGagal.svg'),
+        SvgPicture.asset('assets/images/imgEmpty.svg'),
         SizedBox(height: 20),
         AutoSizeText.rich(
           textAlign: TextAlign.center,

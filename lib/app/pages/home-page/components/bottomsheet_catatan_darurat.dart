@@ -37,7 +37,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                         color: greyColor.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(10)),
                     child: AutoSizeText(
-                      '${controller.showLatestCatatanDaruratModel != null ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan Darurat'}',
+                      '${controller.showLatestCatatanDaruratResponse != null ? controller.showLatestCatatanDaruratModel.value.catatan : 'Tidak Ada Catatan Darurat'}',
                       maxLines: 10,
                       style: tsBodySmallMedium(blackColor),
                     )),
@@ -45,7 +45,8 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
               CommonButton(
                 text: 'Tutup',
                 onPressed: () => Navigator.pop(context),
-                backgroundColor: blackColor, textColor: whiteColor,
+                backgroundColor: blackColor,
+                textColor: whiteColor,
               )
             ],
           ),

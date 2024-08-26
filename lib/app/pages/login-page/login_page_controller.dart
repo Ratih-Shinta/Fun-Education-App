@@ -42,7 +42,7 @@ class LoginPageController extends GetxController {
           false) {
         Get.offNamed(Routes.PENDING_PAGE);
       } else {
-        Get.offNamed(Routes.HOME_PAGE);
+        Get.offNamed(Routes.NAVBAR);
       }
 
       Get.snackbar(

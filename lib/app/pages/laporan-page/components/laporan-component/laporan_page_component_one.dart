@@ -61,10 +61,3 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
     );
   }
 }
-
-// Obx(
-//           () => Text(
-//             'Selected Date: ${controller.selectedDate.value.toString().substring(0, 10)}',
-//             style: TextStyle(fontSize: 20),
-//           ),
-//         ),
