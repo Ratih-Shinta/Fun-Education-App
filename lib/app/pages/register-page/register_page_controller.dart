@@ -118,11 +118,9 @@ class RegisterPageController extends GetxController {
 
   Future<void> sendOTP() async {
     try {
-      final response = await otpService.storeSendOTP(
+      await otpService.storeSendOTP(
         email.value,
       );
-
-      print(response.data);
 
       Get.snackbar(
         "Success",

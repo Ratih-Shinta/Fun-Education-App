@@ -13,8 +13,9 @@ class VerificationPageController extends GetxController {
   late OTPService otpService;
 
   RxString countDown = '00:00'.obs;
-  var otp = ''.obs;
   RxInt count = 300.obs;
+  
+  var otp = ''.obs;
 
   @override
   void onInit() {
@@ -47,12 +48,11 @@ class VerificationPageController extends GetxController {
 
   Future<void> checkOTP() async {
     try {
-      final response = await otpService.storeCheckOTP(
+      await otpService.storeCheckOTP(
         otpController.text,
         homePageController.showCurrentUserModel.value.email!,
+        false
       );
-
-      print(response.data);
 
       Get.snackbar(
         "Success",
@@ -74,11 +74,9 @@ class VerificationPageController extends GetxController {
 
   Future<void> sendOTP() async {
     try {
-      final response = await otpService.storeSendOTP(
+      await otpService.storeSendOTP(
         homePageController.showCurrentUserModel.value.email!,
       );
-
-      print(response.data);
 
       Get.snackbar(
         "Success",

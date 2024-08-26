@@ -19,15 +19,12 @@ class OTPService {
     }
   }
 
-  Future<Response> storeCheckOTP(String otp, String email) async {
+  Future<Response> storeCheckOTP(String otp, String email, bool resetPassword) async {
     try {
       final fcmToken = await FirebaseMessaging.instance.getToken();
-      final response = await _dioInstance.postRequest(endpoint: ApiEndPoint.checkOTP, 
-      data: {
-        'otp': otp,
-        'email': email,
-        'fcm_token': fcmToken
-      });
+      final response = await _dioInstance.postRequest(
+          endpoint: ApiEndPoint.checkOTP,
+          data: {'otp': otp, 'email': email, 'reset_password' : resetPassword, 'fcm_token': fcmToken});
       print(response.data);
       return response;
     } catch (e) {

@@ -6,6 +6,7 @@ import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/reset-password-page/reset_password_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class EmailResetPasswordView extends GetView<ResetPasswordPageController> {
@@ -70,11 +71,11 @@ class EmailResetPasswordView extends GetView<ResetPasswordPageController> {
                       icon: Icons.info_outline_rounded,
                       backColor: warningColor,
                       text:
-                          'Isi Email dan Verifikasi OTP dulu sebelum reset password ya...',
+                          'Isi Email lalu Verifikasi OTP dulu sebelum reset password ya...',
                     ),
                     SizedBox(height: height * 0.03),
                     CommonTextField(
-                      // fieldController: controller.emailController,
+                      fieldController: controller.emailController,
                       prefixIcon: Icon(Icons.mail_outlined,
                           color: greyColor.withOpacity(0.5)),
                       obscureText: false,
@@ -102,11 +103,13 @@ class EmailResetPasswordView extends GetView<ResetPasswordPageController> {
                 ),
               ),
               CommonButton(
-                // isLoading: controller.isLoading.value,
+                isLoading: controller.isLoading.value,
                 text: 'Kirim Email',
                 backgroundColor: blackColor,
                 textColor: whiteColor,
-                onPressed: () {},
+                onPressed: () {
+                  controller.saveEmail();
+                },
               )
             ],
           ),

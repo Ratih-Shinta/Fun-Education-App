@@ -28,7 +28,6 @@ class ResetPasswordPageView extends GetView<ResetPasswordPageController> {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 child: Column(
@@ -99,17 +98,13 @@ class ResetPasswordPageView extends GetView<ResetPasswordPageController> {
                   ],
                 ),
               ),
-              // Container(
-              //   height: height * 0.1,
-              //   width: width,
-              //   color: primaryColor,
-              // )
               CommonButton(
-                // isLoading: controller.isLoading.value,
+                isLoading: controller.isLoading.value,
                 text: 'Reset Password',
                 backgroundColor: blackColor,
                 textColor: whiteColor,
                 onPressed: () {
+                  controller.updateResetPassword();
                   // String? validationMessage = controller.validatePassword();
                   // if (validationMessage != null) {
                   //   Get.snackbar(

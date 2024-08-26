@@ -50,6 +50,7 @@ class ApiEndPoint {
 
   //User
   static String showCurrentUser = '$baseUrlAuth/show-current';
+  static String updateResetPassword = '$baseUrlAuth/reset-password';
 
   //Catatan Darurat
   static String showLatestCatatanDarurat = '$baseUrlCatatanDarurat/show';
