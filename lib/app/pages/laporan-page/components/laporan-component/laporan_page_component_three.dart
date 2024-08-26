@@ -38,21 +38,12 @@ class LaporanPageComponentThree extends GetView<LaporanPageController> {
               backgroundColor: whiteColor,
             );
           },
-
-          // {
-          //   showModalBottomSheet(
-          //     context: context,
-          //     builder: (context) => BottomsheetAlurBelajarAnanda(),
-          //     isScrollControlled: true,
-          //   );
-          // },
           child: Container(
             margin: EdgeInsets.only(top: height * 0.015, bottom: height * 0.03),
             padding: EdgeInsets.symmetric(
               horizontal: width * 0.035,
               vertical: height * 0.015,
             ),
-            // height: height * 0.14,
             decoration: BoxDecoration(
               color: blackColor,
               borderRadius: BorderRadius.circular(15),

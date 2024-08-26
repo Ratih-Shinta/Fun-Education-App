@@ -10,12 +10,14 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class ReportHistoryController extends GetxController {
+class ReportHistoryPageController extends GetxController {
   RefreshController refreshController = RefreshController();
   Rx<DateTime> selectedDay = DateTime.now().obs;
   Rx<DateTime> focusedDay = DateTime.now().obs;
   RxInt userGrade = 0.obs;
   RxString userNote = ''.obs;
+  RxString userPermission = ''.obs;
+
   RxBool isLoading = true.obs;
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
@@ -37,19 +39,22 @@ class ReportHistoryController extends GetxController {
 
   Future showCurrentLaporanHarian() async {
     try {
+      showCurrentLaporanHarianModel.clear();
+      userGrade.value = 0;
+      userNote.value = '';
+      userPermission.value = '';
+
       final response = await laporanHarianService.getShowCurrentLaporanHarian(
           '${DateFormat('yyyy-MM-dd').format(selectedDay.value)}');
       showCurrentLaporanHarianResponse =
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
-      userGrade.value = showCurrentLaporanHarianResponse!.totalPoint ?? 0;
-      userNote.value =
-          showCurrentLaporanHarianResponse!.note ?? 'Tidak Ada Catatan';
+      userGrade.value = showCurrentLaporanHarianResponse!.totalPoint;
+      userNote.value = showCurrentLaporanHarianResponse!.note ?? '';
+      userPermission.value = showCurrentLaporanHarianResponse!.permission;
+
       update();
-      print('seleced date : ${selectedDay.value}');
-      print(
-          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');

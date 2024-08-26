@@ -1,43 +1,59 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/detail-laporan-harian-page/widgets/total_point_item.dart';
+import 'package:fun_education_app/app/pages/laporan-page/widgets/laporan_container.dart';
 import 'package:fun_education_app/app/pages/report-history-page/report_history_controller.dart';
-import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_empty_item.dart';
+import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_permission_item.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class ReportHistoryPageComponentThree
-    extends GetView<ReportHistoryController> {
+class ReportHistoryPageComponentThree extends GetView<ReportHistoryPageController> {
   const ReportHistoryPageComponentThree({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double height = mediaQuery.height;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Obx(() => AutoSizeText.rich(
-              group: AutoSizeGroup(),
-              maxLines: 1,
-              TextSpan(
-                text:
-                    '${DateFormat('EEEE,').format(controller.selectedDay.value)} ',
-                style: tsBodyLargeSemibold(blackColor),
-                children: [
-                  TextSpan(
-                    text:
-                        '${DateFormat('dd MMMM yyyy').format(controller.selectedDay.value)}',
-                    style: tsBodyLargeRegular(blackColor),
-                  ),
-                ],
-              ),
-            )),
-        SizedBox(height: height * 0.02),
-        Obx(() => TotalPointItem(
-              totalPoint: controller.userGrade.value,
-            )),
-      ],
-    );
+    return Obx(() {
+      if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
+          controller.userPermission.value == 'Hadir') {
+        return InkWell(
+          onTap: () {
+            Get.toNamed(
+              Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+              arguments: {
+                'dateHistory': controller.selectedDay.value,
+              },
+            );
+          },
+          child: LaporanContainer(
+            controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
+            controller.showCurrentLaporanHarianResponse?.note == null
+                ? '0'
+                : '1',
+            date:
+                '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(controller.selectedDay.value)}',
+          ),
+        );
+      } else if (controller.userPermission.isNotEmpty &&
+          controller.userPermission.value != 'Hadir') {
+        return ReportHistoryPermissionItem(
+          permission: controller.userPermission.value,
+          selectedDate: controller.selectedDay.value,
+          note: controller.userNote.value,
+          onTap: () {
+            Get.toNamed(
+              Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+              arguments: {
+                'dateHistory': controller.selectedDay.value,
+              },
+            );
+          },
+        );
+      } else if (controller.userPermission.isEmpty) {
+        return ReportHistoryEmptyItem(
+            selectedDate: controller.selectedDay.value);
+      } else {
+        return Container();
+      }
+    });
   }
 }

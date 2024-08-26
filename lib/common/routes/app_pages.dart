@@ -166,8 +166,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REPORT_HISTORY_PAGE,
-      page: () => ReportHistoryView(),
-      binding: ReportHistoryBinding(),
+      page: () => ReportHistoryPageView(),
+      binding: ReportHistoryPageBinding(),
     ),
   ];
 }

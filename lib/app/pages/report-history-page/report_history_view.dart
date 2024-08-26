@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_five.dart';
-import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_four.dart';
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_one.dart';
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_three.dart';
 import 'package:fun_education_app/app/pages/report-history-page/components/report_history_component_two.dart';
@@ -9,7 +7,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class ReportHistoryView extends GetView<ReportHistoryController> {
+class ReportHistoryPageView extends GetView<ReportHistoryPageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -66,12 +64,7 @@ class ReportHistoryView extends GetView<ReportHistoryController> {
                 ReportHistoryPageComponentOne(),
                 SizedBox(height: height * 0.015),
                 ReportHistoryPageComponentTwo(),
-                SizedBox(height: height * 0.05),
                 ReportHistoryPageComponentThree(),
-                SizedBox(height: height * 0.02),
-                ReportHistoryPageComponentFour(),
-                SizedBox(height: height * 0.02),
-                ReportHistoryPageComponentFive(),
               ],
             ),
           ),

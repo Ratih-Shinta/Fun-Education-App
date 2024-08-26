@@ -13,19 +13,22 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double height = mediaQuery.height;
-    final double width = mediaQuery.width;
 
     return Obx(() {
-      if (controller.isLoading.value) {
-        return Container(
-          height: height * 0.51,
-          width: width,
-          child: Center(
-            child: CircularProgressIndicator(),
+      if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
+          controller.userPermission.value == 'Hadir') {
+        return InkWell(
+          onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),
+          child: LaporanContainer(
+            controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
+            controller.showCurrentLaporanHarianResponse?.note == null
+                ? '0'
+                : '1',
+            date:
+                '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(controller.selectedDate.value)}',
           ),
         );
-      } else if (controller.showCurrentLaporanHarianResponse?.totalPoint ==
-          null) {
+      } else if (controller.userPermission.isEmpty) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: height * 0.15,
@@ -56,17 +59,7 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
           ),
         );
       } else {
-        return InkWell(
-          onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),
-          child: LaporanContainer(
-            controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
-            controller.showCurrentLaporanHarianResponse?.note == null
-                ? '0'
-                : '1',
-            date:
-                '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(controller.selectedDate.value)}',
-          ),
-        );
+        return Container();
       }
     });
   }

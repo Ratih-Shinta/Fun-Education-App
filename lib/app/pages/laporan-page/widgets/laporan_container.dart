@@ -135,13 +135,13 @@ class LaporanContainer extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 6,
-                            backgroundColor: catatan.isEmpty
-                                ? greyColor.withOpacity(0.5)
+                            backgroundColor: catatan.isNotEmpty
+                                ? greenColor
                                 : poin <= 40
                                     ? dangerColor
                                     : poin <= 70
                                         ? warningColor
-                                        : successColor,
+                                        : greyColor.withOpacity(0.5),
                           ),
                           SizedBox(width: 5),
                           AutoSizeText.rich(TextSpan(
