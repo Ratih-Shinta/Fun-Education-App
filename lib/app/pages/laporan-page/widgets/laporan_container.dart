@@ -18,9 +18,9 @@ class LaporanContainer extends StatelessWidget {
       padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: poin <= 25
+        color: poin <= 40
             ? dangerColor.withOpacity(0.1)
-            : poin <= 50
+            : poin <= 70
                 ? warningColor.withOpacity(0.1)
                 : successColor.withOpacity(0.1),
       ),
@@ -33,11 +33,11 @@ class LaporanContainer extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     iconDocument,
-                    color: poin <= 25
+                    color: poin <= 40
                         ? dangerColor
-                        : poin <= 50
+                        : poin <= 70
                             ? warningColor
-                            : greenColor,
+                            : successColor,
                     height: 40,
                   ),
                   SizedBox(width: 8),
@@ -87,9 +87,9 @@ class LaporanContainer extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                       decoration: BoxDecoration(
-                        color: poin <= 25
+                        color: poin <= 40
                             ? dangerColor
-                            : poin <= 50
+                            : poin <= 70
                                 ? warningColor
                                 : successColor,
                         borderRadius: BorderRadius.circular(29),
@@ -137,9 +137,9 @@ class LaporanContainer extends StatelessWidget {
                             radius: 6,
                             backgroundColor: catatan.isEmpty
                                 ? greyColor.withOpacity(0.5)
-                                : poin <= 25
+                                : poin <= 40
                                     ? dangerColor
-                                    : poin <= 50
+                                    : poin <= 70
                                         ? warningColor
                                         : successColor,
                           ),

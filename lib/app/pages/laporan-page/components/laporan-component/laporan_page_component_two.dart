@@ -36,7 +36,7 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'assets/images/imgTidakAdaLaporan.svg',
+                  'assets/images/imgReportEmpty.svg',
                 ),
                 SizedBox(height: height * 0.01),
                 AutoSizeText(

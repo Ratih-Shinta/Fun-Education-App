@@ -8,7 +8,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
-   DetailLaporanComponentTwo({super.key});
+  DetailLaporanComponentTwo({super.key});
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
 
@@ -23,7 +23,8 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else if (laporanPageController.showCurrentLaporanHarianResponse?.data == null) {
+      } else if (laporanPageController.showCurrentLaporanHarianResponse?.data ==
+          null) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: height * 0.15,
@@ -34,7 +35,7 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'assets/notFoundImage.svg',
+                  'assets/images/imgEmpty.svg',
                 ),
                 SizedBox(height: height * 0.01),
                 AutoSizeText(
@@ -63,7 +64,8 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: laporanPageController.showCurrentLaporanHarianModel.length,
+            itemCount:
+                laporanPageController.showCurrentLaporanHarianModel.length,
             itemBuilder: (BuildContext context, int index) {
               return ReportWidget(
                 no: index + 1,

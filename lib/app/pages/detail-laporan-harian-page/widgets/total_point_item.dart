@@ -26,7 +26,7 @@ class TotalPointItem extends StatelessWidget {
         color: totalPoint <= 40
             ? dangerColor
             : totalPoint <= 70
-                ? warningColor
+                ? warningColor 
                 : successColor,
         borderRadius: BorderRadius.circular(30),
       ),
