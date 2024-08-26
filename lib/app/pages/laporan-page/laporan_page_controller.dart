@@ -41,10 +41,14 @@ class LaporanPageController extends GetxController
   var maxX = 0.0.obs;
 
   // var selectedPoint = '5'.obs;
-    var selectedPoint = 'weekly'.obs;
+  var selectedPoint = 'weekly'.obs;
+
+  RxInt userGrade = 0.obs;
+  RxString userNote = ''.obs;
+  RxString userPermission = ''.obs;
 
   StatisticService statisticService = StatisticService();
-    ShowStatisticCurrentResponse? showStatisticCurrentResponse;
+  ShowStatisticCurrentResponse? showStatisticCurrentResponse;
   RxList<ShowStatisticCurrentModel> showStatisticCurrentModel =
       <ShowStatisticCurrentModel>[].obs;
   RxList<ShowStatisticBottomTitleModel> showStatisticBottomTitleModel =
@@ -135,16 +139,22 @@ class LaporanPageController extends GetxController
 
   Future showCurrentLaporanHarian(DateTime date) async {
     try {
+      showCurrentLaporanHarianModel.clear();
+      userGrade.value = 0;
+      userNote.value = '';
+      userPermission.value = '';
+
       final response = await laporanHarianService.getShowCurrentLaporanHarian(
           '${DateFormat('yyyy-MM-dd').format(date)}');
       showCurrentLaporanHarianResponse =
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
+      userGrade.value = showCurrentLaporanHarianResponse!.totalPoint;
+      userNote.value = showCurrentLaporanHarianResponse!.note ?? '';
+      userPermission.value = showCurrentLaporanHarianResponse!.permission;
+
       update();
-      print(
-          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
-      // print('datetime : ${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');
