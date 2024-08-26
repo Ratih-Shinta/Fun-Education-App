@@ -13,6 +13,7 @@ import 'package:fun_education_app/app/pages/home-page/home_page_view.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_binding.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_view.dart';
 import 'package:fun_education_app/app/pages/reset-password-page/items/email_reset_password_view.dart';
+import 'package:fun_education_app/app/pages/reset-password-page/items/verification_reset_password_view.dart';
 import 'package:fun_education_app/app/pages/reset-password-page/reset_password_page_binding.dart';
 import 'package:fun_education_app/app/pages/reset-password-page/reset_password_page_view.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_binding.dart';
@@ -91,6 +92,11 @@ class AppPages {
     GetPage(
       name: _Paths.EMAIL_RESET_PASSWORD_PAGE,
       page: () => EmailResetPasswordView(),
+      binding: ResetPasswordPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFICATION_RESET_PASSWORD_PAGE,
+      page: () => VerificationResetPasswordPageView(),
       binding: ResetPasswordPageBinding(),
     ),
     GetPage(

@@ -60,7 +60,7 @@ class SavingPageController extends GetxController {
       final selectedCategory = selectedOption.value;
 
       if (userId != null) {
-        final response = await pengajuanTabunganService
+        await pengajuanTabunganService
             .postStorePengajuanTabungan(userId, selectedCategory);
         await currentPengajuanTabungan();
         Get.back();
@@ -70,7 +70,6 @@ class SavingPageController extends GetxController {
           backgroundColor: successColor,
           colorText: whiteColor,
         );
-        print(response.data);
       } else {
         print('userId is null');
       }
