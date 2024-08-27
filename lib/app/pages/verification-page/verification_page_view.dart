@@ -126,7 +126,7 @@ class VerificationPageView extends GetView<VerificationPageController> {
                   backgroundColor: greyColor.withOpacity(0.1),
                   textColor: blackColor,
                   onPressed: () {
-                    controller.sendOTP();
+                    controller.resetAndStartTimer();
                   },
                 ),
               ],

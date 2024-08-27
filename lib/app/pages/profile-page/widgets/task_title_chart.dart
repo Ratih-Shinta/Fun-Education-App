@@ -46,25 +46,25 @@ class TaskTitleChart {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'SEN';
+        text = profilePageController.bottomTitles[0] ?? '';
         break;
       case 1:
-        text = 'SEL';
+        text = profilePageController.bottomTitles[1] ?? '';
         break;
       case 2:
-        text = 'RAB';
+        text = profilePageController.bottomTitles[2] ?? '';
         break;
       case 3:
-        text = 'KAM';
+        text = profilePageController.bottomTitles[3] ?? '';
         break;
       case 4:
-        text = 'JUM';
+        text = profilePageController.bottomTitles[4] ?? '';
         break;
       case 5:
-        text = 'SAB';
+        text = profilePageController.bottomTitles[5] ?? '';
         break;
       case 6:
-        text = 'MIN';
+        text = profilePageController.bottomTitles[6] ?? '';
         break;
       default:
         return Container();
@@ -82,16 +82,16 @@ class TaskTitleChart {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Minggu\n1';
+        text = profilePageController.bottomTitles[0] ?? '';
         break;
       case 10:
-        text = 'Minggu\n2';
+        text = profilePageController.bottomTitles[10] ?? '';
         break;
       case 20:
-        text = 'Minggu\n3';
+        text = profilePageController.bottomTitles[20] ?? '';
         break;
       case 30:
-        text = 'Minggu\n4';
+        text = profilePageController.bottomTitles[30] ?? '';
         break;
       default:
         return Container();
@@ -106,8 +106,10 @@ class TaskTitleChart {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     String text = '';
-    if (value.toInt() < profilePageController.bottomTitles.length) {
-      text = profilePageController.bottomTitles[value.toInt()] ?? '';
+    if (value.toInt() <
+        profilePageController.bottomTitles.length) {
+      text =
+          profilePageController.bottomTitles[value.toInt()] ?? '';
     }
 
     return SideTitleWidget(

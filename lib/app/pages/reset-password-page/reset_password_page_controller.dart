@@ -14,6 +14,8 @@ class ResetPasswordPageController extends GetxController {
   late TextEditingController emailController;
   late TextEditingController otpController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
+  late TextEditingController confirmPasswordController =
+      TextEditingController();
 
   late OTPService otpService;
   late UserService userService;
@@ -23,26 +25,42 @@ class ResetPasswordPageController extends GetxController {
 
   RxString countDown = '00:00'.obs;
   RxInt count = 300.obs;
+  Timer? timer;
 
   @override
   void onInit() {
     emailController = TextEditingController();
     otpController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     otpService = OTPService();
     userService = UserService();
     startTimer();
     super.onInit();
   }
 
+  void resetAndStartTimer() {
+    count.value = 300;
+    countDown.value = '05:00';
+    timer?.cancel();
+    startTimer();
+  }
+
+  String? validatePassword() {
+    if (passwordController.text != confirmPasswordController.text) {
+      return 'Password dan konfirmasi password harus sama.';
+    }
+    return null;
+  }
+
   Future<void> updateResetPassword() async {
     try {
       await userService.putResetPassword(
-          'akbarfelda65@gmail.com', tokenResetPassword.value, passwordController.text);
+          email.value, tokenResetPassword.value, passwordController.text);
 
-          print('email: ${email.value}');
-          print('tokenResetPassword: ${tokenResetPassword.value}');
-          print('password: ${passwordController.text}');
+      print('email: ${email.value}');
+      print('tokenResetPassword: ${tokenResetPassword.value}');
+      print('password: ${passwordController.text}');
 
       Get.snackbar(
         "Success",
@@ -64,27 +82,19 @@ class ResetPasswordPageController extends GetxController {
 
   void saveEmail() {
     email.value = emailController.text;
-    Get.toNamed(Routes.VERIFICATION_RESET_PASSWORD_PAGE);
-    sendOTPResetPassword();
   }
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
-    Timer.periodic(oneSec, (Timer timer) {
+    timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
-        timer.cancel();
+        t.cancel();
       } else {
         count.value--;
-        int minute = int.parse(countDown.value.split(':')[0]);
-        int second = int.parse(countDown.value.split(':')[1]);
-        minute = count.value ~/ 60;
-        second = count.value % 60;
-
-        if (second < 10) {
-          countDown.value = '0$minute:0$second';
-        } else {
-          countDown.value = '0$minute:$second';
-        }
+        int minute = count.value ~/ 60;
+        int second = count.value % 60;
+        countDown.value =
+            '${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}';
       }
     });
   }
@@ -101,6 +111,7 @@ class ResetPasswordPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      resetAndStartTimer();
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -125,7 +136,7 @@ class ResetPasswordPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      Get.offAllNamed(Routes.RESET_PASSWORD_PAGE);
+      Get.toNamed(Routes.RESET_PASSWORD_PAGE);
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -135,5 +146,11 @@ class ResetPasswordPageController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  @override
+  void onClose() {
+    timer?.cancel();
+    super.onClose();
   }
 }

@@ -14,8 +14,6 @@ class TransaksiPageController extends GetxController {
       <ShowCurrentTransaksiModel>[].obs;
   RxList<ShowCurrentTransaksiModel> showCurrentTransaksiModelByMonth =
       <ShowCurrentTransaksiModel>[].obs;
-  // RxList<ItemTransactionModel> itemTransactionModel =
-  //     <ItemTransactionModel>[].obs;
 
   RxBool isOpen = false.obs;
 
@@ -113,7 +111,7 @@ class TransaksiPageController extends GetxController {
     print(selectedTime.value);
   }
 
-  var selectedMonth = 'Januari'.obs;
+  var selectedMonth = DateFormat('MMMM', 'id_ID').format(DateTime.now()).obs;
   void setSelectedMonth(String month) {
     selectedMonth.value = month;
     print(selectedMonth.value);

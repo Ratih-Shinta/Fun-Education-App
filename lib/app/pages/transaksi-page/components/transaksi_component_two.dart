@@ -86,14 +86,14 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
           } else if (controller.showCurrentTransaksiModelByMonth
               .every((item) => item.amount == null)) {
             return Padding(
-              padding: EdgeInsets.only(
-                bottom: height * 0.15,
-                top: height * 0.15,
+              padding: EdgeInsets.symmetric(
+                vertical: height * 0.15,
               ),
               child: Center(
                 child: CommontNoData(
                   title: 'Belum Ada Riwayat',
-                  subTitle: 'Untuk Bulan Tersebut Belum Ada Riwayat',
+                  subTitle:
+                      'Belum Ada Riwayat Transaksi Di Bulan ${controller.selectedMonth.value}',
                 ),
               ),
             );

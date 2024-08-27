@@ -137,7 +137,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                       children: [
                         CircleAvatar(
                           radius: 6,
-                          backgroundColor: primaryColor,
+                          backgroundColor: successColor,
                         ),
                         SizedBox(width: width * 0.02),
                         AutoSizeText(
