@@ -62,11 +62,6 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
               onPressed: () {
                 controller.showCurrentTransaksiByMonth();
                 Get.back();
-                // print(controller
-                //     .showCurrentLaporanBulananModel.value
-                //     .toJson());
-                // controller
-                //     .showCurrentDetailLaporanBulanan();
               },
               backgroundColor: blackColor,
               textColor: whiteColor,

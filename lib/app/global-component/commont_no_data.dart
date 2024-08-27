@@ -29,7 +29,7 @@ class CommontNoData extends StatelessWidget {
               ),
             ],
           ),
-          maxLines: 2,
+          maxLines: 3,
         ),
       ],
     );

@@ -79,14 +79,14 @@ class ResetPasswordPageView extends GetView<ResetPasswordPageController> {
                         CommonTextField(
                           prefixIcon: Icon(Icons.lock_outline_rounded,
                               color: greyColor.withOpacity(0.5)),
-                          // fieldController: controller.passwordController,
+                          fieldController: controller.passwordController,
                           obscureText: false,
                           hintText: 'Kata Sandi Baru',
                           keyboardType: TextInputType.name,
                         ),
                         SizedBox(height: height * 0.01),
                         CommonTextField(
-                          // fieldController: controller.confirmPasswordController,
+                          fieldController: controller.confirmPasswordController,
                           obscureText: true,
                           hintText: 'Konfirmasi Kata Sandi',
                           keyboardType: TextInputType.name,
@@ -104,22 +104,19 @@ class ResetPasswordPageView extends GetView<ResetPasswordPageController> {
                 backgroundColor: blackColor,
                 textColor: whiteColor,
                 onPressed: () {
-                  controller.updateResetPassword();
-                  // String? validationMessage = controller.validatePassword();
-                  // if (validationMessage != null) {
-                  //   Get.snackbar(
-                  //     'Password dan Konfimasi Password tidak sama',
-                  //     validationMessage,
-                  //     backgroundColor: dangerColor,
-                  //     colorText: whiteColor,
-                  //     snackPosition: SnackPosition.BOTTOM,
-                  //   );
-                  // } else {
-                  // controller.password.value =
-                  //     controller.passwordController.text;
-                  // controller.sendOTP();
-                  // controller.register();
-                  //   }
+                  String? validationMessage = controller.validatePassword();
+
+                  if (validationMessage != null) {
+                    Get.snackbar(
+                      'Password dan Konfimasi Password tidak sama',
+                      validationMessage,
+                      backgroundColor: dangerColor,
+                      colorText: whiteColor,
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
+                  } else {
+                    controller.updateResetPassword();
+                  }
                 },
               )
             ],

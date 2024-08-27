@@ -15,7 +15,9 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
     final double height = mediaQuery.height;
 
     return Obx(() {
-      if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
+      if (controller.isLoading.value) {
+        return Center(child: CircularProgressIndicator());
+      } else if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
           controller.userPermission.value == 'Hadir') {
         return InkWell(
           onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),

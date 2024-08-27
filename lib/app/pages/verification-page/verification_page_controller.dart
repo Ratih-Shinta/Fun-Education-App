@@ -14,7 +14,8 @@ class VerificationPageController extends GetxController {
 
   RxString countDown = '00:00'.obs;
   RxInt count = 300.obs;
-  
+  Timer? timer;
+
   var otp = ''.obs;
 
   @override
@@ -25,34 +26,32 @@ class VerificationPageController extends GetxController {
     startTimer();
   }
 
+  void resetAndStartTimer() {
+    count.value = 300;
+    countDown.value = '05:00';
+    timer?.cancel();
+    startTimer();
+  }
+
   void startTimer() {
     const oneSec = Duration(seconds: 1);
-    Timer.periodic(oneSec, (Timer timer) {
+    timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
-        timer.cancel();
+        t.cancel();
       } else {
         count.value--;
-        int minute = int.parse(countDown.value.split(':')[0]);
-        int second = int.parse(countDown.value.split(':')[1]);
-        minute = count.value ~/ 60;
-        second = count.value % 60;
-
-        if (second < 10) {
-          countDown.value = '0$minute:0$second';
-        } else {
-          countDown.value = '0$minute:$second';
-        }
+        int minute = count.value ~/ 60;
+        int second = count.value % 60;
+        countDown.value =
+            '${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}';
       }
     });
   }
 
   Future<void> checkOTP() async {
     try {
-      await otpService.storeCheckOTP(
-        otpController.text,
-        homePageController.showCurrentUserModel.value.email!,
-        false
-      );
+      await otpService.storeCheckOTP(otpController.text,
+          homePageController.showCurrentUserModel.value.email!, false);
 
       Get.snackbar(
         "Success",
@@ -84,6 +83,7 @@ class VerificationPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      resetAndStartTimer();
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -93,5 +93,11 @@ class VerificationPageController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  @override
+  void onClose() {
+    timer?.cancel();
+    super.onClose();
   }
 }

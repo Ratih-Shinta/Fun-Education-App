@@ -41,10 +41,12 @@ class ProfilePageController extends GetxController {
 
   Future showStatisticCurrentTugasUser() async {
     try {
+      bottomTitles.clear();
       final response = await statisticService.getStatisticCurrentTugas(
         selectedPoints.value,
       );
-      showStatisticCurrentResponse = StatisticTaskResponse.fromJson(response.data);
+      showStatisticCurrentResponse =
+          StatisticTaskResponse.fromJson(response.data);
       showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
 
       spots.value = showStatisticCurrentModel
@@ -54,9 +56,12 @@ class ProfilePageController extends GetxController {
               ))
           .toList();
       // touchedTitle.value = showStatisticCurrentModel.map((e) => e.title!).toList();
-      touchedTitle.value = showStatisticCurrentModel.map((e) => e.date!).toList();
+      touchedTitle.value =
+          showStatisticCurrentModel.map((e) => e.date!).toList();
 
-      bottomTitles.value = List<String?>.filled(spots.length, null);
+      bottomTitles.value =
+          List<String?>.generate(spots.length, (index) => null);
+          
       for (var title in showStatisticCurrentResponse!.bottomTitle) {
         bottomTitles[title.bottomTitleCase!] = title.date;
       }

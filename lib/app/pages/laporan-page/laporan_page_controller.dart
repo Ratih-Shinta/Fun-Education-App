@@ -107,6 +107,7 @@ class LaporanPageController extends GetxController
 
   Future showStatisticCurrentLaporanUser() async {
     try {
+      bottomTitles.clear();
       final response = await statisticService.getStatisticCurrentLaporan(
         selectedPoint.value,
       );
@@ -124,7 +125,9 @@ class LaporanPageController extends GetxController
       touchedTitle.value =
           showStatisticCurrentModel.map((e) => e.date!).toList();
 
-      bottomTitles.value = List<String?>.filled(spots.length, null);
+      bottomTitles.value =
+          List<String?>.generate(spots.length, (index) => null);
+          
       for (var title in showStatisticCurrentResponse!.bottomTitle) {
         bottomTitles[title.bottomTitleCase!] = title.date;
       }
@@ -158,6 +161,7 @@ class LaporanPageController extends GetxController
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');
+      isLoading(false);
     }
   }
 
