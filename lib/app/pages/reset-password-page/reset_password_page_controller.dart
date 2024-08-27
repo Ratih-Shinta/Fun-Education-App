@@ -7,6 +7,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class ResetPasswordPageController extends GetxController {
   RxBool isLoading = false.obs;
@@ -22,6 +23,7 @@ class ResetPasswordPageController extends GetxController {
 
   var email = ''.obs;
   RxString tokenResetPassword = ''.obs;
+  RxBool isOtpSend = false.obs;
 
   RxString countDown = '00:00'.obs;
   RxInt count = 300.obs;
@@ -89,6 +91,8 @@ class ResetPasswordPageController extends GetxController {
     timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
         t.cancel();
+                countDown.value = 'time out'; // Set the "time out" message
+
       } else {
         count.value--;
         int minute = count.value ~/ 60;
@@ -111,6 +115,7 @@ class ResetPasswordPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      isOtpSend.value = true;
       resetAndStartTimer();
     } catch (e) {
       Get.snackbar(
