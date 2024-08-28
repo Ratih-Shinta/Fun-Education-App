@@ -134,6 +134,7 @@ class DetailTugasPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      isLoading.value = false;
       update();
     } catch (e) {
       Get.snackbar(

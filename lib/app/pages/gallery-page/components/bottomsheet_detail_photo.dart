@@ -101,6 +101,7 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                 ),
               ),
               CommonButton(
+                isLoading: controller.isLoading.value,
                 text: 'Download Gambar',
                 onPressed: () {
                   controller.savePhotoToGallery(imageUrl);

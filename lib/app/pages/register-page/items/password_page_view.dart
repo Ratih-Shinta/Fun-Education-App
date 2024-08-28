@@ -77,27 +77,55 @@ class PasswordPageView extends GetView<RegisterPageController> {
                       'Lupa kata sandi atau ingin mengubahnya? Silahkan hubungi guru.',
                 ),
                 SizedBox(height: height * 0.03),
-                Column(
-                  children: [
-                    CommonTextField(
-                      prefixIcon: Icon(Icons.lock_outline_rounded,
-                          color: greyColor.withOpacity(0.5)),
-                      fieldController: controller.passwordController,
-                      obscureText: false,
-                      hintText: 'Kata Sandi',
-                      keyboardType: TextInputType.name,
-                    ),
-                    SizedBox(height: height * 0.01),
-                    CommonTextField(
-                      fieldController: controller.confirmPasswordController,
-                      obscureText: true,
-                      hintText: 'Konfirmasi Kata Sandi',
-                      keyboardType: TextInputType.name,
-                      prefixIcon: Icon(Icons.lock_outline_rounded,
-                          color: greyColor.withOpacity(0.5)),
-                    ),
-                  ],
-                ),
+                Obx(() {
+                  return Column(
+                    children: [
+                      CommonTextField(
+                        prefixIcon: Icon(Icons.lock_outline_rounded,
+                            color: greyColor.withOpacity(0.5)),
+                        fieldController: controller.passwordController,
+                        obscureText: controller.isVisibleSignIn.value,
+                        hintText: 'Kata Sandi',
+                        keyboardType: TextInputType.name,
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            controller.isVisibleSignIn.value =
+                                !controller.isVisibleSignIn.value;
+                          },
+                          icon: Icon(
+                            controller.isVisibleSignIn.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20,
+                            color: greyColor,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      CommonTextField(
+                        fieldController: controller.confirmPasswordController,
+                        obscureText: controller.isVisibleSignInConfirm.value,
+                        hintText: 'Konfirmasi Kata Sandi',
+                        keyboardType: TextInputType.name,
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            controller.isVisibleSignInConfirm.value =
+                                !controller.isVisibleSignInConfirm.value;
+                          },
+                          icon: Icon(
+                            controller.isVisibleSignInConfirm.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20,
+                            color: greyColor,
+                          ),
+                        ),
+                        prefixIcon: Icon(Icons.lock_outline_rounded,
+                            color: greyColor.withOpacity(0.5)),
+                      ),
+                    ],
+                  );
+                }),
                 SizedBox(height: height * 0.08),
                 CommonButton(
                   isLoading: controller.isLoading.value,

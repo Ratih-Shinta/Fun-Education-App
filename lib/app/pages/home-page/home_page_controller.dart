@@ -1,6 +1,7 @@
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_model.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/models/show_latest_catatan_darurat_response.dart';
 import 'package:fun_education_app/app/api/catatan-darurat/service/show_latest_catatan_darurat_service.dart';
+import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
@@ -26,6 +27,8 @@ class HomePageController extends GetxController {
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
+  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      <ShowCurrentLaporanHarianModel>[].obs;
 
   ShiftMasukService shiftMasukService = ShiftMasukService();
   ShiftMasukResponse? shiftMasukResponse;
@@ -60,22 +63,22 @@ class HomePageController extends GetxController {
     showLatestCatatanDarurat();
     showTotalPoint();
     showCurrentTugas();
-    showCurrentLaporanHarian(DateTime.now());
+    showCurrentLaporanHarian();
     update();
     super.onInit();
   }
 
-  Future showCurrentLaporanHarian(DateTime date) async {
+  Future showCurrentLaporanHarian() async {
     try {
       final response = await laporanHarianService.getShowCurrentLaporanHarian(
-          '${DateFormat('yyyy-MM-dd').format(date)}');
+          '${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
       showCurrentLaporanHarianResponse =
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
-      totalPoint.value = showCurrentLaporanHarianResponse!.totalPoint;
+      showCurrentLaporanHarianModel.value =
+          showCurrentLaporanHarianResponse!.data;
       update();
       print(
           'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
-      // print('datetime : ${DateFormat('yyyy-MM-dd').format(DateTime.now())}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');

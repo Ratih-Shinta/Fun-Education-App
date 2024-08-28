@@ -43,6 +43,7 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                     )),
               ),
               CommonButton(
+                isLoading: controller.isLoading.value,
                 text: 'Tutup',
                 onPressed: () => Navigator.pop(context),
                 backgroundColor: blackColor,

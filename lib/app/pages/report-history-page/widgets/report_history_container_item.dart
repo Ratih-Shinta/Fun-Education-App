@@ -140,7 +140,7 @@ class ReportHistoryContainerItem extends StatelessWidget {
                         SizedBox(width: width * 0.02),
                         AutoSizeText(
                           totalPoint <= 40
-                              ? 'Kurang Baik'
+                              ? 'Kurang'
                               : totalPoint <= 70
                                   ? 'Baik'
                                   : 'Sangat Baik',

@@ -18,6 +18,8 @@ class VerificationPageController extends GetxController {
 
   var otp = ''.obs;
 
+  RxBool isLoading = true.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -30,6 +32,7 @@ class VerificationPageController extends GetxController {
     count.value = 300;
     countDown.value = '05:00';
     timer?.cancel();
+    isLoading(false);
     startTimer();
   }
 
@@ -53,7 +56,7 @@ class VerificationPageController extends GetxController {
     try {
       await otpService.storeCheckOTP(otpController.text,
           homePageController.showCurrentUserModel.value.email!, false);
-
+isLoading(false);
       Get.snackbar(
         "Success",
         "OTP successful",

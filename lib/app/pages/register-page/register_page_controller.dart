@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPageController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool isVisibleSignIn = true.obs;
+  RxBool isVisibleSignInConfirm = true.obs;
 
   late TextEditingController fullNameController;
   late TextEditingController nicknameController;

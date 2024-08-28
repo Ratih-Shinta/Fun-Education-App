@@ -17,7 +17,7 @@ class TransaksiPageController extends GetxController {
 
   RxBool isOpen = false.obs;
 
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -55,6 +55,7 @@ class TransaksiPageController extends GetxController {
       showCurrentTransaksiResponse =
           ShowCurrentTransaksiResponse.fromJson(response.data);
       showCurrentTransaksiModel.value = showCurrentTransaksiResponse!.data!;
+      isLoading(false);
       print('show current : ${showCurrentTransaksiModel[2].amount}');
       update();
     } catch (e) {
@@ -71,6 +72,7 @@ class TransaksiPageController extends GetxController {
           ShowCurrentTransaksiResponse.fromJson(response.data);
       showCurrentTransaksiModelByMonth.value =
           showCurrentTransaksiResponse!.data!;
+          isLoading(false); 
       print('by month : ${showCurrentTransaksiModelByMonth[0].amount}');
       update();
     } catch (e) {

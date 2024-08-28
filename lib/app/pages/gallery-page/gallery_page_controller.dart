@@ -26,6 +26,8 @@ class GalleryPageController extends GetxController {
   RxList<ShowAllAlbumPhotoModel> showAllAlbumPhotoModel =
       <ShowAllAlbumPhotoModel>[].obs;
 
+  RxBool isLoading = true.obs;
+
   @override
   void onInit() {
     showAllPhotos();
@@ -93,6 +95,7 @@ class GalleryPageController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
       }
+      isLoading.value = false;
     } catch (e) {
       print(e);
       Get.snackbar(

@@ -7,12 +7,18 @@ import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class ReportHistoryPageComponentThree extends GetView<ReportHistoryPageController> {
+class ReportHistoryPageComponentThree
+    extends GetView<ReportHistoryPageController> {
   const ReportHistoryPageComponentThree({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
+      // if (controller.isLoading.value) {
+      //   return Center(
+      //     child: CircularProgressIndicator(),
+      //   );
+      // } else 
       if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
           controller.userPermission.value == 'Hadir') {
         return InkWell(

@@ -10,7 +10,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class ResetPasswordPageController extends GetxController {
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
 
   late TextEditingController emailController;
   late TextEditingController otpController = TextEditingController();
@@ -60,10 +60,7 @@ class ResetPasswordPageController extends GetxController {
       await userService.putResetPassword(
           email.value, tokenResetPassword.value, passwordController.text);
 
-      print('email: ${email.value}');
-      print('tokenResetPassword: ${tokenResetPassword.value}');
-      print('password: ${passwordController.text}');
-
+      isLoading(false);
       Get.snackbar(
         "Success",
         "Reset password successful",
@@ -91,8 +88,7 @@ class ResetPasswordPageController extends GetxController {
     timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
         t.cancel();
-                countDown.value = 'time out'; // Set the "time out" message
-
+        countDown.value = 'time out'; // Set the "time out" message
       } else {
         count.value--;
         int minute = count.value ~/ 60;
@@ -108,7 +104,7 @@ class ResetPasswordPageController extends GetxController {
       await otpService.storeSendOTP(
         email.value,
       );
-
+      isLoading(false);
       Get.snackbar(
         "Success",
         "Send OTP successful",
@@ -134,7 +130,7 @@ class ResetPasswordPageController extends GetxController {
           await otpService.storeCheckOTP(otpController.text, email.value, true);
 
       tokenResetPassword.value = response.data['token_reset_password'];
-
+      isLoading(false);
       Get.snackbar(
         "Success",
         "OTP successful",

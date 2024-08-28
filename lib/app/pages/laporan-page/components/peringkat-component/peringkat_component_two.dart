@@ -104,7 +104,12 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
 
             return Obx(
               () {
-                return Container(
+                if (controller.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Container(
                   margin: EdgeInsets.only(bottom: 8),
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -154,6 +159,7 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                     ],
                   ),
                 );
+                }
               },
             );
           },

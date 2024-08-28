@@ -53,9 +53,8 @@ class ReportHistoryPageController extends GetxController {
       userGrade.value = showCurrentLaporanHarianResponse!.totalPoint;
       userNote.value = showCurrentLaporanHarianResponse!.note ?? '';
       userPermission.value = showCurrentLaporanHarianResponse!.permission;
-
-      update();
       isLoading(false);
+      update();
     } catch (e) {
       print('laporan error :  $e');
     }
