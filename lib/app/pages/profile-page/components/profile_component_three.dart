@@ -36,7 +36,10 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
           () => Column(
             children: [
               SizedBox(height: height * 0.02),
-              UserDataContainer(title: 'Jenis Kelamin', content: 'Laki-Laki'),
+              UserDataContainer(
+                  title: 'Jenis Kelamin',
+                  content:
+                      '${homePageController.showCurrentUserModel.value.gender}'),
               SizedBox(height: height * 0.01),
               UserDataContainer(
                   title: 'Tempat, Tanggal Lahir',
@@ -49,6 +52,7 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
                       '${homePageController.showCurrentUserModel.value.address}'),
               SizedBox(height: height * 0.02),
               CommonButton(
+                // isLoading: controller.isLoading.value,
                 text: 'Logout',
                 backgroundColor: dangerColor,
                 textColor: whiteColor,

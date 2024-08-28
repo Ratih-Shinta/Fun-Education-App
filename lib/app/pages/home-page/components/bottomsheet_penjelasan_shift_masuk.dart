@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
+import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
+class BottomsheetPenjelasanShiftMasuk extends GetView<HomePageController> {
   const BottomsheetPenjelasanShiftMasuk({super.key});
 
   @override
@@ -78,6 +80,7 @@ class BottomsheetPenjelasanShiftMasuk extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: CommonButton(
+                    isLoading: controller.isLoading.value,
                     text: 'Tutup',
                     onPressed: () => Navigator.pop(context),
                     backgroundColor: blackColor,

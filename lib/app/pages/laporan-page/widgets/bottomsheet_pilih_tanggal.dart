@@ -1,11 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class BottomsheetPilihPeriode extends StatelessWidget {
+class BottomsheetPilihPeriode extends GetView<LaporanPageController> {
   final String title;
   final String subtitle;
   final List<String> options;
@@ -49,6 +50,7 @@ class BottomsheetPilihPeriode extends StatelessWidget {
                   title: title, subtitle: subtitle, color: primaryColor),
               buildOptions(width, height),
               CommonButton(
+                isLoading: controller.isLoading.value,
                 text: 'Tutup',
                 backgroundColor: blackColor,
                 textColor: whiteColor,

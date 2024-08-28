@@ -38,6 +38,7 @@ class LaporanPageController extends GetxController
   var spots = <FlSpot>[].obs;
   var touchedTitle = <DateTime>[].obs;
   var bottomTitles = <String?>[].obs;
+  
   var maxX = 0.0.obs;
 
   // var selectedPoint = '5'.obs;
@@ -129,7 +130,7 @@ class LaporanPageController extends GetxController
           List<String?>.generate(spots.length, (index) => null);
           
       for (var title in showStatisticCurrentResponse!.bottomTitle) {
-        bottomTitles[title.bottomTitleCase!] = title.date;
+        bottomTitles[title.bottomTitleCase!] = title.date.toString();
       }
 
       maxX.value = spots.length - 1.0;

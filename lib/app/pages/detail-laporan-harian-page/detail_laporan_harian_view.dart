@@ -45,12 +45,6 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
         ),
       ),
       body:
-      //  RefreshIndicator(
-      //   onRefresh: () async {
-      //     await laporanPageController.showCurrentLaporanHarian(argument);
-      //     controller.update();
-      //   },
-      //   child: 
         SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Padding(

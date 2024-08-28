@@ -146,13 +146,15 @@ class HomePageComponentThree extends GetView<HomePageController> {
                       width: width * 0.44,
                       padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: controller.totalPoint.value <= 25
-                            ? dangerColor.withOpacity(0.1)
-                            : controller.totalPoint.value <= 50
-                                ? warningColor.withOpacity(0.1)
-                                : controller.totalPoint.value <= 75
-                                    ? successColor.withOpacity(0.1)
-                                    : successColor.withOpacity(0.1),
+                        color: controller.totalPoint.value == 0
+                            ? greyColor.withOpacity(0.1)
+                            : controller.totalPoint.value <= 25
+                                ? dangerColor.withOpacity(0.1)
+                                : controller.totalPoint.value <= 50
+                                    ? warningColor.withOpacity(0.1)
+                                    : controller.totalPoint.value <= 75
+                                        ? successColor.withOpacity(0.1)
+                                        : successColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
@@ -166,13 +168,16 @@ class HomePageComponentThree extends GetView<HomePageController> {
                                   SvgPicture.asset(
                                     iconDocument,
                                     width: 35,
-                                    color: controller.totalPoint.value <= 25
-                                        ? dangerColor
-                                        : controller.totalPoint.value <= 50
-                                            ? warningColor
-                                            : controller.totalPoint.value <= 75
-                                                ? successColor
-                                                : successColor,
+                                    color: controller.totalPoint.value == 0
+                                        ? greyColor
+                                        : controller.totalPoint.value <= 25
+                                            ? dangerColor
+                                            : controller.totalPoint.value <= 50
+                                                ? warningColor
+                                                : controller.totalPoint.value <=
+                                                        75
+                                                    ? successColor
+                                                    : successColor,
                                   ),
                                   SizedBox(width: 8.0),
                                   AutoSizeText.rich(
@@ -215,7 +220,6 @@ class HomePageComponentThree extends GetView<HomePageController> {
                                 style: controller.totalPoint.value == 0
                                     ? tsBodySmallSemibold(blackColor)
                                     : tsBodyMediumSemibold(blackColor)),
-                            // style: tsBodyMediumSemibold(blackColor)),
                           ),
                           SizedBox(height: 15),
                           Row(

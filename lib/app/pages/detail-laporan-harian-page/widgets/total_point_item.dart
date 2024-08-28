@@ -23,11 +23,13 @@ class TotalPointItem extends StatelessWidget {
         vertical: height * 0.02,
       ),
       decoration: BoxDecoration(
-        color: totalPoint <= 40
-            ? dangerColor
-            : totalPoint <= 70
-                ? warningColor 
-                : successColor,
+        color: totalPoint == 0
+            ? greyColor
+            : totalPoint <= 40
+                ? dangerColor
+                : totalPoint <= 70
+                    ? warningColor
+                    : successColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
@@ -47,7 +49,7 @@ class TotalPointItem extends StatelessWidget {
           ),
           AutoSizeText(
             totalPoint <= 40
-                ? 'Kurang Baik'
+                ? 'Kurang'
                 : totalPoint <= 70
                     ? 'Baik'
                     : 'Sangat Baik',

@@ -126,6 +126,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         ),
         SizedBox(height: 15),
         CommonButton(
+          isLoading: controller.isLoading.value,
           text: 'Kirim Tugas',
           backgroundColor: blackColor,
           onPressed: () {

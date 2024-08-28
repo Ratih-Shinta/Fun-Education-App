@@ -79,7 +79,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
         ),
         SizedBox(height: height * 0.012),
         Obx(() {
-          if (controller.isLoading.value == true) {
+          if (controller.isLoading.value) {
             return Center(
               child: CircularProgressIndicator(),
             );

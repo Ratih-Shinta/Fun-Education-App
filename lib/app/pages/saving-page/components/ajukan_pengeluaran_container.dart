@@ -88,6 +88,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                     ),
                   ),
                   CommonButton(
+                    isLoading: controller.isLoading.value,
                     text: 'Selesai',
                     backgroundColor: dangerColor,
                     textColor: whiteColor,
@@ -143,6 +144,7 @@ class AjukanPengeluaranContainer extends GetView<SavingPageController> {
                     ),
                   ),
                   CommonButton(
+                    isLoading: controller.isLoading.value,
                     text: 'Selesai',
                     backgroundColor: successColor,
                     textColor: whiteColor,

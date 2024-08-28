@@ -80,10 +80,6 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
                         DateTime.parse(transaksiPageController
                             .showCurrentTransaksiModel[index].date
                             .toString())),
-                    // dateController: controller.formatDate(controller
-                    //         .showCurrentTransaksiModel[index].date
-                    //         .toString() ??
-                    //     "Unknown date"),
                   );
                 },
               )),

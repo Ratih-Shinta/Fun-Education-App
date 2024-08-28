@@ -103,7 +103,7 @@ class EmailResetPasswordView extends GetView<ResetPasswordPageController> {
                 ),
               ),
               CommonButton(
-                isLoading: controller.isLoading.value,
+                // isLoading: controller.isLoading.value,
                 text: 'Kirim Email',
                 backgroundColor: blackColor,
                 textColor: whiteColor,

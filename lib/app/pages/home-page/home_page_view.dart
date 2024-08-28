@@ -43,7 +43,7 @@ class HomePageView extends GetView<HomePageController> {
             await controller.showCurrentUser();
             await controller.showCurrentShiftMasuk();
             await controller.showLatestCatatanDarurat();
-            await controller.showCurrentLaporanHarian(DateTime.now());
+            await controller.showCurrentLaporanHarian();
             await laporanPageController.showCurrentTugasTerbaru();
             controller.refreshController.refreshCompleted();
           },

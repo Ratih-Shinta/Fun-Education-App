@@ -51,7 +51,7 @@ class LoginPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      // Get.offNamed(Routes.NAVBAR);
+      isLoading(false);
     } catch (e) {
       isLoading(true);
       Get.snackbar(

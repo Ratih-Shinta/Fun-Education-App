@@ -151,22 +151,24 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   ],
                 ),
                 SizedBox(height: 30),
-                Obx(() {
-                  if (controller.isLoading.value)
-                    return Center(child: CircularProgressIndicator());
-                  else
-                    return AspectRatio(
-                      aspectRatio: 0.8,
-                      child: LineChart(
-                        taskLineChart.taskLineChart(),
-                      ),
-                    );
-                }),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.01,
+                    ),
+                    child: Obx(() => controller.bottomTitles.isEmpty
+                        ? Text('Tidak Ada data')
+                        : LineChart(
+                            taskLineChart.taskLineChart(),
+                          )),
+                  ),
+                ),
               ],
             ),
           ),
         ),
         CommonButton(
+          // isLoading: controller.isLoading.value,
           text: 'Lihat Riwayat Laporan',
           backgroundColor: blackColor,
           textColor: whiteColor,

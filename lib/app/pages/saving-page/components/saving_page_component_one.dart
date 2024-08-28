@@ -30,35 +30,6 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                     BorderRadius.vertical(bottom: Radius.circular(25))),
             child: Column(
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     AutoSizeText.rich(
-                //       TextSpan(
-                //           text: 'Tabungan Ananda',
-                //           style: tsTitleSmallSemibold(whiteColor)),
-                //     ),
-                //     InkWell(
-                //       onTap: () {
-                //         Get.toNamed(Routes.SAVING_INFORMATION_PAGE);
-                //       },
-                //       child: Container(
-                //         padding: EdgeInsets.symmetric(
-                //           vertical: height * 0.015,
-                //           horizontal: width * 0.03,
-                //         ),
-                //         decoration: BoxDecoration(
-                //           color: whiteColor,
-                //           borderRadius: BorderRadius.circular(10),
-                //         ),
-                //         child: Icon(
-                //           Icons.info_outline,
-                //           size: 24,
-                //         ),
-                //       ),
-                //     )
-                //   ],
-                // ),
                 AutoSizeText.rich(
                   textAlign: TextAlign.center,
                   TextSpan(
@@ -164,8 +135,8 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                     ),
                   ],
                 ),
-                SizedBox(height: height * 0.01),
-                AjukanPengeluaranContainer()
+                // SizedBox(height: height * 0.01),
+                // AjukanPengeluaranContainer()
               ],
             ),
           ),
