@@ -51,16 +51,16 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
                   content:
                       '${homePageController.showCurrentUserModel.value.address}'),
               SizedBox(height: height * 0.02),
-              CommonButton(
-                // isLoading: controller.isLoading.value,
-                text: 'Logout',
-                backgroundColor: dangerColor,
-                textColor: whiteColor,
-                svgIcon: 'assets/icons/icLogout.svg',
-                onPressed: () {
-                  controller.logout();
-                },
-              ),
+              Obx(() => CommonButton(
+                    isLoading: controller.isLoading.value,
+                    text: 'Logout',
+                    backgroundColor: dangerColor,
+                    textColor: whiteColor,
+                    svgIcon: 'assets/icons/icLogout.svg',
+                    onPressed: () {
+                      controller.logout();
+                    },
+                  )),
             ],
           ),
         ),

@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
 class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
   DetailLaporanComponentTwo({super.key});
-  final LaporanPageController laporanPageController =
-      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +20,7 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else if (laporanPageController.showCurrentLaporanHarianResponse?.data ==
-          null) {
+      } else if (controller.showCurrentLaporanHarianResponse?.data == null) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: height * 0.15,
@@ -61,21 +57,20 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: secondaryColor.withOpacity(0.05)),
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount:
-                laporanPageController.showCurrentLaporanHarianModel.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ReportWidget(
-                no: index + 1,
-                text:
-                    '${laporanPageController.showCurrentLaporanHarianModel[index].activity}',
-                point:
-                    '${laporanPageController.showCurrentLaporanHarianModel[index].grade}',
-              );
-            },
-          ),
+          child: Obx(() => ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: controller.showCurrentLaporanHarianModel.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ReportWidget(
+                    no: index + 1,
+                    text:
+                        '${controller.showCurrentLaporanHarianModel[index].activity}',
+                    point:
+                        '${controller.showCurrentLaporanHarianModel[index].grade}',
+                  );
+                },
+              )),
         );
       }
     });

@@ -41,6 +41,7 @@ class ProfilePageController extends GetxController {
 
   Future showStatisticCurrentTugasUser() async {
     try {
+      isLoading(true);
       bottomTitles.clear();
       final response = await statisticService.getStatisticCurrentTugas(
         selectedPoints.value,
@@ -61,13 +62,13 @@ class ProfilePageController extends GetxController {
 
       bottomTitles.value =
           List<String?>.generate(spots.length, (index) => null);
-          
+
       for (var title in showStatisticCurrentResponse!.bottomTitle) {
         bottomTitles[title.bottomTitleCase!] = title.date;
       }
 
       maxX.value = spots.length - 1.0;
-      isLoading.value = false;
+      isLoading(false);
       update();
     } catch (e) {
       print('statistik error : $e');
@@ -76,14 +77,14 @@ class ProfilePageController extends GetxController {
 
   Future<void> logout() async {
     try {
-      isLoading.value = true;
+      isLoading(true);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       await authenticationService.logout();
 
       prefs.remove('token');
-
+      isLoading(false);
       Get.snackbar(
         "Logout Success",
         "You have been logged out",

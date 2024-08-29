@@ -100,17 +100,17 @@ void bottomSheetDetailGallery(BuildContext context, String title,
                   ],
                 ),
               ),
-              CommonButton(
-                isLoading: controller.isLoading.value,
-                text: 'Download Gambar',
-                onPressed: () {
-                  controller.savePhotoToGallery(imageUrl);
-                  Navigator.pop(context);
-                },
-                backgroundColor: blackColor,
-                textColor: whiteColor,
-                icon: Icons.download,
-              )
+              Obx(() => CommonButton(
+                    isLoading: controller.isLoading.value,
+                    text: 'Download Gambar',
+                    onPressed: () {
+                      controller.savePhotoToGallery(imageUrl);
+                      Navigator.pop(context);
+                    },
+                    backgroundColor: blackColor,
+                    textColor: whiteColor,
+                    icon: Icons.download,
+                  ))
             ],
           ),
         ),

@@ -20,7 +20,10 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
       } else if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
           controller.userPermission.value == 'Hadir') {
         return InkWell(
-          onTap: () => Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE),
+          onTap: () => Get.toNamed(
+            Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+            arguments: {'dateLaporan' : controller.selectedDate.value},
+          ),
           child: LaporanContainer(
             controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
             controller.showCurrentLaporanHarianResponse?.note == null

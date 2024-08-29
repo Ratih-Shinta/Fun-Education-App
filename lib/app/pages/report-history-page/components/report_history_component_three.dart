@@ -18,17 +18,13 @@ class ReportHistoryPageComponentThree
       //   return Center(
       //     child: CircularProgressIndicator(),
       //   );
-      // } else 
+      // } else
       if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
           controller.userPermission.value == 'Hadir') {
         return InkWell(
           onTap: () {
-            Get.toNamed(
-              Routes.DETAIL_LAPORAN_HARIAN_PAGE,
-              arguments: {
-                'dateHistory': controller.selectedDay.value,
-              },
-            );
+            Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+                arguments: {'dateRiwayatHadir' : controller.selectedDay.value});
           },
           child: LaporanContainer(
             controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
@@ -48,9 +44,7 @@ class ReportHistoryPageComponentThree
           onTap: () {
             Get.toNamed(
               Routes.DETAIL_LAPORAN_HARIAN_PAGE,
-              arguments: {
-                'dateHistory': controller.selectedDay.value,
-              },
+              arguments: {'dateRiwayat': controller.selectedDay.value},
             );
           },
         );

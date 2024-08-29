@@ -19,7 +19,7 @@ class DetailTugasPageController extends GetxController {
   RefreshController refreshController = RefreshController();
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   var imageFileList = <XFile>[].obs;
 
   final ImagePicker imagePicker = ImagePicker();
@@ -56,15 +56,15 @@ class DetailTugasPageController extends GetxController {
       isLoading(false);
       update();
       print('showCurrentTugasUser ${showCurrentTugasUserModel.value.status}');
-      isLoading.value = false;
+      isLoading(false);
     } catch (e) {
       print(e);
     }
   }
 
   Future<void> showByIdTugas(String tugasById) async {
-    isLoading.value = true;
-    update(); // Memaksa update UI saat mulai loading
+    isLoading(true);
+    update();
 
     try {
       final response = await tugasService.getShowByIdTugas(tugasById);
@@ -74,7 +74,7 @@ class DetailTugasPageController extends GetxController {
     } catch (e) {
       print(e);
     } finally {
-      isLoading.value = false;
+      isLoading(false);
       update(); // Memaksa update UI setelah selesai
     }
   }
@@ -93,6 +93,7 @@ class DetailTugasPageController extends GetxController {
 
   Future<void> storeKirimTaskUser() async {
     try {
+      isLoading(true);
       final response = await tugasUserService.postStoreKirimTugas(
         Get.arguments.id,
         noteController.text,
@@ -134,7 +135,7 @@ class DetailTugasPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      isLoading.value = false;
+      isLoading(false);
       update();
     } catch (e) {
       Get.snackbar(

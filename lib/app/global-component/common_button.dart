@@ -1,8 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
@@ -20,7 +20,8 @@ class CommonButton extends StatelessWidget {
     required this.textColor,
     this.onPressed,
     this.icon,
-    this.isLoading, this.svgIcon,
+    this.isLoading,
+    this.svgIcon,
   }) : super(key: key);
 
   @override
@@ -44,8 +45,9 @@ class CommonButton extends StatelessWidget {
           children: [
             isLoading == true
                 ? SizedBox(
-                    child: CircularProgressIndicator(
-                      color: whiteColor,
+                    child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: Colors.white,
+                      size: height * 0.035,
                     ),
                   )
                 : isLoading == null

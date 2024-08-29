@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/reset-password-page/reset_password_page_controller.dart';

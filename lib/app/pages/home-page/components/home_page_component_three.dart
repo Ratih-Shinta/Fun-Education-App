@@ -140,21 +140,23 @@ class HomePageComponentThree extends GetView<HomePageController> {
               SizedBox(height: 10),
               InkWell(
                 onTap: () {
-                  Get.toNamed(Routes.DETAIL_LAPORAN_HARIAN_PAGE);
+                  Get.toNamed(
+                    Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+                    arguments: {'dateHome': DateTime.now()},
+                  );
                 },
                 child: Obx(() => Container(
                       width: width * 0.44,
                       padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: controller.totalPoint.value == 0
-                            ? greyColor.withOpacity(0.1)
-                            : controller.totalPoint.value <= 25
-                                ? dangerColor.withOpacity(0.1)
-                                : controller.totalPoint.value <= 50
-                                    ? warningColor.withOpacity(0.1)
-                                    : controller.totalPoint.value <= 75
-                                        ? successColor.withOpacity(0.1)
-                                        : successColor.withOpacity(0.1),
+                        color: controller.totalPoint.value >= 1 &&
+                                controller.totalPoint.value <= 25
+                            ? dangerColor.withOpacity(0.1)
+                            : controller.totalPoint.value < 50
+                                ? warningColor.withOpacity(0.1)
+                                : controller.totalPoint.value < 200
+                                    ? successColor.withOpacity(0.1)
+                                    : greyColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(

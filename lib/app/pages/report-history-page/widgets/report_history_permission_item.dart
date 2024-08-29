@@ -30,7 +30,7 @@ class ReportHistoryPermissionItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: height * 0.03),
-              SvgPicture.asset('assets/images/empty_list.svg'),
+              SvgPicture.asset('assets/images/imgEmpty.svg'),
               SizedBox(height: height * 0.02),
               AutoSizeText(
                 'Laporan Ananda $permission',

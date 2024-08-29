@@ -1,13 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
-import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class DetailLaporanComponentFour extends GetView<DetailLaporanHarianController> {
-   DetailLaporanComponentFour({super.key});
-  final LaporanPageController laporanPageController = Get.put(LaporanPageController());
+class DetailLaporanComponentFour
+    extends GetView<DetailLaporanHarianController> {
+  DetailLaporanComponentFour({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +30,12 @@ class DetailLaporanComponentFour extends GetView<DetailLaporanHarianController> 
             color: greyColor.withOpacity(0.05),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: AutoSizeText.rich(
-            TextSpan(
-              text: laporanPageController.showCurrentLaporanHarianResponse?.note ??
-                  'Tidak ada catatan',
-              style: tsBodySmallRegular(blackColor),
-            ),
-          ),
+          child: Obx(() => AutoSizeText.rich(
+                TextSpan(
+                  text: controller.userNote.value,
+                  style: tsBodySmallRegular(blackColor),
+                ),
+              )),
         ),
       ],
     );

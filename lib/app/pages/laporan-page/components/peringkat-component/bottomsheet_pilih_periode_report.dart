@@ -104,32 +104,32 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
                       title: 'Mingguan (Terakhir)',
                       value: 'weekly',
                       groupValue: controller.selectedPoint.value,
-                      onChanged: (value) =>
-                          controller.selectedPoint(value),
+                      onChanged: (value) => controller.selectedPoint(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: 'Bulanan (Terakhir)',
                       value: 'monthly',
                       groupValue: controller.selectedPoint.value,
-                      onChanged: (value) =>
-                          controller.selectedPoint(value),
+                      onChanged: (value) => controller.selectedPoint(value),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(height: height * 0.03),
-            CommonButton(
-              isLoading: controller.isLoading.value,
-              text: 'Tutup',
-              backgroundColor: blackColor,
-              textColor: whiteColor,
-              onPressed: () async {
-                await controller.showStatisticCurrentLaporanUser();
-                Get.back();
-              },
-            ),
+            Obx(() {
+              return CommonButton(
+                isLoading: controller.isLoading.value,
+                text: 'Tutup',
+                backgroundColor: blackColor,
+                textColor: whiteColor,
+                onPressed: () async {
+                  await controller.showStatisticCurrentLaporanUser();
+                  Get.back();
+                },
+              );
+            })
           ],
         ),
       ),

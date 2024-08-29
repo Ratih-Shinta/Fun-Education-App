@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class LaporanComponent extends GetView<LaporanPageController> {
-  const LaporanComponent({super.key});
+  LaporanComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
