@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
-class DetailComponentFive extends StatelessWidget {
-  const DetailComponentFive({super.key});
+class DetailLaporanComponentFive extends StatelessWidget {
+  const DetailLaporanComponentFive({super.key});
 
   @override
   Widget build(BuildContext context) {

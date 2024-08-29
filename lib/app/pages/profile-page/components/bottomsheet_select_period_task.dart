@@ -100,32 +100,30 @@ class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
                       title: 'Mingguan (Terakhir)',
                       value: 'weekly',
                       groupValue: controller.selectedPoints.value,
-                      onChanged: (value) =>
-                          controller.selectedPoints(value),
+                      onChanged: (value) => controller.selectedPoints(value),
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: 'Bulanan (Terakhir)',
                       value: 'monthly',
                       groupValue: controller.selectedPoints.value,
-                      onChanged: (value) =>
-                          controller.selectedPoints(value),
+                      onChanged: (value) => controller.selectedPoints(value),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(height: height * 0.03),
-            CommonButton(
-              // isLoading: controller.isLoading.value,
-              text: 'Tutup',
-              backgroundColor: blackColor,
-              textColor: whiteColor,
-              onPressed: () async {
-                await controller.showStatisticCurrentTugasUser();
-                Get.back();
-              },
-            ),
+            Obx(() => CommonButton(
+                  isLoading: controller.isLoading.value,
+                  text: 'Tutup',
+                  backgroundColor: blackColor,
+                  textColor: whiteColor,
+                  onPressed: () async {
+                    await controller.showStatisticCurrentTugasUser();
+                    Get.back();
+                  },
+                )),
           ],
         ),
       ),

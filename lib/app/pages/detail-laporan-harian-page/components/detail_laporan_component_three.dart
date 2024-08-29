@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
 class DetailLaporanComponentThree extends StatelessWidget {
-  const DetailLaporanComponentThree({super.key});
+   DetailLaporanComponentThree({super.key});
 
   @override
   Widget build(BuildContext context) {

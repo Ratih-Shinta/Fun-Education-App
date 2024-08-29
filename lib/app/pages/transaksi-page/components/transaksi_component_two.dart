@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/global-component/commont_no_data.dart';
+import 'package:fun_education_app/app/global-component/common_no_data.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/components/bottomsheet_pilih_bulan.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/monthly_transactions.dart';
@@ -90,7 +90,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
                 vertical: height * 0.15,
               ),
               child: Center(
-                child: CommontNoData(
+                child: CommonNoData(
                   title: 'Belum Ada Riwayat',
                   subTitle:
                       'Belum Ada Riwayat Transaksi Di Bulan ${controller.selectedMonth.value}',

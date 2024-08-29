@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/global-component/commont_no_data.dart';
+import 'package:fun_education_app/app/global-component/common_no_data.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tugas_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tab_item.dart';
@@ -62,7 +62,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                   if (controller.isLoading.value) {
                     return Center(child: CircularProgressIndicator());
                   } else if (controller.showCurrentTugasModelTerbaru.isEmpty) {
-                    return CommontNoData(
+                    return CommonNoData(
                         title: 'Tidak Ada Tugas Terbaru',
                         subTitle: 'Tidak Ada Tugas Terbaru Saat Ini');
                   } else {
@@ -91,7 +91,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     return Center(child: CircularProgressIndicator());
                   } else if (controller
                       .showCurrentTugasModelDiperiksa.isEmpty) {
-                    return CommontNoData(
+                    return CommonNoData(
                         title: 'Tidak Ada Tugas Diperiksa',
                         subTitle: 'Tidak Ada Tugas Diperiksa Saat Ini');
                   } else {
@@ -120,7 +120,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                   if (controller.isLoading.value) {
                     return Center(child: CircularProgressIndicator());
                   } else if (controller.showCurrentTugasModelSelesai.isEmpty) {
-                    return CommontNoData(
+                    return CommonNoData(
                         title: 'Tidak Ada Tugas Selesai',
                         subTitle: 'Tidak Ada Tugas Selesai Saat Ini');
                   } else {

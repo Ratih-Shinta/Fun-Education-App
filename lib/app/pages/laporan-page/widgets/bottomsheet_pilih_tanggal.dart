@@ -50,12 +50,11 @@ class BottomsheetPilihPeriode extends GetView<LaporanPageController> {
                   title: title, subtitle: subtitle, color: primaryColor),
               buildOptions(width, height),
               CommonButton(
-                isLoading: controller.isLoading.value,
                 text: 'Tutup',
                 backgroundColor: blackColor,
                 textColor: whiteColor,
                 onPressed: () {
-                  Get.back();
+                  Navigator.pop(context);
                 },
               ),
             ],

@@ -26,7 +26,7 @@ class GalleryPageController extends GetxController {
   RxList<ShowAllAlbumPhotoModel> showAllAlbumPhotoModel =
       <ShowAllAlbumPhotoModel>[].obs;
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -42,9 +42,10 @@ class GalleryPageController extends GetxController {
       showAllPhotosResponse = ShowAllPhotosResponse.fromJson(response.data);
       showAllPhotosModel.value = showAllPhotosResponse!.data;
       // print(showAllPhotosModel);
+      isLoadingAllPhotos(false);
       update();
     } catch (e) {
-      isLoadingAllPhotos(true);
+      isLoadingAllPhotos(false);
       print(e);
     } finally {
       isLoadingAllPhotos(false);
@@ -70,6 +71,7 @@ class GalleryPageController extends GetxController {
 
   Future savePhotoToGallery(String url) async {
     try {
+      isLoading(true);
       var response = await Dio().get(
         url,
         options: Options(responseType: ResponseType.bytes),

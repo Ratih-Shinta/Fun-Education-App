@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/global-component/commont_no_data.dart';
+import 'package:fun_education_app/app/global-component/common_no_data.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_diperiksa.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_kirim.dart';
 import 'package:fun_education_app/app/pages/detail-tugas-page/components/detail_tugas_selesai.dart';
@@ -77,7 +77,7 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
                   } else {
                     switch (controller.showCurrentTugasUserModel.value.status) {
                       case 'Gagal':
-                        return CommontNoData(
+                        return CommonNoData(
                             title: 'Ananda Tidak Mengerjakan Tugas',
                             subTitle: 'Selalu Periksa Tenggat Waktu');
                       case 'Diperiksa':

@@ -76,9 +76,9 @@ class HomePageController extends GetxController {
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
+          totalPoint.value = showCurrentLaporanHarianResponse!.totalPoint;
       update();
-      print(
-          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      print('laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');

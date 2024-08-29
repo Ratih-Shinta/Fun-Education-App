@@ -57,16 +57,16 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
               },
             ),
             SizedBox(height: height * 0.045),
-            CommonButton(
-              isLoading: controller.isLoading.value,
-              text: 'Tutup',
-              onPressed: () {
-                controller.showCurrentTransaksiByMonth();
-                Get.back();
-              },
-              backgroundColor: blackColor,
-              textColor: whiteColor,
-            )
+            Obx(() => CommonButton(
+                  isLoading: controller.isLoading.value,
+                  text: 'Tutup',
+                  onPressed: () {
+                    controller.showCurrentTransaksiByMonth();
+                    Get.back();
+                  },
+                  backgroundColor: blackColor,
+                  textColor: whiteColor,
+                ))
           ],
         ),
       ),

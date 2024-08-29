@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 
-class CommontNoData extends StatelessWidget {
+class CommonNoData extends StatelessWidget {
   final String title;
   final String subTitle;
-  const CommontNoData({super.key, required this.title, required this.subTitle});
+  const CommonNoData({super.key, required this.title, required this.subTitle});
 
   @override
   Widget build(BuildContext context) {

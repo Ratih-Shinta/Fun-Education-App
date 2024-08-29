@@ -17,7 +17,7 @@ class TransaksiPageController extends GetxController {
 
   RxBool isOpen = false.obs;
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -65,6 +65,7 @@ class TransaksiPageController extends GetxController {
 
   Future<void> showCurrentTransaksiByMonth() async {
     try {
+      isLoading(true);
       isOpen(true);
       final response =
           await transaksiService.getTransaksiByMonth(selectedMonth.value);

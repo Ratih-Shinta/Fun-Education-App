@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/common_no_data.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/tugas_widget.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
@@ -31,8 +32,13 @@ class HomePageComponentFour extends GetView<HomePageController> {
           ],
         ),
         SizedBox(height: height * 0.02),
-        Obx(() => ListView.builder(
-              shrinkWrap: true,
+        Obx(() {
+          if (laporanController.showCurrentTugasModelTerbaru.isEmpty) {
+            return CommonNoData(
+                title: 'Tidak Ada Tugas Terbaru',
+                subTitle: 'Tidak Ada Tugas Terbaru Saat Ini');
+          } else {
+            return ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               itemCount: laporanController.showCurrentTugasModelTerbaru.length,
               itemBuilder: (BuildContext context, int index) {
@@ -47,7 +53,9 @@ class HomePageComponentFour extends GetView<HomePageController> {
                       '${laporanController.showCurrentTugasModelTerbaru[index].statusTugasUser}',
                 );
               },
-            ))
+            );
+          }
+        })
       ],
     );
   }

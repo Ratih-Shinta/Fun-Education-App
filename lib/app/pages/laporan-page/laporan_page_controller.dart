@@ -29,6 +29,7 @@ class LaporanPageController extends GetxController
     with SingleGetTickerProviderMixin {
   RefreshController refreshController = RefreshController();
   RefreshController peringkatRefreshController = RefreshController();
+
   TabController? tabControllerAll;
   RxBool isLoading = true.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
@@ -38,15 +39,20 @@ class LaporanPageController extends GetxController
   var spots = <FlSpot>[].obs;
   var touchedTitle = <DateTime>[].obs;
   var bottomTitles = <String?>[].obs;
-  
-  var maxX = 0.0.obs;
 
-  // var selectedPoint = '5'.obs;
-  var selectedPoint = 'weekly'.obs;
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
+  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      <ShowCurrentLaporanHarianModel>[].obs;
 
   RxInt userGrade = 0.obs;
   RxString userNote = ''.obs;
   RxString userPermission = ''.obs;
+
+  var maxX = 0.0.obs;
+
+  // var selectedPoint = '5'.obs;
+  var selectedPoint = 'weekly'.obs;
 
   StatisticService statisticService = StatisticService();
   ShowStatisticCurrentResponse? showStatisticCurrentResponse;
@@ -54,11 +60,6 @@ class LaporanPageController extends GetxController
       <ShowStatisticCurrentModel>[].obs;
   RxList<ShowStatisticBottomTitleModel> showStatisticBottomTitleModel =
       <ShowStatisticBottomTitleModel>[].obs;
-
-  LaporanHarianService laporanHarianService = LaporanHarianService();
-  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
-  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
-      <ShowCurrentLaporanHarianModel>[].obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -100,48 +101,18 @@ class LaporanPageController extends GetxController
     showCurrentTugasSelesai();
     showLeaderboardWeelky();
     showLeaderboardMonthly();
-    showCurrentLaporanHarian(selectedDate.value);
     showStatisticCurrentLaporanUser();
+    showCurrentLaporanHarian(DateTime.now());
     update();
     super.onInit();
   }
 
-  Future showStatisticCurrentLaporanUser() async {
-    try {
-      bottomTitles.clear();
-      final response = await statisticService.getStatisticCurrentLaporan(
-        selectedPoint.value,
-      );
-      showStatisticCurrentResponse =
-          ShowStatisticCurrentResponse.fromJson(response.data);
-      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
-      print(showStatisticCurrentModel);
-
-      spots.value = showStatisticCurrentModel
-          .map((e) => FlSpot(
-                showStatisticCurrentModel.indexOf(e).toDouble(),
-                e.totalPoint!.toDouble(),
-              ))
-          .toList();
-      touchedTitle.value =
-          showStatisticCurrentModel.map((e) => e.date!).toList();
-
-      bottomTitles.value =
-          List<String?>.generate(spots.length, (index) => null);
-          
-      for (var title in showStatisticCurrentResponse!.bottomTitle) {
-        bottomTitles[title.bottomTitleCase!] = title.date.toString();
-      }
-
-      maxX.value = spots.length - 1.0;
-      isLoading(false);
-      update();
-    } catch (e) {
-      print('statistik error : $e');
+  Future showCurrentLaporanHarian(DateTime? date) async {
+    if (date == null) {
+      print('Error: date parameter is null');
+      return;
     }
-  }
 
-  Future showCurrentLaporanHarian(DateTime date) async {
     try {
       showCurrentLaporanHarianModel.clear();
       userGrade.value = 0;
@@ -163,6 +134,42 @@ class LaporanPageController extends GetxController
     } catch (e) {
       print('laporan error :  $e');
       isLoading(false);
+    }
+  }
+
+  Future showStatisticCurrentLaporanUser() async {
+    try {
+      isLoading(true);
+      bottomTitles.clear();
+      final response = await statisticService.getStatisticCurrentLaporan(
+        selectedPoint.value,
+      );
+      showStatisticCurrentResponse =
+          ShowStatisticCurrentResponse.fromJson(response.data);
+      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
+      print(showStatisticCurrentModel);
+
+      spots.value = showStatisticCurrentModel
+          .map((e) => FlSpot(
+                showStatisticCurrentModel.indexOf(e).toDouble(),
+                e.totalPoint!.toDouble(),
+              ))
+          .toList();
+      touchedTitle.value =
+          showStatisticCurrentModel.map((e) => e.date!).toList();
+
+      bottomTitles.value =
+          List<String?>.generate(spots.length, (index) => null);
+
+      for (var title in showStatisticCurrentResponse!.bottomTitle) {
+        bottomTitles[title.bottomTitleCase!] = title.date.toString();
+      }
+
+      maxX.value = spots.length - 1.0;
+      isLoading(false);
+      update();
+    } catch (e) {
+      print('statistik error : $e');
     }
   }
 

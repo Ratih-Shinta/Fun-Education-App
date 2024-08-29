@@ -130,7 +130,8 @@ class LoginPageView extends GetView<LoginPageController> {
                     InkWell(
                       child: AutoSizeText('Lupa Kata Sandi?',
                           style: tsLabelLargeMedium(dangerColor)),
-                      onTap: () => Get.toNamed(Routes.EMAIL_RESET_PASSWORD_PAGE),
+                      onTap: () =>
+                          Get.toNamed(Routes.EMAIL_RESET_PASSWORD_PAGE),
                     )
                   ],
                 ),
@@ -148,15 +149,17 @@ class LoginPageView extends GetView<LoginPageController> {
                   ],
                 ),
                 SizedBox(height: height * 0.03),
-                CommonButton(
-                  isLoading: controller.isLoading.value,
-                  text: 'Masuk',
-                  backgroundColor: blackColor,
-                  textColor: whiteColor,
-                  onPressed: () {
-                    controller.login();
-                  },
-                )
+                Obx(
+                  () => CommonButton(
+                    isLoading: controller.isLoading.value,
+                    text: 'Masuk',
+                    backgroundColor: blackColor,
+                    textColor: whiteColor,
+                    onPressed: () {
+                      controller.login();
+                    },
+                  ),
+                ),
               ],
             ),
           ),
