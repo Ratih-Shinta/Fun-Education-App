@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
-import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
+import 'package:fun_education_app/app/api/users/models/show_current_user_model.dart';
+import 'package:fun_education_app/app/api/users/models/show_current_user_response.dart';
+import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  final HomePageController homePageController = Get.put(HomePageController());
   late TextEditingController emailController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
 
@@ -16,6 +17,11 @@ class LoginPageController extends GetxController {
 
   late AuthenticationService authenticationService;
 
+    UserService userService = UserService();
+  ShowCurrentUserResponse? showCurrentUserResponse;
+  Rx<ShowCurrentUserModel> showCurrentUserModel = ShowCurrentUserModel().obs;
+
+
   @override
   void onInit() {
     emailController = TextEditingController();
@@ -23,6 +29,19 @@ class LoginPageController extends GetxController {
 
     authenticationService = AuthenticationService();
     super.onInit();
+  }
+
+  Future showCurrentUser() async {
+    try {
+      final response = await userService.getShowCurrentUser();
+      showCurrentUserResponse = ShowCurrentUserResponse.fromJson(response.data);
+      showCurrentUserModel.value = showCurrentUserResponse!.data;
+      isLoading.value = false;
+      update();
+      print('showCurrentUserModel : ${showCurrentUserModel.value.nickname}');
+    } catch (e) {
+      print('showCurrentUserModel $e');
+    }
   }
 
   Future<void> login() async {
@@ -34,11 +53,11 @@ class LoginPageController extends GetxController {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
 
-      await homePageController.showCurrentUser();
-      if (homePageController.showCurrentUserModel.value.isVerifiedEmail ==
+      await showCurrentUser();
+      if (showCurrentUserModel.value.isVerifiedEmail ==
           false) {
         Get.offNamed(Routes.VERIFICATION_PAGE);
-      } else if (homePageController.showCurrentUserModel.value.isVerified ==
+      } else if (showCurrentUserModel.value.isVerified ==
           false) {
         Get.offNamed(Routes.PENDING_PAGE);
       } else {

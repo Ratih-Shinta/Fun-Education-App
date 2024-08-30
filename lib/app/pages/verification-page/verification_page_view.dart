@@ -112,25 +112,25 @@ class VerificationPageView extends GetView<VerificationPageController> {
                   ],
                 ),
                 SizedBox(height: height * 0.05),
-                CommonButton(
-                  // isLoading: controller.isLoading.value,
-                  text: 'Verifikasi',
-                  backgroundColor: blackColor,
-                  textColor: whiteColor,
-                  onPressed: () {
-                    controller.checkOTP();
-                  },
-                ),
+                Obx(() => CommonButton(
+                      isLoading: controller.isLoading.value,
+                      text: 'Verifikasi',
+                      backgroundColor: blackColor,
+                      textColor: whiteColor,
+                      onPressed: () {
+                        controller.checkOTP();
+                      },
+                    )),
                 SizedBox(height: height * 0.015),
-                CommonButton(
-                  // isLoading: controller.isLoading.value,
-                  text: 'Kirim Ulang Kode',
-                  backgroundColor: greyColor.withOpacity(0.1),
-                  textColor: blackColor,
-                  onPressed: () {
-                    controller.resetAndStartTimer();
-                  },
-                ),
+                Obx(() => CommonButton(
+                      isLoading: controller.idloadingSendOTP.value,
+                      text: 'Kirim Ulang Kode',
+                      backgroundColor: greyColor.withOpacity(0.1),
+                      textColor: blackColor,
+                      onPressed: () {
+                        controller.sendOTP();
+                      },
+                    )),
               ],
             ),
           ),

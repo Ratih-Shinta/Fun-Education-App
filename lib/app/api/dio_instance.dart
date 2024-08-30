@@ -111,6 +111,7 @@ class DioInstance {
   //Initialize Interceptors
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onError: (error, handler) {
+      print('error message : ${error.message}');
       return handler.next(error);
     }, onRequest: (request, handler) {
       print(request.method + " " + request.path);
@@ -118,7 +119,7 @@ class DioInstance {
       return handler.next(request);
     }, onResponse: (response, handler) {
       print(response.data);
-      // print(response.statusCode);
+      print(response.statusCode);
       return handler.next(response);
     }));
   }

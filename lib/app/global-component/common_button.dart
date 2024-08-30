@@ -46,7 +46,7 @@ class CommonButton extends StatelessWidget {
             isLoading == true
                 ? SizedBox(
                     child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: Colors.white,
+                      color: textColor,
                       size: height * 0.035,
                     ),
                   )

@@ -20,6 +20,12 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
               Icon(Icons.person_outlined, color: greyColor.withOpacity(0.5)),
           fieldController: controller.fullNameController,
           obscureText: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Nama Lengkap tidak boleh kosong';
+            }
+            return null;
+          },
           hintText: 'Nama Lengkap',
         ),
         SizedBox(height: height * 0.01),
@@ -28,6 +34,12 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
               Icon(Icons.person_2_outlined, color: greyColor.withOpacity(0.5)),
           fieldController: controller.nicknameController,
           obscureText: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Nama Panggilan tidak boleh kosong';
+            }
+            return null;
+          },
           hintText: 'Nama Panggilan',
         ),
         SizedBox(height: height * 0.01),
@@ -42,14 +54,7 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
             if (value == null || value.isEmpty) {
               return 'Please enter an email address';
             }
-            final emailRegex = RegExp(
-                r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-                r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-                r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-                r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-                r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-                r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-                r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
+            final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
             if (!emailRegex.hasMatch(value)) {
               return 'Please enter a valid email address';
             }
@@ -62,6 +67,12 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
               color: greyColor.withOpacity(0.5)),
           fieldController: controller.birthController,
           obscureText: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Tempat, Tanggal Lahir tidak boleh kosong';
+            }
+            return null;
+          },
           hintText: 'Tempat, Tanggal Lahir',
         ),
         SizedBox(height: height * 0.01),
@@ -70,6 +81,12 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
               color: greyColor.withOpacity(0.5)),
           fieldController: controller.addressController,
           obscureText: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Alamat tidak boleh kosong';
+            }
+            return null;
+          },
           hintText: 'Alamat Lengkap',
         ),
         SizedBox(height: height * 0.01),
