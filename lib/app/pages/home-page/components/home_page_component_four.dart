@@ -35,12 +35,15 @@ class HomePageComponentFour extends GetView<HomePageController> {
         Obx(() {
           if (laporanController.showCurrentTugasModelTerbaru.isEmpty) {
             return CommonNoData(
+              image: 'assets/images/imgEmpty.svg',
                 title: 'Tidak Ada Tugas Terbaru',
                 subTitle: 'Tidak Ada Tugas Terbaru Saat Ini');
           } else {
             return ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-              itemCount: laporanController.showCurrentTugasModelTerbaru.length,
+              shrinkWrap: true,
+              itemCount:
+                  laporanController.showCurrentTugasModelTerbaru.length,
               itemBuilder: (BuildContext context, int index) {
                 return TugasWidget(
                   controllerArguments:

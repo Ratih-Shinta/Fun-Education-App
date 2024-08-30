@@ -30,12 +30,21 @@ class DetailLaporanComponentFour
             color: greyColor.withOpacity(0.05),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Obx(() => AutoSizeText.rich(
+          child: Obx(() {
+            if (controller.userNote.isEmpty) {
+              return AutoSizeText(
+                'Tidak Ada Catatan',
+                style: tsBodySmallRegular(blackColor),
+              );
+            } else {
+              return AutoSizeText.rich(
                 TextSpan(
                   text: controller.userNote.value,
                   style: tsBodySmallRegular(blackColor),
                 ),
-              )),
+              );
+            }
+          }),
         ),
       ],
     );

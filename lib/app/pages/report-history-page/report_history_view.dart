@@ -64,6 +64,7 @@ class ReportHistoryPageView extends GetView<ReportHistoryPageController> {
                 ReportHistoryPageComponentOne(),
                 SizedBox(height: height * 0.015),
                 ReportHistoryPageComponentTwo(),
+                SizedBox(height: height * 0.02),
                 ReportHistoryPageComponentThree(),
               ],
             ),

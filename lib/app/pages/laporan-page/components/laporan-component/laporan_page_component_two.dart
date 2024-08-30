@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/pages/laporan-page/widgets/laporan_container.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
+import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_container_item.dart';
+import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_empty_item.dart';
+import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_permission_item.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -24,45 +27,28 @@ class LaporanPageComponentTwo extends GetView<LaporanPageController> {
             Routes.DETAIL_LAPORAN_HARIAN_PAGE,
             arguments: {'dateLaporan' : controller.selectedDate.value},
           ),
-          child: LaporanContainer(
-            controller.showCurrentLaporanHarianResponse?.totalPoint ?? 0,
-            controller.showCurrentLaporanHarianResponse?.note == null
-                ? '0'
-                : '1',
-            date:
-                '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(controller.selectedDate.value)}',
+          child: ReportHistoryContainerItem(
+            selectedDate: controller.selectedDate.value,
+            totalPoint: controller.userGrade.value,
+            note: controller.userNote.value,
           ),
+        );
+      } else if (controller.userPermission.isNotEmpty &&
+          controller.userPermission.value != 'Hadir') {
+         return ReportHistoryPermissionItem(
+          permission: controller.userPermission.value,
+          selectedDate: controller.selectedDate.value,
+          note: controller.userNote.value,
+          onTap: () {
+            Get.toNamed(
+              Routes.DETAIL_LAPORAN_HARIAN_PAGE,
+              arguments: {'dateRiwayat': controller.selectedDate.value},
+            );
+          },
         );
       } else if (controller.userPermission.isEmpty) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: height * 0.15,
-            top: height * 0.15,
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/imgReportEmpty.svg',
-                ),
-                SizedBox(height: height * 0.01),
-                AutoSizeText(
-                  'Belum Ada Laporan',
-                  group: AutoSizeGroup(),
-                  maxLines: 1,
-                  style: tsBodyMediumSemibold(blackColor),
-                ),
-                AutoSizeText(
-                  'Untuk Tanggal Tersebut Belum Ada Laporan',
-                  group: AutoSizeGroup(),
-                  maxLines: 1,
-                  style: tsLabelLargeRegular(blackColor),
-                ),
-              ],
-            ),
-          ),
-        );
+        return ReportHistoryEmptyItem(
+            selectedDate: controller.selectedDate.value);
       } else {
         return Container();
       }
