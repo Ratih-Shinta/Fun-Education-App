@@ -98,7 +98,7 @@ class PendingPageView extends GetView<PendingPageController> {
                       );
                     } else {
                       return CommonButton(
-                        isLoading: controller.isLoading.value,
+                        // isLoading: controller.isLoading.value,
                         text: 'Masuk',
                         backgroundColor: silverColor.withOpacity(0.2),
                         textColor: whiteColor,

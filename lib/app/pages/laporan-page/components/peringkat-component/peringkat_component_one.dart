@@ -154,8 +154,8 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
                   else
-                    return Expanded(
-                      // aspectRatio: 0.8,
+                    return AspectRatio(
+                      aspectRatio: 0.8,
                       child: LineChart(
                         reportLineChart.reportLineChart(),
                       ),

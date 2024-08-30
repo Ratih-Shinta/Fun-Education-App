@@ -127,29 +127,30 @@ class PasswordPageView extends GetView<RegisterPageController> {
                   );
                 }),
                 SizedBox(height: height * 0.08),
-                CommonButton(
-                  isLoading: controller.isLoading.value,
-                  text: 'Daftar',
-                  backgroundColor: blackColor,
-                  textColor: whiteColor,
-                  onPressed: () {
-                    String? validationMessage = controller.validatePassword();
-                    if (validationMessage != null) {
-                      Get.snackbar(
-                        'Password dan Konfimasi Password tidak sama',
-                        validationMessage,
-                        backgroundColor: dangerColor,
-                        colorText: whiteColor,
-                        snackPosition: SnackPosition.BOTTOM,
-                      );
-                    } else {
-                      controller.password.value =
-                          controller.passwordController.text;
-                      controller.sendOTP();
-                      controller.register();
-                    }
-                  },
-                )
+                Obx(() => CommonButton(
+                      isLoading: controller.isLoading.value,
+                      text: 'Daftar',
+                      backgroundColor: blackColor,
+                      textColor: whiteColor,
+                      onPressed: () {
+                        String? validationMessage =
+                            controller.validatePassword();
+                        if (validationMessage != null) {
+                          Get.snackbar(
+                            'Password dan Konfimasi Password tidak sama',
+                            validationMessage,
+                            backgroundColor: dangerColor,
+                            colorText: whiteColor,
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        } else {
+                          controller.password.value =
+                              controller.passwordController.text;
+                          controller.sendOTP();
+                          controller.register();
+                        }
+                      },
+                    ))
               ],
             ),
           ),

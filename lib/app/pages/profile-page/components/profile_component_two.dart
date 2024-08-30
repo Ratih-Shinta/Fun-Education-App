@@ -151,7 +151,8 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   ],
                 ),
                 SizedBox(height: 30),
-                Expanded(
+                AspectRatio(
+                  aspectRatio: 0.8,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: width * 0.01,

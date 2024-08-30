@@ -92,7 +92,7 @@ class VerificationResetPasswordPageView
                 ),
                 SizedBox(height: height * 0.05),
                 Obx(() {
-                  if (!controller.isOtpSend.value) {
+                  if (controller.isLoadingResendOTP.value) {
                     return Center(
                       child: AutoSizeText(
                         textAlign: TextAlign.center,
@@ -114,11 +114,9 @@ class VerificationResetPasswordPageView
                           width: width * 0.005,
                         ),
                         InkWell(
-                          child: Obx(
-                            () => AutoSizeText(
-                              controller.countDown.value,
-                              style: tsBodyMediumSemibold(primaryColor),
-                            ),
+                          child: AutoSizeText(
+                            controller.countDown.value,
+                            style: tsBodyMediumSemibold(primaryColor),
                           ),
                         ),
                       ],
@@ -134,25 +132,25 @@ class VerificationResetPasswordPageView
                   }
                 }),
                 SizedBox(height: height * 0.05),
-                CommonButton(
-                  // isLoading: controller.isLoading.value,
-                  text: 'Verifikasi',
-                  backgroundColor: blackColor,
-                  textColor: whiteColor,
-                  onPressed: () {
-                    controller.checkOTP();
-                  },
-                ),
+                Obx(() => CommonButton(
+                      isLoading: controller.isLoadingCheckOTP.value,
+                      text: 'Verifikasi',
+                      backgroundColor: blackColor,
+                      textColor: whiteColor,
+                      onPressed: () {
+                        controller.checkOTP();
+                      },
+                    )),
                 SizedBox(height: height * 0.015),
-                CommonButton(
-                  // isLoading: controller.isLoading.value,
-                  text: 'Kirim Ulang Kode',
-                  backgroundColor: greyColor.withOpacity(0.1),
-                  textColor: blackColor,
-                  onPressed: () {
-                    controller.sendOTPResetPassword();
-                  },
-                ),
+                Obx(() => CommonButton(
+                      isLoading: controller.isLoadingResendOTP.value,
+                      text: 'Kirim Ulang Kode',
+                      backgroundColor: greyColor.withOpacity(0.1),
+                      textColor: blackColor,
+                      onPressed: () {
+                        controller.sendOTPResend();
+                      },
+                    )),
               ],
             ),
           ),

@@ -18,7 +18,8 @@ class VerificationPageController extends GetxController {
 
   var otp = ''.obs;
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
+  RxBool idloadingSendOTP = false.obs;
 
   @override
   void onInit() {
@@ -29,6 +30,7 @@ class VerificationPageController extends GetxController {
   }
 
   void resetAndStartTimer() {
+    isLoading(true);
     count.value = 300;
     countDown.value = '05:00';
     timer?.cancel();
@@ -41,7 +43,7 @@ class VerificationPageController extends GetxController {
     timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
         t.cancel();
-        countDown.value = 'time out'; // Set the "time out" message
+        countDown.value = 'time out';
       } else {
         count.value--;
         int minute = count.value ~/ 60;
@@ -54,9 +56,10 @@ class VerificationPageController extends GetxController {
 
   Future<void> checkOTP() async {
     try {
+      isLoading(true);
       await otpService.storeCheckOTP(otpController.text,
           homePageController.showCurrentUserModel.value.email!, false);
-isLoading(false);
+      isLoading(false);
       Get.snackbar(
         "Success",
         "OTP successful",
@@ -65,9 +68,11 @@ isLoading(false);
       );
       Get.offAllNamed(Routes.PENDING_PAGE);
     } catch (e) {
+            isLoading(false);
+
       Get.snackbar(
         "Error",
-        e.toString(),
+        'OTP invalid',
         backgroundColor: dangerColor,
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,
@@ -77,18 +82,21 @@ isLoading(false);
 
   Future<void> sendOTP() async {
     try {
+      idloadingSendOTP(true);
       await otpService.storeSendOTP(
         homePageController.showCurrentUserModel.value.email!,
       );
-
+      print('isloading : ${isLoading.value}');
       Get.snackbar(
         "Success",
         "Send OTP successful",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
+      idloadingSendOTP(false);
       resetAndStartTimer();
     } catch (e) {
+      idloadingSendOTP(false);
       Get.snackbar(
         "Error",
         e.toString(),

@@ -8,7 +8,12 @@ import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class ResetPasswordPageController extends GetxController {
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
+  RxBool isLoadingCheckOTP = false.obs;
+  RxBool isLoadingSendOTP = false.obs;
+  RxBool isLoadingResendOTP = false.obs;
+  RxBool isVisibleSignIn = true.obs;
+  RxBool isVisibleSignInConfirm = true.obs;
 
   late TextEditingController emailController;
   late TextEditingController otpController = TextEditingController();
@@ -21,7 +26,6 @@ class ResetPasswordPageController extends GetxController {
 
   var email = ''.obs;
   RxString tokenResetPassword = ''.obs;
-  RxBool isOtpSend = false.obs;
 
   RxString countDown = '00:00'.obs;
   RxInt count = 300.obs;
@@ -55,18 +59,25 @@ class ResetPasswordPageController extends GetxController {
 
   Future<void> updateResetPassword() async {
     try {
-      await userService.putResetPassword(
+      isLoading(true); // Set loading to true at the beginning
+
+      final response = await userService.putResetPassword(
           email.value, tokenResetPassword.value, passwordController.text);
 
+      final message = response.statusMessage;
+
       isLoading(false);
+
       Get.snackbar(
         "Success",
-        "Reset password successful",
+        message ?? "Reset password successful",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
       Get.offAllNamed(Routes.LOGIN_PAGE);
     } catch (e) {
+      isLoading(false); // Set loading to false if an error occurs
+
       Get.snackbar(
         "Error",
         e.toString(),
@@ -97,21 +108,49 @@ class ResetPasswordPageController extends GetxController {
     });
   }
 
-  Future<void> sendOTPResetPassword() async {
+  Future<void> sendOTPResend() async {
     try {
+      isLoadingResendOTP(true);
       await otpService.storeSendOTP(
         email.value,
       );
-      isLoading(false);
+      isLoadingResendOTP(false);
       Get.snackbar(
         "Success",
         "Send OTP successful",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      isOtpSend.value = true;
+      // isOtpSend.value = true;
       resetAndStartTimer();
     } catch (e) {
+      isLoadingResendOTP(false);
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  Future<void> sendOTP() async {
+    try {
+      isLoadingSendOTP(true);
+      await otpService.storeSendOTP(
+        email.value,
+      );
+      isLoadingSendOTP(false);
+      Get.snackbar(
+        "Success",
+        "Send OTP successful",
+        backgroundColor: successColor,
+        colorText: whiteColor,
+      );
+      Get.toNamed(Routes.VERIFICATION_RESET_PASSWORD_PAGE);
+    } catch (e) {
+      isLoadingSendOTP(false);
       Get.snackbar(
         "Error",
         e.toString(),
@@ -124,11 +163,12 @@ class ResetPasswordPageController extends GetxController {
 
   Future<void> checkOTP() async {
     try {
+      isLoadingCheckOTP(true);
       final response =
           await otpService.storeCheckOTP(otpController.text, email.value, true);
 
       tokenResetPassword.value = response.data['token_reset_password'];
-      isLoading(false);
+      isLoadingCheckOTP(false);
       Get.snackbar(
         "Success",
         "OTP successful",
@@ -137,6 +177,8 @@ class ResetPasswordPageController extends GetxController {
       );
       Get.toNamed(Routes.RESET_PASSWORD_PAGE);
     } catch (e) {
+      isLoadingCheckOTP(false);
+
       Get.snackbar(
         "Error",
         e.toString(),

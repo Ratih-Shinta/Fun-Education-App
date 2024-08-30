@@ -46,6 +46,14 @@ class RegisterPageController extends GetxController {
     super.onInit();
   }
 
+  bool isAllTextEditingFilled() {
+    return fullNameController.text.isEmpty &&
+        nicknameController.text.isEmpty &&
+        emailController.text.isEmpty &&
+        birthController.text.isEmpty &&
+        addressController.text.isEmpty;
+  }
+
   String? validatePassword() {
     if (passwordController.text != confirmPasswordController.text) {
       return 'Password dan konfirmasi password harus sama.';
@@ -65,6 +73,7 @@ class RegisterPageController extends GetxController {
 
   Future<void> register() async {
     try {
+      isLoading(true);
       final response = await authenticationService.register(
         fullName.value,
         nickname.value,
@@ -78,7 +87,7 @@ class RegisterPageController extends GetxController {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
-
+      isLoading(false);
       Get.snackbar(
         "Success",
         "Registration successful",
@@ -89,7 +98,7 @@ class RegisterPageController extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        'Ananada sudah terdaftar, silahkan login',
+        e.toString(),
         backgroundColor: dangerColor,
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,
@@ -120,10 +129,11 @@ class RegisterPageController extends GetxController {
 
   Future<void> sendOTP() async {
     try {
+      isLoading(true);
       await otpService.storeSendOTP(
         email.value,
       );
-
+      isLoading(false);
       Get.snackbar(
         "Success",
         "Send OTP successful",
@@ -131,6 +141,8 @@ class RegisterPageController extends GetxController {
         colorText: whiteColor,
       );
     } catch (e) {
+      isLoading(false);
+
       Get.snackbar(
         "Error",
         e.toString(),
