@@ -26,10 +26,13 @@ class ResetPasswordPageController extends GetxController {
 
   var email = ''.obs;
   RxString tokenResetPassword = ''.obs;
+  var emailError = ''.obs;
 
   RxString countDown = '00:00'.obs;
   RxInt count = 300.obs;
   Timer? timer;
+
+  final formKey = GlobalKey<FormFieldState>();
 
   @override
   void onInit() {
@@ -41,6 +44,18 @@ class ResetPasswordPageController extends GetxController {
     userService = UserService();
     startTimer();
     super.onInit();
+  }
+
+  Future<void> checkEmail() async {
+    try {
+      isLoading(true);
+      await userService.postCheckEmail(emailController.text, 'true');
+      sendOTP();
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      emailError.value = 'Email belum terdaftar';
+    }
   }
 
   void resetAndStartTimer() {
@@ -59,15 +74,11 @@ class ResetPasswordPageController extends GetxController {
 
   Future<void> updateResetPassword() async {
     try {
-      isLoading(true); // Set loading to true at the beginning
-
+      isLoading(true);
       final response = await userService.putResetPassword(
           email.value, tokenResetPassword.value, passwordController.text);
-
       final message = response.statusMessage;
-
       isLoading(false);
-
       Get.snackbar(
         "Success",
         message ?? "Reset password successful",
@@ -76,8 +87,8 @@ class ResetPasswordPageController extends GetxController {
       );
       Get.offAllNamed(Routes.LOGIN_PAGE);
     } catch (e) {
-      isLoading(false); // Set loading to false if an error occurs
-
+      isLoading(false);
+      emailError.value = 'Email belum terdaftar';
       Get.snackbar(
         "Error",
         e.toString(),
@@ -151,13 +162,6 @@ class ResetPasswordPageController extends GetxController {
       Get.toNamed(Routes.VERIFICATION_RESET_PASSWORD_PAGE);
     } catch (e) {
       isLoadingSendOTP(false);
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        backgroundColor: dangerColor,
-        colorText: whiteColor,
-        snackPosition: SnackPosition.BOTTOM,
-      );
     }
   }
 

@@ -9,17 +9,19 @@ class CommonTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final IconButton? suffixIcon;
   final Function? validator;
+  final bool? expands;
+  final String? errorText;
 
-  CommonTextField({
-    super.key,
-    this.fieldController,
-    required this.obscureText,
-    this.prefixIcon,
-    required this.hintText,
-    this.keyboardType,
-    this.suffixIcon,
-    this.validator,
-  });
+  CommonTextField(
+      {super.key,
+      this.fieldController,
+      required this.obscureText,
+      this.prefixIcon,
+      required this.hintText,
+      this.keyboardType,
+      this.suffixIcon,
+      this.validator,
+      this.expands, this.errorText});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,10 @@ class CommonTextField extends StatelessWidget {
       controller: fieldController,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      expands: expands ?? false,
       style: tsBodySmallRegular(blackColor),
       decoration: InputDecoration(
+        errorText: errorText,
         contentPadding: EdgeInsets.symmetric(
           vertical: height * 0.02,
           horizontal: width * 0.05,
