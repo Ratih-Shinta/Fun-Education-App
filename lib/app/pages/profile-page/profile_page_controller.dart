@@ -1,11 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_response.dart';
 import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
-import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
-import 'package:fun_education_app/app/api/tugas/models/statistic_task_reponse.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,14 +19,14 @@ class ProfilePageController extends GetxController {
   RxInt touchedIndex = (-1).obs;
 
   StatisticService statisticService = StatisticService();
-  StatisticTaskResponse? showStatisticCurrentResponse;
-  RxList<StatisticTaskModel> showStatisticCurrentModel =
-      <StatisticTaskModel>[].obs;
+  StatisticTaskResponse? statisticTaskResponse;
+  RxList<StatisticTaskModel> statisticTaskModel = <StatisticTaskModel>[].obs;
 
   var spots = <FlSpot>[].obs;
   // var touchedTitle = <String?>[].obs;
   var touchedTitle = <DateTime?>[].obs;
   var bottomTitles = <String?>[].obs;
+  var bottomTitlesMonthly = <String?>[].obs;
   var maxX = 0.0.obs;
 
   // var selectedPoints = '5'.obs;
@@ -43,35 +44,62 @@ class ProfilePageController extends GetxController {
     try {
       isLoading(true);
       bottomTitles.clear();
+      bottomTitlesMonthly.clear();
       final response = await statisticService.getStatisticCurrentTugas(
         selectedPoints.value,
       );
-      showStatisticCurrentResponse =
-          StatisticTaskResponse.fromJson(response.data);
-      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
+      statisticTaskResponse = StatisticTaskResponse.fromJson(response.data);
+      statisticTaskModel.value = statisticTaskResponse!.data;
 
-      spots.value = showStatisticCurrentModel
+      spots.value = statisticTaskModel
           .map((e) => FlSpot(
-                showStatisticCurrentModel.indexOf(e).toDouble(),
+                statisticTaskModel.indexOf(e).toDouble(),
                 e.totalPoint!.toDouble(),
               ))
           .toList();
-      // touchedTitle.value = showStatisticCurrentModel.map((e) => e.title!).toList();
-      touchedTitle.value =
-          showStatisticCurrentModel.map((e) => e.date!).toList();
+      touchedTitle.value = statisticTaskModel.map((e) => e.date!).toList();
 
       bottomTitles.value =
           List<String?>.generate(spots.length, (index) => null);
+      bottomTitlesMonthly.value =
+          List<String?>.generate(spots.length, (index) => null);
 
-      for (var title in showStatisticCurrentResponse!.bottomTitle) {
-        bottomTitles[title.bottomTitleCase!] = title.date;
+      for (var title in statisticTaskResponse!.bottomTitle) {
+        bottomTitles[title.bottomTitleCase!] =
+            convertToIndonesianDayAbbreviation(title.date!);
+        bottomTitlesMonthly[title.bottomTitleCase!] =
+            DateFormat('dd-MM').format(title.date!);
       }
 
       maxX.value = spots.length - 1.0;
-      isLoading(false);
+      print('task model : $statisticTaskModel');
       update();
+      isLoading(false);
     } catch (e) {
-      print('statistik error : $e');
+      print('task error ngetd : $e');
+    }
+  }
+
+  String convertToIndonesianDayAbbreviation(DateTime dateTime) {
+    String dayInEnglish = DateFormat('EEEE').format(dateTime);
+
+    switch (dayInEnglish) {
+      case 'Monday':
+        return 'SEN';
+      case 'Tuesday':
+        return 'SEL';
+      case 'Wednesday':
+        return 'RAB';
+      case 'Thursday':
+        return 'KAM';
+      case 'Friday':
+        return 'JUM';
+      case 'Saturday':
+        return 'SAB';
+      case 'Sunday':
+        return 'MIN';
+      default:
+        return '';
     }
   }
 

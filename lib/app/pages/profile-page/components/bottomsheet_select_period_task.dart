@@ -115,7 +115,7 @@ class BottomsheetSelectPeriodTask extends GetView<ProfilePageController> {
             ),
             SizedBox(height: height * 0.03),
             Obx(() => CommonButton(
-                  isLoading: controller.isLoading.value,
+                  // isLoading: controller.isLoading.value,
                   text: 'Tutup',
                   backgroundColor: blackColor,
                   textColor: whiteColor,
