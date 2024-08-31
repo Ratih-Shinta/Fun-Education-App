@@ -1,10 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:get/get.dart';
 
-class TotalPointItem extends StatelessWidget {
+class TotalPointItem extends GetView<DetailLaporanHarianController> {
   const TotalPointItem({
     Key? key,
     required this.totalPoint,
@@ -48,11 +52,15 @@ class TotalPointItem extends StatelessWidget {
             ],
           ),
           AutoSizeText(
-            totalPoint <= 40
-                ? 'Kurang'
-                : totalPoint <= 70
-                    ? 'Baik'
-                    : 'Sangat Baik',
+            controller.showCurrentLaporanHarianModel.isEmpty
+                ? 'Tidak ada'
+                : controller.userPermission.value != 'Hadir'
+                    ? '${controller.userPermission.value}'
+                    : totalPoint <= 40
+                        ? 'Kurang'
+                        : totalPoint <= 70
+                            ? 'Baik'
+                            : 'Sangat Baik',
             group: AutoSizeGroup(),
             maxLines: 1,
             style: tsBodySmallRegular(whiteColor),

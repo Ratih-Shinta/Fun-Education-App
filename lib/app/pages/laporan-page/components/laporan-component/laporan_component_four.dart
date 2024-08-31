@@ -63,8 +63,10 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     return Center(child: CircularProgressIndicator());
                   } else if (controller.showCurrentTugasModelTerbaru.isEmpty) {
                     return CommonNoData(
-                        title: 'Tidak Ada Tugas Terbaru',
-                        subTitle: 'Tidak Ada Tugas Terbaru Saat Ini');
+                      title: 'Tidak Ada Tugas Terbaru',
+                      subTitle: 'Tidak Ada Tugas Terbaru Saat Ini',
+                      image: 'assets/images/imgEmpty.svg',
+                    );
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -92,8 +94,10 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                   } else if (controller
                       .showCurrentTugasModelDiperiksa.isEmpty) {
                     return CommonNoData(
-                        title: 'Tidak Ada Tugas Diperiksa',
-                        subTitle: 'Tidak Ada Tugas Diperiksa Saat Ini');
+                      title: 'Tidak Ada Tugas Diperiksa',
+                      subTitle: 'Tidak Ada Tugas Diperiksa Saat Ini',
+                      image: 'assets/images/imgEmpty.svg',
+                    );
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -121,8 +125,10 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     return Center(child: CircularProgressIndicator());
                   } else if (controller.showCurrentTugasModelSelesai.isEmpty) {
                     return CommonNoData(
-                        title: 'Tidak Ada Tugas Selesai',
-                        subTitle: 'Tidak Ada Tugas Selesai Saat Ini');
+                      title: 'Tidak Ada Tugas Selesai',
+                      subTitle: 'Tidak Ada Tugas Selesai Saat Ini',
+                      image: 'assets/images/imgEmpty.svg',
+                    );
                   } else {
                     return ListView.builder(
                       physics: NeverScrollableScrollPhysics(),

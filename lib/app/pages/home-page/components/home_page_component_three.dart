@@ -149,14 +149,15 @@ class HomePageComponentThree extends GetView<HomePageController> {
                       width: width * 0.44,
                       padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: controller.totalPoint.value >= 1 &&
-                                controller.totalPoint.value <= 25
-                            ? dangerColor.withOpacity(0.1)
-                            : controller.totalPoint.value < 50
-                                ? warningColor.withOpacity(0.1)
-                                : controller.totalPoint.value < 200
-                                    ? successColor.withOpacity(0.1)
-                                    : greyColor.withOpacity(0.1),
+                        color: controller.showCurrentLaporanHarianResponse
+                                    ?.permission !=
+                                'Hadir'
+                            ? greyColor.withOpacity(0.1)
+                            : controller.totalPoint.value <= 40
+                                ? dangerColor.withOpacity(0.1)
+                                : controller.totalPoint.value <= 70
+                                    ? warningColor.withOpacity(0.1)
+                                    : successColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
@@ -170,7 +171,10 @@ class HomePageComponentThree extends GetView<HomePageController> {
                                   SvgPicture.asset(
                                     iconDocument,
                                     width: 35,
-                                    color: controller.totalPoint.value == 0
+                                    color: controller
+                                                .showCurrentLaporanHarianResponse
+                                                ?.permission !=
+                                            'Hadir'
                                         ? greyColor
                                         : controller.totalPoint.value <= 25
                                             ? dangerColor
@@ -210,15 +214,24 @@ class HomePageComponentThree extends GetView<HomePageController> {
                           SizedBox(height: 15),
                           AutoSizeText.rich(
                             TextSpan(
-                                text: controller.totalPoint.value == 0
+                                text: controller
+                                            .showCurrentLaporanHarianResponse
+                                            ?.permission
+                                            .isEmpty ==
+                                        null
                                     ? 'Tidak Ada Laporan'
-                                    : controller.totalPoint.value <= 25
-                                        ? 'Kurang'
-                                        : controller.totalPoint.value <= 50
-                                            ? 'Cukup'
-                                            : controller.totalPoint.value <= 75
-                                                ? 'Baik'
-                                                : 'Sangat Baik',
+                                    : controller.showCurrentLaporanHarianResponse
+                                                ?.permission !=
+                                            'Hadir'
+                                        ? '${controller.showCurrentLaporanHarianResponse?.permission}'
+                                        : controller.totalPoint.value <= 25
+                                            ? 'Kurang'
+                                            : controller.totalPoint.value <= 50
+                                                ? 'Cukup'
+                                                : controller.totalPoint.value <=
+                                                        75
+                                                    ? 'Baik'
+                                                    : 'Sangat Baik',
                                 style: controller.totalPoint.value == 0
                                     ? tsBodySmallSemibold(blackColor)
                                     : tsBodyMediumSemibold(blackColor)),

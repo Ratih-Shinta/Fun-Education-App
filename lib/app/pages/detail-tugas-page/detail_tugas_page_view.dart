@@ -78,6 +78,7 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
                     switch (controller.showCurrentTugasUserModel.value.status) {
                       case 'Gagal':
                         return CommonNoData(
+                          image: 'assets/images/imgEmpty.svg',
                             title: 'Ananda Tidak Mengerjakan Tugas',
                             subTitle: 'Selalu Periksa Tenggat Waktu');
                       case 'Diperiksa':

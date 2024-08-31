@@ -6,32 +6,39 @@ import 'package:fun_education_app/common/helper/themes.dart';
 class CommonNoData extends StatelessWidget {
   final String title;
   final String subTitle;
-  const CommonNoData({super.key, required this.title, required this.subTitle});
+  final String image;
+  const CommonNoData(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 40),
-        SvgPicture.asset('assets/images/imgEmpty.svg'),
-        SizedBox(height: 20),
-        AutoSizeText.rich(
-          textAlign: TextAlign.center,
-          TextSpan(
-            text: '$title\n',
-            style: tsBodyMediumSemibold(blackColor).copyWith(
-              height: 1.3,
-            ),
-            children: [
-              TextSpan(
-                text: '$subTitle',
-                style: tsBodySmallRegular(blackColor),
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(height: 40),
+          SvgPicture.asset(image),
+          SizedBox(height: 20),
+          AutoSizeText.rich(
+            textAlign: TextAlign.center,
+            TextSpan(
+              text: '$title\n',
+              style: tsBodyMediumSemibold(blackColor).copyWith(
+                height: 1.3,
               ),
-            ],
+              children: [
+                TextSpan(
+                  text: '$subTitle',
+                  style: tsBodySmallRegular(blackColor),
+                ),
+              ],
+            ),
+            maxLines: 3,
           ),
-          maxLines: 3,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

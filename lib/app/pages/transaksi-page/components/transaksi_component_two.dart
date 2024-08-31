@@ -94,6 +94,7 @@ class TransaksiComponentTwo extends GetView<TransaksiPageController> {
                   title: 'Belum Ada Riwayat',
                   subTitle:
                       'Belum Ada Riwayat Transaksi Di Bulan ${controller.selectedMonth.value}',
+                  image: 'assets/images/imgEmpty.svg',
                 ),
               ),
             );
