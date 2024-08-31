@@ -157,7 +157,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                     padding: EdgeInsets.symmetric(
                       horizontal: width * 0.01,
                     ),
-                    child: Obx(() => controller.bottomTitles.isEmpty
+                    child: Obx(() => controller.statisticTaskModel.isEmpty
                         ? Text('Tidak Ada data')
                         : LineChart(
                             taskLineChart.taskLineChart(),

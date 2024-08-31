@@ -1,20 +1,20 @@
 // To parse this JSON data, do
 //
-//     final statisticTaskResponse = statisticTaskResponseFromJson(jsonString);
+//     final showStatisticCurrentResponse = showStatisticCurrentResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:fun_education_app/app/api/tugas/models/bottom_titles_task.dart';
-import 'package:fun_education_app/app/api/tugas/models/statistic_task_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_bottom_tile_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
 
-StatisticTaskResponse statisticTaskResponseFromJson(String str) => StatisticTaskResponse.fromJson(json.decode(str));
+StatisticTaskResponse showStatisticCurrentResponseFromJson(String str) => StatisticTaskResponse.fromJson(json.decode(str));
 
-String statisticTaskResponseToJson(StatisticTaskResponse data) => json.encode(data.toJson());
+String showStatisticCurrentResponseToJson(StatisticTaskResponse data) => json.encode(data.toJson());
 
 class StatisticTaskResponse {
     // int totalData;
     List<StatisticTaskModel> data;
-    List<BottomTitleTask> bottomTitle;
+    List<StatisticBottomTitleModel> bottomTitle;
 
     StatisticTaskResponse({
         // required this.totalData,
@@ -25,7 +25,7 @@ class StatisticTaskResponse {
     factory StatisticTaskResponse.fromJson(Map<String, dynamic> json) => StatisticTaskResponse(
         // totalData: json["total_data"],
         data: List<StatisticTaskModel>.from(json["data"].map((x) => StatisticTaskModel.fromJson(x))),
-        bottomTitle: List<BottomTitleTask>.from(json["bottom_title"].map((x) => BottomTitleTask.fromJson(x))),
+        bottomTitle: List<StatisticBottomTitleModel>.from(json["bottom_title"].map((x) => StatisticBottomTitleModel.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -34,3 +34,4 @@ class StatisticTaskResponse {
         "bottom_title": List<dynamic>.from(bottomTitle.map((x) => x.toJson())),
     };
 }
+

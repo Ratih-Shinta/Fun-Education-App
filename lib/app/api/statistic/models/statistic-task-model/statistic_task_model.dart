@@ -1,17 +1,17 @@
-class ShowStatisticCurrentModel {
+class StatisticTaskModel {
     DateTime? date;
     // String ?title;
     int ?totalPoint;
     // int ?spot;
 
-    ShowStatisticCurrentModel({
+    StatisticTaskModel({
         this.date,
         // this.title,
         this.totalPoint,
         // this.spot,
     });
 
-    factory ShowStatisticCurrentModel.fromJson(Map<String, dynamic> json) => ShowStatisticCurrentModel(
+    factory StatisticTaskModel.fromJson(Map<String, dynamic> json) => StatisticTaskModel(
         date: DateTime.parse(json["date"]),
         // title: json["title"],
         totalPoint: json["total_point"],

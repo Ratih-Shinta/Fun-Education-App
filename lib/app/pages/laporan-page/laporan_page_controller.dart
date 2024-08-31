@@ -13,9 +13,11 @@ import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_response.dart';
-import 'package:fun_education_app/app/api/statistic/models/show_statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/statistic/models/show_statistic_current_model.dart';
-import 'package:fun_education_app/app/api/statistic/models/show_statistic_current_response.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-report-model/statistic_report_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-report-model/statistic_report_response.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_bottom_tile_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
+import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_response.dart';
 import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
@@ -55,11 +57,9 @@ class LaporanPageController extends GetxController
   var selectedPoint = 'weekly'.obs;
 
   StatisticService statisticService = StatisticService();
-  ShowStatisticCurrentResponse? showStatisticCurrentResponse;
-  RxList<ShowStatisticCurrentModel> showStatisticCurrentModel =
-      <ShowStatisticCurrentModel>[].obs;
-  RxList<ShowStatisticBottomTitleModel> showStatisticBottomTitleModel =
-      <ShowStatisticBottomTitleModel>[].obs;
+  StatisticReportResponse? statisticReportResponse;
+  RxList<StatisticReportModel> statisticReportModel =
+      <StatisticReportModel>[].obs;
 
   AlurBelajarService alurBelajarService = AlurBelajarService();
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
@@ -144,24 +144,24 @@ class LaporanPageController extends GetxController
       final response = await statisticService.getStatisticCurrentLaporan(
         selectedPoint.value,
       );
-      showStatisticCurrentResponse =
-          ShowStatisticCurrentResponse.fromJson(response.data);
-      showStatisticCurrentModel.value = showStatisticCurrentResponse!.data;
-      print(showStatisticCurrentModel);
+      statisticReportResponse =
+          StatisticReportResponse.fromJson(response.data);
+      statisticReportModel.value = statisticReportResponse!.data;
+      print(statisticReportModel);
 
-      spots.value = showStatisticCurrentModel
+      spots.value = statisticReportModel
           .map((e) => FlSpot(
-                showStatisticCurrentModel.indexOf(e).toDouble(),
+                statisticReportModel.indexOf(e).toDouble(),
                 e.totalPoint!.toDouble(),
               ))
           .toList();
       touchedTitle.value =
-          showStatisticCurrentModel.map((e) => e.date!).toList();
+          statisticReportModel.map((e) => e.date!).toList();
 
       bottomTitles.value =
           List<String?>.generate(spots.length, (index) => null);
 
-      for (var title in showStatisticCurrentResponse!.bottomTitle) {
+      for (var title in statisticReportResponse!.bottomTitle) {
         bottomTitles[title.bottomTitleCase!] = title.date.toString();
       }
 
