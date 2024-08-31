@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/api/OTP/service/otp_service.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ class RegisterPageController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isVisibleSignIn = true.obs;
   RxBool isVisibleSignInConfirm = true.obs;
+
+  final GlobalKey<FormFieldState> emailFieldKey = GlobalKey<FormFieldState>();
 
   late TextEditingController fullNameController;
   late TextEditingController nicknameController;
@@ -21,6 +24,7 @@ class RegisterPageController extends GetxController {
 
   late AuthenticationService authenticationService;
   late OTPService otpService;
+  late UserService userService;
 
   var fullName = ''.obs;
   var nickname = ''.obs;
@@ -30,6 +34,8 @@ class RegisterPageController extends GetxController {
   var shift = ''.obs;
   var password = ''.obs;
   var gender = ''.obs;
+
+  RxString emailError = ''.obs;
 
   @override
   void onInit() {
@@ -43,15 +49,27 @@ class RegisterPageController extends GetxController {
 
     authenticationService = AuthenticationService();
     otpService = OTPService();
+    userService = UserService();
     super.onInit();
   }
 
-  bool isAllTextEditingFilled() {
-    return fullNameController.text.isEmpty &&
-        nicknameController.text.isEmpty &&
-        emailController.text.isEmpty &&
-        birthController.text.isEmpty &&
-        addressController.text.isEmpty;
+  Future<void> checkEmail() async {
+    try {
+      isLoading(true);
+      await userService.postCheckEmail(emailController.text, 'false');
+      Get.toNamed(Routes.PASSWORD_PAGE);
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      emailError.value = "Email sudah terdaftar";
+      Get.snackbar(
+        "Error",
+        "Email sudah terdaftar, silahkan gunakan email lain.",
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   String? validatePassword() {
@@ -142,14 +160,6 @@ class RegisterPageController extends GetxController {
       );
     } catch (e) {
       isLoading(false);
-
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        backgroundColor: dangerColor,
-        colorText: whiteColor,
-        snackPosition: SnackPosition.BOTTOM,
-      );
     }
   }
 }

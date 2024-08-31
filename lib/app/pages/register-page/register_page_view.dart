@@ -86,8 +86,8 @@ class RegisterPageView extends GetView<RegisterPageController> {
                   backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
+                    controller.checkEmail();
                     controller.saveRegisterValue();
-                    Get.toNamed(Routes.PASSWORD_PAGE);
                   },
                 )
               ],
