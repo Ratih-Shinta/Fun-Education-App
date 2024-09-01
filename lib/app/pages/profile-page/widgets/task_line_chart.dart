@@ -28,10 +28,10 @@ class TaskLineChart {
             isCurved: true,
             gradient: LinearGradient(
               colors: [
-                ColorTween(begin: successColor, end: successColor)
+                ColorTween(begin: primaryColor, end: primaryColor)
                     .lerp(0.1)!
                     .withOpacity(0.5),
-                ColorTween(begin: successColor, end: successColor)
+                ColorTween(begin: primaryColor, end: primaryColor)
                     .lerp(0.1)!
                     .withOpacity(0.5),
               ],
@@ -43,17 +43,17 @@ class TaskLineChart {
               getDotPainter: (spot, percent, barData, index) =>
                   FlDotCirclePainter(
                 radius: 4,
-                color: successColor.withOpacity(0.6),
+                color: primaryColor.withOpacity(0.6),
               ),
             ),
             belowBarData: BarAreaData(
               show: true,
               gradient: LinearGradient(
                 colors: [
-                  ColorTween(begin: successColor, end: whiteColor)
+                  ColorTween(begin: primaryColor, end: whiteColor)
                       .lerp(0.1)!
                       .withOpacity(0.1),
-                  ColorTween(begin: successColor, end: whiteColor)
+                  ColorTween(begin: primaryColor, end: whiteColor)
                       .lerp(0.1)!
                       .withOpacity(0.1),
                 ],
@@ -94,7 +94,7 @@ class TaskLineChart {
             return touchedSpots.map((LineBarSpot touchedSpot) {
               final TextStyle textStyle = tsBodySmallSemibold(whiteColor);
               return LineTooltipItem(
-                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(profilePageController.touchedTitle[touchedSpot.x.toInt()]!)}',
+                '${touchedSpot.y.toString()}\n${DateFormat('dd MMMM yyy').format(profilePageController.touchedTitle[touchedSpot.x.toInt()])}',
                 textStyle,
               );
             }).toList();
@@ -103,21 +103,21 @@ class TaskLineChart {
       ),
       gridData: FlGridData(
         show: true,
-        drawHorizontalLine: false,
+        drawHorizontalLine: true,
         drawVerticalLine: false,
         verticalInterval: 1,
-        horizontalInterval: 1,
+        horizontalInterval: 20,
       ),
-      extraLinesData: ExtraLinesData(
-        horizontalLines: [
-          HorizontalLine(
-            y: 70,
-            color: dangerColor.withOpacity(0.8),
-            strokeWidth: 2,
-            dashArray: [5, 5],
-          ),
-        ],
-      ),
+      // extraLinesData: ExtraLinesData(
+      //   horizontalLines: [
+      //     HorizontalLine(
+      //       y: 70,
+      //       color: dangerColor.withOpacity(0.8),
+      //       strokeWidth: 2,
+      //       dashArray: [5, 5],
+      //     ),
+      //   ],
+      // ),
       titlesData: FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
@@ -125,8 +125,7 @@ class TaskLineChart {
             showTitles: true,
             reservedSize: 40,
             getTitlesWidget:
-                profilePageController.selectedPoints.value ==
-                        'weekly'
+                profilePageController.selectedPoints.value == 'weekly'
                     ? taskTitleChart.weeklyBottomTitle
                     : taskTitleChart.monthlyBottomTitle,
             interval: 1,

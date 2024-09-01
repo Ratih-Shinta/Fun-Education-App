@@ -82,16 +82,20 @@ class TaskTitleChart {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = profilePageController.bottomTitles[0] ?? '';
+        text =
+            '${profilePageController.bottomTitlesMonthly[0]}\n Min 1';
         break;
       case 10:
-        text = profilePageController.bottomTitles[10] ?? '';
+        text =
+            '${profilePageController.bottomTitlesMonthly[10]}\n Min 2';
         break;
       case 20:
-        text = profilePageController.bottomTitles[20] ?? '';
+        text =
+            '${profilePageController.bottomTitlesMonthly[20]}\n Min 3';
         break;
       case 30:
-        text = profilePageController.bottomTitles[30] ?? '';
+        text =
+            '${profilePageController.bottomTitlesMonthly[30]}\n Min 4';
         break;
       default:
         return Container();

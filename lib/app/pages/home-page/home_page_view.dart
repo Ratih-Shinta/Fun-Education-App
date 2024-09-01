@@ -22,69 +22,73 @@ class HomePageView extends GetView<HomePageController> {
     final double height = mediaQuery.height;
 
     return Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
         backgroundColor: backgroundColor,
-        appBar: AppBar(
-          backgroundColor: backgroundColor,
-          elevation: 0,
-          foregroundColor: backgroundColor,
-          leading: IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/icUser.svg',
-              width: 24,
-              height: 24,
-            ),
-            onPressed: () {
-              Get.toNamed(Routes.PROFILE_PAGE);
+        elevation: 0,
+        foregroundColor: backgroundColor,
+        leading: IconButton(
+          icon: SvgPicture.asset(
+            'assets/icons/icUser.svg',
+            width: 24,
+            height: 24,
+          ),
+          onPressed: () {
+            Get.toNamed(Routes.PROFILE_PAGE);
+          },
+        ),
+      ),
+      body: Obx(
+        () => LoadingOverlay(
+          isLoading: controller.isLoading.value,
+          child: SmartRefresher(
+            onRefresh: () async {
+              await controller.showCurrentUser();
+              await controller.showCurrentShiftMasuk();
+              await controller.showLatestCatatanDarurat();
+              await controller.showCurrentLaporanHarian();
+              await laporanPageController.showCurrentTugasTerbaru();
+              controller.refreshController.refreshCompleted();
             },
+            controller: controller.refreshController,
+            header: WaterDropHeader(
+              complete: Text(
+                'Refresh Completed',
+                style: tsBodySmallRegular(blackColor),
+              ),
+              waterDropColor: primaryColor,
+            ),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.05,
+                    vertical: height * 0.015,
+                  ),
+                  child: Column(
+                    children: [
+                      HomePageComponentOne(),
+                      SizedBox(
+                        height: height * 0.025,
+                      ),
+                      HomePageComponentTwo(),
+                      SizedBox(
+                        height: height * 0.025,
+                      ),
+                      HomePageComponentThree(),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                      HomePageComponentFour(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
-        body: SmartRefresher(
-          onRefresh: () async {
-            await controller.showCurrentUser();
-            await controller.showCurrentShiftMasuk();
-            await controller.showLatestCatatanDarurat();
-            await controller.showCurrentLaporanHarian();
-            await laporanPageController.showCurrentTugasTerbaru();
-            controller.refreshController.refreshCompleted();
-          },
-          controller: controller.refreshController,
-          header: WaterDropHeader(
-            complete: Text(
-              'Refresh Completed',
-              style: tsBodySmallRegular(blackColor),
-            ),
-            waterDropColor: primaryColor,
-          ),
-          child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: SafeArea(child: Obx(
-                () {
-                  return LoadingOverlay(
-                      isLoading: controller.isLoading.value,
-                      child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.05,
-                            vertical: height * 0.015,
-                          ),
-                          child: Column(
-                            children: [
-                              HomePageComponentOne(),
-                              SizedBox(
-                                height: height * 0.025,
-                              ),
-                              HomePageComponentTwo(),
-                              SizedBox(
-                                height: height * 0.025,
-                              ),
-                              HomePageComponentThree(),
-                              SizedBox(
-                                height: height * 0.03,
-                              ),
-                              HomePageComponentFour(),
-                            ],
-                          )));
-                },
-              ))),
-        ));
+      ),
+    );
   }
 }

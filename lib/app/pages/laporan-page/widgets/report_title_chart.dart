@@ -82,16 +82,20 @@ class ReportTitleChart {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = laporanPageController.bottomTitles[0] ?? '';
+        text =
+            '${laporanPageController.bottomTitlesMonthly[0]}\n Min 1';
         break;
       case 10:
-        text = laporanPageController.bottomTitles[10] ?? '';
+        text =
+            '${laporanPageController.bottomTitlesMonthly[10]}\n Min 2';
         break;
       case 20:
-        text = laporanPageController.bottomTitles[20] ?? '';
+        text =
+            '${laporanPageController.bottomTitlesMonthly[20]}\n Min 3';
         break;
       case 30:
-        text = laporanPageController.bottomTitles[30] ?? '';
+        text =
+            '${laporanPageController.bottomTitlesMonthly[30]}\n Min 4';
         break;
       default:
         return Container();

@@ -13,7 +13,7 @@ class PeringkatComponent extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     return SmartRefresher(
       onRefresh: () async {
-        await controller.showStatisticCurrentLaporanUser();
+        await controller.showStatisticCurrentReport();
         await controller.showLeaderboardMonthly();
         await controller.showLeaderboardWeelky();
         controller.update();

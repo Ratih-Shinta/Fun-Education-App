@@ -38,7 +38,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
         ),
         body: SmartRefresher(
           onRefresh: () async {
-            await controller.showStatisticCurrentTugasUser();
+            await controller.showStatisticCurrentTask();
             await homePageController.showCurrentUser();
             controller.update();
             controller.refreshController.refreshCompleted();

@@ -125,7 +125,7 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
                 backgroundColor: blackColor,
                 textColor: whiteColor,
                 onPressed: () async {
-                  await controller.showStatisticCurrentLaporanUser();
+                  await controller.showStatisticCurrentReport();
                   Get.back();
                 },
               );
