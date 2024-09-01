@@ -6,7 +6,6 @@ import 'dart:convert';
 
 import 'package:fun_education_app/app/api/statistic/models/statistic-report-model/statistic_report_model.dart';
 import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
 
 StatisticReportResponse showStatisticCurrentResponseFromJson(String str) => StatisticReportResponse.fromJson(json.decode(str));
 

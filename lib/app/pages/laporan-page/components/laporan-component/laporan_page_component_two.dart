@@ -1,21 +1,14 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:fun_education_app/app/pages/laporan-page/widgets/laporan_container.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_container_item.dart';
 import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_empty_item.dart';
 import 'package:fun_education_app/app/pages/report-history-page/widgets/report_history_permission_item.dart';
-import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class LaporanPageComponentTwo extends GetView<LaporanPageController> {
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double height = mediaQuery.height;
 
     return Obx(() {
       if (controller.isLoading.value) {
