@@ -135,21 +135,34 @@ class HomePageController extends GetxController {
     }
   }
 
+  // Future showLatestCatatanDarurat() async {
+  //   try {
+  //     isLoadingLatestCatatan(true);
+  //     final response =
+  //         await catatanDaruratService.getShowLatestCatatanDarurat();
+  //     showLatestCatatanDaruratResponse =
+  //         ShowLatestCatatanDaruratResponse.fromJson(response.data);
+  //     showLatestCatatanDaruratModel.value =
+  //         showLatestCatatanDaruratResponse!.data;
+  //     update();
+  //   } catch (e) {
+  //     isLoadingLatestCatatan(true);
+  //     print(e);
+  //   } finally {
+  //     isLoadingLatestCatatan(false);
+  //   }
+  // }
+
   Future showLatestCatatanDarurat() async {
     try {
-      isLoadingLatestCatatan(true);
-      final response =
-          await catatanDaruratService.getShowLatestCatatanDarurat();
+      final response = await catatanDaruratService.getShowLatestCatatanDarurat();
       showLatestCatatanDaruratResponse =
           ShowLatestCatatanDaruratResponse.fromJson(response.data);
       showLatestCatatanDaruratModel.value =
           showLatestCatatanDaruratResponse!.data;
       update();
     } catch (e) {
-      isLoadingLatestCatatan(true);
       print(e);
-    } finally {
-      isLoadingLatestCatatan(false);
     }
   }
 }

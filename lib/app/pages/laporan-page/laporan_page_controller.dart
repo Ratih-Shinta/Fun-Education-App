@@ -15,9 +15,6 @@ import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/le
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_response.dart';
 import 'package:fun_education_app/app/api/statistic/models/statistic-report-model/statistic_report_model.dart';
 import 'package:fun_education_app/app/api/statistic/models/statistic-report-model/statistic_report_response.dart';
-import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_bottom_tile_model.dart';
-import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
-import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_response.dart';
 import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';

@@ -25,4 +25,3 @@ class ShowLatestCatatanDaruratResponse {
         "data": data.toJson(),
     };
 }
-
