@@ -9,8 +9,8 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-class LaporanComponentFour extends GetView<LaporanPageController> {
-  LaporanComponentFour({super.key});
+class LaporanPageComponentFour extends GetView<LaporanPageController> {
+  LaporanPageComponentFour({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +69,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     );
                   } else {
                     return ListView.builder(
+                      shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: controller.showCurrentTugasModelTerbaru.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -100,6 +101,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     );
                   } else {
                     return ListView.builder(
+                      shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount:
                           controller.showCurrentTugasModelDiperiksa.length,
@@ -131,6 +133,7 @@ class LaporanComponentFour extends GetView<LaporanPageController> {
                     );
                   } else {
                     return ListView.builder(
+                      shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: controller.showCurrentTugasModelSelesai.length,
                       itemBuilder: (BuildContext context, int index) {

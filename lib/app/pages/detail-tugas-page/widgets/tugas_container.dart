@@ -173,48 +173,42 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                     ),
                   ],
                 ),
-                Row(
+                Column(
                   children: [
-                    Column(
+                    AutoSizeText.rich(
+                      TextSpan(
+                        text: 'Tenggat Waktu :',
+                        style: tsBodySmallRegular(greyColor),
+                      ),
+                    ),
+                    SizedBox(height: 7),
+                    Row(
                       children: [
+                        SvgPicture.asset(
+                          iconCalender,
+                          color: controller.showByIdTugasModel.value
+                                      .statusTugasUser ==
+                                  'Selesai'
+                              ? greyColor.withOpacity(0.5)
+                              : controller.showByIdTugasModel.value
+                                          .statusTugasUser ==
+                                      'Gagal'
+                                  ? greyColor.withOpacity(0.5)
+                                  : dangerColor,
+                        ),
+                        SizedBox(width: 5),
                         AutoSizeText.rich(
                           TextSpan(
-                            text: 'Tenggat Waktu :',
-                            style: tsBodySmallRegular(greyColor),
+                            text:
+                                '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.deadline ?? DateTime.now())}',
+                            style: tsBodySmallSemibold(blackColor),
                           ),
-                        ),
-                        SizedBox(height: 7),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              iconCalender,
-                              color: controller.showByIdTugasModel.value
-                                          .statusTugasUser ==
-                                      'Selesai'
-                                  ? greyColor.withOpacity(0.5)
-                                  : controller.showByIdTugasModel.value
-                                              .statusTugasUser ==
-                                          'Gagal'
-                                      ? greyColor.withOpacity(0.5)
-                                      : dangerColor,
-                            ),
-                            SizedBox(width: 5),
-                            AutoSizeText.rich(
-                              TextSpan(
-                                text:
-                                    '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controller.showByIdTugasModel.value.deadline ?? DateTime.now())}',
-                                style: tsBodySmallSemibold(blackColor),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: width * 0.06,
-                    ),
                   ],
                 ),
+                SizedBox(),
               ],
             ),
             Container(

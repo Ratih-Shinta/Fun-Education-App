@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_component_four.dart';
+import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_four.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_one.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_three.dart';
 import 'package:fun_education_app/app/pages/laporan-page/components/laporan-component/laporan_page_component_two.dart';
@@ -13,6 +13,10 @@ class LaporanComponent extends GetView<LaporanPageController> {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
+
     return SmartRefresher(
       onRefresh: () async {
         await controller.showCurrentAlurBelajar();
@@ -39,9 +43,11 @@ class LaporanComponent extends GetView<LaporanPageController> {
           children: [
             SizedBox(height: 20),
             LaporanPageComponentOne(),
+            SizedBox(height: height * 0.02),
             LaporanPageComponentTwo(),
+            SizedBox(height: height * 0.03),
             LaporanPageComponentThree(),
-            LaporanComponentFour()
+            LaporanPageComponentFour()
           ],
         ),
       ),

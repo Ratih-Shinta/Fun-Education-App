@@ -68,7 +68,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         }),
         SizedBox(height: height * 0.015),
         CommonButton(
-          isLoading: controller.isLoading.value,
+          isLoading: controller.isLoadingStoreTugas.value,
           text: 'Tambah Gambar',
           backgroundColor: greyColor.withOpacity(0.1),
           textColor: blackColor,
@@ -127,12 +127,13 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
         ),
         SizedBox(height: 15),
         CommonButton(
-          isLoading: controller.isLoading.value,
+          isLoading: controller.isLoadingStoreTugas.value,
           text: 'Kirim Tugas',
+          textColor: whiteColor,
           backgroundColor: blackColor,
           onPressed: () {
             controller.storeKirimTaskUser();
-          }, textColor: whiteColor,
+          },
         )
       ],
     );

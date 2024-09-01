@@ -173,45 +173,39 @@ class TugasWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
+                Column(
                   children: [
-                    Column(
+                    AutoSizeText.rich(
+                      TextSpan(
+                          text: 'Tenggat Waktu :',
+                          style: tsBodySmallRegular(greyColor)),
+                    ),
+                    SizedBox(height: 7),
+                    Row(
                       children: [
+                        SvgPicture.asset(
+                          iconCalender,
+                          color: status == 'Selesai'
+                              ? greyColor.withOpacity(0.5)
+                              : status == 'Gagal'
+                                  ? greyColor.withOpacity(0.5)
+                                  : dangerColor,
+                        ),
+                        SizedBox(width: 5),
                         AutoSizeText.rich(
                           TextSpan(
-                              text: 'Tenggat Waktu :',
-                              style: tsBodySmallRegular(greyColor)),
-                        ),
-                        SizedBox(height: 7),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              iconCalender,
-                              color: status == 'Selesai'
-                                  ? greyColor.withOpacity(0.5)
-                                  : status == 'Gagal'
-                                      ? greyColor.withOpacity(0.5)
-                                      : dangerColor,
+                            text:
+                                '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controllerArguments.deadline)}',
+                            style: tsBodySmallSemibold(blackColor).copyWith(
+                              height: 1.3,
                             ),
-                            SizedBox(width: 5),
-                            AutoSizeText.rich(
-                              TextSpan(
-                                text:
-                                    '${DateFormat('EEEE, d\nMMMM yyyy', 'id_ID').format(controllerArguments.deadline)}',
-                                style: tsBodySmallSemibold(blackColor).copyWith(
-                                  height: 1.3,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: width * 0.06,
-                    )
                   ],
                 ),
+                SizedBox()
               ],
             ),
           ],

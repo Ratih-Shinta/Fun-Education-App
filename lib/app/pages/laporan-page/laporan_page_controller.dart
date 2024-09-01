@@ -30,7 +30,7 @@ class LaporanPageController extends GetxController
   RefreshController peringkatRefreshController = RefreshController();
 
   TabController? tabControllerAll;
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
   var currentStatus = 'Tersedia'.obs;
@@ -38,6 +38,7 @@ class LaporanPageController extends GetxController
   var spots = <FlSpot>[].obs;
   var touchedTitle = <DateTime>[].obs;
   var bottomTitles = <String?>[].obs;
+  var bottomTitlesMonthly = <String?>[].obs;
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
   ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
@@ -98,7 +99,7 @@ class LaporanPageController extends GetxController
     showCurrentTugasSelesai();
     showLeaderboardWeelky();
     showLeaderboardMonthly();
-    showStatisticCurrentLaporanUser();
+    showStatisticCurrentReport();
     showCurrentLaporanHarian(DateTime.now());
     update();
     super.onInit();
@@ -134,17 +135,18 @@ class LaporanPageController extends GetxController
     }
   }
 
-  Future showStatisticCurrentLaporanUser() async {
+  Future showStatisticCurrentReport() async {
     try {
       isLoading(true);
       bottomTitles.clear();
-      final response = await statisticService.getStatisticCurrentLaporan(
+      bottomTitlesMonthly.clear();
+      final response =
+          await statisticService.getStatisticCurrentLaporan(
         selectedPoint.value,
       );
       statisticReportResponse =
           StatisticReportResponse.fromJson(response.data);
       statisticReportModel.value = statisticReportResponse!.data;
-      print(statisticReportModel);
 
       spots.value = statisticReportModel
           .map((e) => FlSpot(
@@ -157,16 +159,45 @@ class LaporanPageController extends GetxController
 
       bottomTitles.value =
           List<String?>.generate(spots.length, (index) => null);
+      bottomTitlesMonthly.value =
+          List<String?>.generate(spots.length, (index) => null);
 
       for (var title in statisticReportResponse!.bottomTitle) {
-        bottomTitles[title.bottomTitleCase!] = title.date.toString();
+        bottomTitles[title.bottomTitleCase!] =
+            convertToIndonesianDayAbbreviation(title.date!);
+        bottomTitlesMonthly[title.bottomTitleCase!] =
+            DateFormat('dd-MM').format(title.date!);
       }
 
       maxX.value = spots.length - 1.0;
-      isLoading(false);
+
       update();
+      isLoading(false);
     } catch (e) {
-      print('statistik error : $e');
+      print(e);
+    }
+  }
+
+  String convertToIndonesianDayAbbreviation(DateTime dateTime) {
+    String dayInEnglish = DateFormat('EEEE').format(dateTime);
+
+    switch (dayInEnglish) {
+      case 'Monday':
+        return 'SEN';
+      case 'Tuesday':
+        return 'SEL';
+      case 'Wednesday':
+        return 'RAB';
+      case 'Thursday':
+        return 'KAM';
+      case 'Friday':
+        return 'JUM';
+      case 'Saturday':
+        return 'SAB';
+      case 'Sunday':
+        return 'MIN';
+      default:
+        return '';
     }
   }
 

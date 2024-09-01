@@ -20,6 +20,7 @@ class DetailTugasPageController extends GetxController {
   final LaporanPageController laporanPageController =
       Get.put(LaporanPageController());
   RxBool isLoading = false.obs;
+  RxBool isLoadingStoreTugas = false.obs;
   var imageFileList = <XFile>[].obs;
 
   final ImagePicker imagePicker = ImagePicker();
@@ -53,11 +54,10 @@ class DetailTugasPageController extends GetxController {
       showCurrentTugasUserResponse =
           ShowCurrentTugasUserResponse.fromJson(response.data);
       showCurrentTugasUserModel.value = showCurrentTugasUserResponse!.data;
-      isLoading(false);
       update();
-      print('showCurrentTugasUser ${showCurrentTugasUserModel.value.status}');
       isLoading(false);
     } catch (e) {
+      isLoading(false);
       print(e);
     }
   }
@@ -93,7 +93,7 @@ class DetailTugasPageController extends GetxController {
 
   Future<void> storeKirimTaskUser() async {
     try {
-      isLoading(true);
+      isLoadingStoreTugas(true);
       final response = await tugasUserService.postStoreKirimTugas(
         Get.arguments.id,
         noteController.text,
@@ -135,9 +135,10 @@ class DetailTugasPageController extends GetxController {
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      isLoading(false);
+      isLoadingStoreTugas(false);
       update();
     } catch (e) {
+      isLoadingStoreTugas(false);
       Get.snackbar(
         'Upload Failed',
         'Tugas gagal dikirim',

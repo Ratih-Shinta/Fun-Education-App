@@ -58,8 +58,8 @@ class HomePageController extends GetxController {
 
   @override
   void onInit() {
-    showCurrentShiftMasuk();
     showCurrentUser();
+    showCurrentShiftMasuk();
     showLatestCatatanDarurat();
     showTotalPoint();
     showCurrentTugas();
@@ -76,9 +76,10 @@ class HomePageController extends GetxController {
           ShowCurrentLaporanHarianResponse.fromJson(response.data);
       showCurrentLaporanHarianModel.value =
           showCurrentLaporanHarianResponse!.data;
-          totalPoint.value = showCurrentLaporanHarianResponse!.totalPoint;
+      totalPoint.value = showCurrentLaporanHarianResponse!.totalPoint;
       update();
-      print('laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
+      print(
+          'laporan total point : ${showCurrentLaporanHarianResponse?.totalPoint}');
       isLoading(false);
     } catch (e) {
       print('laporan error :  $e');
@@ -155,7 +156,8 @@ class HomePageController extends GetxController {
 
   Future showLatestCatatanDarurat() async {
     try {
-      final response = await catatanDaruratService.getShowLatestCatatanDarurat();
+      final response =
+          await catatanDaruratService.getShowLatestCatatanDarurat();
       showLatestCatatanDaruratResponse =
           ShowLatestCatatanDaruratResponse.fromJson(response.data);
       showLatestCatatanDaruratModel.value =

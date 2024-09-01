@@ -112,42 +112,19 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 }),
                 SizedBox(height: 8),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          group: AutoSizeGroup(),
-                          maxLines: 1,
-                          '-',
-                          style: tsTitleLargeSemibold(dangerColor),
-                        ),
-                        SizedBox(width: width * 0.02),
-                        AutoSizeText(
-                          group: AutoSizeGroup(),
-                          maxLines: 1,
-                          'Rata - Rata',
-                          style: tsBodySmallRegular(blackColor),
-                        ),
-                      ],
+                    CircleAvatar(
+                      radius: 6,
+                      backgroundColor: primaryColor,
                     ),
-                    SizedBox(width: width * 0.05),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 6,
-                          backgroundColor: successColor,
-                        ),
-                        SizedBox(width: width * 0.02),
-                        AutoSizeText(
-                          group: AutoSizeGroup(),
-                          maxLines: 1,
-                          'Point Tugas',
-                          style: tsBodySmallRegular(blackColor),
-                        ),
-                      ],
-                    )
+                    SizedBox(width: width * 0.02),
+                    AutoSizeText(
+                      group: AutoSizeGroup(),
+                      maxLines: 1,
+                      'Point Tugas',
+                      style: tsBodySmallRegular(blackColor),
+                    ),
                   ],
                 ),
                 SizedBox(height: 30),

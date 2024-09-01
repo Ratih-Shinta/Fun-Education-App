@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePageController extends GetxController {
   RefreshController refreshController = RefreshController();
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
 
   late AuthenticationService authenticationService;
 
@@ -24,7 +24,7 @@ class ProfilePageController extends GetxController {
 
   var spots = <FlSpot>[].obs;
   // var touchedTitle = <String?>[].obs;
-  var touchedTitle = <DateTime?>[].obs;
+  var touchedTitle = <DateTime>[].obs;
   var bottomTitles = <String?>[].obs;
   var bottomTitlesMonthly = <String?>[].obs;
   var maxX = 0.0.obs;
@@ -36,11 +36,11 @@ class ProfilePageController extends GetxController {
   void onInit() {
     super.onInit();
     update();
-    showStatisticCurrentTugasUser();
+    showStatisticCurrentTask();
     authenticationService = AuthenticationService();
   }
 
-  Future showStatisticCurrentTugasUser() async {
+  Future showStatisticCurrentTask() async {
     try {
       isLoading(true);
       bottomTitles.clear();
@@ -76,7 +76,8 @@ class ProfilePageController extends GetxController {
       update();
       isLoading(false);
     } catch (e) {
-      print('task error ngetd : $e');
+      isLoading(false);
+      print(e);
     }
   }
 
@@ -121,7 +122,7 @@ class ProfilePageController extends GetxController {
       );
       Get.offAllNamed(Routes.LOGIN_PAGE);
     } catch (e) {
-      isLoading.value = true;
+      isLoading(true);
       Get.snackbar(
         "Logout Failed",
         "Network Error" + e.toString(),
@@ -129,8 +130,6 @@ class ProfilePageController extends GetxController {
         colorText: whiteColor,
         snackPosition: SnackPosition.BOTTOM,
       );
-    } finally {
-      isLoading.value = false;
     }
   }
 }
