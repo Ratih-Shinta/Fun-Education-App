@@ -4,6 +4,7 @@ import 'package:fun_education_app/app/pages/gallery-page/components/bottomsheet_
 import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class GalleryPageComponentTwo extends GetView<GalleryPageController> {
   const GalleryPageComponentTwo({Key? key}) : super(key: key);
@@ -25,8 +26,30 @@ class GalleryPageComponentTwo extends GetView<GalleryPageController> {
         SizedBox(height: height * 0.02),
         Obx(() {
           if (controller.isLoadingAllPhotos.value == true) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: width * 0.01,
+                  mainAxisSpacing: height * 0.005,
+                  childAspectRatio: 1.1,
+                ),
+                itemCount: 15,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(right: width * 0.02),
+                    width: width * 0.43,
+                    decoration: BoxDecoration(
+                      color: greyColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  );
+                },
+              ),
+              // ),
             );
           } else {
             return GridView.builder(
@@ -42,12 +65,13 @@ class GalleryPageComponentTwo extends GetView<GalleryPageController> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    bottomSheetDetailGallery( 
+                    bottomSheetDetailGallery(
                       context,
                       controller.showAllPhotosModel[index].title!,
                       controller.showAllPhotosModel[index].description!,
                       controller.showAllPhotosModel[index].image!,
-                      controller.showAllPhotosModel[index].createdAt!.toString(),
+                      controller.showAllPhotosModel[index].createdAt!
+                          .toString(),
                     );
                   },
                   child: Container(

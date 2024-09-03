@@ -8,6 +8,7 @@ import 'package:fun_education_app/app/pages/laporan-page/widgets/tab_item.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:shimmer/shimmer.dart';
 
 class LaporanPageComponentFour extends GetView<LaporanPageController> {
   LaporanPageComponentFour({super.key});
@@ -59,8 +60,26 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
             children: [
               Obx(
                 () {
-                  if (controller.isLoading.value) {
-                    return Center(child: CircularProgressIndicator());
+                  if (controller.isLoadingTask.value) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 15),
+                            width: width,
+                            height: height * 0.2,
+                            decoration: BoxDecoration(
+                                color: greyColor,
+                                borderRadius: BorderRadius.circular(10)),
+                          );
+                        },
+                      ),
+                    );
                   } else if (controller.showCurrentTugasModelTerbaru.isEmpty) {
                     return CommonNoData(
                       title: 'Tidak Ada Tugas Terbaru',
@@ -84,8 +103,26 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
               ),
               Obx(
                 () {
-                  if (controller.isLoading.value) {
-                    return Center(child: CircularProgressIndicator());
+                  if (controller.isLoadingTask.value) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 15),
+                            width: width,
+                            height: height * 0.2,
+                            decoration: BoxDecoration(
+                                color: greyColor,
+                                borderRadius: BorderRadius.circular(10)),
+                          );
+                        },
+                      ),
+                    );
                   } else if (controller
                       .showCurrentTugasModelDiperiksa.isEmpty) {
                     return CommonNoData(
@@ -111,8 +148,26 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
               ),
               Obx(
                 () {
-                  if (controller.isLoading.value) {
-                    return Center(child: CircularProgressIndicator());
+                  if (controller.isLoadingTask.value) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 15),
+                            width: width,
+                            height: height * 0.2,
+                            decoration: BoxDecoration(
+                                color: greyColor,
+                                borderRadius: BorderRadius.circular(10)),
+                          );
+                        },
+                      ),
+                    );
                   } else if (controller.showCurrentTugasModelSelesai.isEmpty) {
                     return CommonNoData(
                       title: 'Tidak Ada Tugas Selesai',

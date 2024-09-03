@@ -11,6 +11,7 @@ import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_c
 import 'package:fun_education_app/app/api/tugas/service/tugas_service.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -22,6 +23,8 @@ class DetailTugasPageController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingStoreTugas = false.obs;
   var imageFileList = <XFile>[].obs;
+  RxString? statusTask = ''.obs;
+  var taskId = ''.obs;
 
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController noteController = TextEditingController();
@@ -42,9 +45,9 @@ class DetailTugasPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Get.arguments;
-    showByIdTugas(Get.arguments.id);
-    showCurrentTugasUser(Get.arguments.id);
+    taskId.value = Get.arguments.id;
+    showByIdTugas(taskId.value);
+    showCurrentTugasUser(taskId.value);
     update();
   }
 
@@ -96,10 +99,14 @@ class DetailTugasPageController extends GetxController {
       isLoadingStoreTugas(true);
       String? isNote =
           noteController.text.isNotEmpty ? noteController.text : null;
-      print('Get.arguments: ${Get.arguments}');
 
       final response = await tugasUserService.postStoreKirimTugas(
-          isNote != null, Get.arguments.id, isNote);
+          isNote != null, taskId.value, isNote);
+      if (response.data['data']['status'] == null) {
+        statusTask!.value = 'null';
+      } else {
+        statusTask!.value = response.data['data']['status'];
+      }
 
       if (imageFileList.isNotEmpty) {
         final responseData = response.data;
@@ -121,8 +128,6 @@ class DetailTugasPageController extends GetxController {
           }
         }
       }
-
-      Get.back();
 
       Get.snackbar(
         'Upload Successful',

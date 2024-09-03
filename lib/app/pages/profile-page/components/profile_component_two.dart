@@ -9,6 +9,7 @@ import 'package:fun_education_app/app/pages/profile-page/widgets/task_line_chart
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileComponentTwo extends GetView<ProfilePageController> {
   final TaskLineChart taskLineChart = TaskLineChart();
@@ -19,6 +20,7 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,75 +80,90 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
             })
           ],
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          padding: const EdgeInsets.all(25),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: greyColor.withOpacity(0.05),
-          ),
-          child: AspectRatio(
-            aspectRatio: 0.6,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Obx(() {
-                  return AutoSizeText.rich(
-                    TextSpan(
-                      text: controller.selectedPoints.value == 'weekly'
-                          ? 'Mingguan (Terakhir)\n'
-                          : 'Bulanan (Terakhir)\n',
-                      style: tsBodyMediumSemibold(blackColor)
-                          .copyWith(height: 1.5),
-                      children: [
-                        TextSpan(
-                            text: 'Perkembangan point ananda',
-                            style: tsBodySmallRegular(blackColor)),
-                      ],
-                    ),
-                    maxLines: 2,
-                    group: AutoSizeGroup(),
-                  );
-                }),
-                SizedBox(height: 8),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 6,
-                      backgroundColor: primaryColor,
-                    ),
-                    SizedBox(width: width * 0.02),
-                    AutoSizeText(
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      'Point Tugas',
-                      style: tsBodySmallRegular(blackColor),
-                    ),
-                  ],
+        Obx(
+          () {
+            if (controller.isLoading.value) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  width: width,
+                  height: height * 0.65,
+                  decoration: BoxDecoration(
+                      color: greyColor,
+                      borderRadius: BorderRadius.circular(10)),
                 ),
-                SizedBox(height: 30),
-                Obx(() {
-                  if (controller.isLoading.value)
-                    return Center(child: CircularProgressIndicator());
-                  else
-                    return AspectRatio(
-                      aspectRatio: 0.8,
-                      child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.01,
+              );
+            } else {
+              return Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: greyColor.withOpacity(0.05),
+                ),
+                child: AspectRatio(
+                  aspectRatio: 0.6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Obx(() {
+                        return AutoSizeText.rich(
+                          TextSpan(
+                            text: controller.selectedPoints.value == 'weekly'
+                                ? 'Mingguan (Terakhir)\n'
+                                : 'Bulanan (Terakhir)\n',
+                            style: tsBodyMediumSemibold(blackColor)
+                                .copyWith(height: 1.5),
+                            children: [
+                              TextSpan(
+                                  text: 'Perkembangan point ananda',
+                                  style: tsBodySmallRegular(blackColor)),
+                            ],
                           ),
-                          child: LineChart(
-                            taskLineChart.taskLineChart(),
-                          )),
-                    );
-                }),
-              ],
-            ),
-          ),
+                          maxLines: 2,
+                          group: AutoSizeGroup(),
+                        );
+                      }),
+                      SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 6,
+                            backgroundColor: primaryColor,
+                          ),
+                          SizedBox(width: width * 0.02),
+                          AutoSizeText(
+                            group: AutoSizeGroup(),
+                            maxLines: 1,
+                            'Point Tugas',
+                            style: tsBodySmallRegular(blackColor),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      Obx(() {
+                        return AspectRatio(
+                          aspectRatio: 0.8,
+                          child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: width * 0.01,
+                              ),
+                              child: LineChart(
+                                taskLineChart.taskLineChart(),
+                              )),
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
         ),
         CommonButton(
-          // isLoading: controller.isLoading.value,
           text: 'Lihat Riwayat Laporan',
           backgroundColor: blackColor,
           textColor: whiteColor,

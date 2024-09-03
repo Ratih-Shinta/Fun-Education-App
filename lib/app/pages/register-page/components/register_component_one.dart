@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
@@ -85,7 +84,7 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
           obscureText: false,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Tempat, Tanggal Lahir tidak boleh kosong';
+              return 'Tempat, dan Tanggal Lahir tidak boleh kosong';
             }
 
             final RegExp regex = RegExp(

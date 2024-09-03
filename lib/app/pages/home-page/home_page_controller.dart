@@ -6,9 +6,6 @@ import 'package:fun_education_app/app/api/laporan-harian/models/show-current-lap
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-total-point/total_point_response.dart';
-import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_model.dart';
-import 'package:fun_education_app/app/api/shift-masuk/models/shift_masuk_response.dart';
-import 'package:fun_education_app/app/api/shift-masuk/service/shift_masuk_sevice.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_image_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_model.dart';
 import 'package:fun_education_app/app/api/tugas/models/show-current-tugas/show_current_tugas_response.dart';
@@ -23,7 +20,10 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class HomePageController extends GetxController {
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
+
   RxBool isLoadingLatestCatatan = false.obs;
+  RxBool isLoading = true.obs;
+
   RxInt totalPoint = 0.obs;
 
   LaporanHarianService laporanHarianService = LaporanHarianService();
@@ -50,8 +50,6 @@ class HomePageController extends GetxController {
       <ShowCurrentTugasModel>[].obs;
   RxList<ShowCurrentTugasImageModel> showCurrentTugasImageModel =
       <ShowCurrentTugasImageModel>[].obs;
-
-  RxBool isLoading = true.obs;
 
   @override
   void onInit() {

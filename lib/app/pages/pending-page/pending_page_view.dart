@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
-import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/pending-page/pending_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
@@ -91,12 +90,11 @@ class PendingPageView extends GetView<PendingPageController> {
                         backgroundColor: blackColor,
                         textColor: whiteColor,
                         onPressed: () {
-                          Get.offAllNamed(Routes.HOME_PAGE);
+                          Get.offAllNamed(Routes.NAVBAR);
                         },
                       );
                     } else {
                       return CommonButton(
-                        // isLoading: controller.isLoading.value,
                         text: 'Masuk',
                         backgroundColor: silverColor.withOpacity(0.2),
                         textColor: whiteColor,

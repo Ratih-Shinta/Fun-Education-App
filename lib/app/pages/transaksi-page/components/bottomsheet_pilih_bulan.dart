@@ -44,32 +44,6 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
                 );
               },
             ),
-            // return Padding(
-            //     padding: EdgeInsets.symmetric(vertical: height * 0.009),
-            //     child: GestureDetector(
-            //       onTap: () {
-            //         controller.setSelectedMonth(months[index]);
-            //         (months.length);
-            //       },
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Text(
-            //             months[index],
-            //             style: tsBodyMediumSemibold(blackColor),
-            //           ),
-            //           Obx(() {
-            //             return Icon(Icons.check_circle,
-            //                 color: controller.selectedMonth.value ==
-            //                         months[index]
-            //                     ? successColor
-            //                     : transparentColor);
-            //           }),
-            //         ],
-            //       ),
-            //     ));
-            //   },
-            // ),
             SizedBox(height: height * 0.045),
             CommonButton(
               // isLoading: controller.isLoading.value,

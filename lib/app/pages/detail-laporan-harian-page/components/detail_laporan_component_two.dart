@@ -4,6 +4,7 @@ import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_la
 import 'package:fun_education_app/app/pages/home-page/widgets/report_widget.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
   DetailLaporanComponentTwo({super.key});
@@ -16,8 +17,17 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
 
     return Obx(() {
       if (controller.isLoading.value == true) {
-        return Center(
-          child: CircularProgressIndicator(),
+        return Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            height: height * 0.7,
+            width: width,
+            decoration: BoxDecoration(
+              color: greyColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
         );
       } else if (controller.showCurrentLaporanHarianModel.isNotEmpty &&
           controller.userPermission.value == 'Hadir') {
@@ -54,59 +64,6 @@ class DetailLaporanComponentTwo extends GetView<DetailLaporanHarianController> {
           ),
         );
       }
-      // if (controller.showCurrentLaporanHarianResponse?.data == null) {
-      //   return Padding(
-      //     padding: EdgeInsets.only(
-      //       bottom: height * 0.15,
-      //       top: height * 0.15,
-      //     ),
-      //     child: Center(
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           SvgPicture.asset(
-      //             'assets/images/imgEmpty.svg',
-      //           ),
-      //           SizedBox(height: height * 0.01),
-      //           AutoSizeText(
-      //             'Laporan tidak ditemukan',
-      //             group: AutoSizeGroup(),
-      //             maxLines: 1,
-      //             style: tsBodyMediumSemibold(blackColor),
-      //           ),
-      //           AutoSizeText(
-      //             'Dibulan ini sepertinya belum ada laporan',
-      //             group: AutoSizeGroup(),
-      //             maxLines: 1,
-      //             style: tsLabelLargeRegular(blackColor),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   );
-      // } else {
-      //   return Container(
-      //     padding: EdgeInsets.symmetric(
-      //         horizontal: width * 0.035, vertical: height * 0.01),
-      //     decoration: BoxDecoration(
-      //         borderRadius: BorderRadius.circular(10),
-      //         color: secondaryColor.withOpacity(0.05)),
-      //     child: Obx(() => ListView.builder(
-      //           physics: NeverScrollableScrollPhysics(),
-      //           shrinkWrap: true,
-      //           itemCount: controller.showCurrentLaporanHarianModel.length,
-      //           itemBuilder: (BuildContext context, int index) {
-      //             return ReportWidget(
-      //               no: index + 1,
-      //               text:
-      //                   '${controller.showCurrentLaporanHarianModel[index].activity}',
-      //               point:
-      //                   '${controller.showCurrentLaporanHarianModel[index].grade}',
-      //             );
-      //           },
-      //         )),
-      //   );
-      // }
     });
   }
 }
