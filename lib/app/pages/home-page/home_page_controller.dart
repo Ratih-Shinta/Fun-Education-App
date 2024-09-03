@@ -21,7 +21,8 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePageController extends GetxController {
-  RefreshController refreshController = RefreshController();
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
   RxBool isLoadingLatestCatatan = false.obs;
   RxInt totalPoint = 0.obs;
 
@@ -29,10 +30,6 @@ class HomePageController extends GetxController {
   ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
   RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
       <ShowCurrentLaporanHarianModel>[].obs;
-
-  ShiftMasukService shiftMasukService = ShiftMasukService();
-  ShiftMasukResponse? shiftMasukResponse;
-  Rx<ShiftMasukModel> shiftMasukModel = ShiftMasukModel().obs;
 
   UserService userService = UserService();
   ShowCurrentUserResponse? showCurrentUserResponse;
@@ -59,13 +56,18 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     showCurrentUser();
-    showCurrentShiftMasuk();
     showLatestCatatanDarurat();
     showTotalPoint();
     showCurrentTugas();
     showCurrentLaporanHarian();
-    update();
+
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    refreshController.dispose();
+    super.onClose();
   }
 
   Future showCurrentLaporanHarian() async {
@@ -88,7 +90,7 @@ class HomePageController extends GetxController {
 
   Future showCurrentTugas() async {
     try {
-      final response = await tugasService.getCurrentTugas();
+      final response = await tugasService.getCurrentTugas('Terbaru');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModel.value = showCurrentTugasResponse!.data;
@@ -112,17 +114,6 @@ class HomePageController extends GetxController {
     }
   }
 
-  Future showCurrentShiftMasuk() async {
-    try {
-      final response = await shiftMasukService.getCurrentShiftMasuk();
-      shiftMasukResponse = ShiftMasukResponse.fromJson(response.data);
-      shiftMasukModel.value = shiftMasukResponse!.data;
-      update();
-    } catch (e) {
-      print(e);
-    }
-  }
-
   Future showCurrentUser() async {
     try {
       final response = await userService.getShowCurrentUser();
@@ -135,24 +126,6 @@ class HomePageController extends GetxController {
       print('showCurrentUserModel $e');
     }
   }
-
-  // Future showLatestCatatanDarurat() async {
-  //   try {
-  //     isLoadingLatestCatatan(true);
-  //     final response =
-  //         await catatanDaruratService.getShowLatestCatatanDarurat();
-  //     showLatestCatatanDaruratResponse =
-  //         ShowLatestCatatanDaruratResponse.fromJson(response.data);
-  //     showLatestCatatanDaruratModel.value =
-  //         showLatestCatatanDaruratResponse!.data;
-  //     update();
-  //   } catch (e) {
-  //     isLoadingLatestCatatan(true);
-  //     print(e);
-  //   } finally {
-  //     isLoadingLatestCatatan(false);
-  //   }
-  // }
 
   Future showLatestCatatanDarurat() async {
     try {

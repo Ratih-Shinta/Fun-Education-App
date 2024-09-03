@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/global-component/loading_overlay.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/components/detail_laporan_component_four.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/components/detail_laporan_component_one.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/components/detail_laporan_component_three.dart';
@@ -19,51 +20,54 @@ class DetailLaporanHarianView extends GetView<DetailLaporanHarianController> {
     final double height = mediaQuery.height;
 
     return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(height * 0.07),
-        child: AppBar(
-          backgroundColor: backgroundColor,
-          elevation: 0,
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              size: 15,
+        backgroundColor: backgroundColor,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(height * 0.07),
+          child: AppBar(
+            backgroundColor: backgroundColor,
+            elevation: 0,
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                size: 15,
+              ),
+              onPressed: () {
+                Get.back();
+              },
             ),
-            onPressed: () {
-              Get.back();
-            },
-          ),
-          title: AutoSizeText(
-            'Detail Laporan',
-            style: tsBodyMediumSemibold(blackColor),
+            title: AutoSizeText(
+              'Detail Laporan',
+              style: tsBodyMediumSemibold(blackColor),
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: height * 0.02,
-            horizontal: width * 0.05,
+        body: LoadingOverlay(
+          isLoading: controller.isLoading.value,
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: height * 0.02,
+                horizontal: width * 0.05,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DetailLaporanComponentOne(),
+                  DetailLaporanComponentTwo(),
+                  SizedBox(height: height * 0.02),
+                  DetailLaporanComponentThree(),
+                  SizedBox(height: height * 0.04),
+                  DetailLaporanComponentFour(),
+                  // SizedBox(height: height * 0.02),
+                  // DetailComponentFive(),
+                ],
+              ),
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DetailLaporanComponentOne(),
-              DetailLaporanComponentTwo(),
-              SizedBox(height: height * 0.02),
-              DetailLaporanComponentThree(),
-              SizedBox(height: height * 0.04),
-              DetailLaporanComponentFour(),
-              // SizedBox(height: height * 0.02),
-              // DetailComponentFive(),
-            ],
-          ),
-        ),
-      ),
-      // ),
-    );
+        )
+        // ),
+        );
   }
 }

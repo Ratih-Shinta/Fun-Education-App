@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_education_app/app/global-component/common_alert_dialog.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/home-page/home_page_controller.dart';
 import 'package:fun_education_app/app/pages/profile-page/profile_page_controller.dart';
@@ -58,7 +59,17 @@ class ProfileComponentThree extends GetView<ProfilePageController> {
                     textColor: whiteColor,
                     svgIcon: 'assets/icons/icLogout.svg',
                     onPressed: () {
-                      controller.logout();
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CommonAlertDialog(
+                                title: 'Konfirmasi',
+                                content:
+                                    'Apakah anda yakin ingin logout dari akun ini?',
+                                cancelButtonText: 'Tidak',
+                                confirmButtonText: 'Iya',
+                                onConfirm: controller.logout);
+                          });
                     },
                   )),
             ],

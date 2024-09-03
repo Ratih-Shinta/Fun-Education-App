@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
+import 'package:fun_education_app/app/pages/profile-page/widgets/custom-radio-button_period.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/transaksi_page_controller.dart';
 import 'package:fun_education_app/app/pages/transaksi-page/widgets/header_bottomsheet.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
@@ -13,7 +14,7 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
     final double height = mediaQuery.height;
 
     return SizedBox(
-      height: height * 0.82,
+      height: height * 0.84,
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: height * 0.03,
@@ -30,43 +31,55 @@ class BottomSheetPilihBulan extends GetView<TransaksiPageController> {
               shrinkWrap: true,
               itemCount: months.length,
               itemBuilder: (context, index) {
-                return Padding(
-                    padding: EdgeInsets.symmetric(vertical: height * 0.009),
-                    child: GestureDetector(
-                      onTap: () {
-                        controller.setSelectedMonth(months[index]);
-                        (months.length);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            months[index],
-                            style: tsBodyMediumSemibold(blackColor),
-                          ),
-                          Obx(() {
-                            return Icon(Icons.check_circle,
-                                color: controller.selectedMonth.value ==
-                                        months[index]
-                                    ? successColor
-                                    : transparentColor);
-                          }),
-                        ],
-                      ),
-                    ));
+                return Obx(
+                  () => CustomRadioButtonPeriod(
+                    title: months[index],
+                    value: months[index],
+                    groupValue: controller.selectedMonth.value,
+                    onChanged: (value) async {
+                      controller.setSelectedMonth(value);
+                      await controller.showCurrentTransaksiByMonth();
+                    },
+                  ),
+                );
               },
             ),
+            // return Padding(
+            //     padding: EdgeInsets.symmetric(vertical: height * 0.009),
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         controller.setSelectedMonth(months[index]);
+            //         (months.length);
+            //       },
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             months[index],
+            //             style: tsBodyMediumSemibold(blackColor),
+            //           ),
+            //           Obx(() {
+            //             return Icon(Icons.check_circle,
+            //                 color: controller.selectedMonth.value ==
+            //                         months[index]
+            //                     ? successColor
+            //                     : transparentColor);
+            //           }),
+            //         ],
+            //       ),
+            //     ));
+            //   },
+            // ),
             SizedBox(height: height * 0.045),
-            Obx(() => CommonButton(
-                  isLoading: controller.isLoading.value,
-                  text: 'Tutup',
-                  onPressed: () {
-                    controller.showCurrentTransaksiByMonth();
-                    Get.back();
-                  },
-                  backgroundColor: blackColor,
-                  textColor: whiteColor,
-                ))
+            CommonButton(
+              // isLoading: controller.isLoading.value,
+              text: 'Tutup',
+              onPressed: () async {
+                Navigator.pop(context);
+              },
+              backgroundColor: blackColor,
+              textColor: whiteColor,
+            )
           ],
         ),
       ),

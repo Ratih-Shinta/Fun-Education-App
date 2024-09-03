@@ -13,8 +13,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  final LaporanPageController laporanPageController =
-      Get.put(LaporanPageController());
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -41,48 +39,30 @@ class HomePageView extends GetView<HomePageController> {
       body: Obx(
         () => LoadingOverlay(
           isLoading: controller.isLoading.value,
-          child: SmartRefresher(
-            onRefresh: () async {
-              await controller.showCurrentUser();
-              await controller.showCurrentShiftMasuk();
-              await controller.showLatestCatatanDarurat();
-              await controller.showCurrentLaporanHarian();
-              await laporanPageController.showCurrentTugasTerbaru();
-              controller.refreshController.refreshCompleted();
-            },
-            controller: controller.refreshController,
-            header: WaterDropHeader(
-              complete: Text(
-                'Refresh Completed',
-                style: tsBodySmallRegular(blackColor),
-              ),
-              waterDropColor: primaryColor,
-            ),
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.05,
-                    vertical: height * 0.015,
-                  ),
-                  child: Column(
-                    children: [
-                      HomePageComponentOne(),
-                      SizedBox(
-                        height: height * 0.025,
-                      ),
-                      HomePageComponentTwo(),
-                      SizedBox(
-                        height: height * 0.025,
-                      ),
-                      HomePageComponentThree(),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      HomePageComponentFour(),
-                    ],
-                  ),
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.05,
+                  vertical: height * 0.015,
+                ),
+                child: Column(
+                  children: [
+                    HomePageComponentOne(),
+                    SizedBox(
+                      height: height * 0.025,
+                    ),
+                    HomePageComponentTwo(),
+                    SizedBox(
+                      height: height * 0.025,
+                    ),
+                    HomePageComponentThree(),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    HomePageComponentFour(),
+                  ],
                 ),
               ),
             ),

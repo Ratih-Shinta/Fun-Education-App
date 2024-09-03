@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fun_education_app/app/global-component/common_alert_dialog.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_detail_image.dart';
 import 'package:fun_education_app/app/global-component/common_grid_image.dart';
@@ -12,7 +13,6 @@ import 'package:get/get.dart';
 
 class DetailTugasKirim extends GetView<DetailTugasPageController> {
   DetailTugasKirim({super.key});
-  final argument = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: IconPoint(
-                point: '${argument?.point?.toString() ?? '0'}',
+                point: '${Get.arguments?.point.toString() ?? '0'}',
                 color: successColor,
                 textStyle: tsBodySmallSemibold(whiteColor),
               ),
@@ -133,6 +133,17 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           backgroundColor: blackColor,
           onPressed: () {
             controller.storeKirimTaskUser();
+            // showDialog(
+            //     context: context,
+            //     builder: (context) {
+            //       return CommonAlertDialog(
+            //           title: 'Konfirmasi',
+            //           content:
+            //               'Apakah anda yakin dengan jawaban tugas yang akan anda kirim?',
+            //           cancelButtonText: 'Tidak',
+            //           confirmButtonText: 'Yakin!',
+            //           onConfirm: controller.storeKirimTaskUser);
+            //     });
           },
         )
       ],

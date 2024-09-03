@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
-import 'package:fun_education_app/app/pages/profile-page/widgets/custon-radio-button.dart';
+import 'package:fun_education_app/app/pages/profile-page/widgets/custom-radio-button_period.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return SizedBox(
-      height: height * 0.51,
+      height: height * 0.35,
       child: Padding(
         padding: EdgeInsets.only(
           top: height * 0.02,
@@ -64,7 +64,7 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
                 ),
               ],
             ),
-            SizedBox(height: height * 0.04),
+            SizedBox(height: 15),
             Expanded(
               child: Obx(
                 () => Column(
@@ -104,32 +104,33 @@ class BottomsheetSelectPeriodReport extends GetView<LaporanPageController> {
                       title: 'Mingguan (Terakhir)',
                       value: 'weekly',
                       groupValue: controller.selectedPoint.value,
-                      onChanged: (value) => controller.selectedPoint(value),
+                      onChanged: (value) async {
+                        controller.selectedPoint(value);
+                        await controller.showStatisticCurrentReport();
+                      },
                     ),
                     SizedBox(height: height * 0.01),
                     CustomRadioButtonPeriod(
                       title: 'Bulanan (Terakhir)',
                       value: 'monthly',
                       groupValue: controller.selectedPoint.value,
-                      onChanged: (value) => controller.selectedPoint(value),
+                      onChanged: (value) async {
+                        controller.selectedPoint(value);
+                        await controller.showStatisticCurrentReport();
+                      },
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: height * 0.03),
-            Obx(() {
-              return CommonButton(
-                isLoading: controller.isLoading.value,
-                text: 'Tutup',
-                backgroundColor: blackColor,
-                textColor: whiteColor,
-                onPressed: () async {
-                  await controller.showStatisticCurrentReport();
-                  Get.back();
-                },
-              );
-            })
+            CommonButton(
+              text: 'Tutup',
+              backgroundColor: blackColor,
+              textColor: whiteColor,
+              onPressed: () async {
+                Navigator.pop(context);
+              },
+            )
           ],
         ),
       ),

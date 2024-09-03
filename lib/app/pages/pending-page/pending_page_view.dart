@@ -10,8 +10,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PendingPageView extends GetView<PendingPageController> {
-  final HomePageController homePageController = Get.put(HomePageController());
-
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -22,7 +20,8 @@ class PendingPageView extends GetView<PendingPageController> {
       body: SafeArea(
         child: SmartRefresher(
           onRefresh: () {
-            homePageController.showCurrentUser();
+            controller.showCurrentUser();
+            controller.refreshController.refreshCompleted();
           },
           controller: controller.refreshController,
           header: WaterDropHeader(
@@ -84,8 +83,7 @@ class PendingPageView extends GetView<PendingPageController> {
                 SizedBox(height: height * 0.06),
                 Obx(
                   () {
-                    if (homePageController
-                            .showCurrentUserModel.value.isVerified ==
+                    if (controller.showCurrentUserModel.value.isVerified ==
                         true) {
                       return CommonButton(
                         isLoading: controller.isLoading.value,

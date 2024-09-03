@@ -8,7 +8,6 @@ import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class VerificationPageController extends GetxController {
-  final HomePageController homePageController = Get.put(HomePageController());
   late TextEditingController otpController = TextEditingController();
   late OTPService otpService;
 
@@ -21,9 +20,12 @@ class VerificationPageController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool idloadingSendOTP = false.obs;
 
+  RxString emailVerify = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
+    emailVerify.value = Get.arguments;
     otpController = TextEditingController();
     otpService = OTPService();
     startTimer();
@@ -57,8 +59,8 @@ class VerificationPageController extends GetxController {
   Future<void> checkOTP() async {
     try {
       isLoading(true);
-      await otpService.storeCheckOTP(otpController.text,
-          homePageController.showCurrentUserModel.value.email!, false);
+      await otpService.storeCheckOTP(
+          otpController.text, emailVerify.value, false);
       isLoading(false);
       Get.snackbar(
         "Success",
@@ -68,7 +70,7 @@ class VerificationPageController extends GetxController {
       );
       Get.offAllNamed(Routes.PENDING_PAGE);
     } catch (e) {
-            isLoading(false);
+      isLoading(false);
 
       Get.snackbar(
         "Error",
@@ -84,7 +86,7 @@ class VerificationPageController extends GetxController {
     try {
       idloadingSendOTP(true);
       await otpService.storeSendOTP(
-        homePageController.showCurrentUserModel.value.email!,
+        emailVerify.value,
       );
       print('isloading : ${isLoading.value}');
       Get.snackbar(

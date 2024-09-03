@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/common_text_field.dart';
 import 'package:fun_education_app/app/pages/register-page/register_page_controller.dart';
+import 'package:fun_education_app/app/pages/register-page/widgets/gender_drowpdown.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +13,7 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
     return Column(
@@ -21,8 +24,8 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
           fieldController: controller.fullNameController,
           obscureText: false,
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Nama Lengkap tidak boleh kosong';
+            if (value!.isEmpty) {
+              return "Nama Lengkap tidak boleh kosong";
             }
             return null;
           },
@@ -55,7 +58,7 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
               : null,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter an email address';
+              return 'Email tidak boleh kosong';
             }
             final emailRegex = RegExp(
                 r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
@@ -66,9 +69,12 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
                 r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
                 r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
             if (!emailRegex.hasMatch(value)) {
-              return 'Please enter a valid email';
+              return 'Email tidak valid';
             }
-            return controller.emailError.value;
+            if (controller.emailError.value == "Email sudah terdaftar") {
+              return controller.emailError.value;
+            }
+            return null;
           },
         ),
         SizedBox(height: height * 0.01),
@@ -81,9 +87,63 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
             if (value == null || value.isEmpty) {
               return 'Tempat, Tanggal Lahir tidak boleh kosong';
             }
+
+            final RegExp regex = RegExp(
+              r'^[a-zA-Z\s]+, \d{1,2} (januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember) \d{4}$',
+              caseSensitive: false, //allow lowercase and capitalized month
+            );
+
+            if (!regex.hasMatch(value)) {
+              return 'Format harus: Kota, tanggal bulan tahun';
+            }
+
+            try {
+              final datePart = value.split(', ')[1];
+              final day = int.parse(datePart.split(' ')[0]);
+              final month = datePart
+                  .split(' ')[1]
+                  .toLowerCase(); // convert to lowercase for uniformity
+
+              // Create a map of lowercase month names to numbers
+              const monthMap = {
+                'januari': 1,
+                'februari': 2,
+                'maret': 3,
+                'april': 4,
+                'mei': 5,
+                'juni': 6,
+                'juli': 7,
+                'agustus': 8,
+                'september': 9,
+                'oktober': 10,
+                'november': 11,
+                'desember': 12,
+              };
+
+              if (!monthMap.containsKey(month)) {
+                return 'Bulan tidak valid';
+              }
+
+              // check the maximum date 31
+              if (day < 1 || day > 31) {
+                return 'Hari harus antara 1 dan 31';
+              }
+            } catch (e) {
+              return 'Format tanggal tidak valid';
+            }
+
             return null;
           },
           hintText: 'Tempat, Tanggal Lahir',
+        ),
+        SizedBox(height: height * 0.005),
+        Container(
+          width: width,
+          child: AutoSizeText(
+            'Contoh : Batam, 4 September 2024',
+            style: tsLabelLargeMedium(greyColor.withOpacity(0.5)),
+            textAlign: TextAlign.left,
+          ),
         ),
         SizedBox(height: height * 0.01),
         CommonTextField(
@@ -99,84 +159,17 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
           },
           hintText: 'Alamat Lengkap',
         ),
-        SizedBox(height: height * 0.01),
-        DropdownButtonFormField2<String>(
-          isExpanded: true,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-              vertical: height * 0.02,
-            ),
-            fillColor: whiteColor,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide.none,
-            ),
-          ),
-          hint: Obx(() => Row(
-                children: [
-                  Icon(
-                      controller.selectedGender.value == 'Laki - laki'
-                          ? Icons.male
-                          : Icons.female,
-                      color: greyColor.withOpacity(0.5)),
-                  SizedBox(width: 8),
-                  Text(
-                      controller.selectedGender.value.isEmpty
-                          ? 'Pilih shift'
-                          : controller.selectedGender.value,
-                      style: tsBodySmallMedium(blackColor)),
-                ],
-              )),
-          items: controller.genderList
-              .map((item) => DropdownMenuItem<String>(
-                    value: item,
-                    child: Row(
-                      children: [
-                        Icon(
-                          controller.selectedGender.value == item
-                              ? Icons.male
-                              : Icons.female,
-                          color: greyColor.withOpacity(0.5),
-                        ),
-                        SizedBox(width: 8),
-                        Text(item, style: tsBodySmallMedium(blackColor)),
-                      ],
-                    ),
-                  ))
-              .toList(),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Pilih shift';
-            }
-            return null;
-          },
-          onChanged: (value) {
-            controller.setSelectedGender(value!);
-          },
-          onSaved: (value) {
-            controller.selectedGender.value = value!;
-          },
-          buttonStyleData: const ButtonStyleData(
-            padding: EdgeInsets.only(right: 8),
-          ),
-          iconStyleData: const IconStyleData(
-            icon: Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: blackColor,
-            ),
-            iconSize: 24,
-          ),
-          dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          menuItemStyleData: const MenuItemStyleData(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+        SizedBox(height: height * 0.005),
+        Container(
+          width: width,
+          child: AutoSizeText(
+            'Contoh : Griya Batu Aji Ari Blok G1, No 06',
+            style: tsLabelLargeMedium(greyColor.withOpacity(0.5)),
+            textAlign: TextAlign.left,
           ),
         ),
+        SizedBox(height: height * 0.01),
+        GenderDrowpdown()
       ],
     );
   }

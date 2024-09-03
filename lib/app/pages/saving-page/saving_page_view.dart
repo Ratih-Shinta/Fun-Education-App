@@ -58,7 +58,6 @@ class SavingPageView extends GetView<SavingPageController> {
         body: SmartRefresher(
           onRefresh: () async {
             await controller.showCurrentTabungan();
-            await controller.currentPengajuanTabungan();
             await transaksiPageController.showCurrentTransaksi();
             controller.update();
             controller.refreshController.refreshCompleted();

@@ -94,12 +94,12 @@ class LaporanPageController extends GetxController
     showCurrentAlurBelajar();
     showCurrentPointMingguan();
     showCurrentPointBulanan();
-    showCurrentTugasTerbaru();
-    showCurrentTugasDiperiksa();
-    showCurrentTugasSelesai();
     showLeaderboardWeelky();
     showLeaderboardMonthly();
     showStatisticCurrentReport();
+    showCurrentTugasTerbaru();
+    showCurrentTugasDiperiksa();
+    showCurrentTugasSelesai();
     showCurrentLaporanHarian(DateTime.now());
     update();
     super.onInit();
@@ -140,12 +140,10 @@ class LaporanPageController extends GetxController
       isLoading(true);
       bottomTitles.clear();
       bottomTitlesMonthly.clear();
-      final response =
-          await statisticService.getStatisticCurrentLaporan(
+      final response = await statisticService.getStatisticCurrentLaporan(
         selectedPoint.value,
       );
-      statisticReportResponse =
-          StatisticReportResponse.fromJson(response.data);
+      statisticReportResponse = StatisticReportResponse.fromJson(response.data);
       statisticReportModel.value = statisticReportResponse!.data;
 
       spots.value = statisticReportModel
@@ -154,8 +152,7 @@ class LaporanPageController extends GetxController
                 e.totalPoint!.toDouble(),
               ))
           .toList();
-      touchedTitle.value =
-          statisticReportModel.map((e) => e.date!).toList();
+      touchedTitle.value = statisticReportModel.map((e) => e.date!).toList();
 
       bottomTitles.value =
           List<String?>.generate(spots.length, (index) => null);
@@ -203,12 +200,14 @@ class LaporanPageController extends GetxController
 
   Future showCurrentTugasTerbaru() async {
     try {
-      final response = await tugasService.getCurrentTugasTerbaru();
+      isLoading(true);
+      final response = await tugasService.getCurrentTugas('Terbaru');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelTerbaru.value = showCurrentTugasResponse!.data;
+      print(
+          'current tugas terbaru : ${showCurrentTugasModelTerbaru[1].description}');
       isLoading.value = false;
-      print('current tugas Terbaru : ${showCurrentTugasModelTerbaru.length}');
       update();
     } catch (e) {
       print(e);
@@ -217,13 +216,14 @@ class LaporanPageController extends GetxController
 
   Future showCurrentTugasDiperiksa() async {
     try {
-      final response = await tugasService.getCurrentTugasDiperiksa();
+      isLoading(true);
+      final response = await tugasService.getCurrentTugas('Diperiksa');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelDiperiksa.value = showCurrentTugasResponse!.data;
-      isLoading.value = false;
       print(
-          'current tugas diperiksa : ${showCurrentTugasModelDiperiksa.length}');
+          'current tugas selesai : ${showCurrentTugasModelDiperiksa[1].description}');
+      isLoading.value = false;
       update();
     } catch (e) {
       print(e);
@@ -233,7 +233,7 @@ class LaporanPageController extends GetxController
   Future showCurrentTugasSelesai() async {
     try {
       isLoading(true);
-      final response = await tugasService.getCurrentTugasSelesai();
+      final response = await tugasService.getCurrentTugas('Selesai');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelSelesai.value = showCurrentTugasResponse!.data;
@@ -360,7 +360,6 @@ class LaporanPageController extends GetxController
     DateFormat('yyyy-MM-dd').format(selectedDate.value);
     isLoading(true);
     showCurrentLaporanHarian(selectedDate.value);
-    // LaporanPageComponentTwo();
     print(selectedDate.value);
     update();
   }

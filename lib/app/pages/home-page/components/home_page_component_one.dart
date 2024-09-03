@@ -15,22 +15,22 @@ class HomePageComponentOne extends GetView<HomePageController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        AutoSizeText.rich(
-          TextSpan(
-            text: 'Hello,\n',
-            style: tsTitleMediumRegular(blackColor).copyWith(
-              height: 1.3,
-            ),
-            children: [
+        Obx(() => AutoSizeText.rich(
               TextSpan(
-                text: '${controller.showCurrentUserModel.value.nickname}',
-                style: tsTitleMediumSemibold(blackColor),
+                text: 'Hello,\n',
+                style: tsTitleMediumRegular(blackColor).copyWith(
+                  height: 1.3,
+                ),
+                children: [
+                  TextSpan(
+                    text: '${controller.showCurrentUserModel.value.nickname}',
+                    style: tsTitleMediumSemibold(blackColor),
+                  ),
+                ],
               ),
-            ],
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )),
         Container(
           width: width * 0.35,
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -43,10 +43,10 @@ class HomePageComponentOne extends GetView<HomePageController> {
                 TextSpan(
                     text: 'Total Point', style: tsBodySmallRegular(whiteColor)),
               ),
-              IconPoint(
-                point: '${controller.showTotalPointModel.value.point}',
-                color: successColor,
-              )
+              Obx(() => IconPoint(
+                    point: '${controller.showTotalPointModel.value.point}',
+                    color: successColor,
+                  ))
             ],
           ),
         )

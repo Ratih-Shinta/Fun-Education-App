@@ -17,9 +17,9 @@ class LaporanPageComponentOne extends GetView<LaporanPageController> {
       () => EasyInfiniteDateTimeLine(
         showTimelineHeader: false,
         selectionMode: const SelectionMode.none(),
-        firstDate: DateTime(DateTime.now().year, 1, 1),
+        firstDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
         focusDate: controller.selectedDate.value,
-        lastDate: DateTime(DateTime.now().year, 12, 31),
+        lastDate: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
         onDateChange: (selectedDate) {
           controller.setSelectedDate(selectedDate);
         },

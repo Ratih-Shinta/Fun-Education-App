@@ -83,7 +83,7 @@ class DetailTugasSelesai extends GetView<DetailTugasPageController> {
               color: greyColor.withOpacity(0.05),),
           child: AutoSizeText.rich(
             TextSpan(
-              text: '${controller.showCurrentTugasUserModel.value.note}',
+              text:'${controller.showCurrentTugasUserModel.value.note!.isEmpty ? 'Tidak Ada Catatan' : controller.showCurrentTugasUserModel.value.note}',
               style: tsBodySmallSemibold(blackColor),
             ),
           ),

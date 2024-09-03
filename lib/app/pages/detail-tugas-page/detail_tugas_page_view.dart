@@ -12,8 +12,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DetailTugasPageView extends GetView<DetailTugasPageController> {
-  final argument = Get.arguments;
-
+  
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -43,52 +42,38 @@ class DetailTugasPageView extends GetView<DetailTugasPageController> {
           ),
         ),
       ),
-      body: Obx(() => LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            child: SmartRefresher(
-              onRefresh: () async {
-                await controller.showByIdTugas(Get.arguments.id);
-                await controller.showCurrentTugasUser(Get.arguments.id);
-                controller.refreshController.refreshCompleted();
-              },
-              controller: controller.refreshController,
-              header: WaterDropHeader(
-                complete: Text(
-                  'Refresh Completed',
-                  style: tsBodySmallRegular(blackColor),
-                ),
-                waterDropColor: primaryColor,
-              ),
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.05, vertical: height * 0.02),
-                  child: Column(
-                    children: [
-                      TugasContainer(),
-                      Obx(() {
-                        switch (
-                            controller.showCurrentTugasUserModel.value.status) {
-                          case 'Gagal':
-                            return CommonNoData(
-                                image: 'assets/images/imgEmpty.svg',
-                                title: 'Ananda Tidak Mengerjakan Tugas',
-                                subTitle: 'Selalu Periksa Tenggat Waktu');
-                          case 'Diperiksa':
-                            return DetailTugasDiperiksa();
-                          case 'Selesai':
-                            return DetailTugasSelesai();
-                          default:
-                            return DetailTugasKirim();
-                        }
-                      }),
-                    ],
-                  ),
-                ),
+      body: Obx(
+        () => LoadingOverlay(
+          isLoading: controller.isLoading.value,
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.05, vertical: height * 0.02),
+              child: Column(
+                children: [
+                  TugasContainer(),
+                  Obx(() {
+                    switch (controller.showCurrentTugasUserModel.value.status) {
+                      case 'Gagal':
+                        return CommonNoData(
+                            image: 'assets/images/imgEmpty.svg',
+                            title: 'Ananda Tidak Mengerjakan Tugas',
+                            subTitle: 'Selalu Periksa Tenggat Waktu');
+                      case 'Diperiksa':
+                        return DetailTugasDiperiksa();
+                      case 'Selesai':
+                        return DetailTugasSelesai();
+                      default:
+                        return DetailTugasKirim();
+                    }
+                  }),
+                ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
