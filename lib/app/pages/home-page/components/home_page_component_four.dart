@@ -10,8 +10,6 @@ import 'package:get/get.dart';
 
 class HomePageComponentFour extends GetView<HomePageController> {
   HomePageComponentFour({super.key});
-  final LaporanPageController laporanController =
-      Get.put(LaporanPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class HomePageComponentFour extends GetView<HomePageController> {
         ),
         SizedBox(height: height * 0.02),
         Obx(() {
-          if (laporanController.showCurrentTugasModelTerbaru.isEmpty) {
+          if (controller.showCurrentTugasModel.isEmpty) {
             return CommonNoData(
               image: 'assets/images/imgEmpty.svg',
                 title: 'Tidak Ada Tugas Terbaru',
@@ -43,17 +41,11 @@ class HomePageComponentFour extends GetView<HomePageController> {
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount:
-                  laporanController.showCurrentTugasModelTerbaru.length,
+                  controller.showCurrentTugasModel.length,
               itemBuilder: (BuildContext context, int index) {
                 return TugasWidget(
                   controllerArguments:
-                      laporanController.showCurrentTugasModelTerbaru[index],
-                  category:
-                      '${laporanController.showCurrentTugasModelTerbaru[index].category}',
-                  title:
-                      '${laporanController.showCurrentTugasModelTerbaru[index].title}',
-                  status:
-                      '${laporanController.showCurrentTugasModelTerbaru[index].statusTugasUser}',
+                      controller.showCurrentTugasModel[index],
                 );
               },
             );

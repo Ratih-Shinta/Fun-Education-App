@@ -17,10 +17,9 @@ class LoginPageController extends GetxController {
 
   late AuthenticationService authenticationService;
 
-    UserService userService = UserService();
+  UserService userService = UserService();
   ShowCurrentUserResponse? showCurrentUserResponse;
   Rx<ShowCurrentUserModel> showCurrentUserModel = ShowCurrentUserModel().obs;
-
 
   @override
   void onInit() {
@@ -54,11 +53,9 @@ class LoginPageController extends GetxController {
       prefs.setString('token', response.data['token']);
 
       await showCurrentUser();
-      if (showCurrentUserModel.value.isVerifiedEmail ==
-          false) {
-        Get.offNamed(Routes.VERIFICATION_PAGE);
-      } else if (showCurrentUserModel.value.isVerified ==
-          false) {
+      if (showCurrentUserModel.value.isVerifiedEmail == false) {
+        Get.offNamed(Routes.VERIFICATION_PAGE, arguments: showCurrentUserModel.value.email);
+      } else if (showCurrentUserModel.value.isVerified == false) {
         Get.offNamed(Routes.PENDING_PAGE);
       } else {
         Get.offNamed(Routes.NAVBAR);

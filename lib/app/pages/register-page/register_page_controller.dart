@@ -79,6 +79,26 @@ class RegisterPageController extends GetxController {
     return null;
   }
 
+  Future<void> validateDataFormField() async {
+    if (fullNameController.text.isEmpty ||
+        nicknameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        birthController.text.isEmpty ||
+        addressController.text.isEmpty) {
+      Get.snackbar(
+        "Error",
+        "Data tidak boleh kosong",
+        backgroundColor: dangerColor,
+        colorText: whiteColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    } else {
+      checkEmail();
+      saveRegisterValue();
+    }
+  }
+
   void saveRegisterValue() {
     fullName.value = fullNameController.text;
     nickname.value = nicknameController.text;
@@ -106,14 +126,17 @@ class RegisterPageController extends GetxController {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.data['token']);
       isLoading(false);
+      sendOTP();
+
       Get.snackbar(
         "Success",
         "Registration successful",
         backgroundColor: successColor,
         colorText: whiteColor,
       );
-      Get.offAllNamed(Routes.VERIFICATION_PAGE);
+      Get.offAllNamed(Routes.VERIFICATION_PAGE, arguments: email.value);
     } catch (e) {
+      isLoading(false);
       Get.snackbar(
         "Error",
         e.toString(),

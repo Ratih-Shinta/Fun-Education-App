@@ -11,7 +11,6 @@ import 'package:intl/intl.dart';
 
 class TugasContainer extends GetView<DetailTugasPageController> {
   TugasContainer({super.key});
-  // final argument = Get.arguments;
 
   @override
   Widget build(BuildContext context) {

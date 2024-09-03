@@ -8,16 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class TugasWidget extends StatelessWidget {
-  final String category;
-  final String title;
-  final String status;
   final dynamic controllerArguments;
-  TugasWidget(
-      {super.key,
-      required this.category,
-      required this.title,
-      required this.status,
-      this.controllerArguments});
+  TugasWidget({super.key, this.controllerArguments});
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +27,17 @@ class TugasWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 15),
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-            color: status == 'Selesai'
+            color: controllerArguments.statusTugasUser == 'Selesai'
                 ? greyColor.withOpacity(0.05)
-                : status == 'Gagal'
+                : controllerArguments.statusTugasUser == 'Gagal'
                     ? greyColor.withOpacity(0.05)
-                    : category == 'Dikte & Menulis'
+                    : controllerArguments.category == 'Dikte & Menulis'
                         ? blueColor.withOpacity(0.1)
-                        : category == 'Kreasi'
+                        : controllerArguments.category == 'Kreasi'
                             ? primaryColor.withOpacity(0.1)
-                            : category == 'Membaca'
+                            : controllerArguments.category == 'Membaca'
                                 ? greenColor.withOpacity(0.1)
-                                : category == 'Berhitung'
+                                : controllerArguments.category == 'Berhitung'
                                     ? warningColor.withOpacity(0.1)
                                     : dangerColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(15)),
@@ -61,13 +53,14 @@ class TugasWidget extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       decoration: BoxDecoration(
-                        color: category == 'Dikte & Menulis'
+                        color: controllerArguments.category == 'Dikte & Menulis'
                             ? blueColor.withOpacity(0.6)
-                            : category == 'Kreasi'
+                            : controllerArguments.category == 'Kreasi'
                                 ? primaryColor.withOpacity(0.6)
-                                : category == 'Membaca'
+                                : controllerArguments.category == 'Membaca'
                                     ? greenColor.withOpacity(0.6)
-                                    : category == 'Berhitung'
+                                    : controllerArguments.category ==
+                                            'Berhitung'
                                         ? warningColor.withOpacity(0.6)
                                         : greyColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(29),
@@ -75,12 +68,12 @@ class TugasWidget extends StatelessWidget {
                       child: AutoSizeText.rich(
                         textAlign: TextAlign.start,
                         TextSpan(
-                          text: category,
+                          text: controllerArguments.category,
                           style: tsBodySmallSemibold(whiteColor),
                         ),
                       ),
                     ),
-                    if (status == 'null')
+                    if (controllerArguments.statusTugasUser == null)
                       SizedBox(width: 1)
                     else
                       Container(
@@ -88,9 +81,10 @@ class TugasWidget extends StatelessWidget {
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         decoration: BoxDecoration(
-                          color: status == 'Diperiksa'
+                          color: controllerArguments.statusTugasUser ==
+                                  'Diperiksa'
                               ? warningColor
-                              : status == 'Selesai'
+                              : controllerArguments.statusTugasUser == 'Selesai'
                                   ? successColor
                                   : dangerColor,
                           borderRadius: BorderRadius.circular(29),
@@ -98,7 +92,7 @@ class TugasWidget extends StatelessWidget {
                         child: AutoSizeText.rich(
                           textAlign: TextAlign.start,
                           TextSpan(
-                            text: status,
+                            text: controllerArguments.statusTugasUser,
                             style: tsBodySmallSemibold(whiteColor),
                           ),
                         ),
@@ -112,14 +106,14 @@ class TugasWidget extends StatelessWidget {
             AutoSizeText.rich(
               textAlign: TextAlign.start,
               TextSpan(
-                  text: title,
+                  text: controllerArguments.title,
                   style: GoogleFonts.poppins(
                     color: blackColor,
                     fontWeight: FontWeight.w600,
                     fontSize: figmaFontsize(14),
-                    decoration: status == 'Selesai'
+                    decoration: controllerArguments.statusTugasUser == 'Selesai'
                         ? TextDecoration.lineThrough
-                        : status == 'Gagal'
+                        : controllerArguments.statusTugasUser == 'Gagal'
                             ? TextDecoration.lineThrough
                             : TextDecoration.none,
                   )),
@@ -145,17 +139,21 @@ class TugasWidget extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           iconCalender,
-                          color: status == 'Selesai'
+                          color: controllerArguments.statusTugasUser ==
+                                  'Selesai'
                               ? greyColor.withOpacity(0.5)
-                              : status == 'Gagal'
+                              : controllerArguments.statusTugasUser == 'Gagal'
                                   ? greyColor.withOpacity(0.5)
-                                  : category == 'Dikte & Menulis'
+                                  : controllerArguments.category ==
+                                          'Dikte & Menulis'
                                       ? blueColor
-                                      : category == 'Kreasi'
+                                      : controllerArguments.category == 'Kreasi'
                                           ? primaryColor
-                                          : category == 'Membaca'
+                                          : controllerArguments.category ==
+                                                  'Membaca'
                                               ? greenColor
-                                              : category == 'Berhitung'
+                                              : controllerArguments.category ==
+                                                      'Berhitung'
                                                   ? warningColor
                                                   : dangerColor,
                         ),
@@ -185,9 +183,10 @@ class TugasWidget extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           iconCalender,
-                          color: status == 'Selesai'
+                          color: controllerArguments.statusTugasUser ==
+                                  'Selesai'
                               ? greyColor.withOpacity(0.5)
-                              : status == 'Gagal'
+                              : controllerArguments.statusTugasUser == 'Gagal'
                                   ? greyColor.withOpacity(0.5)
                                   : dangerColor,
                         ),

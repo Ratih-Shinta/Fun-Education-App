@@ -134,8 +134,6 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                     ),
                   ],
                 ),
-                // SizedBox(height: height * 0.01),
-                // AjukanPengeluaranContainer()
               ],
             ),
           ),

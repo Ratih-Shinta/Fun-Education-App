@@ -94,7 +94,7 @@ class RegisterComponentTwo extends GetView<RegisterPageController> {
           ),
           dropdownStyleData: DropdownStyleData(
             decoration: BoxDecoration(
-              color: whiteColor,
+                color: whiteColor,
               borderRadius: BorderRadius.circular(15),
             ),
           ),

@@ -93,8 +93,6 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      // text:
-                      //     '${controller.selectedPoints.value} Tugas (Terakhir)\n',
                       text: controller.selectedPoints.value == 'weekly'
                           ? 'Mingguan (Terakhir)\n'
                           : 'Bulanan (Terakhir)\n',
@@ -128,19 +126,21 @@ class ProfileComponentTwo extends GetView<ProfilePageController> {
                   ],
                 ),
                 SizedBox(height: 30),
-                AspectRatio(
-                  aspectRatio: 0.8,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.01,
-                    ),
-                    child: Obx(() => controller.statisticTaskModel.isEmpty
-                        ? Text('Tidak Ada data')
-                        : LineChart(
+                Obx(() {
+                  if (controller.isLoading.value)
+                    return Center(child: CircularProgressIndicator());
+                  else
+                    return AspectRatio(
+                      aspectRatio: 0.8,
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.01,
+                          ),
+                          child: LineChart(
                             taskLineChart.taskLineChart(),
                           )),
-                  ),
-                ),
+                    );
+                }),
               ],
             ),
           ),

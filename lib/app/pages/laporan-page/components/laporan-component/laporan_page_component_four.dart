@@ -76,12 +76,6 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
                         return TugasWidget(
                           controllerArguments:
                               controller.showCurrentTugasModelTerbaru[index],
-                          category:
-                              '${controller.showCurrentTugasModelTerbaru[index].category}',
-                          title:
-                              '${controller.showCurrentTugasModelTerbaru[index].title}',
-                          status:
-                              '${controller.showCurrentTugasModelTerbaru[index].statusTugasUser}',
                         );
                       },
                     );
@@ -109,12 +103,6 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
                         return TugasWidget(
                           controllerArguments:
                               controller.showCurrentTugasModelDiperiksa[index],
-                          category:
-                              '${controller.showCurrentTugasModelDiperiksa[index].category}',
-                          title:
-                              '${controller.showCurrentTugasModelDiperiksa[index].title}',
-                          status:
-                              '${controller.showCurrentTugasModelDiperiksa[index].statusTugasUser}',
                         );
                       },
                     );
@@ -140,12 +128,6 @@ class LaporanPageComponentFour extends GetView<LaporanPageController> {
                         return TugasWidget(
                           controllerArguments:
                               controller.showCurrentTugasModelSelesai[index],
-                          category:
-                              '${controller.showCurrentTugasModelSelesai[index].category}',
-                          title:
-                              '${controller.showCurrentTugasModelSelesai[index].title}',
-                          status:
-                              '${controller.showCurrentTugasModelSelesai[index].statusTugasUser}',
                         );
                       },
                     );

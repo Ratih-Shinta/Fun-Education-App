@@ -86,8 +86,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                   backgroundColor: blackColor,
                   textColor: whiteColor,
                   onPressed: () {
-                    controller.checkEmail();
-                    controller.saveRegisterValue();
+                    controller.validateDataFormField();
                   },
                 )
               ],

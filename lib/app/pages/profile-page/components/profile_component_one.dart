@@ -41,16 +41,10 @@ class ProfileComponentOne extends StatelessWidget {
                   width: width * 0.6,
                   child: AutoSizeText(
                     '${homePageController.showCurrentUserModel.value.fullName ?? 'Syahran Fadhil'}',
-                    // overflow: TextOverflow.ellipsis,
                     style: tsBodySmallRegular(blackColor),
                     maxLines: 5,
                   ),
                 )
-                // AutoSizeText(
-                //   'Radya Hukma Shabiyya Harbani',
-                //   overflow: TextOverflow.ellipsis,
-                //   style: tsBodySmallRegular(blackColor),
-                // ),
               ],
             ),
           ],

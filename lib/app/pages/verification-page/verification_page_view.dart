@@ -90,27 +90,46 @@ class VerificationPageView extends GetView<VerificationPageController> {
                   ),
                 ),
                 SizedBox(height: height * 0.05),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      'Kode akan hangus dalam ',
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      style: tsBodyMediumRegular(blackColor),
-                    ),
-                    SizedBox(
-                      width: width * 0.005,
-                    ),
-                    InkWell(
-                        child: Obx(
-                      () => AutoSizeText(
-                        controller.countDown.value,
-                        style: tsBodyMediumSemibold(primaryColor),
+                Obx(() {
+                  if (controller.idloadingSendOTP.value) {
+                    return Center(
+                      child: AutoSizeText(
+                        textAlign: TextAlign.center,
+                        'Kode OTP sedang dalam proses pengiriman tunggu sebentar yaa..',
+                        style: tsBodySmallMedium(dangerColor),
                       ),
-                    )),
-                  ],
-                ),
+                    );
+                  } else if (controller.count.value > 0) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AutoSizeText(
+                          'Kode akan hangus dalam ',
+                          group: AutoSizeGroup(),
+                          maxLines: 1,
+                          style: tsBodyMediumRegular(blackColor),
+                        ),
+                        SizedBox(
+                          width: width * 0.005,
+                        ),
+                        InkWell(
+                          child: AutoSizeText(
+                            controller.countDown.value,
+                            style: tsBodyMediumSemibold(primaryColor),
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: AutoSizeText(
+                        textAlign: TextAlign.center,
+                        'Yaah, kode OTP sudah hangus, silahkan kirim ulang kode',
+                        style: tsBodySmallMedium(dangerColor),
+                      ),
+                    );
+                  }
+                }),
                 SizedBox(height: height * 0.05),
                 Obx(() => CommonButton(
                       isLoading: controller.isLoading.value,

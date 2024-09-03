@@ -48,21 +48,24 @@ class HomePageComponentTwo extends GetView<HomePageController> {
                   ),
                 ),
                 SizedBox(width: 3),
-                AutoSizeText.rich(
-                  TextSpan(
-                    text: 'Shift Masuk\n',
-                    style: tsBodySmallRegular(blackColor).copyWith(
-                      height: 1.3,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: '${controller.showCurrentUserModel.value.shift}',
-                        style: tsBodyMediumSemibold(blackColor),
+                Obx(
+                  () => AutoSizeText.rich(
+                    TextSpan(
+                      text: 'Shift Masuk\n',
+                      style: tsBodySmallRegular(blackColor).copyWith(
+                        height: 1.3,
                       ),
-                    ],
+                      children: [
+                        TextSpan(
+                          text:
+                              '${controller.showCurrentUserModel.value.shift}',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.start,
+                    maxLines: 2,
                   ),
-                  textAlign: TextAlign.start,
-                  maxLines: 2,
                 ),
               ],
             ),

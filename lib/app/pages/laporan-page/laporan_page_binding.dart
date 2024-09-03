@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 class LaporanPageBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LaporanPageController>(
-      () => LaporanPageController(),
-    );
+    Get.put(LaporanPageController());
   }
 }

@@ -18,7 +18,6 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
     return SizedBox(
-      
       height: height * 0.6,
       child: Padding(
         padding: EdgeInsets.symmetric(

@@ -8,7 +8,7 @@ class CommonTextField extends StatelessWidget {
   final String hintText;
   final TextInputType? keyboardType;
   final IconButton? suffixIcon;
-  final Function? validator;
+  final String? Function(String?)? validator;
   final bool? expands;
   final String? errorText;
 
@@ -21,14 +21,18 @@ class CommonTextField extends StatelessWidget {
       this.keyboardType,
       this.suffixIcon,
       this.validator,
-      this.expands, this.errorText});
+      this.expands,
+      this.errorText});
 
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
+
     return TextFormField(
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: fieldController,
       keyboardType: keyboardType,
       obscureText: obscureText,
@@ -66,7 +70,6 @@ class CommonTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
       ),
       cursorColor: blackColor,
-      validator: validator as String? Function(String?)?,
     );
   }
 }

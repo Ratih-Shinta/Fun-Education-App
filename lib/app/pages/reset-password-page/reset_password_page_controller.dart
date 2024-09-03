@@ -108,7 +108,7 @@ class ResetPasswordPageController extends GetxController {
     timer = Timer.periodic(oneSec, (Timer t) {
       if (count.value == 0) {
         t.cancel();
-        countDown.value = 'time out'; // Set the "time out" message
+        countDown.value = 'time out';
       } else {
         count.value--;
         int minute = count.value ~/ 60;

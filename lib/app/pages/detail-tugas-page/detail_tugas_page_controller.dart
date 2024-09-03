@@ -42,6 +42,7 @@ class DetailTugasPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    Get.arguments;
     showByIdTugas(Get.arguments.id);
     showCurrentTugasUser(Get.arguments.id);
     update();
@@ -75,10 +76,9 @@ class DetailTugasPageController extends GetxController {
       print(e);
     } finally {
       isLoading(false);
-      update(); // Memaksa update UI setelah selesai
+      update();
     }
   }
-  // Get.arguments.id
 
   void deleteImage(int index) {
     imageFileList.removeAt(index);
@@ -94,13 +94,12 @@ class DetailTugasPageController extends GetxController {
   Future<void> storeKirimTaskUser() async {
     try {
       isLoadingStoreTugas(true);
+      String? isNote =
+          noteController.text.isNotEmpty ? noteController.text : null;
+      print('Get.arguments: ${Get.arguments}');
+
       final response = await tugasUserService.postStoreKirimTugas(
-        Get.arguments.id,
-        noteController.text,
-      );
-      final responseData = response.data;
-      final tugasUserId = responseData['data']['id'].toString();
-      print('Task created with ID: $tugasUserId');
+          isNote != null, Get.arguments.id, isNote);
 
       if (imageFileList.isNotEmpty) {
         final responseData = response.data;
@@ -122,10 +121,6 @@ class DetailTugasPageController extends GetxController {
           }
         }
       }
-
-      await laporanPageController.showCurrentTugasTerbaru();
-      await laporanPageController.showCurrentTugasDiperiksa();
-      await laporanPageController.showCurrentTugasSelesai();
 
       Get.back();
 

@@ -20,25 +20,24 @@ class CustomRadioButtonPeriod extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double height = mediaQuery.height;
-    return Padding(
-      padding: EdgeInsets.only(bottom: height * 0.02),
-      child: GestureDetector(
-        onTap: () => onChanged(value),
-        child: Container(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: style ?? tsBodyMediumSemibold(blackColor),
-              ),
-              Icon(
-                Icons.check_circle,
-                color: groupValue == value ? successColor : transparentColor,
-              )
-            ],
-          ),
+    return InkWell(
+      onTap: () => onChanged(value),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: height * 0.01),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: style ?? tsBodyMediumSemibold(blackColor),
+            ),
+            Icon(
+              Icons.check_circle,
+              color: groupValue == value ? successColor : transparentColor,
+            )
+          ],
         ),
       ),
     );

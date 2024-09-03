@@ -57,7 +57,6 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                   child: Row(
                     children: [
                       AutoSizeText(
-                        // '${controller.selectedPoint.value} Laporan (Terakhir)',
                         controller.selectedPoint.value == 'weekly'
                             ? 'Mingguan'
                             : 'Bulanan',
@@ -92,11 +91,9 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                 Obx(() {
                   return AutoSizeText.rich(
                     TextSpan(
-                      text:
-                          // '${controller.selectedPoint.value} Laporan (Terakhir)\n',
-                          controller.selectedPoint.value == 'weekly'
-                              ? 'Mingguan (Terakhir)\n'
-                              : 'Bulanan (Terakhir)\n',
+                      text: controller.selectedPoint.value == 'weekly'
+                          ? 'Mingguan (Terakhir)\n'
+                          : 'Bulanan (Terakhir)\n',
                       style: tsBodyMediumSemibold(blackColor)
                           .copyWith(height: 1.5),
                       children: [
@@ -130,6 +127,15 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                 Obx(() {
                   if (controller.isLoading.value)
                     return Center(child: CircularProgressIndicator());
+                  else if (controller.statisticReportModel.isEmpty)
+                    return Expanded(
+                      child: Center(
+                        child: AutoSizeText(
+                          'Belum Ada Data',
+                          style: tsBodyMediumSemibold(blackColor),
+                        ),
+                      ),
+                    );
                   else
                     return AspectRatio(
                       aspectRatio: 0.8,

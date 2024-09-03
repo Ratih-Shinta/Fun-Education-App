@@ -30,11 +30,14 @@ class BottomsheetCatatanDarurat extends GetView<HomePageController> {
                 color: dangerColor),
             SizedBox(height: height * 0.03),
             EmergencyNote(
-                emergencyNote: controller
-                    .showLatestCatatanDaruratModel.value.catatan
-                    .toString(),
+                emergencyNote:
+                    controller.showLatestCatatanDaruratModel.value.catatan ==
+                            null
+                        ? 'Tidak Ada Catatan'
+                        : controller.showLatestCatatanDaruratModel.value.catatan
+                            .toString(),
                 informationFile:
-                    controller.showLatestCatatanDaruratModel.value.file!),
+                    controller.showLatestCatatanDaruratModel.value.file ?? []),
             SizedBox(height: height * 0.03),
             CommonButton(
               isLoading: controller.isLoading.value,

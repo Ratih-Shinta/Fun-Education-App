@@ -20,18 +20,19 @@ class TugasUserService {
   }
 
   Future<Response> postStoreKirimTugas(
+    bool isNote,
     String tugasId,
-    String note,
+    String? note,
   ) async {
     try {
-      FormData formData = FormData.fromMap({
+      final data = {
         'tugas_id': tugasId,
-        'note': note,
-      });
+        if (isNote == true) 'note': note,
+      };
       final response = await _dioInstance.postRequest(
         endpoint: ApiEndPoint.storeKirimTugasUser,
         isAuthorize: true,
-        data: formData,
+        data: data,
       );
       return response;
     } catch (e) {
