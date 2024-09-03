@@ -4,6 +4,7 @@ import 'package:fun_education_app/app/pages/gallery-page/gallery_page_controller
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class GalleryPageComponentOne extends GetView<GalleryPageController> {
   const GalleryPageComponentOne({super.key});
@@ -25,8 +26,26 @@ class GalleryPageComponentOne extends GetView<GalleryPageController> {
         SizedBox(height: height * 0.02),
         Obx(() {
           if (controller.isLoadingAllAlbumPhoto.value == true) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Container(
+                height: height * 0.17,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 2,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(right: width * 0.02),
+                      width: width * 0.43,
+                      decoration: BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    );
+                  },
+                ),
+              ),
             );
           } else {
             return GridView.builder(

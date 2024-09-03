@@ -9,7 +9,9 @@ import 'package:fun_education_app/app/pages/detail-tugas-page/detail_tugas_page_
 import 'package:fun_education_app/app/pages/detail-tugas-page/widgets/multiline_text_field.dart';
 import 'package:fun_education_app/app/pages/home-page/widgets/icon_point.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
+import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DetailTugasKirim extends GetView<DetailTugasPageController> {
   DetailTugasKirim({super.key});
@@ -67,14 +69,33 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           );
         }),
         SizedBox(height: height * 0.015),
-        CommonButton(
-          isLoading: controller.isLoadingStoreTugas.value,
-          text: 'Tambah Gambar',
-          backgroundColor: greyColor.withOpacity(0.1),
-          textColor: blackColor,
-          icon: Icons.image,
-          onPressed: () {
-            controller.selectImage();
+        Obx(
+          () {
+            if (controller.isLoading.value) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  height: height * 0.1,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: greyColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              );
+            } else {
+              return CommonButton(
+                isLoading: controller.isLoadingStoreTugas.value,
+                text: 'Tambah Gambar',
+                backgroundColor: greyColor.withOpacity(0.1),
+                textColor: blackColor,
+                icon: Icons.image,
+                onPressed: () {
+                  controller.selectImage();
+                },
+              );
+            }
           },
         ),
         SizedBox(height: height * 0.02),
@@ -132,18 +153,24 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
           textColor: whiteColor,
           backgroundColor: blackColor,
           onPressed: () {
-            controller.storeKirimTaskUser();
-            // showDialog(
-            //     context: context,
-            //     builder: (context) {
-            //       return CommonAlertDialog(
-            //           title: 'Konfirmasi',
-            //           content:
-            //               'Apakah anda yakin dengan jawaban tugas yang akan anda kirim?',
-            //           cancelButtonText: 'Tidak',
-            //           confirmButtonText: 'Yakin!',
-            //           onConfirm: controller.storeKirimTaskUser);
-            //     });
+            showDialog(
+              context: context,
+              builder: (context) {
+                return CommonAlertDialog(
+                  title: 'Konfirmasi',
+                  content:
+                      'Apakah anda yakin dengan jawaban tugas yang akan anda kirim?',
+                  cancelButtonText: 'Tidak',
+                  confirmButtonText: 'Yakin!',
+                  onConfirm: () async {
+                    await controller.storeKirimTaskUser();
+                    if (controller.statusTask!.value == 'null') {
+                      Get.until((route) => Get.currentRoute == Routes.NAVBAR);
+                    }
+                  },
+                );
+              },
+            );
           },
         )
       ],

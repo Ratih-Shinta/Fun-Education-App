@@ -59,7 +59,6 @@ class SavingPageView extends GetView<SavingPageController> {
           onRefresh: () async {
             await controller.showCurrentTabungan();
             await transaksiPageController.showCurrentTransaksi();
-            controller.update();
             controller.refreshController.refreshCompleted();
           },
           controller: controller.refreshController,

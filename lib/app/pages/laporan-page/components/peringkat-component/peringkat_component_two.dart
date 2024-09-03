@@ -5,6 +5,7 @@ import 'package:fun_education_app/app/pages/laporan-page/widgets/bottomsheet_pil
 import 'package:fun_education_app/app/pages/laporan-page/laporan_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PeringkatComponentTwo extends GetView<LaporanPageController> {
   const PeringkatComponentTwo({super.key});
@@ -34,48 +35,49 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
                 ),
               ],
             ),
-            Obx(() => InkWell(
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BottomsheetPilihPeriode(
-                          title: 'Pilih Periode',
-                          subtitle:
-                              'Pilih Untuk Melihat Perkembangan Peringkat',
-                          options: ['Bulanan', 'Mingguan'],
-                          onOptionSelected: (option) {
-                            controller.setSelectedPeriod(option);
-                          },
-                          selectedOption: controller.selectedPeriod,
-                        );
-                      },
-                      isScrollControlled: true,
-                      backgroundColor: Colors.white,
-                    );
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        AutoSizeText.rich(
-                          TextSpan(
-                              text: controller.selectedPeriod.value,
-                              style: tsBodySmallSemibold(blackColor)),
-                        ),
-                        SizedBox(width: 5),
-                        Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
+            Obx(
+              () => InkWell(
+                onTap: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return BottomsheetPilihPeriode(
+                        title: 'Pilih Periode',
+                        subtitle: 'Pilih Untuk Melihat Perkembangan Peringkat',
+                        options: ['Bulanan', 'Mingguan'],
+                        onOptionSelected: (option) {
+                          controller.setSelectedPeriod(option);
+                        },
+                        selectedOption: controller.selectedPeriod,
+                      );
+                    },
+                    isScrollControlled: true,
+                    backgroundColor: Colors.white,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                ))
+                  child: Row(
+                    children: [
+                      AutoSizeText.rich(
+                        TextSpan(
+                            text: controller.selectedPeriod.value,
+                            style: tsBodySmallSemibold(blackColor)),
+                      ),
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
         SizedBox(height: height * 0.023),
@@ -104,61 +106,77 @@ class PeringkatComponentTwo extends GetView<LaporanPageController> {
 
             return Obx(
               () {
-                if (controller.isLoading.value) {
-                  return Center(
-                    child: CircularProgressIndicator(),
+                if (controller.isLoadingLeaderboard.value) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 15),
+                          width: width,
+                          height: height * 0.1,
+                          decoration: BoxDecoration(
+                              color: greyColor,
+                              borderRadius: BorderRadius.circular(10)),
+                        );
+                      },
+                    ),
                   );
                 } else {
                   return Container(
-                  margin: EdgeInsets.only(bottom: 8),
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: controller.selectedPeriod.value == 'Mingguan'
-                        ? (controller.leaderboardModelWeekly[index].isUser ==
-                                true
-                            ? successColor.withOpacity(0.5)
-                            : backgroundColor)
-                        : (controller.leaderboardModelMonthly[index].isUser ==
-                                true
-                            ? successColor.withOpacity(0.5)
-                            : backgroundColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AutoSizeText.rich(
-                        TextSpan(
-                            text:
-                                '${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].rank : controller.leaderboardModelMonthly[index].rank}    ${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].fullName : controller.leaderboardModelMonthly[index].fullName}',
-                            style: tsBodySmallSemibold(blackColor)),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: controller.selectedPeriod.value == 'Mingguan'
-                              ? (controller.leaderboardModelWeekly[index]
-                                          .isUser ==
-                                      true
-                                  ? successColor
-                                  : blackColor)
-                              : (controller.leaderboardModelMonthly[index]
-                                          .isUser ==
-                                      true
-                                  ? successColor
-                                  : blackColor),
-                          borderRadius: BorderRadius.circular(13),
+                    margin: EdgeInsets.only(bottom: 8),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: controller.selectedPeriod.value == 'Mingguan'
+                          ? (controller.leaderboardModelWeekly[index].isUser ==
+                                  true
+                              ? successColor.withOpacity(0.5)
+                              : backgroundColor)
+                          : (controller.leaderboardModelMonthly[index].isUser ==
+                                  true
+                              ? successColor.withOpacity(0.5)
+                              : backgroundColor),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AutoSizeText.rich(
+                          TextSpan(
+                              text:
+                                  '${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].rank : controller.leaderboardModelMonthly[index].rank}    ${controller.selectedPeriod.value == 'Mingguan' ? controller.leaderboardModelWeekly[index].fullName : controller.leaderboardModelMonthly[index].fullName}',
+                              style: tsBodySmallSemibold(blackColor)),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        child: AutoSizeText.rich(TextSpan(
-                            text:
-                                '${controller.leaderboardModelWeekly[index].point} Poin',
-                            style: tsBodySmallSemibold(whiteColor))),
-                      )
-                    ],
-                  ),
-                );
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: controller.selectedPeriod.value == 'Mingguan'
+                                ? (controller.leaderboardModelWeekly[index]
+                                            .isUser ==
+                                        true
+                                    ? successColor
+                                    : blackColor)
+                                : (controller.leaderboardModelMonthly[index]
+                                            .isUser ==
+                                        true
+                                    ? successColor
+                                    : blackColor),
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                          child: AutoSizeText.rich(TextSpan(
+                              text:
+                                  '${controller.selectedPeriod.value == 'Mingguan' ? (controller.leaderboardModelWeekly[index].point) : (controller.leaderboardModelMonthly[index].point)} Poin',
+                              style: tsBodySmallSemibold(whiteColor))),
+                        )
+                      ],
+                    ),
+                  );
                 }
               },
             );

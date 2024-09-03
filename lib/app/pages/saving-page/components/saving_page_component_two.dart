@@ -8,6 +8,7 @@ import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SavingPageComponentTwo extends GetView<SavingPageController> {
   SavingPageComponentTwo({super.key});
@@ -65,8 +66,24 @@ class SavingPageComponentTwo extends GetView<SavingPageController> {
           SizedBox(height: height * 0.02),
           Obx(() {
             if (transaksiPageController.isLoading.value) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: height * 0.02),
+                      width: width,
+                      height: height * 0.15,
+                      decoration: BoxDecoration(
+                        color: greyColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    );
+                  },
+                ),
               );
             }
             return transaksiPageController.showCurrentTransaksiModel.isEmpty

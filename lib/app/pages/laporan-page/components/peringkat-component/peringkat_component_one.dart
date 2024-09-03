@@ -7,6 +7,7 @@ import 'package:fun_education_app/app/pages/laporan-page/components/peringkat-co
 import 'package:fun_education_app/app/pages/laporan-page/widgets/report_line_chart.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PeringkatComponentOne extends GetView<LaporanPageController> {
   final ReportLineChart reportLineChart = ReportLineChart();
@@ -16,6 +17,7 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
 
     return Column(
       children: [
@@ -76,78 +78,95 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
             })
           ],
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          padding: const EdgeInsets.all(25),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: greyColor.withOpacity(0.05),
-          ),
-          child: AspectRatio(
-            aspectRatio: 0.6,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Obx(() {
-                  return AutoSizeText.rich(
-                    TextSpan(
-                      text: controller.selectedPoint.value == 'weekly'
-                          ? 'Mingguan (Terakhir)\n'
-                          : 'Bulanan (Terakhir)\n',
-                      style: tsBodyMediumSemibold(blackColor)
-                          .copyWith(height: 1.5),
-                      children: [
-                        TextSpan(
-                            text: 'Perkembangan point ananda',
-                            style: tsBodySmallRegular(blackColor)),
-                      ],
-                    ),
-                    maxLines: 2,
-                    group: AutoSizeGroup(),
-                  );
-                }),
-                SizedBox(height: 8),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 6,
-                      backgroundColor: successColor,
-                    ),
-                    SizedBox(width: width * 0.02),
-                    AutoSizeText(
-                      group: AutoSizeGroup(),
-                      maxLines: 1,
-                      'Point Laporan',
-                      style: tsBodySmallRegular(blackColor),
-                    ),
-                  ],
+        Obx(
+          () {
+            if (controller.isLoadingStatistic.value) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  width: width,
+                  height: height * 0.65,
+                  decoration: BoxDecoration(
+                      color: greyColor,
+                      borderRadius: BorderRadius.circular(10)),
                 ),
-                SizedBox(height: 30),
-                Obx(() {
-                  if (controller.isLoading.value)
-                    return Center(child: CircularProgressIndicator());
-                  else if (controller.statisticReportModel.isEmpty)
-                    return Expanded(
-                      child: Center(
-                        child: AutoSizeText(
-                          'Belum Ada Data',
-                          style: tsBodyMediumSemibold(blackColor),
-                        ),
+              );
+            } else {
+              return Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: greyColor.withOpacity(0.05),
+                ),
+                child: AspectRatio(
+                  aspectRatio: 0.6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Obx(() {
+                        return AutoSizeText.rich(
+                          TextSpan(
+                            text: controller.selectedPoint.value == 'weekly'
+                                ? 'Mingguan (Terakhir)\n'
+                                : 'Bulanan (Terakhir)\n',
+                            style: tsBodyMediumSemibold(blackColor)
+                                .copyWith(height: 1.5),
+                            children: [
+                              TextSpan(
+                                  text: 'Perkembangan point ananda',
+                                  style: tsBodySmallRegular(blackColor)),
+                            ],
+                          ),
+                          maxLines: 2,
+                          group: AutoSizeGroup(),
+                        );
+                      }),
+                      SizedBox(height: 8),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 6,
+                            backgroundColor: successColor,
+                          ),
+                          SizedBox(width: width * 0.02),
+                          AutoSizeText(
+                            group: AutoSizeGroup(),
+                            maxLines: 1,
+                            'Point Laporan',
+                            style: tsBodySmallRegular(blackColor),
+                          ),
+                        ],
                       ),
-                    );
-                  else
-                    return AspectRatio(
-                      aspectRatio: 0.8,
-                      child: LineChart(
-                        reportLineChart.reportLineChart(),
-                      ),
-                    );
-                }),
-              ],
-            ),
-          ),
-        ),
+                      SizedBox(height: 30),
+                      Obx(() {
+                        if (controller.statisticReportModel.isEmpty)
+                          return Expanded(
+                            child: Center(
+                              child: AutoSizeText(
+                                'Belum Ada Data',
+                                style: tsBodyMediumSemibold(blackColor),
+                              ),
+                            ),
+                          );
+                        else
+                          return Expanded(
+                            // aspectRatio: 0.8,
+                            child: LineChart(
+                              reportLineChart.reportLineChart(),
+                            ),
+                          );
+                      }),
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
+        )
       ],
     );
   }

@@ -76,9 +76,6 @@ class TugasContainer extends GetView<DetailTugasPageController> {
                 ),
                 SizedBox(width: 10),
                 Obx(() {
-                  // if (controller.isLoading.value) {
-                  //   return Center(child: CircularProgressIndicator());
-                  // } else
                   if (controller.showByIdTugasModel.value.statusTugasUser !=
                       null) {
                     return Container(

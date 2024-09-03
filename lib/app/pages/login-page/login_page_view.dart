@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fun_education_app/app/global-component/common_button.dart';
 import 'package:fun_education_app/app/global-component/common_text_field.dart';
-import 'package:fun_education_app/app/global-component/common_warning.dart';
 import 'package:fun_education_app/app/pages/login-page/login_page_controller.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';

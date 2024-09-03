@@ -27,15 +27,14 @@ class TabItem extends StatelessWidget {
           count > 0
               ? Container(
                   margin: const EdgeInsetsDirectional.only(start: 8),
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: primaryColor,
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Center(
-                    child: Text(count > 9 ? "+" : count.toString(),
-                        style: tsLabelLargeSemibold(whiteColor)),
-                  ),
+                  child: AutoSizeText(count > 9 ? "9 +" : count.toString(),
+                      style: tsLabelLargeSemibold(whiteColor)),
                 )
               : const SizedBox(width: 0, height: 0),
         ],

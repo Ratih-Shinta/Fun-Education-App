@@ -41,6 +41,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
                   ),
                   child: TabBar(
                     labelStyle: tsBodySmallSemibold(blackColor),
+                    isScrollable: false,
                     indicatorSize: TabBarIndicatorSize.tab,
                     dividerColor: Colors.transparent,
                     indicator: BoxDecoration(
@@ -67,6 +68,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
             padding: EdgeInsets.symmetric(
                 horizontal: width * 0.05, vertical: height * 0.01),
             child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 LaporanComponent(),
                 PeringkatComponent(),

@@ -147,7 +147,6 @@ class BottomsheetAlurBelajarAnanda extends GetView<LaporanPageController> {
               ),
             ),
             CommonButton(
-              isLoading: controller.isLoading.value,
               text: 'Tutup',
               onPressed: () => Navigator.pop(context),
               backgroundColor: blackColor,

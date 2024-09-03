@@ -30,6 +30,7 @@ class DetailLaporanHarianController extends GetxController {
   }
 
   Future showCurrentLaporanHarian(DateTime? date) async {
+    isLoading(true);
     if (date == null) {
       print('Error: date parameter is null');
       return;

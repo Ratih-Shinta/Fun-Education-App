@@ -31,33 +31,39 @@ class DetailTugasSelesai extends GetView<DetailTugasPageController> {
         ),
         SizedBox(height: height * 0.02),
         GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: controller.showCurrentTugasUserModel.value.images?.length ?? 0,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: width * 0.02,
-              mainAxisSpacing: height * 0.01,
-              childAspectRatio: 1.4,
-            ),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Get.to(
-                    () => CommonDetailImage(
-                      imagePath: controller.showCurrentTugasUserModel.value.images![index].image.toString(),
-                      isNetwork: true,
-                    ),
-                  );
-                },
-                child: CommonGridImage(
-                  imagePath: controller.showCurrentTugasUserModel.value.images![index].image.toString(),
-                  isDelete: false,
-                  isNetwork: true,
-                ),
-              );
-            },
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount:
+              controller.showCurrentTugasUserModel.value.images?.length ?? 0,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: width * 0.02,
+            mainAxisSpacing: height * 0.01,
+            childAspectRatio: 1.4,
           ),
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Get.to(
+                  () => CommonDetailImage(
+                    imagePath: controller
+                        .showCurrentTugasUserModel.value.images![index].image
+                        .toString(),
+                    isNetwork: true,
+                  ),
+                );
+              },
+              child: CommonGridImage(
+                imagePath: controller
+                    .showCurrentTugasUserModel.value.images![index].image
+                    .toString(),
+                isDelete: false,
+                isNetwork: true,
+              ),
+            );
+          },
+        ),
+        SizedBox(height: height * 0.03),
         AutoSizeText.rich(
           TextSpan(
             text: 'Catatan Orang Tua\n',
@@ -79,11 +85,13 @@ class DetailTugasSelesai extends GetView<DetailTugasPageController> {
           margin: EdgeInsets.only(top: 10),
           padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: greyColor.withOpacity(0.05),),
+            borderRadius: BorderRadius.circular(10),
+            color: greyColor.withOpacity(0.05),
+          ),
           child: AutoSizeText.rich(
             TextSpan(
-              text:'${controller.showCurrentTugasUserModel.value.note!.isEmpty ? 'Tidak Ada Catatan' : controller.showCurrentTugasUserModel.value.note}',
+              text:
+                  '${controller.showCurrentTugasUserModel.value.note!.isEmpty ? 'Tidak Ada Catatan' : controller.showCurrentTugasUserModel.value.note}',
               style: tsBodySmallSemibold(blackColor),
             ),
           ),

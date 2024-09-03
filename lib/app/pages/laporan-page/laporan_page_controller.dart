@@ -5,10 +5,6 @@ import 'package:fun_education_app/app/api/alur-belajar/models/show_current_alur_
 import 'package:fun_education_app/app/api/alur-belajar/service/show_current_alur_belajar_service.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_model.dart';
 import 'package:fun_education_app/app/api/laporan-harian/models/show-current-laporan-harian/show_current_laporan_harian_response.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_model.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-bulanan/show_current_point_bulanan_response.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_model.dart';
-import 'package:fun_education_app/app/api/laporan-harian/models/show-current-point-mingguan/show_current_point_mingguan_response.dart';
 import 'package:fun_education_app/app/api/laporan-harian/service/laporan_harian_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/leaderboard_service.dart';
 import 'package:fun_education_app/app/api/leaderboard/models/show-leaderboard/leaderboard_model.dart';
@@ -30,7 +26,12 @@ class LaporanPageController extends GetxController
   RefreshController peringkatRefreshController = RefreshController();
 
   TabController? tabControllerAll;
-  RxBool isLoading = false.obs;
+  RxBool isLoadingReport = false.obs;
+  RxBool isLoadingLearningFlow = false.obs;
+  RxBool isLoadingTask = false.obs;
+  RxBool isLoadingStatistic = false.obs;
+  RxBool isLoadingLeaderboard = false.obs;
+
   final Duration animDuration = const Duration(milliseconds: 250);
   RxInt touchedIndex = (-1).obs;
   var currentStatus = 'Tersedia'.obs;
@@ -39,11 +40,6 @@ class LaporanPageController extends GetxController
   var touchedTitle = <DateTime>[].obs;
   var bottomTitles = <String?>[].obs;
   var bottomTitlesMonthly = <String?>[].obs;
-
-  LaporanHarianService laporanHarianService = LaporanHarianService();
-  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
-  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
-      <ShowCurrentLaporanHarianModel>[].obs;
 
   RxInt userGrade = 0.obs;
   RxString userNote = ''.obs;
@@ -54,6 +50,11 @@ class LaporanPageController extends GetxController
   // var selectedPoint = '5'.obs;
   var selectedPoint = 'weekly'.obs;
 
+  LaporanHarianService laporanHarianService = LaporanHarianService();
+  ShowCurrentLaporanHarianResponse? showCurrentLaporanHarianResponse;
+  RxList<ShowCurrentLaporanHarianModel> showCurrentLaporanHarianModel =
+      <ShowCurrentLaporanHarianModel>[].obs;
+
   StatisticService statisticService = StatisticService();
   StatisticReportResponse? statisticReportResponse;
   RxList<StatisticReportModel> statisticReportModel =
@@ -63,14 +64,6 @@ class LaporanPageController extends GetxController
   ShowCurrentAlurBelajarResponse? showCurrentAlurBelajarResponse;
   Rx<ShowCurrentAlurBelajarModel> showCurrentAlurBelajarModel =
       ShowCurrentAlurBelajarModel().obs;
-
-  ShowCurrentPointMingguanResponse? showCurrentPointMingguanResponse;
-  Rx<ShowCurrentPointMingguanModel> showCurrentPointMingguanModel =
-      ShowCurrentPointMingguanModel().obs;
-
-  ShowCurrentPointBulananResponse? showCurrentPointBulananResponse;
-  Rx<ShowCurrentPointBulananModel> showCurrentPointBulananModel =
-      ShowCurrentPointBulananModel().obs;
 
   TugasService tugasService = TugasService();
   ShowCurrentTugasResponse? showCurrentTugasResponse;
@@ -92,8 +85,6 @@ class LaporanPageController extends GetxController
   void onInit() {
     tabControllerAll = TabController(length: 3, vsync: this);
     showCurrentAlurBelajar();
-    showCurrentPointMingguan();
-    showCurrentPointBulanan();
     showLeaderboardWeelky();
     showLeaderboardMonthly();
     showStatisticCurrentReport();
@@ -106,6 +97,7 @@ class LaporanPageController extends GetxController
   }
 
   Future showCurrentLaporanHarian(DateTime? date) async {
+    isLoadingReport(true);
     if (date == null) {
       print('Error: date parameter is null');
       return;
@@ -128,16 +120,16 @@ class LaporanPageController extends GetxController
       userPermission.value = showCurrentLaporanHarianResponse!.permission;
 
       update();
-      isLoading(false);
+      isLoadingReport(false);
     } catch (e) {
       print('laporan error :  $e');
-      isLoading(false);
+      isLoadingReport(false);
     }
   }
 
   Future showStatisticCurrentReport() async {
     try {
-      isLoading(true);
+      isLoadingReport(true);
       bottomTitles.clear();
       bottomTitlesMonthly.clear();
       final response = await statisticService.getStatisticCurrentLaporan(
@@ -169,8 +161,10 @@ class LaporanPageController extends GetxController
       maxX.value = spots.length - 1.0;
 
       update();
-      isLoading(false);
+      isLoadingReport(false);
     } catch (e) {
+      isLoadingReport(false);
+
       print(e);
     }
   }
@@ -200,133 +194,102 @@ class LaporanPageController extends GetxController
 
   Future showCurrentTugasTerbaru() async {
     try {
-      isLoading(true);
+      isLoadingTask(true);
       final response = await tugasService.getCurrentTugas('Terbaru');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelTerbaru.value = showCurrentTugasResponse!.data;
       print(
           'current tugas terbaru : ${showCurrentTugasModelTerbaru[1].description}');
-      isLoading.value = false;
+      isLoadingTask(false);
       update();
     } catch (e) {
+      isLoadingTask(false);
       print(e);
     }
   }
 
   Future showCurrentTugasDiperiksa() async {
     try {
-      isLoading(true);
+      isLoadingTask(true);
       final response = await tugasService.getCurrentTugas('Diperiksa');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelDiperiksa.value = showCurrentTugasResponse!.data;
       print(
           'current tugas selesai : ${showCurrentTugasModelDiperiksa[1].description}');
-      isLoading.value = false;
+      isLoadingTask(false);
       update();
     } catch (e) {
+      isLoadingTask(false);
       print(e);
     }
   }
 
   Future showCurrentTugasSelesai() async {
     try {
-      isLoading(true);
+      isLoadingTask(true);
       final response = await tugasService.getCurrentTugas('Selesai');
       showCurrentTugasResponse =
           ShowCurrentTugasResponse.fromJson(response.data);
       showCurrentTugasModelSelesai.value = showCurrentTugasResponse!.data;
       print(
           'current tugas selesai : ${showCurrentTugasModelSelesai[1].description}');
-      isLoading.value = false;
+      isLoadingTask(false);
       update();
     } catch (e) {
+      isLoadingTask(false);
       print(e);
     }
   }
 
   Future showCurrentAlurBelajar() async {
     try {
+      isLoadingLearningFlow(true);
       final response = await alurBelajarService.getShowCurrentAlurBelajar();
       showCurrentAlurBelajarResponse =
           ShowCurrentAlurBelajarResponse.fromJson(response.data);
       showCurrentAlurBelajarModel.value = showCurrentAlurBelajarResponse!.data;
       print(showCurrentAlurBelajarModel.value.toJson());
       update();
+      isLoadingLearningFlow(false);
     } catch (e) {
+      isLoadingLearningFlow(false);
       print(e);
-    }
-  }
-
-  Future showCurrentPointMingguan() async {
-    try {
-      isLoading(true);
-      final response = await laporanHarianService.getShowCurrentPointMingguan();
-      showCurrentPointMingguanResponse =
-          ShowCurrentPointMingguanResponse.fromJson(response.data);
-      showCurrentPointMingguanModel.value =
-          showCurrentPointMingguanResponse!.data;
-      isLoading.value = false;
-      update();
-    } catch (e) {
-      isLoading(true);
-      print(e);
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  Future showCurrentPointBulanan() async {
-    try {
-      isLoading(true);
-      final response = await laporanHarianService.getShowCurrentPointBulanan();
-      showCurrentPointBulananResponse =
-          ShowCurrentPointBulananResponse.fromJson(response.data);
-      showCurrentPointBulananModel.value =
-          showCurrentPointBulananResponse!.data;
-      isLoading.value = false;
-      update();
-      print(showCurrentPointBulananModel.value.week1Point);
-    } catch (e) {
-      isLoading(true);
-      print(e);
-    } finally {
-      isLoading(false);
     }
   }
 
   Future showLeaderboardWeelky() async {
     try {
-      isLoading(true);
+      isLoadingLeaderboard(true);
       final response = await leaderboardService.getLeaderboardWeekly();
       leaderboardResponse = LeaderboardResponse.fromJson(response.data);
       leaderboardModelWeekly.value = leaderboardResponse!.data;
-      isLoading.value = false;
+      isLoadingLeaderboard(false);
       update();
       print('leaderboard weelky: ${leaderboardModelWeekly[3].rank}');
     } catch (e) {
-      isLoading(true);
+      isLoadingLeaderboard(false);
       print(e);
     } finally {
-      isLoading(false);
+      isLoadingLeaderboard(false);
     }
   }
 
   Future showLeaderboardMonthly() async {
     try {
-      isLoading(true);
+      isLoadingLeaderboard(true);
       final response = await leaderboardService.getLeaderboardMonthly();
       leaderboardResponse = LeaderboardResponse.fromJson(response.data);
       leaderboardModelMonthly.value = leaderboardResponse!.data;
-      isLoading.value = false;
+      isLoadingLeaderboard(false);
       update();
       print('leaderboard monthly: ${leaderboardModelMonthly[3].rank}');
     } catch (e) {
-      isLoading(true);
+      isLoadingLeaderboard(false);
       print(e);
     } finally {
-      isLoading(false);
+      isLoadingLeaderboard(false);
     }
   }
 
@@ -358,7 +321,7 @@ class LaporanPageController extends GetxController
   void setSelectedDate(DateTime date) {
     selectedDate.value = date;
     DateFormat('yyyy-MM-dd').format(selectedDate.value);
-    isLoading(true);
+    isLoadingReport(true);
     showCurrentLaporanHarian(selectedDate.value);
     print(selectedDate.value);
     update();
