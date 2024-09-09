@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/api/OTP/service/otp_service.dart';
 import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
@@ -5,6 +6,8 @@ import 'package:fun_education_app/app/api/users/service/user_service.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPageController extends GetxController {
@@ -12,12 +15,15 @@ class RegisterPageController extends GetxController {
   RxBool isVisibleSignIn = true.obs;
   RxBool isVisibleSignInConfirm = true.obs;
 
+  RxString selectedDate = ''.obs;
+
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey<FormFieldState>();
 
   late TextEditingController fullNameController;
   late TextEditingController nicknameController;
   late TextEditingController emailController;
   late TextEditingController birthController;
+  late TextEditingController dateBirthController;
   late TextEditingController addressController;
   late TextEditingController confirmPasswordController;
   late TextEditingController passwordController;
@@ -43,6 +49,7 @@ class RegisterPageController extends GetxController {
     nicknameController = TextEditingController();
     emailController = TextEditingController();
     birthController = TextEditingController();
+    dateBirthController = TextEditingController();
     addressController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
@@ -51,6 +58,34 @@ class RegisterPageController extends GetxController {
     otpService = OTPService();
     userService = UserService();
     super.onInit();
+  }
+
+  Future<void> selectedDateOfBirth(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(primary: primaryColor),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor:
+                    Colors.black, // Text color for confirm and cancel buttons
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null) {
+      String formattedDate = DateFormat('d MMMM yyyy').format(picked);
+      // selectedDate.value = picked.toString();
+      dateBirthController.text = formattedDate;
+    }
   }
 
   Future<void> checkEmail() async {
@@ -84,6 +119,7 @@ class RegisterPageController extends GetxController {
         nicknameController.text.isEmpty ||
         emailController.text.isEmpty ||
         birthController.text.isEmpty ||
+        dateBirthController.text.isEmpty ||
         addressController.text.isEmpty) {
       Get.snackbar(
         "Error",
@@ -103,7 +139,7 @@ class RegisterPageController extends GetxController {
     fullName.value = fullNameController.text;
     nickname.value = nicknameController.text;
     email.value = emailController.text;
-    birth.value = birthController.text;
+    birth.value = '${birthController.text}, ${dateBirthController.text}';
     address.value = addressController.text;
     shift.value = selectedShift.value;
     gender.value = selectedGender.value;

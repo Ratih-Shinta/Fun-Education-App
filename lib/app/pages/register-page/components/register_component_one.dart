@@ -78,71 +78,33 @@ class RegisterComponentOne extends GetView<RegisterPageController> {
         ),
         SizedBox(height: height * 0.01),
         CommonTextField(
-          prefixIcon: Icon(Icons.calendar_today_outlined,
+          prefixIcon: Icon(Icons.location_on_outlined,
               color: greyColor.withOpacity(0.5)),
           fieldController: controller.birthController,
           obscureText: false,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Tempat, dan Tanggal Lahir tidak boleh kosong';
+              return 'Tempat Lahir tidak boleh kosong';
             }
-
-            final RegExp regex = RegExp(
-              r'^[a-zA-Z\s]+, \d{1,2} (januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember) \d{4}$',
-              caseSensitive: false, //allow lowercase and capitalized month
-            );
-
-            if (!regex.hasMatch(value)) {
-              return 'Format harus: Kota, tanggal bulan tahun';
-            }
-
-            try {
-              final datePart = value.split(', ')[1];
-              final day = int.parse(datePart.split(' ')[0]);
-              final month = datePart
-                  .split(' ')[1]
-                  .toLowerCase(); // convert to lowercase for uniformity
-
-              // Create a map of lowercase month names to numbers
-              const monthMap = {
-                'januari': 1,
-                'februari': 2,
-                'maret': 3,
-                'april': 4,
-                'mei': 5,
-                'juni': 6,
-                'juli': 7,
-                'agustus': 8,
-                'september': 9,
-                'oktober': 10,
-                'november': 11,
-                'desember': 12,
-              };
-
-              if (!monthMap.containsKey(month)) {
-                return 'Bulan tidak valid';
-              }
-
-              // check the maximum date 31
-              if (day < 1 || day > 31) {
-                return 'Hari harus antara 1 dan 31';
-              }
-            } catch (e) {
-              return 'Format tanggal tidak valid';
-            }
-
             return null;
           },
-          hintText: 'Tempat, Tanggal Lahir',
+          hintText: 'Tempat Lahir',
         ),
-        SizedBox(height: height * 0.005),
-        Container(
-          width: width,
-          child: AutoSizeText(
-            'Contoh : Batam, 4 September 2024',
-            style: tsLabelLargeMedium(greyColor.withOpacity(0.5)),
-            textAlign: TextAlign.left,
-          ),
+        SizedBox(height: height * 0.01),
+        CommonTextField(
+          prefixIcon: Icon(Icons.calendar_today_outlined,
+              color: greyColor.withOpacity(0.5)),
+          readOnly: true,
+          fieldController: controller.dateBirthController,
+          obscureText: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Tanggal Lahir tidak boleh kosong';
+            }
+            return null;
+          },
+          onTap: () => controller.selectedDateOfBirth(context),
+          hintText: 'Tanggal Lahir',
         ),
         SizedBox(height: height * 0.01),
         CommonTextField(

@@ -11,6 +11,8 @@ class CommonTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool? expands;
   final String? errorText;
+  final VoidCallback? onTap;
+  final bool? readOnly;
 
   CommonTextField(
       {super.key,
@@ -22,7 +24,7 @@ class CommonTextField extends StatelessWidget {
       this.suffixIcon,
       this.validator,
       this.expands,
-      this.errorText});
+      this.errorText, this.onTap, this.readOnly});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,8 @@ class CommonTextField extends StatelessWidget {
     final double height = mediaQuery.height;
 
     return TextFormField(
+      readOnly: readOnly ?? false,
+      onTap: onTap,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: fieldController,

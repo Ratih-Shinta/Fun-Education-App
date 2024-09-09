@@ -18,7 +18,7 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
       children: [
         Container(
           padding: EdgeInsets.only(
-              top: height * 0.08,
+              top: height * 0.02,
               left: width * 0.05,
               right: width * 0.05,
               bottom: height * 0.03),
@@ -63,7 +63,7 @@ class SavingPageComponentOne extends GetView<SavingPageController> {
                   }
                 },
               ),
-              SizedBox(height: height * 0.085),
+              SizedBox(height: height * 0.05),
               Obx(
                 () {
                   if (controller.isLoading.value) {
