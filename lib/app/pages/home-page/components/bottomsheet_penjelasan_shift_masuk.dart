@@ -67,7 +67,7 @@ class BottomsheetPenjelasanShiftMasuk extends GetView<HomePageController> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: AutoSizeText(
-                            'Untuk saat ini ananda masuk pada pukul 08.00 - 10.00, Shift masuk akan berganti sesuai dengan perkembangan anak.',
+                            'Untuk saat ini ananda masuk pada pukul ${controller.showCurrentUserModel.value.shift}, Shift masuk akan berganti sesuai dengan perkembangan anak.',
                             maxLines: 5,
                             style: tsBodySmallSemibold(whiteColor),
                           ),
@@ -80,7 +80,6 @@ class BottomsheetPenjelasanShiftMasuk extends GetView<HomePageController> {
                 Align(
                   alignment: Alignment.center,
                   child: CommonButton(
-                    isLoading: controller.isLoading.value,
                     text: 'Tutup',
                     onPressed: () => Navigator.pop(context),
                     backgroundColor: blackColor,
