@@ -107,8 +107,8 @@ class DetailTugasKirim extends GetView<DetailTugasPageController> {
             ),
             children: [
               TextSpan(
-                text: '*opsional',
-                style: tsBodySmallRegular(dangerColor),
+                text: '*Opsional',
+                style: tsBodySmallRegular(blackColor),
               ),
             ],
           ),
