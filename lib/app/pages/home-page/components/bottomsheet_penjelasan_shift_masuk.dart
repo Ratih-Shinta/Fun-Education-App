@@ -19,7 +19,7 @@ class BottomsheetPenjelasanShiftMasuk extends GetView<HomePageController> {
     final double height = mediaQuery.height;
 
     return SizedBox(
-        height: height * 0.62,
+        height: height * 0.5,
         child: Center(
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -48,10 +48,6 @@ class BottomsheetPenjelasanShiftMasuk extends GetView<HomePageController> {
                             ),
                             SizedBox(height: 10),
                             BulletText(text: 'Jam 08.00 – 10.00'),
-                            BulletText(text: 'Jam 10.00 – 11.30'),
-                            BulletText(text: 'Jam 11.30 – 13.00'),
-                            BulletText(text: 'Jam 13.00 – 14.00'),
-                            BulletText(text: 'Jam 14.00 – 15.00'),
                           ],
                         ),
                       ),
