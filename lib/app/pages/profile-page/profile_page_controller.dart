@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:fun_education_app/app/api/auth/service/authentication_service.dart';
+import 'package:fun_education_app/app/api/auth/authentication_service.dart';
 import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_model.dart';
 import 'package:fun_education_app/app/api/statistic/models/statistic-task-model/statistic_task_response.dart';
-import 'package:fun_education_app/app/api/statistic/service/statistic_service.dart';
+import 'package:fun_education_app/app/api/statistic/statistic_service.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';

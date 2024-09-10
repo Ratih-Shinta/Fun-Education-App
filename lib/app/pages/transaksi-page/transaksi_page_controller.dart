@@ -1,6 +1,6 @@
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_model.dart';
 import 'package:fun_education_app/app/api/transaksi/models/show_current_transaksi_response.dart';
-import 'package:fun_education_app/app/api/transaksi/service/show_current_transaksi_service.dart';
+import 'package:fun_education_app/app/api/transaksi/show_current_transaksi_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

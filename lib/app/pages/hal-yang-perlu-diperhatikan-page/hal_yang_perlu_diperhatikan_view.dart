@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_education_app/app/global-component/fun_education.dart';
+import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/hal_yang_perlu_diperhatikan_controller.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/bullet_text.dart';
 import 'package:fun_education_app/app/pages/hal-yang-perlu-diperhatikan-page/widgets/button_chip.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:get/get.dart';
 
-class HalYangPerluDiperhatikanView extends StatelessWidget {
+class HalYangPerluDiperhatikanView
+    extends GetView<HalYangPerluDiperhatikanController> {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
@@ -86,22 +88,33 @@ class HalYangPerluDiperhatikanView extends StatelessWidget {
                     ),
                   ],
                 ),
-                ButtonChip(text: 'Libur Siswa'),
-                BulletText(text: 'Hari Minggu/Ahad'),
-                BulletText(text: 'Tanggal merah /Libur Nasional'),
-                ButtonChip(text: 'Seragam'),
-                BulletText(
-                    boldTextStyle: tsBodySmallSemibold(blackColor),
-                    boldText: 'WAJIB PAKAI ',
-                    text: 'setiap pertemuan'),
-                ButtonChip(text: 'Menabung'),
-                BulletText(
-                    boldTextStyle: tsBodySmallSemibold(dangerColor),
-                    boldText: 'TIDAK WAJIB',
-                    text: ' / bagi yang mau saja'),
-                BulletText(
-                    text: 'Kegiatan menabung setiap hari Selasa dan Kamis'),
-                BulletText(text: 'Diluar dari jadwal itu tidak kami terima.'),
+                Obx(
+                  () {
+                    if (controller.isLoading.value) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: controller.showSchoolInformationModel.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ButtonChip(
+                                  text:
+                                      '${controller.showSchoolInformationModel[index].title}'),
+                              for (var desc in controller
+                                  .showSchoolInformationModel[index]
+                                  .description)
+                                BulletText(text: '${desc.body}'),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
                 SizedBox(height: height * 0.035),
                 Container(
                   padding: EdgeInsets.all(20),
