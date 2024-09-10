@@ -27,7 +27,8 @@ class ApiEndPoint {
   // static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic';
   // static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
   static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic-new';
-  static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic-new';
+  static String showStatisticCurrentLaporan =
+      '$baseUrlLaporanHarian/statistic-new';
 
   //school information
   static String showSchoolInformation = '$baseUrlSchoolInformation/index';
@@ -70,6 +71,8 @@ class ApiEndPoint {
 
   //Transaksi
   static String showCurrentTransaksi = '$baseUrlTransaksi/show-current';
+  static String showAvailableYear = '$baseUrlTransaksi/show-available-year';
+  static String showAvailableMonth = '$baseUrlTransaksi/show-available-month';
 
   //Alur Belajar
   static String showCurrentAlurBelajar = '$baseUrlAlurBelajar/show-current';
