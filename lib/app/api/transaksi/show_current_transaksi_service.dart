@@ -5,6 +5,31 @@ import 'package:dio/dio.dart';
 class TransaksiService {
   final DioInstance _dioInstance = DioInstance();
 
+  Future<Response> getShowAvailableYear() async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showAvailableYear,
+        isAuthorize: true,
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getShowAvailableMonth(String year) async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.showAvailableMonth,
+        isAuthorize: true,
+        queryParameters: {'year': year},
+      );
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<Response> getShowCurrentTransaksi() async {
     try {
       final response = await _dioInstance.getRequest(
@@ -17,14 +42,12 @@ class TransaksiService {
     }
   }
 
-  Future<Response> getTransaksiByMonth(String month) async {
+  Future<Response> getTransaksiByYearAndMonth(String month, String year) async {
     try {
       final response = await _dioInstance.getRequest(
         endpoint: ApiEndPoint.showCurrentTransaksi,
         isAuthorize: true,
-        queryParameters: {
-          'month': month,
-        },
+        queryParameters: {'month': month, 'year': year},
       );
       return response;
     } catch (e) {

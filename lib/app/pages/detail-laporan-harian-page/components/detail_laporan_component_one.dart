@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/detail_laporan_harian_controller.dart';
 import 'package:fun_education_app/app/pages/detail-laporan-harian-page/widgets/total_point_item.dart';
 import 'package:fun_education_app/common/helper/themes.dart';

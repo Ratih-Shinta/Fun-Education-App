@@ -3,7 +3,6 @@ import 'package:fun_education_app/app/api/school-information/models/show_school_
 import 'package:fun_education_app/app/api/school-information/models/show_school_information_respose.dart';
 import 'package:fun_education_app/app/api/school-information/school_infomation_service.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class HalYangPerluDiperhatikanController extends GetxController {
   RxBool isLoading = false.obs;

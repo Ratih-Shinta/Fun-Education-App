@@ -35,7 +35,7 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await controller.showCurrentTransaksiByMonth();
+          await controller.showTransactionByMonthAndYear();
           controller.update();
         },
         child: SingleChildScrollView(
@@ -71,7 +71,7 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                               showModalBottomSheet<void>(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return BottomSheetPilihBulan();
+                                  return BottomsheetPilihBulan();
                                 },
                                 isScrollControlled: true,
                                 backgroundColor: whiteColor,
@@ -154,7 +154,7 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                         ),
                       );
                     } else if (controller.showCurrentTransaksiModelByMonth
-                        .every((item) => item.amount == null)) {
+                        .every((item) => item.amount == 0)) {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: height * 0.15,

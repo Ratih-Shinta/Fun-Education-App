@@ -106,9 +106,9 @@ class MonthlyTransactions extends GetView<TransaksiPageController> {
           itemBuilder: (BuildContext context, int index) {
             return TransactionHistory(
               categoryController:
-                  controller.showCurrentTransaksiModelByMonth[index].category!,
+                  controller.showCurrentTransaksiModelByMonth[index].category,
               amountController:
-                  controller.showCurrentTransaksiModelByMonth[index].amount!,
+                  controller.showCurrentTransaksiModelByMonth[index].amount,
               descController:
                   controller.showCurrentTransaksiModelByMonth[index].desc ??
                       'Tidak Ada',

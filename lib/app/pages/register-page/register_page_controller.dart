@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fun_education_app/app/api/OTP/otp_service.dart';
 import 'package:fun_education_app/app/api/auth/authentication_service.dart';
 import 'package:fun_education_app/app/api/users/user_service.dart';
 import 'package:fun_education_app/common/helper/themes.dart';
 import 'package:fun_education_app/common/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
