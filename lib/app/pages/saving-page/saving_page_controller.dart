@@ -1,6 +1,6 @@
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_model.dart';
 import 'package:fun_education_app/app/api/tabungan/models/show_current_tabungan_response.dart';
-import 'package:fun_education_app/app/api/tabungan/service/tabungan_service.dart';
+import 'package:fun_education_app/app/api/tabungan/tabungan_service.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

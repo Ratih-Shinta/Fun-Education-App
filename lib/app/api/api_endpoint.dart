@@ -16,6 +16,7 @@ class ApiEndPoint {
   static String baseUrlTugasUser = '$baseUrl/tugas-user';
   static String baseUrlTugasUserImage = '$baseUrl/tugas-user-image';
   static String baseUrlOTP = '$baseUrl/otp';
+  static String baseUrlSchoolInformation = '$baseUrl/school-information';
 
   //Auth
   static String login = '$baseUrlAuth/login';
@@ -27,6 +28,9 @@ class ApiEndPoint {
   // static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic';
   static String showStatisticCurrentTugas = '$baseUrlTugasUser/statistic-new';
   static String showStatisticCurrentLaporan = '$baseUrlLaporanHarian/statistic-new';
+
+  //school information
+  static String showSchoolInformation = '$baseUrlSchoolInformation/index';
 
   //OTP
   static String sendOTP = '$baseUrlOTP/store';
