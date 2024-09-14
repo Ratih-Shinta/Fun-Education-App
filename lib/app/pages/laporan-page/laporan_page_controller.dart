@@ -129,7 +129,7 @@ class LaporanPageController extends GetxController
 
   Future showStatisticCurrentReport() async {
     try {
-      isLoadingReport(true);
+      isLoadingStatistic(true);
       bottomTitles.clear();
       bottomTitlesMonthly.clear();
       final response = await statisticService.getStatisticCurrentLaporan(
@@ -161,9 +161,9 @@ class LaporanPageController extends GetxController
       maxX.value = spots.length - 1.0;
 
       update();
-      isLoadingReport(false);
+      isLoadingStatistic(false);
     } catch (e) {
-      isLoadingReport(false);
+      isLoadingStatistic(false);
 
       print(e);
     }
@@ -302,17 +302,7 @@ class LaporanPageController extends GetxController
     return dates;
   }
 
-  var currentIndex = 0.obs;
-  void changeTab(int index) {
-    currentIndex.value = index;
-  }
-
-  var selectedTime = 'Mingguan'.obs;
-  void setSelectedTime(String time) {
-    selectedTime.value = time;
-  }
-
-  var selectedPeriod = 'Mingguan'.obs;
+  var selectedPeriod = 'weekly'.obs;
   void setSelectedPeriod(String period) {
     selectedPeriod.value = period;
   }

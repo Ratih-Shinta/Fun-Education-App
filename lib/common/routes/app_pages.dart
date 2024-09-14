@@ -47,7 +47,7 @@ class AppPages {
   
   AppPages._();
 
-  static const INITIAL = Routes.NAVBAR;
+  static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(

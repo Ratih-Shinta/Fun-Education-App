@@ -95,20 +95,24 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
               );
             } else {
               return Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                padding: const EdgeInsets.all(25),
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.05,
+                  vertical: height * 0.025,
+                ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(15),
                   color: greyColor.withOpacity(0.05),
                 ),
                 child: AspectRatio(
                   aspectRatio: 0.6,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
+                    children: [
                       Obx(() {
                         return AutoSizeText.rich(
                           TextSpan(
+                            // text:
+                            //     '${controller.selectedReportPoint.value} Laporan (Terakhir)\n',
                             text: controller.selectedPoint.value == 'weekly'
                                 ? 'Mingguan (Terakhir)\n'
                                 : 'Bulanan (Terakhir)\n',
@@ -116,50 +120,78 @@ class PeringkatComponentOne extends GetView<LaporanPageController> {
                                 .copyWith(height: 1.5),
                             children: [
                               TextSpan(
-                                  text: 'Perkembangan point ananda',
-                                  style: tsBodySmallRegular(blackColor)),
+                                text: 'Perkembangan point ananda',
+                                style: tsBodySmallRegular(blackColor),
+                              ),
                             ],
                           ),
                           maxLines: 2,
                           group: AutoSizeGroup(),
                         );
                       }),
-                      SizedBox(height: 8),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 6,
-                            backgroundColor: successColor,
-                          ),
-                          SizedBox(width: width * 0.02),
-                          AutoSizeText(
-                            group: AutoSizeGroup(),
-                            maxLines: 1,
-                            'Point Laporan',
-                            style: tsBodySmallRegular(blackColor),
-                          ),
-                        ],
+                      SizedBox(height: height * 0.02),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05,
+                          vertical: height * 0.008,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: whiteColor,
+                        ),
+                        child: Row(
+                          children: [
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   children: [
+                            //     AutoSizeText(
+                            //       group: AutoSizeGroup(),
+                            //       maxLines: 1,
+                            //       '-',
+                            //       style: tsTitleLargeSemibold(dangerColor),
+                            //     ),
+                            //     SizedBox(width: width * 0.02),
+                            //     AutoSizeText(
+                            //       group: AutoSizeGroup(),
+                            //       maxLines: 1,
+                            //       'Rata - Rata',
+                            //       style: tsBodySmallRegular(blackColor),
+                            //     ),
+                            //   ],
+                            // ),
+                            // SizedBox(width: width * 0.05),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 6,
+                                  backgroundColor: successColor,
+                                ),
+                                SizedBox(width: width * 0.02),
+                                AutoSizeText(
+                                  group: AutoSizeGroup(),
+                                  maxLines: 1,
+                                  'Point Laporan',
+                                  style: tsBodySmallRegular(blackColor),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 30),
-                      Obx(() {
-                        if (controller.statisticReportModel.isEmpty)
-                          return Expanded(
-                            child: Center(
-                              child: AutoSizeText(
-                                'Belum Ada Data',
-                                style: tsBodyMediumSemibold(blackColor),
-                              ),
-                            ),
-                          );
-                        else
-                          return Expanded(
-                            // aspectRatio: 0.8,
-                            child: LineChart(
-                              reportLineChart.reportLineChart(),
-                            ),
-                          );
-                      }),
+                      SizedBox(height: height * 0.04),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.01,
+                          ),
+                          child: Obx(() => controller.bottomTitles.isEmpty
+                              ? Text('Tidak Ada data')
+                              : LineChart(
+                                  reportLineChart.reportLineChart(),
+                                )),
+                        ),
+                      ),
                     ],
                   ),
                 ),
