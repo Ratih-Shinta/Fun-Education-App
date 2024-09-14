@@ -88,11 +88,9 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                               ),
                               child: Row(
                                 children: [
-                                  AutoSizeText.rich(
-                                    TextSpan(
-                                      text: controller.selectedMonth.value,
-                                      style: tsBodySmallSemibold(blackColor),
-                                    ),
+                                  AutoSizeText(
+                                    '${controller.selectedMonth.value} ${controller.selectedYear.value}',
+                                    style: tsBodySmallSemibold(blackColor),
                                   ),
                                   SizedBox(width: 5),
                                   Icon(
@@ -163,7 +161,7 @@ class TransaksiPageView extends GetView<TransaksiPageController> {
                           child: CommonNoData(
                             title: 'Belum Ada Riwayat',
                             subTitle:
-                                'Belum Ada Riwayat Transaksi Di Bulan ${controller.selectedMonth.value}',
+                                'Belum Ada Riwayat Transaksi Di Bulan ${controller.selectedMonth.value} ${controller.selectedYear.value}',
                             image: 'assets/images/imgEmpty.svg',
                           ),
                         ),

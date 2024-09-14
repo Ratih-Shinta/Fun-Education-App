@@ -16,7 +16,8 @@ class MonthlyTransactions extends GetView<TransaksiPageController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AutoSizeText('${controller.selectedMonth.value} 2024',
+        AutoSizeText(
+            '${controller.selectedMonth.value} ${controller.selectedYear.value}',
             style: tsBodyMediumRegular(blackColor)),
         SizedBox(height: height * 0.017),
         Row(
